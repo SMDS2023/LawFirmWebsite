@@ -1,0 +1,203 @@
+/* Apply Inter font globally */
+body {
+    font-family: 'Inter', sans-serif;
+    /* Increased padding to avoid overlap with both banners */
+    padding-bottom: 80px; /* Adjust if needed based on banner heights */
+}
+/* Ensure smooth scrolling for anchor links (#...) */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Add style for the new hero heading class */
+.font-hero-heading {
+    /* Change font-family to Tinos */
+    font-family: 'Tinos', serif; /* Use Tinos, fallback to generic serif */
+    /* You can add other specific styles like font-weight if needed */
+    /* font-weight: 700; */ /* Example: Make it bold */
+}
+
+/* Simple fade-in animation for sections */
+.section-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.section-visible { /* Class added by JavaScript when section is in view */
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Style for embedded Google Map iframe */
+.map-container iframe {
+    border: 0;
+    width: 100%;
+    height: 400px;
+    border-radius: 0.5rem; /* Tailwind rounded-lg */
+}
+/* Star rating styles */
+.star-rating {
+    color: #FBBF24; /* Tailwind amber-400 */
+}
+/* Team member photo styling */
+.team-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Circular */
+    object-fit: cover; /* Cover the area without distortion */
+    margin: 0 auto 1rem; /* Center horizontally, add bottom margin */
+    border: 3px solid #DBEAFE; /* Tailwind blue-100 */
+}
+/* Icon styling within summary sections */
+.summary-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    color: #2563EB; /* Tailwind blue-600 */
+}
+/* Styling for Practice Area Text Grid */
+.practice-area-grid-item {
+    display: block;
+    padding: 1rem 1.5rem;
+    border: 1px solid #E5E7EB; /* Tailwind gray-200 */
+    border-radius: 0.5rem; /* Tailwind rounded-lg */
+    text-align: center;
+    font-weight: 600; /* Tailwind font-semibold */
+    color: #374151; /* Tailwind gray-700 */
+    background-color: #F9FAFB; /* Tailwind gray-50 */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+.practice-area-grid-item:hover {
+    background-color: #DBEAFE; /* Tailwind blue-100 */
+    color: #1D4ED8; /* Tailwind blue-700 */
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* Tailwind shadow-md */
+}
+
+ /* FAQ Accordion Styles */
+.faq-question {
+    cursor: pointer; /* Indicate it's clickable */
+}
+.faq-answer {
+    overflow: hidden; /* Hide content when collapsed */
+    transition: max-height 0.3s ease-out; /* Smooth collapse/expand */
+}
+/* Logo Styling */
+.header-logo {
+    height: 65px; /* Set logo height */
+    width: auto; /* Maintain aspect ratio */
+}
+/* Testimonial Slider Styles */
+.testimonial-slider-container {
+    overflow: hidden; /* Hide slides outside the container */
+}
+.testimonial-track {
+    display: flex; /* Arrange slides in a row */
+    transition: transform 0.5s ease-in-out; /* Animation for sliding */
+}
+.testimonial-slide {
+    flex: 0 0 100%; /* Mobile: 1 slide visible */
+    padding-left: 1rem; /* Tailwind pl-4 */
+    padding-right: 1rem; /* Tailwind pr-4 */
+    box-sizing: border-box;
+}
+@media (min-width: 768px) { /* Medium screens: 2 slides visible */
+    .testimonial-slide {
+        flex: 0 0 50%;
+    }
+}
+@media (min-width: 1024px) { /* Large screens: 3 slides visible */
+    .testimonial-slide {
+        flex: 0 0 33.3333%;
+    }
+}
+/* Styles for truncated text (See More/Less) */
+.truncated-text {
+    overflow: hidden; /* Hide text exceeding max-height */
+    position: relative;
+    transition: max-height 0.5s ease-in-out; /* Smooth expand/collapse */
+}
+.testimonial-text-container {
+     max-height: 7.5rem; /* Initial max height for testimonials (approx 5 lines) */
+}
+.bio-text-container {
+     max-height: 6rem; /* Initial max height for bios (approx 4 lines) */
+}
+.is-expanded {
+    max-height: 1000px; /* Large value to allow full expansion */
+}
+/* Optional fade effect for truncated text */
+.truncated-text:not(.is-expanded)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1.5rem; /* Tailwind h-6 */
+    background: linear-gradient(to bottom, transparent, rgb(255 255 255 / 1)); /* Fade to white */
+    pointer-events: none; /* Allow clicking button underneath */
+}
+ /* Adjust fade for testimonial background (which is white) */
+ #testimonials .truncated-text:not(.is-expanded)::after {
+     background: linear-gradient(to bottom, transparent, rgb(255 255 255 / 1)); /* Fade to white */
+ }
+
+ /* Scrolling Banner Styles */
+.scrolling-banner {
+    position: fixed; /* Keep it fixed relative to the viewport */
+    bottom: 0; /* Position at the bottom */
+    left: 0;
+    width: 100%;
+    background-color: #1E3A8A; /* Tailwind blue-800 */
+    color: white;
+    padding: 0.5rem 0; /* Tailwind py-2 */
+    overflow: hidden; /* Hide overflowing text */
+    white-space: nowrap; /* Prevent text wrapping */
+    z-index: 100; /* Ensure it's above most other content */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.2); /* Optional top shadow */
+}
+.scrolling-banner-content {
+    display: inline-block; /* Allow animation */
+    padding-left: 20%; /* Start off-screen */
+    animation: scroll-left 250s linear infinite; /* Adjust duration as needed */
+}
+/* Make links in banner more visible */
+.scrolling-banner-content a {
+    color: #FBBF24; /* Tailwind amber-400 */
+    text-decoration: underline;
+}
+.scrolling-banner-content a:hover {
+    color: #FCD34D; /* Tailwind amber-300 */
+}
+.scrolling-banner-content span {
+    margin-right: 3rem; /* Tailwind mr-12 */
+}
+/* Animation for scrolling text */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%); /* Move text completely to the left */
+    }
+}
+/* Floating Action Button (FAB) Styles */
+.floating-cta {
+    position: fixed;
+    bottom: 60px; /* Position above the scrolling banner */
+    right: 1.5rem; /* Tailwind right-6 */
+    z-index: 90; /* Below header/banner but above most content */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(20px); /* Start slightly lower */
+    pointer-events: none; /* Not clickable when hidden */
+}
+.floating-cta.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto; /* Clickable when visible */
+}
+
+body.navigating-to-section {
+    visibility: hidden; /* Hide the body initially */
+}
