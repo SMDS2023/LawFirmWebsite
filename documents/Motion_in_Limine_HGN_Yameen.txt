@@ -1,0 +1,221 @@
+IN THE COUNTY COURT OF THE NINTH JUDICIAL CIRCUIT
+IN AND FOR ORANGE COUNTY, FLORIDA
+
+STATE OF FLORIDA,
+                    Plaintiff,
+
+v.                                                  Case No.: _______________________
+
+ANTHONY YAMEEN,
+                    Defendant.
+_________________________________________/
+
+
+        DEFENDANT'S MOTION IN LIMINE TO EXCLUDE SCIENTIFIC INTERPRETATION
+              OF HORIZONTAL GAZE NYSTAGMUS (HGN) TESTIMONY
+
+
+        COMES NOW the Defendant, ANTHONY YAMEEN, by and through undersigned counsel,
+
+and moves this Honorable Court for an order limiting and excluding certain testimony
+
+regarding the Horizontal Gaze Nystagmus ("HGN") portion of the Standardized Field
+
+Sobriety Tests. In support, Defendant states as follows:
+
+
+                        I. INTRODUCTION AND RELIEF REQUESTED
+
+        The defense respectfully requests that this Court exclude any testimony or
+
+implication regarding the scientific interpretation, terminology, or statistical correlation of
+
+HGN observations—such as the number of "clues," references to "accuracy," or correlation
+
+to blood alcohol concentration ("BAC")—unless and until the State satisfies the evidentiary
+
+foundations required by Florida law.
+
+        The Defendant does not seek to exclude all mention of the officer's lay observations
+
+(i.e., that the officer moved a pen and observed eye movements). Such lay testimony may
+
+remain admissible for the limited purposes of establishing what the officer did and observed,
+
+and for purposes of impeachment.
+
+
+              II. LEGAL BASIS: HGN AS SCIENTIFIC EVIDENCE UNDER
+                                STATE v. MEADOR
+
+A.      The HGN Test Constitutes Scientific Evidence
+
+        In State v. Meador, 674 So. 2d 826 (Fla. 4th DCA 1996), the court held that
+
+testimony about the correlation between HGN clues and alcohol consumption constitutes
+
+scientific evidence. Unlike psychomotor tasks such as walk-and-turn or one-leg stand, HGN
+
+relies upon medical and physiological principles not within a juror's common understanding.
+
+        Therefore, before such evidence may be admitted, the State must establish:
+
+        •       The reliability of the underlying scientific principle and test;
+
+        •       The qualifications of the witness administering and interpreting the test; and
+
+        •       The meaning of the results in the specific case.
+
+(Id. at 831–32; see also State v. Strong, 593 So. 2d 1065 (Fla. 4th DCA 1992).)
+
+        Because these predicates are not met here, the officer's interpretation of the HGN
+
+test is inadmissible.
+
+
+                  III. FAILURE TO SATISFY FOUNDATIONAL PREDICATES
+
+A.      Lack of Reliable Administration
+
+        The HGN's claimed reliability depends upon strict adherence to standardized
+
+procedures. Officers are trained that any deviation from protocol invalidates the test's
+
+scientific correlation.
+
+        In the present case, the video and testimony will show the officer:
+
+        •       Conducted the test while the Defendant faced flashing emergency lights, and
+
+        •       Failed to document or acknowledge these distractions or other deviations.
+
+        Such departures eliminate the reliability necessary for admissibility under Meador.
+
+
+B.      Lack of Qualification to Offer Scientific Interpretation
+
+        The officer in this case is not a Drug Recognition Expert (DRE) and lacks medical
+
+or physiological expertise. SFST certification expressly states that the course does not
+
+qualify an officer to interpret the causes of nystagmus or attribute it to alcohol.
+
+        Because nystagmus may have multiple non-alcohol causes (e.g., fatigue, medications,
+
+neurological conditions), the officer's attempt to testify about the "meaning" or "cause" of
+
+eye movements exceeds the scope of permissible lay testimony.
+
+
+C.      Risk of Prejudice and Misleading the Jury
+
+        Admitting HGN testimony as though it possessed scientific reliability would imbue
+
+the evidence with an aura of infallibility, misleading the jury to give it undue weight. Such
+
+evidence should therefore be excluded under §§ 90.403 and 90.702, Fla. Stat., because its
+
+prejudicial effect outweighs any probative value.
+
+
+                     IV. REQUESTED LIMITATIONS ON TESTIMONY
+
+        The defense respectfully requests that the Court limit the scope of permissible
+
+testimony as follows:
+
+1.      Exclude any reference to:
+
+        •       "Clues," "points," "tests," "pass/fail," or numerical scoring;
+
+        •       Scientific or technical terms (e.g., "lack of smooth pursuit," "onset prior to
+                45 degrees");
+
+        •       Any statement linking eye movement observations to specific BAC levels or
+                statistical accuracy.
+
+2.      Permit, solely for impeachment or context, testimony describing:
+
+        •       That the officer attempted to administer a procedure involving movement of a
+                stimulus before the eyes;
+
+        •       The officer's visual observations (e.g., that the eyes appeared to move or
+                jerk); and
+
+        •       The officer's reliance on those lay observations in forming probable cause.
+
+
+                V. PRESERVATION OF IMPEACHMENT VALUE (GOAL 2)
+
+        The Defendant maintains the right to cross-examine and impeach the officer
+
+regarding:
+
+        •       Whether the HGN was properly administered;
+
+        •       Whether the officer's report accurately documented what occurred; and
+
+        •       Any inconsistencies between the report, field notes, body camera footage, or
+                testimony.
+
+        Florida law permits impeachment of a witness by prior inconsistent statements and
+
+factual contradictions. See §§ 90.608–90.610, Fla. Stat. Evidence that the officer claimed
+
+to perform standardized testing "by the book" when the video reveals otherwise is directly
+
+relevant to credibility and truthfulness.
+
+
+                                    VI. CONCLUSION
+
+        Because the State cannot establish the scientific reliability, qualification, and
+
+foundational meaning required under Meador, any testimony regarding the scientific
+
+interpretation of the HGN test must be excluded.
+
+        However, factual references to the administration and observation of the HGN may
+
+remain admissible solely for impeachment and contextual purposes.
+
+        WHEREFORE, the Defendant respectfully requests that this Court enter an order:
+
+        1.      Excluding any scientific or technical testimony regarding HGN interpretation
+                or statistical accuracy; and
+
+        2.      Limiting the officer's testimony to lay descriptions of what was done and
+                observed.
+
+
+Respectfully submitted,
+
+Law Office of Jeff Lotter, PLLC
+200 E. Robinson St., Suite 1140
+Orlando, FL 32801
+(407) 500-7000
+Email: jeff@lotterlawfirm.com
+
+
+/s/ Jeff Lotter
+_________________________________
+JEFF LOTTER, ESQ.
+Florida Bar No. 115350
+Attorney for Defendant
+
+
+
+CERTIFICATE OF SERVICE
+
+        I HEREBY CERTIFY that a true and correct copy of the foregoing has been furnished
+
+to the State Attorney's Office, Ninth Judicial Circuit, by [e-mail/U.S. Mail/hand delivery]
+
+on this _____ day of ______________, 20___.
+
+
+/s/ Jeff Lotter
+_________________________________
+JEFF LOTTER, ESQ.
+Florida Bar No. 115350
+Attorney for Defendant
