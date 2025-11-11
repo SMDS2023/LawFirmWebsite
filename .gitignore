@@ -36,6 +36,3 @@ yarn-error.log
 # Build outputs (if you add build process later)
 dist/
 build/
-
-# User Documents folder
-C:\Users\jeff\OneDrive\Documents\*
