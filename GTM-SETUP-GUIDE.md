@@ -6,7 +6,7 @@ This guide will help you complete the migration to Google Tag Manager (GTM) best
 ## Current Status
 
 ✅ **Google Tag Manager** (`GTM-PLX85K8L`) - Installed on all 40 HTML pages
-⚠️ **Google Analytics 4** (`G-D28BZM9QDC`) - Currently hardcoded in HTML (will move to GTM)
+⚠️ **Google Analytics 4** (`G-2MCJ8E0XS5`) - Currently hardcoded in HTML (will move to GTM)
 ⚠️ **Microsoft Clarity** (`reu4dibx4h`) - Currently hardcoded in HTML (will move to GTM)
 
 ## Step 1: Configure Google Analytics 4 in GTM
@@ -20,7 +20,7 @@ This guide will help you complete the migration to Google Tag Manager (GTM) best
 2. Click **New** button
 3. Click on the tag configuration area
 4. Select **Google Analytics: GA4 Configuration**
-5. Enter your Measurement ID: `G-D28BZM9QDC`
+5. Enter your Measurement ID: `G-2MCJ8E0XS5`
 6. Under **Triggering**, click the trigger area
 7. Select **All Pages** trigger
 8. Name the tag: `GA4 - Configuration`
@@ -134,7 +134,7 @@ Once comfortable with GTM, you can add:
 ## Troubleshooting
 
 ### GA4 Not Firing
-- Check Measurement ID is correct: `G-D28BZM9QDC`
+- Check Measurement ID is correct: `G-2MCJ8E0XS5`
 - Verify trigger is set to "All Pages"
 - Check for JavaScript errors in Console
 
