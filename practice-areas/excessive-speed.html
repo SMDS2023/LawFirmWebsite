@@ -412,23 +412,6 @@
                         </div>
                     </div>
 
-                    <div class="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r">
-                        <h3 class="text-xl font-bold text-amber-800 mb-3">🔍 We Demand Full Discovery</h3>
-                        <p class="text-gray-700 mb-3">
-                            In every Super Speeder case, we file aggressive discovery demands for:
-                        </p>
-                        <ul class="list-disc pl-6 space-y-2 text-gray-700">
-                            <li>Six-month bench test certificates for the radar/laser device</li>
-                            <li>Pre-shift and post-shift calibration logs for your arrest date</li>
-                            <li>Officer training records and SMD certifications</li>
-                            <li>Speedometer testing certificates (for pacing cases)</li>
-                            <li>Device maintenance and repair history</li>
-                            <li>Manufacturer specifications and approved device list verification</li>
-                        </ul>
-                        <p class="text-gray-700 mt-4 font-semibold">
-                            If the State can't produce these documents, we move to exclude the speed evidence—and without speed evidence, the case collapses.
-                        </p>
-                    </div>
                 </div>
             </div>
         </section>
@@ -498,89 +481,229 @@
         </section>
 
         <!-- Team Section -->
-        <section id="team" class="py-16 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <section id="team" class="py-16 bg-white">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-3xl font-bold text-blue-800 mb-12">Meet Our Dedicated Team</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <!-- Team Member 1: Jeff Lotter -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col">
-                        <img src="../assets/Attorney-Jeff-Lotter1.jpg" alt="Attorney Jeff Lotter" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'">
-                        <h3 class="text-xl font-bold text-blue-700 mb-2">Jeff Lotter</h3>
-                        <p class="text-sm text-indigo-600 font-semibold mb-2">Attorney | Founder</p>
-                        <div class="text-xs text-gray-600 mb-4 space-y-1">
-                            <p class="font-semibold">Florida Bar Member since 2015</p>
-                            <p>Office in Orlando, Florida</p>
+                    <div x-data="{ expanded: false }" class="bg-blue-50 p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col">
+                        <img src="../assets/Attorney-Jeff-Lotter1.jpg" alt="Attorney Jeff Lotter" class="team-photo" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'; this.onerror=null;">
+                        <h3 class="text-xl font-bold text-blue-700 mb-2 mt-4">Jeff Lotter</h3>
+                        <p class="text-sm text-indigo-600 font-semibold mb-4">Attorney | Founder</p>
+                        <div class="truncated-text bio-text-container flex-grow" :class="{ 'is-expanded': expanded }">
+                            <p class="text-gray-600 text-sm leading-relaxed text-left">
+                               An experienced Orlando attorney, Jeff brings more than two decades of front-line law enforcement and legal experience to every case. As a former Florida State Trooper and Deputy Sheriff, he offers clients a powerful advantage: insider knowledge of police procedures and prosecution strategies. Now solely dedicated to criminal defense, Jeff—a Military Veteran—approaches the courtroom as a battlefield. You, the client, are the General; Jeff is the battlefield commander executing your mission. Grounded in his Christian faith and committed to protecting freedom, Jeff sees every case as an opportunity to push back against government overreach and defend the individual against unjust intrusion. Married for over 20 years with two children, he brings the same unwavering dedication to protecting your rights as he does to his own family.
+                            </p>
                         </div>
-                        <p class="text-gray-600 text-sm leading-relaxed text-left">
-                            An experienced Orlando attorney, Jeff brings more than two decades of front-line law enforcement and legal experience to every case. As a former Florida State Trooper and Orange County Deputy Sheriff, he offers clients a powerful advantage: insider knowledge of police procedures and prosecution strategies. Now solely dedicated to criminal defense, Jeff—a Military Veteran—approaches the courtroom as a battlefield. Grounded in his Christian faith and committed to protecting freedom, Jeff sees every case as an opportunity to push back against government overreach and defend the individual against unjust intrusion. Married for over 20 years with two children, he brings the same unwavering dedication to protecting your rights as he does to his own family.
-                        </p>
+                         <button @click="expanded = !expanded" class="mt-auto pt-3 text-sm text-blue-600 hover:text-blue-800 font-semibold">
+                            <span x-show="!expanded">See More</span>
+                            <span x-show="expanded">See Less</span>
+                        </button>
                     </div>
 
-                    <!-- Team Member 2: Stacy Sanchez -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.1s;">
-                        <img src="../assets/stacy400400.webp" alt="Stacy Sanchez" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'">
-                        <h3 class="text-xl font-bold text-blue-700 mb-2">Stacy Sanchez</h3>
+                    <div x-data="{ expanded: false }" class="bg-blue-50 p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.1s;">
+                        <img src="../assets/Legal Assistant Stacy Sanchez.jpg" alt="Stacy Sanchez" class="team-photo" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'; this.onerror=null;">
+                        <h3 class="text-xl font-bold text-blue-700 mb-2 mt-4">Stacy Sanchez</h3>
                         <p class="text-sm text-indigo-600 font-semibold mb-4">Senior Legal Assistant</p>
-                        <p class="text-gray-600 text-sm leading-relaxed text-left">
-                            Since beginning her legal career in 2014, Stacy has brought unwavering dedication to the field of criminal defense. She joined Lotter Law in 2021 and has since become an integral part of the team, known for her reliability, compassion, and sharp attention to detail. Originally from New York and raised in Orlando, Stacy blends tenacity with a warm, client-centered approach. Driven by a deep desire to help others, she believes every person deserves to be treated with dignity and respect—especially during some of the most difficult moments of their lives. Her strong family values guide her empathetic communication and relentless work ethic. With over a decade of experience and a genuine passion for criminal defense, Stacy continues to make a meaningful impact every day at Lotter Law.
-                        </p>
+                         <div class="truncated-text bio-text-container flex-grow" :class="{ 'is-expanded': expanded }">
+                            <p class="text-gray-600 text-sm leading-relaxed text-left">
+                                Since beginning her legal career in 2014, Stacy has brought unwavering dedication to the field of criminal defense. She joined Lotter Law in 2021 and has since become an integral part of the team, known for her reliability, compassion, and sharp attention to detail. Originally from New York and raised in Orlando, Stacy blends tenacity with a warm, client-centered approach. Driven by a deep desire to help others, she believes every person deserves to be treated with dignity and respect—especially during some of the most difficult moments of their lives. Her strong family values guide her empathetic communication and relentless work ethic. With over a decade of experience and a genuine passion for criminal defense, Stacy continues to make a meaningful impact every day at Lotter Law.
+                            </p>
+                        </div>
+                         <button @click="expanded = !expanded" class="mt-auto pt-3 text-sm text-blue-600 hover:text-blue-800 font-semibold">
+                            <span x-show="!expanded">See More</span>
+                            <span x-show="expanded">See Less</span>
+                        </button>
                     </div>
 
-                    <!-- Team Member 3: Marissa Rodriguez -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.2s;">
-                        <img src="../assets/Marissa400400.webp" alt="Marissa Rodriguez" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'">
-                        <h3 class="text-xl font-bold text-blue-700 mb-2">Marissa Rodriguez</h3>
+                    <div x-data="{ expanded: false }" class="bg-blue-50 p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.2s;">
+                        <img src="../assets/legal-assistant-marissa-rodriguez1.jpg" alt="Marissa Rodriguez" class="team-photo" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'; this.onerror=null;">
+                        <h3 class="text-xl font-bold text-blue-700 mb-2 mt-4">Marissa Rodriguez</h3>
                         <p class="text-sm text-indigo-600 font-semibold mb-4">Legal Assistant</p>
-                        <p class="text-gray-600 text-sm leading-relaxed text-left">
-                            Born and raised in Orlando, Florida, Marissa joined the firm in 2022 with a strong passion for criminal defense. She has become a valued member of the team, known for her strong work ethic, and dedication to client service. Graduating at the top of her class, Marissa brings both academic excellence and practical experience to her role. Her hardworking and reliable nature ensures that every case is handled with care and precision.
-                        </p>
+                         <div class="truncated-text bio-text-container flex-grow" :class="{ 'is-expanded': expanded }">
+                            <p class="text-gray-600 text-sm leading-relaxed text-left">
+                                Born and raised in Orlando, Florida, Marissa joined the firm in 2022 with a strong passion for criminal defense. She has become a valued member of the team, known for her strong work ethic, and dedication to client service. Graduating at the top of her class, Marissa brings both academic excellence and practical experience to her role. Her hardworking and reliable nature ensures that every case is handled with care and precision.
+                            </p>
+                        </div>
+                         <button @click="expanded = !expanded" class="mt-auto pt-3 text-sm text-blue-600 hover:text-blue-800 font-semibold">
+                            <span x-show="!expanded">See More</span>
+                            <span x-show="expanded">See Less</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="py-16 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-blue-800 mb-12 text-center">What Our Clients Say</h2>
-                <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
-                    <div class="bg-blue-50 rounded-lg p-6 shadow-md">
-                        <div class="flex mb-4">
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-gray-700 mb-4">"Jeff got my criminal speeding charge reduced to a civil infraction. No jail, no criminal record. Incredible result."</p>
-                        <p class="font-semibold text-gray-800">- Marcus T.</p>
+        <section id="testimonials" class="py-16 bg-gray-100">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-blue-800 mb-12">What Our Clients Say</h2>
+                <div x-data="testimonialSlider()"
+                     @mouseenter="stopAutoplay"
+                     @mouseleave="startAutoplay"
+                     class="relative max-w-6xl mx-auto section-fade-in">
+                    <div x-ref="slider" class="testimonial-slider-container px-12 md:px-16">
+                        <div class="testimonial-track" :style="`transform: translateX(-${currentIndex * slideWidth}%)`">
+                             <!-- Start Review 1 -->
+                             <div class="testimonial-slide" x-data="{ expanded: false }">
+                                <div class="bg-white p-6 rounded-lg shadow-md h-full flex flex-col">
+                                    <div class="star-rating mb-3" aria-label="5 out of 5 stars">★★★★★</div>
+                                    <div class="truncated-text testimonial-text-container flex-grow" :class="{ 'is-expanded': expanded }">
+                                        <p class="text-gray-600 italic mb-4 text-left">
+                                            "At first, the situation was very intimidating, but once I connected with Jeff Lotter's office, everything changed for the better. His team was exceptional — professional, understanding, and supportive throughout the process. Jeff not only offered the best price in town but also delivered the best service. He personally reached out to me even before the court date to review everything and assured me that the points and class requirements would be removed, and the case would be dismissed — and he delivered exactly as promised. I am truly satisfied with the outstanding service and care I received from Jeff and his team."
+                                        </p>
+                                    </div>
+                                    <button @click="expanded = !expanded" class="mt-2 text-sm text-blue-600 hover:text-blue-800 font-semibold self-start">
+                                        <span x-show="!expanded">See More</span>
+                                        <span x-show="expanded">See Less</span>
+                                    </button>
+                                    <p class="font-semibold text-gray-800 mt-4">- Client MH</p>
+                                </div>
+                            </div>
+                            <!-- End Review 1 -->
+                            <!-- Start Review 2 -->
+                            <div class="testimonial-slide" x-data="{ expanded: false }">
+                                <div class="bg-white p-6 rounded-lg shadow-md h-full flex flex-col">
+                                    <div class="star-rating mb-3" aria-label="5 out of 5 stars">★★★★★</div>
+                                     <div class="truncated-text testimonial-text-container flex-grow" :class="{ 'is-expanded': expanded }">
+                                        <p class="text-gray-600 italic mb-4 text-left">
+                                            "Very thorough and detail oriented. Highly recommended thanks Jeff!"
+                                        </p>
+                                     </div>
+                                    <p class="font-semibold text-gray-800 mt-auto pt-4">- GC</p>
+                                </div>
+                            </div>
+                            <!-- End Review 2 -->
+                            <!-- Start Review 3 -->
+                            <div class="testimonial-slide" x-data="{ expanded: false }">
+                                <div class="bg-white p-6 rounded-lg shadow-md h-full flex flex-col">
+                                    <div class="star-rating mb-3" aria-label="5 out of 5 stars">★★★★★</div>
+                                     <div class="truncated-text testimonial-text-container flex-grow" :class="{ 'is-expanded': expanded }">
+                                        <p class="text-gray-600 italic mb-4 text-left">
+                                            "I recently had the pleasure of being represented by JRL in contesting a traffic ticket, and I couldn't be more pleased with the outcome. The team was professional, communicative, and effective throughout the entire process. Highly recommend Jeff Lotter for anyone needing top-notch legal representation!"
+                                        </p>
+                                    </div>
+                                     <button @click="expanded = !expanded" class="mt-2 text-sm text-blue-600 hover:text-blue-800 font-semibold self-start">
+                                        <span x-show="!expanded">See More</span>
+                                        <span x-show="expanded">See Less</span>
+                                    </button>
+                                    <p class="font-semibold text-gray-800 mt-4">- Client PI</p>
+                                </div>
+                            </div>
+                            <!-- End Review 3 -->
+                            <!-- Start Review 4 -->
+                            <div class="testimonial-slide" x-data="{ expanded: false }">
+                                <div class="bg-white p-6 rounded-lg shadow-md h-full flex flex-col">
+                                    <div class="star-rating mb-3" aria-label="5 out of 5 stars">★★★★★</div>
+                                     <div class="truncated-text testimonial-text-container flex-grow" :class="{ 'is-expanded': expanded }">
+                                        <p class="text-gray-600 italic mb-4 text-left">
+                                            "Very easy to work with, professional, and couldnt ask for better results."
+                                        </p>
+                                     </div>
+                                     <p class="font-semibold text-gray-800 mt-auto pt-4">- Client CR</p>
+                                </div>
+                            </div>
+                            <!-- End Review 4 -->
+                            <!-- Start Review 5 -->
+                            <div class="testimonial-slide" x-data="{ expanded: false }">
+                                <div class="bg-white p-6 rounded-lg shadow-md h-full flex flex-col">
+                                    <div class="star-rating mb-3" aria-label="5 out of 5 stars">★★★★★</div>
+                                     <div class="truncated-text testimonial-text-container flex-grow" :class="{ 'is-expanded': expanded }">
+                                        <p class="text-gray-600 italic mb-4 text-left">
+                                            "Serious Bodily Injury Accident Case Dismissed!!! Working with Jeff Lotter Law Firm was an incredible experience. Thanks to his expertise and dedication, I walked away from a very serious case completely unscathed—no guilty verdict, no fine, no school, no points, and no license suspension. Simply the best attorney!"
+                                        </p>
+                                     </div>
+                                     <button @click="expanded = !expanded" class="mt-2 text-sm text-blue-600 hover:text-blue-800 font-semibold self-start">
+                                        <span x-show="!expanded">See More</span>
+                                        <span x-show="expanded">See Less</span>
+                                    </button>
+                                    <p class="font-semibold text-gray-800 mt-4">- IV</p>
+                                </div>
+                            </div>
+                            <!-- End Review 5 -->
+                            <!-- Start Review 6 -->
+                            <div class="testimonial-slide" x-data="{ expanded: false }">
+                                <div class="bg-white p-6 rounded-lg shadow-md h-full flex flex-col">
+                                    <div class="star-rating mb-3" aria-label="5 out of 5 stars">★★★★★</div>
+                                     <div class="truncated-text testimonial-text-container flex-grow" :class="{ 'is-expanded': expanded }">
+                                        <p class="text-gray-600 italic mb-4 text-left">
+                                            "This firm is excellent and helped me greatly with my case. Highly recommended for their professionalism and results!"
+                                        </p>
+                                     </div>
+                                      <button @click="expanded = !expanded" class="mt-2 text-sm text-blue-600 hover:text-blue-800 font-semibold self-start">
+                                        <span x-show="!expanded">See More</span>
+                                        <span x-show="expanded">See Less</span>
+                                    </button>
+                                    <p class="font-semibold text-gray-800 mt-4">- Client X</p>
+                            </div>
+                            </div>
+                            <!-- End Review 6 -->
+                             <!-- Start Review 7 -->
+                             <div class="testimonial-slide" x-data="{ expanded: false }">
+                                <div class="bg-white p-6 rounded-lg shadow-md h-full flex flex-col">
+                                    <div class="star-rating mb-3" aria-label="5 out of 5 stars">★★★★★</div>
+                                     <div class="truncated-text testimonial-text-container flex-grow" :class="{ 'is-expanded': expanded }">
+                                        <p class="text-gray-600 italic mb-4 text-left">
+                                            "from the start. She kept us updated throughout the entire process. You entire all these attorney cards saying they can get you out of the ticket. Well this law firm did. Thank you very much."
+                                        </p>
+                                     </div>
+                                      <button @click="expanded = !expanded" class="mt-2 text-sm text-blue-600 hover:text-blue-800 font-semibold self-start">
+                                        <span x-show="!expanded">See More</span>
+                                        <span x-show="expanded">See Less</span>
+                                    </button>
+                                    <p class="font-semibold text-gray-800 mt-4">- DM</p>
+                                </div>
+                            </div>
+                            <!-- End Review 7 -->
+                            <!-- Start Review 8 -->
+                            <div class="testimonial-slide" x-data="{ expanded: false }">
+                                <div class="bg-white p-6 rounded-lg shadow-md h-full flex flex-col">
+                                    <div class="star-rating mb-3" aria-label="5 out of 5 stars">★★★★★</div>
+                                    <div class="truncated-text testimonial-text-container flex-grow" :class="{ 'is-expanded': expanded }">
+                                        <p class="text-gray-600 italic mb-4 text-left">
+                                            "I couldn't be more satisfied with the service I received. Everything that was promised was delivered, and more. My case was dismissed, I saved money, and I didn't have to waste my time with a traffic class. Jeff Lotter and Marissa were attentive and helpful. I hope I won't need to seek this kind of help again, but if I do, I know who to call."
+                                        </p>
+                                    </div>
+                                    <button @click="expanded = !expanded" class="mt-2 text-sm text-blue-600 hover:text-blue-800 font-semibold self-start">
+                                        <span x-show="!expanded">See More</span>
+                                        <span x-show="expanded">See Less</span>
+                                    </button>
+                                    <p class="font-semibold text-gray-800 mt-4">- JR</p>
+                                </div>
+                            </div>
+                            <!-- End Review 8 -->
+                            <!-- Start Review 9 -->
+                            <div class="testimonial-slide" x-data="{ expanded: false }">
+                                <div class="bg-white p-6 rounded-lg shadow-md h-full flex flex-col">
+                                    <div class="star-rating mb-3" aria-label="5 out of 5 stars">★★★★★</div>
+                                    <div class="truncated-text testimonial-text-container flex-grow" :class="{ 'is-expanded': expanded }">
+                                        <p class="text-gray-600 italic mb-4 text-left">
+                                            "Awesome experience being represented by the Law Office of Jeff Lotter. Talked to them twice and explained the situation and they handled everything else. Had the whole case dismissed: no fines, no points, no school, nothing!"
+                                        </p>
+                                    </div>
+                                    <button @click="expanded = !expanded" class="mt-2 text-sm text-blue-600 hover:text-blue-800 font-semibold self-start">
+                                        <span x-show="!expanded">See More</span>
+                                        <span x-show="expanded">See Less</span>
+                                    </button>
+                                    <p class="font-semibold text-gray-800 mt-4">- CM</p>
+                                </div>
+                            </div>
+                            <!-- End Review 9 -->
+                            </div>
                     </div>
-
-                    <div class="bg-blue-50 rounded-lg p-6 shadow-md">
-                        <div class="flex mb-4">
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-gray-700 mb-4">"Professional, knowledgeable, and responsive. I'm so glad I didn't try to handle this myself."</p>
-                        <p class="font-semibold text-gray-800">- Rachel K.</p>
-                    </div>
-
-                    <div class="bg-blue-50 rounded-lg p-6 shadow-md">
-                        <div class="flex mb-4">
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-gray-700 mb-4">"Got my criminal charge reduced to a civil infraction thanks to Jeff's expertise. Worth every penny."</p>
-                        <p class="font-semibold text-gray-800">- David P.</p>
-                    </div>
+                    <button @click="prev(); stopAutoplay();" class="absolute top-1/2 left-0 transform -translate-y-1/2 p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition duration-300 z-10" aria-label="Previous Testimonial">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button @click="next(); stopAutoplay();" class="absolute top-1/2 right-0 transform -translate-y-1/2 p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition duration-300 z-10" aria-label="Next Testimonial">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="mt-12">
+                    <a href="https://g.co/kgs/Fmc2sUz" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300 shadow-lg"> Read More Reviews on Google
+                    </a>
                 </div>
             </div>
         </section>
