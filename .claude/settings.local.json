@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(nul)",
+      "WebFetch(domain:lotterlaw.com)",
+      "Bash(curl:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git checkout:*)",
+      "Bash(git ls-tree:*)",
+      "Bash(git fetch:*)",
+      "Bash(git cherry-pick:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
