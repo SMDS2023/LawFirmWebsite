@@ -984,7 +984,7 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- UPDATED Site-wide JavaScript -->
     <script>
         // Alpine.js data function for Testimonial Slider
         function testimonialSlider() {
@@ -997,15 +997,17 @@
                 autoplayDelay: 1750,
 
                 init() {
-                    this.totalSlides = this.$refs.slider ? this.$refs.slider.querySelectorAll('.testimonial-slide').length : 0;
-                     if (this.totalSlides === 0) {
-                        this.slidesPerPage = 0;
-                        return;
-                    }
-                    this.currentIndex = 0;
-                    this.updateSlidesPerPage();
-                    this.startAutoplay();
-                    window.addEventListener('resize', () => this.updateSlidesPerPage());
+                    this.$nextTick(() => {
+                        this.totalSlides = this.$refs.slider ? this.$refs.slider.querySelectorAll('.testimonial-slide').length : 0;
+                        if (this.totalSlides === 0) {
+                            this.slidesPerPage = 0;
+                            return;
+                        }
+                        this.currentIndex = 0;
+                        this.updateSlidesPerPage();
+                        this.startAutoplay();
+                        window.addEventListener('resize', () => this.updateSlidesPerPage());
+                    });
                 },
 
                 updateSlidesPerPage() {
@@ -1023,10 +1025,8 @@
                     }
                     this.currentIndex = Math.min(this.currentIndex, Math.max(0, this.totalSlides - this.slidesPerPage));
 
-                    if (this.autoplayInterval && this.totalSlides > this.slidesPerPage) {
-                         this.startAutoplay();
-                    } else if (this.totalSlides <= this.slidesPerPage) {
-                        this.stopAutoplay();
+                    if (this.autoplayInterval) {
+                        this.startAutoplay();
                     }
                 },
 
@@ -1061,19 +1061,120 @@
             }
         }
 
-        // Mobile Menu Toggle
-        const menuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (menuButton && mobileMenu) {
-            menuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-                menuButton.setAttribute('aria-expanded', !isExpanded);
-            });
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle Logic
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuButton && mobileMenu) {
+                menuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+                    menuButton.setAttribute('aria-expanded', !isExpanded);
+                });
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        const href = link.getAttribute('href');
+                        if (href && (href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:') || href.includes('index.html#'))) {
+                           mobileMenu.classList.add('hidden');
+                           menuButton.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                });
+            }
 
-        // Set current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+            // Function for smooth scrolling (handles sticky header offset and cross-page links)
+            function smoothScrollToTarget(targetHref) {
+                const isLinkToIndex = targetHref.includes('index.html#');
+                const hash = targetHref.substring(targetHref.indexOf('#'));
+                const currentPath = window.location.pathname.split('/').pop();
+
+                if (isLinkToIndex && currentPath !== 'index.html' && currentPath !== '') {
+                    sessionStorage.setItem('scrollToId', hash);
+                    window.location.href = targetHref.substring(0, targetHref.indexOf('#'));
+                    return;
+                }
+
+                const targetElement = document.querySelector(hash);
+                if (targetElement) {
+                    const header = document.querySelector('header.sticky');
+                    const headerOffset = header ? header.offsetHeight : 70;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+                const href = anchor.getAttribute('href');
+                if (href === '#' || anchor.closest('.testimonial-slide')) {
+                    return;
+                }
+
+                anchor.addEventListener('click', function (e) {
+                    const hrefAttribute = this.getAttribute('href');
+                    if (hrefAttribute.startsWith('#') || hrefAttribute.includes('index.html#')) {
+                        e.preventDefault();
+                        smoothScrollToTarget(hrefAttribute);
+                    }
+                });
+            });
+
+            window.addEventListener('load', () => {
+                const scrollToId = sessionStorage.getItem('scrollToId');
+                if (scrollToId) {
+                    setTimeout(() => {
+                        smoothScrollToTarget(scrollToId);
+                        sessionStorage.removeItem('scrollToId');
+                    }, 100);
+                } else if (window.location.hash) {
+                    setTimeout(() => {
+                        smoothScrollToTarget(window.location.hash);
+                    }, 100);
+                }
+            });
+
+            // Set current year in the footer copyright
+            const currentYearElement = document.getElementById('current-year');
+            if (currentYearElement) {
+                currentYearElement.textContent = new Date().getFullYear();
+            }
+
+            // Intersection Observer for fade-in effect on scroll
+            const sections = document.querySelectorAll('.section-fade-in');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('section-visible');
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Jotform embed script handler
+            if (window.jotformEmbedHandler) {
+                 window.jotformEmbedHandler("iframe[id='JotFormIFrame-251224345324145']", "https://form.jotform.com/");
+            } else {
+                const jotformScript = document.createElement('script');
+                jotformScript.type = 'text/javascript';
+                jotformScript.src = 'https://cdn.jotform.com/s/umd/latest/for-form-embed-handler.js';
+                document.body.appendChild(jotformScript);
+                jotformScript.onload = () => {
+                    window.jotformEmbedHandler("iframe[id='JotFormIFrame-251224345324145']", "https://form.jotform.com/");
+                };
+            }
+        });
     </script>
 </body>
 </html>
