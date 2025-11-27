@@ -51,18 +51,18 @@ This repository contains the source code for Lotter Law, a Florida-based legal p
 ```
 LawFirmWebsite/
 ├── index.html              # Homepage with DUI alert, practice areas, team bio
-├── blog.html               # Blog listing page (19 articles)
+├── blog.html               # Blog listing page
 ├── styles.css              # Main stylesheet
 ├── privacy.html            # Privacy policy
 ├── terms-and-conditions.html
 ├── assets/                 # Images and media files
 │   └── Attorney-Jeff-Lotter1.jpg
-├── blog/                   # Blog posts (19 articles)
+├── blog/                   # Blog posts
 │   ├── 02-refuse-sfst.html
 │   ├── 03-understanding-probable-cause.html
 │   ├── 19-new-dui-refusal-law.html
 │   └── ...
-├── practice-areas/         # Practice area pages (16 pages)
+├── practice-areas/         # Practice area pages
 │   ├── dui.html
 │   ├── criminal-traffic.html
 │   ├── speeding-ticket.html
