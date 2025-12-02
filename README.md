@@ -13,6 +13,7 @@ This repository contains the source code for Lotter Law, a Florida-based legal p
 - [Project Structure](#project-structure)
 - [How It Works](#how-it-works)
 - [Making Website Updates](#making-website-updates)
+  - [Content Ideas & Research Sources](#content-ideas--research-sources)
 - [Bluehost Cancellation Guide](#bluehost-cancellation-guide)
 - [Technical Details](#technical-details)
 - [Troubleshooting](#troubleshooting)
@@ -185,24 +186,89 @@ git push origin my-updates
 
 ### Adding New Content
 
+#### Content Ideas & Research Sources
+
+Before writing a new blog post, check these sources for topic ideas:
+
+| Source | Location | Description |
+|--------|----------|-------------|
+| **YouTube Comments** | `C:\Users\jeff\OneDrive\Documents\YT_Comments_Scrape\` | Scraped comments from legal/news videos with public sentiment |
+| **Blog Suggestions** | `YT_Comments_Scrape\youtube_comments_output\blog_suggestions_*.md` | Pre-analyzed topic ideas with SEO keywords and hooks |
+
+**Workflow:**
+1. Review `blog_suggestions_*.md` files for ready-to-write topics
+2. Check raw comment JSON files to understand public questions/misconceptions
+3. Identify themes that align with practice areas
+4. Write content that answers real questions people are asking
+
+**Current blog suggestion files:**
+- `blog_suggestions_cte_legal_defense.md` - CTE/brain injury as criminal defense (from Antonio Brown video)
+
+See `YT_Comments_Scrape/README.md` for instructions on scraping new videos.
+
+---
+
 #### Adding a New Blog Post
 
 1. **Create the blog post HTML file:**
-   - Save as `blog/20-your-post-title.html`
+   - Save as `blog/XX-your-post-title.html` (use next available number)
    - Use existing blog posts as templates
 
-2. **Update blog.html:**
+2. **REQUIRED: Add SEO tags in the `<head>` section:**
+
+   Every blog post MUST include these tags after the `<meta name="keywords">` tag:
+
+   ```html
+   <!-- Canonical URL -->
+   <link rel="canonical" href="https://lotterlaw.com/blog/XX-your-post-title.html">
+
+   <!-- Open Graph Tags -->
+   <meta property="og:title" content="Your Post Title | Lotter Law">
+   <meta property="og:description" content="A compelling 1-2 sentence description of the post.">
+   <meta property="og:type" content="article">
+   <meta property="og:url" content="https://lotterlaw.com/blog/XX-your-post-title.html">
+   <meta property="og:image" content="https://lotterlaw.com/assets/Lotter-Law-logo-02.jpg">
+   <meta property="og:site_name" content="Lotter Law">
+
+   <!-- Twitter Card Tags -->
+   <meta name="twitter:card" content="summary_large_image">
+   <meta name="twitter:title" content="Your Post Title">
+   <meta name="twitter:description" content="A compelling 1-2 sentence description of the post.">
+   <meta name="twitter:image" content="https://lotterlaw.com/assets/Lotter-Law-logo-02.jpg">
+   ```
+
+   **Why these matter:**
+   - **Canonical URL**: Prevents duplicate content issues with search engines
+   - **Open Graph (og:)**: Controls how the post appears when shared on Facebook, LinkedIn, etc.
+   - **Twitter Cards**: Controls how the post appears when shared on Twitter/X
+   - **og:image**: Use a custom image if available, otherwise use the default logo
+
+3. **Update blog.html:**
    - Add a new `<article>` entry at the top of the blog listing
    - Include title, date, summary, and link
+   - For case results, add the green "Case Result" label
 
-3. **Commit and merge:**
+4. **Commit and merge:**
    ```bash
-   git add blog/20-your-post-title.html blog.html
+   git add blog/XX-your-post-title.html blog.html
    git commit -m "Add blog post: Your Title Here"
    git push origin your-branch-name
    ```
 
-4. **Merge to master** via pull request
+5. **Merge to master** via pull request
+
+#### Blog Post SEO Checklist
+
+Before publishing any blog post, verify:
+
+- [ ] Canonical URL matches the file path exactly
+- [ ] og:url matches the canonical URL
+- [ ] og:title is compelling (< 60 characters ideal)
+- [ ] og:description summarizes the content (< 160 characters ideal)
+- [ ] og:image points to a valid image URL
+- [ ] Twitter tags mirror the OG content
+- [ ] Meta description tag is present and unique
+- [ ] Meta keywords tag includes relevant terms
 
 #### Adding a New Practice Area
 
@@ -650,4 +716,4 @@ git push origin your-branch-name
 
 **Questions or issues?** Contact Claude or create an issue on GitHub.
 
-**Last updated:** November 2025
+**Last updated:** November 27, 2025
