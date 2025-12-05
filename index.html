@@ -1826,6 +1826,46 @@ Additionally, the defense may challenge errors made by law enforcement during th
         </a>
     </div>
 
+    <!-- Floating Blog Sidebar -->
+    <div x-data="{ showSidebar: false }"
+         @scroll.window="showSidebar = (window.pageYOffset > 400) ? true : false"
+         class="floating-blog-sidebar"
+         :class="{ 'visible': showSidebar }">
+        <div class="sidebar-content">
+            <h3>Recent Articles</h3>
+
+            <a href="blog/34-careless-driving-chain-reaction-not-guilty.html" class="blog-link">
+                <span class="case-result">Case Result</span>
+                Careless Driving: Chain Reaction Defense
+            </a>
+            <a href="blog/33-nvdl-mandatory-minimum-immigration-enforcement.html" class="blog-link">
+                Traffic Law as Immigration Tool
+            </a>
+            <a href="blog/32-super-speeder-radar-foundation-dismissed.html" class="blog-link">
+                <span class="case-result">Case Result</span>
+                Super Speeder Dismissed: Radar Foundation
+            </a>
+            <a href="blog/31-thanksgiving-burglary-dismissal.html" class="blog-link">
+                <span class="case-result">Case Result</span>
+                Burglary Charge Dismissed
+            </a>
+
+            <p class="category-label">Featured Topics</p>
+
+            <a href="blog/19-new-dui-refusal-law.html" class="blog-link">
+                DUI Refusal Law Changes
+            </a>
+            <a href="blog/22-florida-privacy-rights-beyond-miranda.html" class="blog-link">
+                Florida Privacy Rights Beyond Miranda
+            </a>
+            <a href="blog/26-hit-and-run-corpus-delicti-defense.html" class="blog-link">
+                Hit and Run: Corpus Delicti Defense
+            </a>
+
+            <a href="blog.html" class="view-all">View All Articles</a>
+        </div>
+    </div>
+
     <div class="scrolling-banner">
         <div class="scrolling-banner-content">
             <span>Call or Text our Main Line 407-500-7000</span>
