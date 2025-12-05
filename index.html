@@ -1827,10 +1827,7 @@ Additionally, the defense may challenge errors made by law enforcement during th
     </div>
 
     <!-- Floating Blog Sidebar -->
-    <div x-data="{ showSidebar: false }"
-         @scroll.window="showSidebar = (window.pageYOffset > 400) ? true : false"
-         class="floating-blog-sidebar"
-         :class="{ 'visible': showSidebar }">
+    <div id="blog-sidebar" class="floating-blog-sidebar">
         <div class="sidebar-content">
             <h3>Recent Articles</h3>
 
@@ -2157,7 +2154,48 @@ Additionally, the defense may challenge errors made by law enforcement during th
             observer.observe(section);
         });
     });
+
+    // Floating Blog Sidebar - show on scroll, fade after pause
+    (function() {
+        const sidebar = document.getElementById('blog-sidebar');
+        if (!sidebar) return;
+
+        let scrollTimeout;
+        let isScrolling = false;
+
+        window.addEventListener('scroll', function() {
+            // Only show if scrolled past 400px
+            if (window.pageYOffset > 400) {
+                sidebar.classList.add('visible');
+                isScrolling = true;
+
+                // Clear existing timeout
+                clearTimeout(scrollTimeout);
+
+                // Set timeout to fade out after 250ms of no scrolling
+                scrollTimeout = setTimeout(function() {
+                    sidebar.classList.remove('visible');
+                    isScrolling = false;
+                }, 250);
+            } else {
+                sidebar.classList.remove('visible');
+            }
+        });
+
+        // Keep visible while hovering
+        sidebar.addEventListener('mouseenter', function() {
+            clearTimeout(scrollTimeout);
+            if (window.pageYOffset > 400) {
+                sidebar.classList.add('visible');
+            }
+        });
+
+        sidebar.addEventListener('mouseleave', function() {
+            scrollTimeout = setTimeout(function() {
+                sidebar.classList.remove('visible');
+            }, 250);
+        });
+    })();
 </script>
 </body>
 </html>
-```
