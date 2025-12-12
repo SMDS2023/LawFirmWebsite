@@ -1,0 +1,16 @@
+# Blog Ideas
+# Add one idea per line. Ideas here get HIGH priority in the topic generator.
+#
+# Format (any works):
+#   Just a topic idea
+#   BlogIdea: topic with prefix
+#   keyword: specific keyword to write about
+#
+# Examples:
+#   Radar calibration certificates - what happens when they're missing
+#   BlogIdea: Client asked about ignition interlock device
+#   DUI breath test maintenance records
+#
+# Lines starting with # are ignored
+# ─────────────────────────────────────────────────────────────────────
+

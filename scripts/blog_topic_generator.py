@@ -58,6 +58,7 @@ CONFIG_DIR = Path(__file__).parent / "config"
 GOOGLE_CLIENT_SECRET = BASE_DIR / "LotterLaw" / "Admin" / "Calendar" / "client_secret_1095806145319-lkef8fm7b3gdks3rshn44ne6h5v1idh8.apps.googleusercontent.com.json"
 GOOGLE_TOKEN_FILE = CONFIG_DIR / "google_token.json"
 CALENDAR_CONFIG_FILE = CONFIG_DIR / "calendar_config.json"
+BLOG_IDEAS_FILE = CONFIG_DIR / "blog_ideas.txt"
 
 # Scopes for Google APIs (all read-only)
 # Note: Keep requires Workspace enterprise, Chat requires Chat app config - not included
@@ -160,6 +161,7 @@ class BlogTopicGenerator:
             "drive_files": [],
             "chat_messages": [],
             "keep_notes": [],
+            "user_ideas": [],  # From blog_ideas.txt - HIGH priority
             "keywords": Counter(),
             "statutes": Counter(),
             "outcomes": Counter(),
@@ -711,6 +713,62 @@ class BlogTopicGenerator:
 
         return results
 
+    def scan_blog_ideas(self) -> List[Dict]:
+        """
+        Scan blog_ideas.txt for user-submitted topic ideas.
+
+        These get HIGH priority in topic generation.
+
+        Returns list of ideas with extracted keywords.
+        """
+        results = []
+
+        if not BLOG_IDEAS_FILE.exists():
+            print(f"  No blog_ideas.txt found at {BLOG_IDEAS_FILE}")
+            return results
+
+        try:
+            content = BLOG_IDEAS_FILE.read_text(encoding="utf-8")
+            lines = content.strip().split("\n")
+
+            for line in lines:
+                line = line.strip()
+
+                # Skip empty lines and comments
+                if not line or line.startswith("#"):
+                    continue
+
+                # Remove common prefixes
+                idea = line
+                for prefix in ["BlogIdea:", "blogidea:", "BLOGIDEA:", "idea:", "Idea:"]:
+                    if idea.startswith(prefix):
+                        idea = idea[len(prefix):].strip()
+                        break
+
+                # Extract keywords from the idea
+                keywords = self._extract_keywords(idea)
+                statutes = self._extract_statutes(idea)
+
+                results.append({
+                    "source": "user_idea",
+                    "idea": idea,
+                    "keywords": keywords,
+                    "statutes": statutes,
+                })
+
+                # Update global counters (give user ideas extra weight)
+                for kw in keywords:
+                    self.extracted_data["keywords"][kw] += 5  # 5x weight for user ideas
+                for st in statutes:
+                    self.extracted_data["statutes"][st] += 5
+
+            print(f"  Found {len(results)} user-submitted ideas")
+
+        except Exception as e:
+            print(f"  Error reading blog_ideas.txt: {e}")
+
+        return results
+
     def _extract_text(self, filepath: Path) -> Optional[str]:
         """Extract text from various file types."""
         suffix = filepath.suffix.lower()
@@ -878,6 +936,28 @@ class BlogTopicGenerator:
         topics = []
         seen_keywords = set()
 
+        # FIRST: Add user-submitted ideas with HIGHEST priority
+        for idea in self.extracted_data.get("user_ideas", []):
+            idea_text = idea.get("idea", "")
+            if not idea_text:
+                continue
+
+            # Generate a title from the idea
+            title = idea_text
+            if not any(title.endswith(p) for p in ["?", "!", "."]):
+                title = f"{title}"
+
+            if not self._is_duplicate(title):
+                topics.append({
+                    "title": title,
+                    "source_type": "user_idea",
+                    "idea": idea_text,
+                    "keywords": idea.get("keywords", []),
+                    "statutes": idea.get("statutes", []),
+                    "score": 1000,  # Very high base score for user ideas
+                    "frequency": 1,
+                })
+
         # Get most common keywords and statutes
         top_keywords = self.extracted_data["keywords"].most_common(20)
         top_statutes = self.extracted_data["statutes"].most_common(10)
@@ -998,6 +1078,7 @@ class BlogTopicGenerator:
         """Generate markdown report with privacy-compliant output."""
         today = datetime.now().strftime("%Y-%m-%d")
 
+        ideas_count = len(self.extracted_data.get('user_ideas', []))
         cal_count = len(self.extracted_data.get('calendar_events', []))
         file_count = len(self.extracted_data.get('case_files', []))
         gmail_count = len(self.extracted_data.get('gmail_threads', []))
@@ -1018,6 +1099,7 @@ class BlogTopicGenerator:
             "",
             f"| Source | Items with Keywords |",
             f"|--------|---------------------|",
+            f"| ⭐ User Ideas | {ideas_count} |",
             f"| 📅 Calendar | {cal_count} |",
             f"| 📧 Gmail | {gmail_count} |",
             f"| 📁 Drive | {drive_count} |",
@@ -1037,11 +1119,23 @@ class BlogTopicGenerator:
             lines.extend([
                 f"### {i}. \"{topic['title']}\"",
                 "",
-                f"**Score:** {topic['score']} | **Mentions:** {topic.get('frequency', 0)}",
-                "",
             ])
 
-            if topic.get("keyword"):
+            # Special handling for user-submitted ideas
+            if topic.get("source_type") == "user_idea":
+                lines.extend([
+                    f"⭐ **USER SUBMITTED IDEA** (High Priority)",
+                    "",
+                ])
+                if topic.get("keywords"):
+                    lines.append(f"**Keywords Detected:** {', '.join(topic['keywords'])}")
+                if topic.get("statutes"):
+                    lines.append(f"**Statutes Mentioned:** {', '.join(['F.S. ' + s for s in topic['statutes']])}")
+            else:
+                lines.append(f"**Score:** {topic['score']} | **Mentions:** {topic.get('frequency', 0)}")
+                lines.append("")
+
+            if topic.get("keyword") and topic.get("source_type") != "user_idea":
                 lines.append(f"**Primary Keyword:** {topic['keyword']}")
             if topic.get("statute"):
                 lines.append(f"**Statute:** F.S. {topic['statute']}")
@@ -1167,43 +1261,47 @@ class BlogTopicGenerator:
         print()
 
         # Scan Google Calendar
-        print("Step 1: Scanning Google Calendar...")
+        print("Step 1: Scanning blog_ideas.txt (user submissions)...")
+        self.extracted_data["user_ideas"] = self.scan_blog_ideas()
+        print()
+
+        print("Step 2: Scanning Google Calendar...")
         self.extracted_data["calendar_events"] = self.scan_calendar()
         print()
 
         # Scan Gmail
-        print("Step 2: Scanning Gmail...")
+        print("Step 3: Scanning Gmail...")
         self.extracted_data["gmail_threads"] = self.scan_gmail()
         print()
 
         # Scan Google Drive
-        print("Step 3: Scanning Google Drive...")
+        print("Step 4: Scanning Google Drive...")
         self.extracted_data["drive_files"] = self.scan_drive()
         print()
 
         # Google Chat - skipped (requires Chat app configuration)
-        print("Step 4: Google Chat... (skipped - requires Chat app config)")
+        print("Step 5: Google Chat... (skipped - requires Chat app config)")
         self.extracted_data["chat_messages"] = []
         print()
 
         # Google Keep - skipped (requires Workspace enterprise access)
-        print("Step 5: Google Keep... (skipped - requires Workspace)")
+        print("Step 6: Google Keep... (skipped - requires Workspace)")
         self.extracted_data["keep_notes"] = []
         print()
 
         # Scan local case files
-        print("Step 6: Scanning local case files...")
+        print("Step 7: Scanning local case files...")
         self.extracted_data["case_files"] = self.scan_case_files()
         print()
 
         # Generate topics
-        print("Step 7: Generating topic suggestions...")
+        print("Step 8: Generating topic suggestions...")
         topics = self.generate_topics()
         print(f"  Generated {len(topics)} topic suggestions")
         print()
 
         # Generate report
-        print("Step 8: Writing report...")
+        print("Step 9: Writing report...")
         report = self.generate_report(topics)
 
         # Save to file
