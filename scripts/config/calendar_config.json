@@ -1,0 +1,39 @@
+{
+    "calendar_ids": [
+        "jeff@jlotterlaw.com",
+        "c_a7f457f09beb643e2978ad669e70e5871c494120ffe1d2dce1ce7314e5550be5@group.calendar.google.com",
+        "c_v38qea3tv75r1fhckmdr7tqd70@group.calendar.google.com",
+        "c_f387afc6af5a13da7b4201bc2cd96dcb1a72165b06da2506e83ee8c38cfa137d@group.calendar.google.com",
+        "c_cc55a345a420f270825c704cbcb9f90f886f06c7031fc40854bd79913a59ce2b@group.calendar.google.com"
+    ],
+    "calendar_names": {
+        "jeff@jlotterlaw.com": "LLOJL (Primary)",
+        "c_a7f457f09beb643e2978ad669e70e5871c494120ffe1d2dce1ce7314e5550be5@group.calendar.google.com": "Law Firm Admin",
+        "c_v38qea3tv75r1fhckmdr7tqd70@group.calendar.google.com": "Lotter Law",
+        "c_f387afc6af5a13da7b4201bc2cd96dcb1a72165b06da2506e83ee8c38cfa137d@group.calendar.google.com": "Orange All",
+        "c_cc55a345a420f270825c704cbcb9f90f886f06c7031fc40854bd79913a59ce2b@group.calendar.google.com": "Court Conditions Due"
+    },
+    "keywords_to_scan": [
+        "review",
+        "case",
+        "client",
+        "court",
+        "hearing",
+        "trial",
+        "arraignment",
+        "deposition",
+        "motion",
+        "plea",
+        "sentencing",
+        "DUI",
+        "DWLS",
+        "traffic",
+        "criminal"
+    ],
+    "event_title_patterns": [
+        ".*review.*",
+        ".*case.*",
+        ".*v\\. State.*",
+        ".*hearing.*"
+    ]
+}
