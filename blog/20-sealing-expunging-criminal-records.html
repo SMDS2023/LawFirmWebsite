@@ -122,6 +122,67 @@
             margin: 2rem 0;
         }
     </style>
+
+    <!-- Schema.org Article -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Clear Your Criminal Record in Florida | Sealing & Expungement",
+      "description": "Don't let a criminal record hold you back. Attorney Jeff Lotter helps Floridians seal and expunge criminal records. Former law enforcement officer, now fighting for you. Call 407-500-7000 for a free consultation.",
+      "author": {
+        "@type": "Person",
+        "name": "Jeff Lotter",
+        "jobTitle": "Attorney",
+        "url": "https://lotterlaw.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Lotter Law",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://lotterlaw.com/assets/Lotter-Law-logo-02.jpg"
+        }
+      },
+      "datePublished": "2025-12-12",
+      "dateModified": "2025-12-12",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://lotterlaw.com/blog/20-sealing-expunging-criminal-records.html"
+      },
+      "image": "https://lotterlaw.com/assets/Lotter-Law-logo-02.jpg",
+      "articleSection": "Legal",
+      "keywords": "Florida expungement, seal criminal record, expunge record Florida, Orlando expungement lawyer, clear criminal record, background check clean"
+    }
+    </script>
+
+    <!-- Schema.org BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://lotterlaw.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://lotterlaw.com/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Clear Your Criminal Record in Florida | Sealing & Expungement",
+          "item": "https://lotterlaw.com/blog/20-sealing-expunging-criminal-records.html"
+        }
+      ]
+    }
+    </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Google Tag Manager (noscript) -->
@@ -168,7 +229,22 @@
         </div>
     </header>
 
-    <main class="py-12 md:py-16">
+    
+    <!-- Breadcrumb Navigation -->
+    <nav aria-label="Breadcrumb" class="bg-gray-100 border-b border-gray-200">
+        <div class="container mx-auto px-6 py-3">
+            <ol class="flex items-center text-sm">
+                <a href="../index.html" class="text-blue-600 hover:text-blue-800 hover:underline">Home</a>
+            <svg class="w-4 h-4 text-gray-400 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg><a href="../blog.html" class="text-blue-600 hover:text-blue-800 hover:underline">Blog</a>
+            <svg class="w-4 h-4 text-gray-400 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg><span class="text-gray-600 font-medium" aria-current="page">Don't Let Your Past Define Your Future</span>
+            </ol>
+        </div>
+    </nav>
+<main class="py-12 md:py-16">
         <article class="container mx-auto px-6 max-w-5xl">
 
             <!-- Hero Section -->
@@ -181,7 +257,7 @@
                 </p>
 
                 <div class="mb-8">
-                    <img src="../assets/Seal and Expunge_Arrested.jpg" alt="Criminal Record Affecting Your Future" class="hero-image mx-auto">
+                    <img src="../assets/Seal and Expunge_Arrested.jpg" alt="Criminal Record Affecting Your Future" class="hero-image mx-auto" width="1200" height="675">
                 </div>
 
                 <div class="text-center">
@@ -213,7 +289,7 @@
                             </p>
                         </div>
                         <div>
-                            <img src="../assets/Seal and Expunge_Job_Interview.jpg" alt="Job Interview Affected by Criminal Record" class="content-image mx-auto">
+                            <img src="../assets/Seal and Expunge_Job_Interview.jpg" alt="Job Interview Affected by Criminal Record" class="content-image mx-auto" width="1200" height="675" loading="lazy">
                         </div>
                     </div>
 
@@ -577,5 +653,21 @@
             currentYearElement.textContent = new Date().getFullYear();
         }
     </script>
+
+    <!-- Mobile Sticky CTA Bar -->
+    <div class="mobile-cta-bar urgent" id="mobile-cta-bar">
+        <a href="tel:407-500-7000"
+           onclick="if(typeof gtag === 'function') gtag('event', 'click_to_call', {event_category: 'CTA', event_label: 'Mobile Sticky Bar', phone_number: '407-500-7000'});"
+           aria-label="Call Lotter Law for a free consultation">
+            <svg class="cta-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <span class="cta-text">
+                <span class="cta-text-main">Free Consultation</span>
+                <span class="cta-text-sub">Call Now: 407-500-7000</span>
+            </span>
+        </a>
+    </div>
+
 </body>
 </html>
