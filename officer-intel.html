@@ -157,6 +157,16 @@
                 <option value="ESTRADA, PHILLIP">ESTRADA, PHILLIP</option>
                 <option value="GONZALEZ, KRIS">GONZALEZ, KRIS</option>
             </select>
+            <span style="margin-left: 30px;"></span>
+            <label for="year-select">Filter Year:</label>
+            <select id="year-select" onchange="updateDashboard()">
+                <option value="2025" selected>2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="all">All Years</option>
+            </select>
         </div>
 
         <div class="dates-bar" id="dates-bar">
@@ -209,24 +219,72 @@
 
         function updateDashboard() {
             const officer = document.getElementById('officer-select').value;
+            const yearFilter = document.getElementById('year-select').value;
             const d = DATA[officer];
 
+            // Filter cases by year
+            const filteredCases = yearFilter === 'all'
+                ? d.cases
+                : d.cases.filter(c => c.date.startsWith(yearFilter));
+
+            // Calculate stats from filtered cases
+            const uniqueCaseNums = [...new Set(filteredCases.map(c => c.case))];
+            const totalCharges = filteredCases.length;
+            const uniqueCases = uniqueCaseNums.length;
+
+            // Count dispositions
+            const dispoCount = {};
+            filteredCases.forEach(c => {
+                const dispo = c.dispo;
+                if (dispo.toLowerCase().includes('guilty') || dispo.toLowerCase().includes('a/g')) {
+                    dispoCount['A/G'] = (dispoCount['A/G'] || 0) + 1;
+                } else if (dispo.toLowerCase().includes('dismiss') || dispo.toLowerCase().includes('nolle')) {
+                    dispoCount['Dismissed'] = (dispoCount['Dismissed'] || 0) + 1;
+                } else if (dispo.toLowerCase().includes('withheld') || dispo.toLowerCase().includes('w/h')) {
+                    dispoCount['W/H'] = (dispoCount['W/H'] || 0) + 1;
+                } else if (dispo.toLowerCase().includes('diversion')) {
+                    dispoCount['Diversion'] = (dispoCount['Diversion'] || 0) + 1;
+                } else {
+                    dispoCount['Other'] = (dispoCount['Other'] || 0) + 1;
+                }
+            });
+
+            const convictionRate = totalCharges > 0 ? ((dispoCount['A/G'] || 0) / totalCharges * 100).toFixed(1) : 0;
+            const dismissalRate = totalCharges > 0 ? ((dispoCount['Dismissed'] || 0) / totalCharges * 100).toFixed(1) : 0;
+            const withheldRate = totalCharges > 0 ? ((dispoCount['W/H'] || 0) / totalCharges * 100).toFixed(1) : 0;
+
+            // Calculate date range for filtered cases
+            const dates = filteredCases.map(c => c.date).sort();
+            const firstSeen = dates.length > 0 ? dates[0] : 'N/A';
+            const lastSeen = dates.length > 0 ? dates[dates.length - 1] : 'N/A';
+
             // Update dates
-            document.getElementById('first-seen').textContent = d.stats.first_seen;
-            document.getElementById('last-seen').textContent = d.stats.last_seen;
+            document.getElementById('first-seen').textContent = firstSeen;
+            document.getElementById('last-seen').textContent = lastSeen;
 
             // Update KPIs
             document.getElementById('kpi-grid').innerHTML = `
-                <div class="kpi-card"><div class="value">${d.stats.unique_cases}</div><div class="label">Total Cases</div></div>
-                <div class="kpi-card"><div class="value">${d.stats.total_charges}</div><div class="label">Total Charges</div></div>
-                <div class="kpi-card"><div class="value">${d.stats.conviction_rate}%</div><div class="label">Conviction Rate</div></div>
-                <div class="kpi-card"><div class="value">${d.stats.dismissal_rate}%</div><div class="label">Dismissal Rate</div></div>
-                <div class="kpi-card"><div class="value">${d.stats.withheld_rate}%</div><div class="label">Withheld Rate</div></div>
-                <div class="kpi-card"><div class="value">${d.stats.avg_days}</div><div class="label">Avg Days to Dispo</div></div>
+                <div class="kpi-card"><div class="value">${uniqueCases}</div><div class="label">Total Cases</div></div>
+                <div class="kpi-card"><div class="value">${totalCharges}</div><div class="label">Total Charges</div></div>
+                <div class="kpi-card"><div class="value">${convictionRate}%</div><div class="label">Conviction Rate</div></div>
+                <div class="kpi-card"><div class="value">${dismissalRate}%</div><div class="label">Dismissal Rate</div></div>
+                <div class="kpi-card"><div class="value">${withheldRate}%</div><div class="label">Withheld Rate</div></div>
+                <div class="kpi-card"><div class="value">--</div><div class="label">Avg Days to Dispo</div></div>
             `;
 
+            // Calculate case types from filtered cases (derive from case number)
+            const caseTypeCount = {};
+            filteredCases.forEach(c => {
+                let type = 'Unknown';
+                if (c.case.includes('-CF-')) type = 'Criminal Felony';
+                else if (c.case.includes('-MM-')) type = 'Misdemeanor';
+                else if (c.case.includes('-CT-')) type = 'Criminal Traffic';
+                else if (c.case.includes('-MO-')) type = 'Municipal Ordinance';
+                caseTypeCount[type] = (caseTypeCount[type] || 0) + 1;
+            });
+
             // Case types chart
-            const caseTypes = Object.entries(d.case_types).sort((a,b) => a[1] - b[1]);
+            const caseTypes = Object.entries(caseTypeCount).sort((a,b) => a[1] - b[1]);
             Plotly.newPlot('chart-case-types', [{
                 x: caseTypes.map(c => c[1]),
                 y: caseTypes.map(c => c[0]),
@@ -242,7 +300,7 @@
 
             // Dispositions chart
             const dispoColors = {'A/G': '#d32f2f', 'Dismissed': '#388e3c', 'W/H': '#f57c00', 'Diversion': '#9c27b0'};
-            const dispos = Object.entries(d.dispositions);
+            const dispos = Object.entries(dispoCount);
             Plotly.newPlot('chart-dispositions', [{
                 values: dispos.map(c => c[1]),
                 labels: dispos.map(c => c[0]),
@@ -256,8 +314,15 @@
                 showlegend: true
             }, { displayModeBar: false });
 
+            // Calculate top charges from filtered cases
+            const chargeCount = {};
+            filteredCases.forEach(c => {
+                chargeCount[c.charge] = (chargeCount[c.charge] || 0) + 1;
+            });
+            const topCharges = Object.entries(chargeCount).sort((a,b) => b[1] - a[1]).slice(0, 10);
+
             // Top charges chart
-            const charges = Object.entries(d.top_charges).sort((a,b) => a[1] - b[1]);
+            const charges = topCharges.sort((a,b) => a[1] - b[1]);
             Plotly.newPlot('chart-top-charges', [{
                 x: charges.map(c => c[1]),
                 y: charges.map(c => c[0].substring(0, 50)),
@@ -271,17 +336,35 @@
                 plot_bgcolor: 'rgba(0,0,0,0)'
             }, { displayModeBar: false });
 
+            // Calculate judges from filtered cases
+            const judgeMap = {};
+            filteredCases.forEach(c => {
+                if (!judgeMap[c.judge]) judgeMap[c.judge] = { name: c.judge, count: 0, cases: [] };
+                judgeMap[c.judge].count++;
+                if (judgeMap[c.judge].cases.length < 5) judgeMap[c.judge].cases.push(c.case);
+            });
+            const judges = Object.values(judgeMap).sort((a,b) => b.count - a.count);
+
             // Judges table
             let judgesHtml = '<table><tr><th>Judge</th><th>Cases</th><th>Case Numbers</th></tr>';
-            d.judges.forEach(j => {
+            judges.forEach(j => {
                 judgesHtml += `<tr><td>${j.name}</td><td>${j.count}</td><td style="font-size:0.8rem;color:#666">${j.cases.join(', ')}${j.count > 5 ? '...' : ''}</td></tr>`;
             });
             judgesHtml += '</table>';
             document.getElementById('table-judges').innerHTML = judgesHtml;
 
+            // Calculate attorneys from filtered cases
+            const attMap = {};
+            filteredCases.forEach(c => {
+                if (!attMap[c.attorney]) attMap[c.attorney] = { name: c.attorney, count: 0, cases: [] };
+                attMap[c.attorney].count++;
+                if (attMap[c.attorney].cases.length < 5) attMap[c.attorney].cases.push(c.case);
+            });
+            const attorneys = Object.values(attMap).sort((a,b) => b.count - a.count);
+
             // Attorneys table
             let attHtml = '<table><tr><th>Attorney</th><th>Cases</th><th>Case Numbers</th></tr>';
-            d.attorneys.forEach(a => {
+            attorneys.forEach(a => {
                 attHtml += `<tr><td>${a.name}</td><td>${a.count}</td><td style="font-size:0.8rem;color:#666">${a.cases.join(', ')}${a.count > 5 ? '...' : ''}</td></tr>`;
             });
             attHtml += '</table>';
@@ -289,7 +372,7 @@
 
             // Cases table
             let casesHtml = '<table><tr><th>Case #</th><th>File Date</th><th>Charge</th><th>Disposition</th><th>Judge</th><th>Attorney</th></tr>';
-            d.cases.forEach(c => {
+            filteredCases.forEach(c => {
                 const dispoClass = c.dispo.toLowerCase().includes('guilty') ? 'dispo-guilty' :
                                    c.dispo.toLowerCase().includes('dismiss') || c.dispo.toLowerCase().includes('nolle') ? 'dispo-dismissed' : '';
                 casesHtml += `<tr>
