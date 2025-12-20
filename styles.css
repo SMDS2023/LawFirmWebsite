@@ -262,6 +262,17 @@ html {
     margin-right: 0.25rem;
     text-transform: uppercase;
 }
+.floating-blog-sidebar .blog-link .in-the-news {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: #7c3aed;
+    background: #f5f3ff;
+    padding: 0.1rem 0.3rem;
+    border-radius: 0.2rem;
+    margin-right: 0.25rem;
+    text-transform: uppercase;
+}
 .floating-blog-sidebar .category-label {
     font-size: 0.7rem;
     font-weight: 600;
@@ -299,4 +310,90 @@ html {
 
 body.navigating-to-section {
     visibility: hidden; /* Hide the body initially */
+}
+
+/* ============================================
+   STICKY MOBILE CTA BAR
+   Shows on mobile only, positioned above scrolling banner
+   ============================================ */
+.mobile-cta-bar {
+    display: none; /* Hidden on desktop */
+    position: fixed;
+    bottom: 40px; /* Above the scrolling banner */
+    left: 0;
+    right: 0;
+    z-index: 95; /* Below header (z-50), above scrolling banner (z-100) */
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); /* Amber gradient */
+    padding: 0.75rem 1rem;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+    border-top: 2px solid #FBBF24;
+}
+
+/* Show only on mobile/tablet */
+@media (max-width: 767px) {
+    .mobile-cta-bar {
+        display: block;
+    }
+    /* Adjust body padding for mobile CTA */
+    body {
+        padding-bottom: 130px; /* Space for both CTA bar and scrolling banner */
+    }
+}
+
+.mobile-cta-bar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: white;
+    font-weight: 700;
+    font-size: 1.125rem; /* text-lg */
+    text-decoration: none;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-cta-bar a:active {
+    transform: scale(0.98);
+}
+
+.mobile-cta-bar .cta-icon {
+    width: 24px;
+    height: 24px;
+    animation: pulse-phone 2s infinite;
+}
+
+.mobile-cta-bar .cta-text-main {
+    font-weight: 800;
+}
+
+.mobile-cta-bar .cta-text-sub {
+    font-size: 0.75rem;
+    font-weight: 500;
+    opacity: 0.9;
+    display: block;
+    margin-top: -2px;
+}
+
+/* Subtle pulse animation for phone icon */
+@keyframes pulse-phone {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Optional: Add urgency styling with pulsing border */
+.mobile-cta-bar.urgent {
+    animation: urgent-glow 2s infinite;
+}
+
+@keyframes urgent-glow {
+    0%, 100% {
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        box-shadow: 0 -4px 20px rgba(245, 158, 11, 0.4);
+    }
 }
