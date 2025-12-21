@@ -23,6 +23,14 @@ desktop.ini
 deploy-config.json
 ftp-credentials.txt
 
+# Google API OAuth Tokens (sensitive)
+scripts/config/*token*.json
+scripts/config/google_token.json
+scripts/config/calendar_token.json
+
+# Script session state
+scripts/_current_session.txt
+
 # Temporary Files
 *.tmp
 *.bak

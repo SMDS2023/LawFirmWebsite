@@ -309,7 +309,7 @@ def main():
         )
 
         clear_session()
-        print(f"\n✓ Logged completion of Change #{change_num}")
+        print(f"\n[OK] Logged completion of Change #{change_num}")
         print(f"  Outcome: {args.outcome}")
         print(f"  Topic: {topic}")
         print(f"  Changes: {changes}")
