@@ -22,7 +22,12 @@
       "Bash(start \"\" \"C:\\Users\\jeff\\OneDrive\\Documents\\Projects\\Website\\blog\\29-can-ai-testify-against-you.html\")",
       "Bash(powershell -Command \"Import-Csv ''LM_Law_Office_of_Jeff_Lotter,_PLLC_Matter_Export_11_30_2025_02_43am.csv'' | Select-Object -First 50 case_title, ''Charge Description 1(matter)'', ''Charge Description 2(matter)'' | Format-Table -AutoSize -Wrap\")",
       "Bash(powershell -Command:*)",
-      "Bash(claude mcp list:*)"
+      "Bash(claude mcp list:*)",
+      "Bash(git -C \"C:\\Users\\jeff\\OneDrive\\Documents\\Projects\\Website\" status --short)",
+      "Bash(git -C \"C:\\Users\\jeff\\OneDrive\\Documents\\Projects\\Website\" log --oneline -5)",
+      "Bash(git -C \"C:\\Users\\jeff\\OneDrive\\Documents\\Projects\\Website\" add blog.html)",
+      "Bash(git -C \"C:\\Users\\jeff\\OneDrive\\Documents\\Projects\\Website\" commit -m \"$(cat <<''EOF''\nAdd blog #32 entry to blog index page\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git -C \"C:\\Users\\jeff\\OneDrive\\Documents\\Projects\\Website\" push)"
     ],
     "deny": [],
     "ask": []
