@@ -1,0 +1,49 @@
+# Website Analytics Configuration
+# LotterLaw Weekly Report Generator
+
+ga4:
+  # GA4 Property ID (from Analytics Admin > Property Settings)
+  property_id: "properties/XXXXXXXX"  # Replace with actual property ID
+  credentials_file: "credentials/ga4_service_account.json"
+
+clarity:
+  # Microsoft Clarity Project ID (from Project Settings)
+  project_id: "reu4dibx4h"
+  # API key stored in environment variable for security
+  api_key_env: "CLARITY_API_KEY"
+
+gtm:
+  # Google Tag Manager Container ID
+  container_id: "GTM-PLX85K8L"
+
+report:
+  output_dir: "reports"
+  format: "html"
+  week_start: "monday"
+  # Keep last N weekly reports
+  retain_weeks: 12
+
+# Alert thresholds for flagging issues
+alerts:
+  bounce_rate_threshold: 60        # Flag if bounce rate > 60%
+  rage_clicks_threshold: 20        # Flag if rage clicks > 20
+  sessions_drop_threshold: -20     # Flag if sessions drop > 20% week-over-week
+  avg_session_duration_min: 30     # Flag if avg session < 30 seconds
+
+# Metrics to collect
+metrics:
+  ga4:
+    - sessions
+    - activeUsers
+    - screenPageViews
+    - bounceRate
+    - averageSessionDuration
+    - newUsers
+    - engagedSessions
+
+  clarity:
+    - totalSessions
+    - rageClicks
+    - deadClicks
+    - quickBacks
+    - scrollDepth
