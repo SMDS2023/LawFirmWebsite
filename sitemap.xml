@@ -130,6 +130,14 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Start Here Hub -->
+  <url>
+    <loc>https://lotterlaw.com/blog/start-here.html</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
   <!-- Blog Pillar Pages -->
   <url>
     <loc>https://lotterlaw.com/blog/dui-defense-guide.html</loc>
