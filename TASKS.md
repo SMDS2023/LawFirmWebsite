@@ -17,7 +17,7 @@
 **Goal:** Migrate hardcoded GA4 and Clarity to GTM for centralized management
 
 **Current State:**
-- GTM container (GTM-PLX85K8L) installed on all 40 pages ✅
+- GTM container (GTM-52LMX48G) installed on all 40 pages ✅
 - GA4 (G-D28BZM9QDC) still hardcoded ⚠️
 - Microsoft Clarity (reu4dibx4h) still hardcoded ⚠️
 

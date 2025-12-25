@@ -28,7 +28,7 @@ If issues remain after auto-fix, manually review and fix before proceeding.
 ### 2. Analytics Verification
 
 Confirm these tracking tags are present in the blog post:
-- Google Tag Manager: `GTM-PLX85K8L`
+- Google Tag Manager: `GTM-52LMX48G`
 - Google Analytics 4: `G-2MCJ8E0XS5`
 - Microsoft Clarity: `reu4dibx4h`
 

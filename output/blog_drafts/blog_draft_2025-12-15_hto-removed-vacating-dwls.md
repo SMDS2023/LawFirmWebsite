@@ -178,7 +178,7 @@ Serving Orlando, Orange County, and Central Florida
 
 ## HTML Template Requirements
 
-- [ ] Google Tag Manager (GTM-PLX85K8L)
+- [ ] Google Tag Manager (GTM-52LMX48G)
 - [ ] GA4 analytics
 - [ ] Microsoft Clarity
 - [ ] Article schema markup (Article + LegalService)

@@ -23,7 +23,7 @@ This will work once GA4 is configured in GTM (part of T-001).
 ### Step 1: Create a GA4 Event Tag for CTA Clicks
 
 1. Log into [Google Tag Manager](https://tagmanager.google.com)
-2. Select the LotterLaw container (GTM-PLX85K8L)
+2. Select the LotterLaw container (GTM-52LMX48G)
 3. Go to **Tags** > **New**
 
 **Tag Configuration:**

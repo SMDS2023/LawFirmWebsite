@@ -107,7 +107,7 @@ class SEOParser(HTMLParser):
         elif self.in_script:
             self.current_script += data
             # Check for analytics
-            if "GTM-PLX85K8L" in data:
+            if "GTM-52LMX48G" in data:
                 self.has_gtm = True
             if "G-2MCJ8E0XS5" in data:
                 self.has_ga4 = True
@@ -222,10 +222,10 @@ def check_seo(filepath: Path) -> dict:
 
     # Analytics checks
     if parser.has_gtm:
-        results["checks"].append({"name": "Google Tag Manager", "status": "PASS", "value": "GTM-PLX85K8L"})
+        results["checks"].append({"name": "Google Tag Manager", "status": "PASS", "value": "GTM-52LMX48G"})
         results["passed"] += 1
     else:
-        results["checks"].append({"name": "Google Tag Manager", "status": "FAIL", "value": "Missing GTM-PLX85K8L"})
+        results["checks"].append({"name": "Google Tag Manager", "status": "FAIL", "value": "Missing GTM-52LMX48G"})
         results["failed"] += 1
 
     if parser.has_ga4:

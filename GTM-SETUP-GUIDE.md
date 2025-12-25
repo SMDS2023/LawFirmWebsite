@@ -5,7 +5,7 @@ This guide will help you complete the migration to Google Tag Manager (GTM) best
 
 ## Current Status
 
-✅ **Google Tag Manager** (`GTM-PLX85K8L`) - Installed on all 40 HTML pages
+✅ **Google Tag Manager** (`GTM-52LMX48G`) - Installed on all 40 HTML pages
 ⚠️ **Google Analytics 4** (`G-2MCJ8E0XS5`) - Currently hardcoded in HTML (will move to GTM)
 ⚠️ **Microsoft Clarity** (`reu4dibx4h`) - Currently hardcoded in HTML (will move to GTM)
 
@@ -13,7 +13,7 @@ This guide will help you complete the migration to Google Tag Manager (GTM) best
 
 ### 1.1 Access Google Tag Manager
 1. Go to https://tagmanager.google.com/
-2. Select your container (`GTM-PLX85K8L`)
+2. Select your container (`GTM-52LMX48G`)
 
 ### 1.2 Create GA4 Configuration Tag
 1. Click **Tags** in the left sidebar
@@ -92,7 +92,7 @@ This guide will help you complete the migration to Google Tag Manager (GTM) best
 ### 4.3 Test GTM Container
 1. Open your website
 2. Open DevTools → Console
-3. Type: `google_tag_manager['GTM-PLX85K8L'].dataLayer.get('gtm.start')`
+3. Type: `google_tag_manager['GTM-52LMX48G'].dataLayer.get('gtm.start')`
 4. You should see a timestamp, confirming GTM loaded successfully
 
 ## Step 5: Remove Hardcoded Scripts (After Testing)
@@ -145,7 +145,7 @@ Once comfortable with GTM, you can add:
 
 ### GTM Not Loading
 - Check browser console for errors
-- Verify GTM container ID: `GTM-PLX85K8L`
+- Verify GTM container ID: `GTM-52LMX48G`
 - Clear browser cache and test in incognito mode
 
 ## Next Steps

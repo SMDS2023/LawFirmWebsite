@@ -61,7 +61,7 @@ Provide a brief overview:
 ## Quick Stats
 - 40 HTML pages (4 core, 16 practice areas, 21 blog posts)
 - Technology: Tailwind CSS, Alpine.js, GitHub Pages
-- Analytics: GTM-PLX85K8L, GA4, Microsoft Clarity
+- Analytics: GTM-52LMX48G, GA4, Microsoft Clarity
 
 ## Critical Tasks
 1. Complete GTM migration (GA4 & Clarity to GTM)

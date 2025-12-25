@@ -14,7 +14,7 @@ clarity:
 
 gtm:
   # Google Tag Manager Container ID
-  container_id: "GTM-PLX85K8L"
+  container_id: "GTM-52LMX48G"
 
 report:
   output_dir: "reports"
