@@ -26,7 +26,7 @@ This document tracks all optimization tasks for lotterlaw.com, organized by prio
 **Impact:** High
 
 **Current State:**
-- GTM container (GTM-PLX85K8L) installed on all 40 pages ✅
+- GTM container (GTM-52LMX48G) installed on all 40 pages ✅
 - GA4 (G-D28BZM9QDC) still hardcoded in HTML ⚠️
 - Microsoft Clarity (reu4dibx4h) still hardcoded in HTML ⚠️
 
@@ -626,7 +626,7 @@ Disallow: /deploy-config-template.json
 - Custom domain with HTTPS working
 
 ### ✅ Install Google Tag Manager (Nov 2025)
-- GTM-PLX85K8L installed on all 40 pages
+- GTM-52LMX48G installed on all 40 pages
 - Container configured and published
 - Testing phase initiated
 

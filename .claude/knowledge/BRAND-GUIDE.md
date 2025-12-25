@@ -338,7 +338,7 @@ Every page must include:
    - Copyright notice
 
 5. **Analytics**
-   - Google Tag Manager (GTM-PLX85K8L)
+   - Google Tag Manager (GTM-52LMX48G)
 
 #### Heading Hierarchy
 ```html

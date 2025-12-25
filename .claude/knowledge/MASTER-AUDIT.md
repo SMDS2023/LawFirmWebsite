@@ -12,7 +12,7 @@ Lotter Law is a professional Orlando-based criminal defense and DUI attorney web
 
 **Current Status:** ✅ Operational and Optimized
 **Technology Stack:** HTML5, Tailwind CSS, Alpine.js, GitHub Pages
-**Analytics:** Google Tag Manager (GTM-PLX85K8L), GA4, Microsoft Clarity
+**Analytics:** Google Tag Manager (GTM-52LMX48G), GA4, Microsoft Clarity
 
 ---
 
@@ -119,7 +119,7 @@ Lotter Law is a professional Orlando-based criminal defense and DUI attorney web
 ### 2.3 Analytics & Tracking
 | Platform | ID/Container | Status |
 |----------|--------------|--------|
-| **Google Tag Manager** | GTM-PLX85K8L | ✅ Installed on all 40 pages |
+| **Google Tag Manager** | GTM-52LMX48G | ✅ Installed on all 40 pages |
 | **Google Analytics 4** | G-D28BZM9QDC | ⏳ Hardcoded (pending GTM migration) |
 | **Microsoft Clarity** | reu4dibx4h | ⏳ Hardcoded (pending GTM migration) |
 
@@ -379,7 +379,7 @@ See `OPTIMIZATION-TRACKER.md` for detailed next steps and timeline
 
 ### 11.2 Access & Credentials
 - **GitHub Repository:** Controlled via SMDS2023 organization
-- **Google Tag Manager:** GTM-PLX85K8L
+- **Google Tag Manager:** GTM-52LMX48G
 - **Google Analytics:** G-D28BZM9QDC
 - **Microsoft Clarity:** reu4dibx4h
 - **Domain DNS:** Managed at Bluehost

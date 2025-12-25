@@ -36,7 +36,7 @@ BLOG_DIR = WEBSITE_DIR / "blog"
 SCRIPTS_DIR = WEBSITE_DIR / "scripts"
 
 # Template constants
-GTM_ID = "GTM-PLX85K8L"
+GTM_ID = "GTM-52LMX48G"
 GA4_ID = "G-2MCJ8E0XS5"
 CLARITY_ID = "reu4dibx4h"
 SITE_URL = "https://lotterlaw.com"

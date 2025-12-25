@@ -210,7 +210,7 @@ When updating documents:
 | **Hosting** | GitHub Pages |
 | **Repository** | SMDS2023/LawFirmWebsite |
 | **Total Pages** | 40 (4 core + 16 practice areas + 21 blog posts) |
-| **Analytics** | GTM-PLX85K8L, GA4 (G-D28BZM9QDC), Clarity (reu4dibx4h) |
+| **Analytics** | GTM-52LMX48G, GA4 (G-D28BZM9QDC), Clarity (reu4dibx4h) |
 
 ### Brand Colors
 

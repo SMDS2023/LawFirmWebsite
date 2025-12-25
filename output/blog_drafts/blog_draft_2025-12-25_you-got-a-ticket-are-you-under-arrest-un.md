@@ -215,7 +215,7 @@ Serving Orlando, Orange County, and Central Florida
 ## HTML Template Requirements
 
 When converting to HTML, include:
-- [x] Google Tag Manager (GTM-PLX85K8L)
+- [x] Google Tag Manager (GTM-52LMX48G)
 - [x] GA4 analytics
 - [x] Microsoft Clarity
 - [x] Article schema markup
