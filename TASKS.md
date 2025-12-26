@@ -554,9 +554,42 @@ Create a Python script that runs daily to:
 
 ## Backlog
 
-### T-405694: Intox8000 page: Load empty by default, populate on dropdown selection
+
+### T-405695: Intox8000: Externalize JSON data to separate file for faster LCP
 
 **Status:** `in_progress`
+**Priority:** P2
+**Type:** refactor
+
+**Goal:** Reduce HTML page size from ~900KB to <50KB by moving embedded JSON to external file, improving LCP from 2.8s to <2.5s (green).
+
+**Acceptance Criteria:**
+- [ ] Create `intox8000-data.json` file with anomaly records
+- [ ] Modify page to fetch JSON via `fetch()` on page load
+- [ ] Show loading spinner while data loads
+- [ ] Dropdowns populate after JSON loads
+- [ ] All existing functionality preserved (filters, sorting, URL params)
+- [ ] LCP improved to <2.5s (green) on PageSpeed Insights
+
+**Technical Notes:**
+- Current: 900KB HTML with embedded `embeddedData` JSON object
+- Target: ~40KB HTML + async fetch of ~850KB JSON
+- Browser can start rendering immediately while JSON loads in background
+- JSON file can be cached by browser/CDN
+
+**Files to Modify:**
+- `intox8000-anomalies.html` (remove embedded data, add fetch)
+- `intox8000-data.json` (new file)
+
+**Definition of Done:**
+- [ ] Code/work complete
+- [ ] Tested/verified
+- [ ] Reviewer approved: [name]
+
+---
+### T-405694: Intox8000 page: Load empty by default, populate on dropdown selection
+
+**Status:** `done`
 **Priority:** P2
 **Type:** feature
 
