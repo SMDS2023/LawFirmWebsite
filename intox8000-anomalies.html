@@ -188,6 +188,7 @@
         a.fdle-link:hover { background: #357abd; }
         a.fdle-link.disabled { background: #ccc; cursor: not-allowed; pointer-events: none; }
         .no-results { padding: 40px; text-align: center; color: #666; }
+        .no-results.select-prompt { padding: 60px 40px; background: #f8f9fa; border-radius: 8px; }
         .loading { padding: 40px; text-align: center; color: #666; }
         #resultCount { padding: 10px 20px; background: #e9ecef; font-size: 14px; color: #495057; }
         .footer {
@@ -346,7 +347,26 @@
             });
         }
 
+        function hasActiveFilters() {
+            const machine = document.getElementById('machineSelect').value;
+            const agency = document.getElementById('agencySelect').value;
+            const officer = document.getElementById('officerSelect').value;
+            return machine || agency || officer;
+        }
+
         function renderTable(records) {
+            // Show instruction message when no filters are selected
+            if (!hasActiveFilters()) {
+                document.getElementById('resultsTable').innerHTML = `
+                    <div class="no-results select-prompt">
+                        <div style="font-size: 48px; margin-bottom: 20px;">🔍</div>
+                        <div style="font-size: 18px; font-weight: 600; margin-bottom: 10px;">Select a filter to view anomalies</div>
+                        <div style="color: #666;">Choose a Machine, Agency, or Officer from the dropdowns above to display matching records.</div>
+                    </div>`;
+                document.getElementById('resultCount').textContent = '';
+                return;
+            }
+
             if (!records || records.length === 0) {
                 document.getElementById('resultsTable').innerHTML =
                     '<div class="no-results">No matching records found. Try adjusting your filters.</div>';
