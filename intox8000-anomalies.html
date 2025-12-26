@@ -145,6 +145,38 @@
             background: #cce5ff;
             color: #004085;
         }
+        .flag-badge[data-tooltip] {
+            position: relative;
+            cursor: help;
+        }
+        .flag-badge[data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: normal;
+            white-space: normal;
+            width: 280px;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            margin-bottom: 5px;
+        }
+        .flag-badge[data-tooltip]:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #333;
+            margin-bottom: -7px;
+        }
         a.fdle-link {
             display: inline-block;
             background: #4a90d9;
@@ -216,15 +248,39 @@
     <script>
         let allData = null;
 
-        // Format flags as badges
+        // Format flags as badges with tooltips
+        const flagTooltips = {
+            'Control1 Low': 'The machine tested a known 0.08 alcohol control solution. Result was below the acceptable range (0.075-0.085). This error warrants further investigation into the reliability of the machine.',
+            'Control1 High': 'The machine tested a known 0.08 alcohol control solution. Result was above the acceptable range (0.075-0.085). This error warrants further investigation into the reliability of the machine.',
+            'Control2 Low': 'The second control test was below tolerance (0.075-0.085). This error warrants further investigation into the reliability of the machine.',
+            'Control2 High': 'The second control test was above tolerance (0.075-0.085). This error warrants further investigation into the reliability of the machine.',
+            'Zero Volume': 'The machine reported a BAC reading but recorded zero breath volume. This error warrants further investigation into the reliability of the machine.'
+        };
+
         function formatFlags(flags) {
             if (!flags) return '';
             return flags.split(', ').map(flag => {
                 let badgeClass = 'flag-badge';
-                if (flag.includes('Low')) badgeClass += ' control-low';
-                else if (flag.includes('High')) badgeClass += ' control-high';
-                else if (flag.includes('Zero Volume')) badgeClass += ' zero-volume';
-                return `<span class="${badgeClass}">${flag}</span>`;
+                let tooltip = '';
+
+                if (flag.includes('Control1') && flag.includes('Low')) {
+                    badgeClass += ' control-low';
+                    tooltip = flagTooltips['Control1 Low'];
+                } else if (flag.includes('Control1') && flag.includes('High')) {
+                    badgeClass += ' control-high';
+                    tooltip = flagTooltips['Control1 High'];
+                } else if (flag.includes('Control2') && flag.includes('Low')) {
+                    badgeClass += ' control-low';
+                    tooltip = flagTooltips['Control2 Low'];
+                } else if (flag.includes('Control2') && flag.includes('High')) {
+                    badgeClass += ' control-high';
+                    tooltip = flagTooltips['Control2 High'];
+                } else if (flag.includes('Zero Volume')) {
+                    badgeClass += ' zero-volume';
+                    tooltip = flagTooltips['Zero Volume'];
+                }
+
+                return `<span class="${badgeClass}" data-tooltip="${tooltip}">${flag}</span>`;
             }).join(' ');
         }
 
