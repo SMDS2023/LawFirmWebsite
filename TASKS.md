@@ -551,3 +551,35 @@ Create a Python script that runs daily to:
 ---
 
 *Last Updated: 2025-12-11*
+
+## Backlog
+
+### T-405694: Intox8000 page: Load empty by default, populate on dropdown selection
+
+**Status:** `in_progress`
+**Priority:** P2
+**Type:** feature
+
+**Goal:** Improve page load performance by not rendering 1,932 records on initial load. Users select a filter (agency, machine, officer) from dropdown before data displays.
+
+**Acceptance Criteria:**
+- [ ] Page loads with empty table and instruction text ("Select a filter to view anomalies")
+- [ ] Dropdown menu(s) available for filtering (Agency, Machine ID, Officer)
+- [ ] Data only populates after user makes a selection
+- [ ] Selected filter persists in URL (allows sharing filtered views)
+- [ ] Clear/reset button to return to empty state
+
+**Technical Notes:**
+- Current: All 1,932 JSON records embedded and rendered on load
+- Target: JSON still embedded, but table renders only on filter selection
+- Benefits: Faster initial load, better UX, reduced browser memory on mobile
+
+**Files to Modify:**
+- `intox8000-anomalies.html`
+
+**Definition of Done:**
+- [ ] Code/work complete
+- [ ] Tested/verified
+- [ ] Reviewer approved: [name]
+
+---
