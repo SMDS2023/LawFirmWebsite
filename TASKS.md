@@ -17,16 +17,17 @@
 **Goal:** Migrate hardcoded GA4 and Clarity to GTM for centralized management
 
 **Current State:**
-- GTM container (GTM-52LMX48G) installed on all 40 pages ✅
-- GA4 (G-D28BZM9QDC) still hardcoded ⚠️
-- Microsoft Clarity (reu4dibx4h) still hardcoded ⚠️
+- GTM container (GTM-52LMX48G) installed on all 86 pages ✅
+- GA4 configured in GTM, hardcoded scripts removed ✅
+- Microsoft Clarity configured in GTM, hardcoded scripts removed ✅
+- Testing period in progress (verify no duplicate pageviews) ⏳
 
 **Subtasks:**
-- [ ] 1.1 Configure GA4 tag in GTM workspace
-- [ ] 1.2 Configure Microsoft Clarity tag in GTM workspace
-- [ ] 1.3 Publish GTM container with new tags
+- [x] 1.1 Configure GA4 tag in GTM workspace
+- [x] 1.2 Configure Microsoft Clarity tag in GTM workspace
+- [x] 1.3 Publish GTM container with new tags
 - [ ] 1.4 Test for 24-48 hours
-- [ ] 1.5 Remove hardcoded GA4 and Clarity scripts from all HTML files
+- [x] 1.5 Remove hardcoded GA4 and Clarity scripts from all HTML files (80 files cleaned 2025-12-29)
 
 **Acceptance Criteria:**
 - [ ] All tracking fires through GTM only
@@ -545,19 +546,99 @@ Create a Python script that runs daily to:
 | Priority | Tasks |
 |----------|-------|
 | P1 Critical | T-001, T-002, T-003, T-012 |
-| P2 Important | T-004, T-005, T-006, T-007, T-008, T-013 |
+| P2 Important | T-004, T-005, T-006, T-007, T-008, T-013, T-405697 |
 | P3 Nice to Have | T-009, T-010, T-011 |
 
 ---
 
-*Last Updated: 2025-12-11*
+*Last Updated: 2025-12-29*
 
 ## Backlog
 
 
+### T-405697: Configure Analytics API Credentials for Automated Reports
+
+**Status:** `backlog`
+**Priority:** P2
+**Type:** feature
+
+**Goal:** Enable the weekly analytics report generator to pull real data from GA4 and Clarity APIs instead of using mock data.
+
+**Current State:**
+- Report generator script exists: `analytics/analytics_report.py`
+- GTM container (GTM-52LMX48G) configured and working
+- Clarity project (reu4dibx4h) tracking both LotterLaw and LegalAIntel
+- GA4 property tracking both sites
+- Reports currently use mock data due to missing credentials
+
+**Subtasks:**
+- [ ] Create Google Cloud service account for GA4 API access
+  - Go to Google Cloud Console → APIs & Services → Credentials
+  - Create Service Account with "Viewer" role
+  - Enable Google Analytics Data API
+  - Download JSON key to `analytics/credentials/ga4_service_account.json`
+- [ ] Add service account email as viewer in GA4 Admin
+  - GA4 Admin → Property Access Management → Add user
+  - Use service account email from JSON file
+  - Grant "Viewer" role
+- [ ] Update `analytics/config.yaml` with actual GA4 property ID
+  - Replace `properties/XXXXXXXX` with real property ID from GA4 Admin
+- [ ] Generate Clarity API key
+  - Clarity Dashboard → Project Settings → API
+  - Generate new API key
+- [ ] Set CLARITY_API_KEY environment variable
+  - Add to Windows environment variables or create `.env` file
+- [ ] Test report generation with real data
+  - Run `python analytics_report.py --dry-run`
+  - Verify data matches live dashboards
+- [ ] Schedule weekly report generation
+  - Set up Windows Task Scheduler for Sunday 8 AM
+  - Output to `analytics/reports/` folder
+
+**Acceptance Criteria:**
+- [ ] `python analytics_report.py` runs without credential warnings
+- [ ] Report shows real GA4 metrics (sessions, users, pageviews)
+- [ ] Report shows real Clarity metrics (rage clicks, scroll depth)
+- [ ] Week-over-week comparisons are accurate
+- [ ] Reports auto-generated weekly
+
+**Files to Modify:**
+- `analytics/config.yaml` - Add real property ID
+- `analytics/credentials/ga4_service_account.json` - Add service account key (gitignored)
+- Environment variables - Add CLARITY_API_KEY
+
+**Reference:**
+- GA4 API setup: https://developers.google.com/analytics/devguides/reporting/data/v1/quickstart-service-account
+- Clarity API docs: https://learn.microsoft.com/en-us/clarity/api
+
+**Definition of Done:**
+- [ ] Code/work complete
+- [ ] Tested/verified
+- [ ] Reviewer approved: Jeff
+
+---
+
+### T-405696: Plan LotterLaw Git repo structure and access levels
+
+**Status:** `backlog`
+**Priority:** P2
+**Type:** feature
+
+**Goal:** [Define what success looks like]
+
+**Acceptance Criteria:**
+- [ ] [Criterion 1]
+- [ ] [Criterion 2]
+
+**Definition of Done:**
+- [ ] Code/work complete
+- [ ] Tested/verified
+- [ ] Reviewer approved: [name]
+
+---
 ### T-405695: Intox8000: Externalize JSON data to separate file for faster LCP
 
-**Status:** `in_progress`
+**Status:** `done`
 **Priority:** P2
 **Type:** refactor
 
