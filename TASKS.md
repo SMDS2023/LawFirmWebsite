@@ -10,7 +10,7 @@
 
 ### T-001: Complete Google Tag Manager Migration
 
-**Status:** `in_progress`
+**Status:** `done`
 **Priority:** P1 - Critical
 **Blocked By:** None
 
@@ -556,6 +556,56 @@ Create a Python script that runs daily to:
 ## Backlog
 
 
+
+### T-405698: Create hero images for practice area pages
+
+**Status:** `backlog`
+**Priority:** P3
+**Type:** feature
+
+**Goal:** Replace gradient hero backgrounds on practice area pages with custom, relevant imagery to improve visual appeal, brand differentiation, and conversion rates.
+
+**Context:**
+Currently DUI, DV, Theft, and other practice area pages use generic `hero.jpg` with blue gradient overlays. The new Article Hub sections look great, but the heroes feel generic.
+
+**Pages needing images:**
+- `practice-areas/dui.html` - needs DUI-relevant image (e.g., police lights, breathalyzer, courtroom)
+- `practice-areas/dv.html` - needs DV-relevant image (e.g., family silhouette, protective imagery)
+- `practice-areas/theft.html` - needs theft-relevant image (e.g., retail setting, surveillance, defense)
+- Other practice areas as budget/time allows
+
+**Image requirements:**
+- Professional, authentic feel (not stock-photo cliché)
+- Relevant to practice area topic
+- Works with dark/blue gradient text overlay
+- WebP format with JPG fallback
+- Optimized for web (under 200KB each)
+- Dimensions: ~1600x600px for hero sections
+- Should convey "we defend you" not "you're guilty"
+
+**Options to consider:**
+1. AI-generated imagery (Midjourney, DALL-E)
+2. Licensed stock photos (with careful selection)
+3. Custom photography
+4. Abstract/artistic representations
+
+**Acceptance Criteria:**
+- [ ] DUI practice area has unique, relevant hero image
+- [ ] DV practice area has unique, relevant hero image
+- [ ] Theft practice area has unique, relevant hero image
+- [ ] All images are WebP with JPG fallback
+- [ ] All images under 200KB
+- [ ] Images work well with existing text overlay styling
+- [ ] Mobile responsive (test on various screen sizes)
+
+**Definition of Done:**
+- [ ] Images created/sourced
+- [ ] Optimized and converted to WebP
+- [ ] Integrated into practice area pages
+- [ ] Tested on desktop and mobile
+- [ ] Committed and deployed
+
+---
 ### T-405697: Configure Analytics API Credentials for Automated Reports
 
 **Status:** `backlog`
