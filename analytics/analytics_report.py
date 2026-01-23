@@ -40,7 +40,6 @@ except ImportError:
     GA4_AVAILABLE = False
     print("Warning: google-analytics-data not installed. GA4 data will be mocked.")
 
-
 # ============================================================================
 # Configuration
 # ============================================================================
@@ -111,20 +110,46 @@ def get_ga4_data(config, start_date, end_date):
     """
     ga4_config = config.get("ga4", {})
     property_id = ga4_config.get("property_id", "")
-    credentials_file = SCRIPT_DIR / ga4_config.get("credentials_file", "")
 
-    # Check if credentials exist
-    if not credentials_file.exists():
-        print(f"Warning: GA4 credentials not found at {credentials_file}")
-        return get_mock_ga4_data()
+    # Try OAuth token first, fallback to service account
+    token_file = ga4_config.get("token_file", "")
+    credentials_file = SCRIPT_DIR / ga4_config.get("credentials_file", "") if "credentials_file" in ga4_config else None
 
     if not GA4_AVAILABLE:
         return get_mock_ga4_data()
 
     try:
-        # Initialize client
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(credentials_file)
-        client = BetaAnalyticsDataClient()
+        # Initialize client with OAuth token or service account
+        if token_file and Path(token_file).exists():
+            print(f"Using GA4 OAuth token from {token_file}")
+            from google.oauth2.credentials import Credentials
+            from google.auth.transport.requests import Request
+            import json
+
+            with open(token_file, 'r') as f:
+                token_data = json.load(f)
+
+            creds = Credentials(
+                token=token_data['token'],
+                refresh_token=token_data.get('refresh_token'),
+                token_uri=token_data.get('token_uri', 'https://oauth2.googleapis.com/token'),
+                client_id=token_data.get('client_id'),
+                client_secret=token_data.get('client_secret'),
+                scopes=token_data.get('scopes', [])
+            )
+
+            # Refresh if needed
+            if creds.expired and creds.refresh_token:
+                creds.refresh(Request())
+
+            client = BetaAnalyticsDataClient(credentials=creds)
+        elif credentials_file and credentials_file.exists():
+            print(f"Using GA4 service account from {credentials_file}")
+            os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(credentials_file)
+            client = BetaAnalyticsDataClient()
+        else:
+            print(f"Warning: GA4 credentials not found")
+            return get_mock_ga4_data()
 
         # Current week metrics
         current_metrics = fetch_ga4_metrics(client, property_id, start_date, end_date)
@@ -335,11 +360,30 @@ def get_clarity_data(config, start_date, end_date):
     """
     clarity_config = config.get("clarity", {})
     project_id = clarity_config.get("project_id", "")
-    api_key_env = clarity_config.get("api_key_env", "CLARITY_API_KEY")
-    api_key = os.environ.get(api_key_env)
+
+    # Try to load API token from file first, fallback to environment variable
+    api_key = None
+    token_file = clarity_config.get("token_file", "")
+    if token_file and Path(token_file).exists():
+        try:
+            with open(token_file, 'r', encoding='utf-8') as f:
+                api_key = f.read().strip()
+                # Remove BOM if present
+                if api_key.startswith('\ufeff'):
+                    api_key = api_key[1:]
+            print(f"Loaded Clarity token from {token_file}")
+        except Exception as e:
+            print(f"Warning: Could not read token file {token_file}: {e}")
+
+    # Fallback to environment variable
+    if not api_key:
+        api_key_env = clarity_config.get("api_key_env", "CLARITY_API_KEY")
+        api_key = os.environ.get(api_key_env)
+        if api_key:
+            print(f"Loaded Clarity token from environment variable {api_key_env}")
 
     if not api_key:
-        print(f"Warning: {api_key_env} environment variable not set")
+        print(f"Warning: Clarity API token not found in file or environment variable")
         return get_mock_clarity_data(project_id)
 
     try:
