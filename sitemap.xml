@@ -81,12 +81,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://lotterlaw.com/practice-areas/dv.html</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- dv.html removed - consolidated into assault-battery.html -->
   <url>
     <loc>https://lotterlaw.com/practice-areas/moving-violations.html</loc>
     <lastmod>2025-11-20</lastmod>
