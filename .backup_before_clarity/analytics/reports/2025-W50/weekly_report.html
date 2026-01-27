@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LotterLaw Analytics Report - 2025-W50</title>
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --accent: #c9a227;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header .date-range {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .kpi-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .kpi-card .label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .kpi-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+
+        .kpi-card .delta {
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .delta.positive { color: var(--success); }
+        .delta.negative { color: var(--danger); }
+        .delta.neutral { color: var(--gray-600); }
+
+        .section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .section h2 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .two-col { grid-template-columns: 1fr; }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        th {
+            background: var(--gray-100);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+        }
+
+        tr:hover { background: var(--gray-100); }
+
+        .bar-container {
+            background: var(--gray-200);
+            border-radius: 4px;
+            height: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bar {
+            background: var(--primary);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .bar-label {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-badge.healthy {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-badge.warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-badge.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .alert-box {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .alert-box.warning {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+        }
+
+        .alert-box.danger {
+            background: #fee2e2;
+            border-left: 4px solid var(--danger);
+        }
+
+        footer {
+            text-align: center;
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            padding: 2rem;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .metric-row:last-child { border-bottom: none; }
+
+        .metric-label { color: var(--gray-600); }
+        .metric-value { font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LotterLaw Weekly Analytics Report</h1>
+            <div class="date-range">2025-W50 (Dec 08, 2025 - Dec 14, 2025)</div>
+        </header>
+
+        
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="label">Sessions</div>
+                <div class="value">1234</div>
+                
+                <div class="delta positive">
+                    +12% vs last week
+                </div>
+                
+            </div>
+
+            <div class="kpi-card">
+                <div class="label">Users</div>
+                <div class="value">987</div>
+                
+                <div class="delta positive">
+                    +8% vs last week
+                </div>
+                
+            </div>
+
+            <div class="kpi-card">
+                <div class="label">Pageviews</div>
+                <div class="value">3456</div>
+                
+                <div class="delta positive">
+                    +15% vs last week
+                </div>
+                
+            </div>
+
+            <div class="kpi-card">
+                <div class="label">Bounce Rate</div>
+                <div class="value">42.3%</div>
+                
+                <div class="delta positive">
+                    -3% vs last week
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="two-col">
+            <div class="section">
+                <h2>Top Pages</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Page</th>
+                            <th>Views</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            <td>/practice-areas/dui.html</td>
+                            <td>456</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>/index.html</td>
+                            <td>321</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>/practice-areas/criminal-traffic.html</td>
+                            <td>234</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>/blog/01-dui-penalties-florida.html</td>
+                            <td>198</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>/contact.html</td>
+                            <td>167</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>Traffic Sources</h2>
+                
+                <div class="metric-row">
+                    <span class="metric-label">Organic Search</span>
+                    <span class="metric-value">802 (65.0%)</span>
+                </div>
+                
+                <div class="metric-row">
+                    <span class="metric-label">Direct</span>
+                    <span class="metric-value">309 (25.0%)</span>
+                </div>
+                
+                <div class="metric-row">
+                    <span class="metric-label">Referral</span>
+                    <span class="metric-value">99 (8.0%)</span>
+                </div>
+                
+                <div class="metric-row">
+                    <span class="metric-label">Social</span>
+                    <span class="metric-value">24 (2.0%)</span>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>User Behavior (Microsoft Clarity)</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="label">Total Sessions</div>
+                    <div class="value">892</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="label">Rage Clicks</div>
+                    <div class="value">12</div>
+                    
+                </div>
+                <div class="kpi-card">
+                    <div class="label">Dead Clicks</div>
+                    <div class="value">34</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="label">Quick Backs</div>
+                    <div class="value">8</div>
+                </div>
+            </div>
+
+            <div class="metric-row">
+                <span class="metric-label">Average Scroll Depth</span>
+                <span class="metric-value">72%</span>
+            </div>
+
+            
+            <p style="margin-top: 1rem;">
+                <a href="https://clarity.microsoft.com/projects/reu4dibx4h/recordings" target="_blank" style="color: var(--primary);">
+                    View Session Recordings in Clarity Dashboard
+                </a>
+            </p>
+            
+        </div>
+
+        <div class="section">
+            <h2>Google Tag Manager Status</h2>
+            <div class="metric-row">
+                <span class="metric-label">Container ID</span>
+                <span class="metric-value">GTM-52LMX48G</span>
+            </div>
+            <div class="metric-row">
+                <span class="metric-label">Status</span>
+                <span class="status-badge healthy">
+                    Healthy
+                </span>
+            </div>
+            
+            
+        </div>
+
+        <div class="two-col">
+            <div class="section">
+                <h2>Device Breakdown</h2>
+                
+                <div style="margin-bottom: 0.75rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                        <span>Mobile</span>
+                        <span>58.0%</span>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar" style="width: 58.0%;"></div>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 0.75rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                        <span>Desktop</span>
+                        <span>38.0%</span>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar" style="width: 38.0%;"></div>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 0.75rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                        <span>Tablet</span>
+                        <span>4.0%</span>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar" style="width: 4.0%;"></div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="section">
+                <h2>Conversions</h2>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Goal</th>
+                            <th>Completions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            <td>Contact Form Submit</td>
+                            <td>23</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Phone Click</td>
+                            <td>45</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+
+        <footer>
+            <p>Generated on 2025-12-12 14:05 by LotterLaw Analytics Report Generator</p>
+            <p>lotterlaw.com</p>
+        </footer>
+    </div>
+</body>
+</html>

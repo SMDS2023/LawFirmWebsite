@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Block ghost paths from old site structure
+Disallow: /tc_attorney/
+Disallow: /category/
+Disallow: /practice-area/
+Disallow: /justify-the-papers
+Disallow: /the-power-of-justice
+
+Sitemap: https://lotterlaw.com/sitemap.xml

@@ -1,0 +1,64 @@
+{
+  "templates": [
+    {
+      "pattern": "What Happens If You Get a {charge} Charge in Florida?",
+      "category": "explainer",
+      "seo_value": "high"
+    },
+    {
+      "pattern": "Case Dismissed: {charge} Defense Strategy That Worked",
+      "category": "case_result",
+      "seo_value": "high"
+    },
+    {
+      "pattern": "Understanding F.S. {statute}: {charge} in Orlando",
+      "category": "legal_guide",
+      "seo_value": "medium"
+    },
+    {
+      "pattern": "{outcome} for {charge}: What It Means for Your Case",
+      "category": "outcome_explainer",
+      "seo_value": "high"
+    },
+    {
+      "pattern": "How to Beat a {charge} Charge in Orange County",
+      "category": "defense_guide",
+      "seo_value": "high"
+    },
+    {
+      "pattern": "{charge} Penalties in Florida: What You Need to Know",
+      "category": "penalties",
+      "seo_value": "medium"
+    },
+    {
+      "pattern": "Common Defenses for {charge} Cases in Florida",
+      "category": "defense_guide",
+      "seo_value": "medium"
+    },
+    {
+      "pattern": "Real Case: {outcome} in Orlando {charge} Case",
+      "category": "case_result",
+      "seo_value": "high"
+    },
+    {
+      "pattern": "First Time {charge} in Florida: Your Options",
+      "category": "first_offense",
+      "seo_value": "high"
+    },
+    {
+      "pattern": "Can You Get a {charge} Expunged in Florida?",
+      "category": "expungement",
+      "seo_value": "medium"
+    }
+  ],
+  "high_value_keywords": [
+    "DUI",
+    "suspended license",
+    "DWLS",
+    "dismissed",
+    "expunge",
+    "hit and run",
+    "domestic violence",
+    "drug possession"
+  ]
+}

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Intelligence Brief - 2023-MM-000125-A-O</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2c5282;
+            --accent: #ed8936;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --danger: #e53e3e;
+            --light: #f7fafc;
+            --dark: #1a202c;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        header h1 { font-size: 2rem; margin-bottom: 10px; }
+        header .subtitle { opacity: 0.9; font-size: 1.1rem; }
+        .meta { display: flex; gap: 20px; margin-top: 15px; flex-wrap: wrap; }
+        .meta-item { background: rgba(255,255,255,0.15); padding: 8px 15px; border-radius: 6px; }
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light);
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        .kpi-card {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .kpi-card .value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .kpi-card .label {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background: var(--light);
+            font-weight: 600;
+            color: var(--primary);
+        }
+        tr:hover { background: #f8fafc; }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 20px 0;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .badge-open { background: #bee3f8; color: #2b6cb0; }
+        .badge-closed { background: #c6f6d5; color: #276749; }
+        .badge-pending { background: #feebc8; color: #c05621; }
+        .highlight {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin: 15px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Case Intelligence Brief</h1>
+            <div class="subtitle">2023-MM-000125-A-O</div>
+            <div class="meta">
+                <span class="meta-item">📅 Generated: December 29, 2025</span>
+                <span class="meta-item">📋 Status: Open</span>
+                <span class="meta-item">🗓️ Arrest: 01/06/2023</span>
+            </div>
+        </header>
+
+        <!-- Case Overview -->
+        <section class="section">
+            <h2>📋 Case Overview</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="value">Open</div>
+                    <div class="label">Case Status</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="value">01/06/2023</div>
+                    <div class="label">Arrest Date</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="value">1</div>
+                    <div class="label">Charges Filed</div>
+                </div>
+            </div>
+            <table style="margin-top: 25px;">
+                <tr><th>Field</th><th>Value</th></tr>
+                <tr><td>Case Number</td><td>2023-MM-000125-A-O</td></tr>
+                <tr><td>Charge</td><td>DISORDERLY INTOX - DISORDER INTOX PUBLIC PLACE CAUSE DISTURBANCE</td></tr>
+                <tr><td>Arresting Officer</td><td>RIVERA VICTOR</td></tr>
+                <tr><td>Agency</td><td>Florida Highway Patrol (from Crim_Filings)</td></tr>
+            </table>
+        </section>
+
+        
+        <section class="section" style="border-left: 4px solid var(--danger);">
+            <h2>🧪 Intoxilyzer History (Prior Breath Tests)</h2>
+            <div class="highlight" style="background: linear-gradient(135deg, #fed7d7, #feb2b2); border-left-color: var(--danger);">
+                <strong>⚠️ CRITICAL:</strong> Found 1 prior breath test record(s) for defendant.
+            </div>
+            <table>
+                <tr><th>Date</th><th>BAC 1</th><th>BAC 2</th><th>Officer</th><th>Agency</th><th>Machine</th></tr>
+                <tr><td>2021-02-26</td><td><strong>0.142</strong></td><td>0.142</td><td>QUIMBAYO,MONICA</td><td>Central FL Univ PD</td><td>80-001257</td></tr>
+            </table>
+        </section>
+        
+
+        <!-- Officer Profile -->
+        <section class="section">
+            <h2>👮 Officer Profile: RIVERA VICTOR</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="value">2,073</div>
+                    <div class="label">Total Case Filings</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="value">37</div>
+                    <div class="label">DUI/Alcohol Cases</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="value">#38</div>
+                    <div class="label">Rank (of 5,792)</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="value">99.3%</div>
+                    <div class="label">Percentile</div>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>Officer Intelligence:</strong> RIVERA VICTOR ranks <strong>#38</strong> out of 5,792 officers (top 99.3%).
+                Has filed 2,073 cases total, with 37 DUI/alcohol-related cases.
+            </div>
+
+            <div class="grid-2">
+                <div>
+                    <h3 style="margin: 20px 0 10px;">Top Charges Filed</h3>
+                    <table>
+                        <tr><th>Charge</th><th>Count</th></tr>
+                        <tr><td>UNLAWFUL SPEED</td><td>927</td></tr><tr><td>DRIVING WHILE LICENSE SUSP/REV WITHOUT KN</td><td>81</td></tr><tr><td>CARELESS DRIVING</td><td>74</td></tr><tr><td>DL NOT CARRIED OR EXHIBITED ON DEMAND</td><td>68</td></tr><tr><td>VEHICLE WITHOUT LIGHTS AT NIGHT</td><td>52</td></tr><tr><td>OPERATING MOTOR VEH WITHOUT VALID DL</td><td>47</td></tr><tr><td>STEADY RED LIGHT EFFECTIVE 10-1-05</td><td>44</td></tr><tr><td>DRIVING UNDER THE INFLUENCE CAR</td><td>40</td></tr><tr><td>INSURANCE REQUIRED PROOF OF PIP AND PDL</td><td>36</td></tr><tr><td>IMPRPR CHNGE OF LN PULLG IN FRNT OF VEH</td><td>35</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h3 style="margin: 20px 0 10px;">Case Status Distribution</h3>
+                    <table>
+                        <tr><th>Status</th><th>Count</th></tr>
+                        <tr><td>Open</td><td>1837</td></tr><tr><td>Court Pending</td><td>123</td></tr><tr><td>Closed</td><td>58</td></tr><tr><td>Pending</td><td>54</td></tr><tr><td>Capias/Warrant</td><td>1</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <h3 style="margin: 25px 0 10px;">Filings by Year</h3>
+            <div class="chart-container" style="height: 250px;">
+                <canvas id="yearChart"></canvas>
+            </div>
+        </section>
+
+        
+        <section class="section">
+            <h2>🏛️ Agency Comparison</h2>
+            <table>
+                <tr><th>Agency</th><th>Total Cases</th><th>Closed</th><th>Open</th><th>Closure Rate</th></tr>
+                <tr><td>ORANGE COUNTY SHERIFF OFFICE</td><td>122,277</td><td>3,859</td><td>114,081</td><td>3.16%</td></tr><tr><td>ORLANDO POLICE DEPARTMENT</td><td>73,322</td><td>5,655</td><td>64,826</td><td>7.71%</td></tr><tr><td>OCOEE POLICE DEPARTMENT</td><td>30,637</td><td>961</td><td>28,685</td><td>3.14%</td></tr><tr><td>WINTER PARK POLICE DEPARTMENT</td><td>28,647</td><td>1,678</td><td>24,517</td><td>5.86%</td></tr><tr><td>WINTER GARDEN POLICE DEPARTMENT</td><td>26,327</td><td>1,928</td><td>22,504</td><td>7.32%</td></tr>
+            </table>
+        </section>
+        
+
+        <!-- Defendant History -->
+        <section class="section">
+            <h2>👤 Defendant History</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="value">1</div>
+                    <div class="label">Court Cases</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="value">1</div>
+                    <div class="label">Breath Tests</div>
+                </div>
+            </div>
+            
+            <div class='highlight' style='background: linear-gradient(135deg, #fed7d7, #feb2b2); border-left-color: var(--danger);'><strong>Prior DUI History:</strong> Defendant has 1 prior breath test(s) on record.</div>
+            <table>
+                <tr><th>Case Number</th><th>Arrest Date</th><th>Charge</th><th>Status</th></tr>
+                <tr><td>2023-MM-000125-A-O</td><td>01/06/2023</td><td>DISORDERLY INTOX - DISORDER INTOX PUBLIC</td><td><span class='badge badge-open'>Open</span></td></tr>
+            </table>
+        </section>
+
+        <!-- Charge Analysis -->
+        <section class="section">
+            <h2>⚖️ Charge Analysis</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="value">4</div>
+                    <div class="label">Total Cases with This Charge (County-Wide)</div>
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>Charge Rarity:</strong> "DISORDERLY INTOX - DISORDER INTOX PUBLIC PLACE CAUSE DISTURBANCE" has only 4 cases in the database.
+                This is a rare charge - often filed when DUI evidence is insufficient.
+            </div>
+        </section>
+
+        <!-- Defense Considerations -->
+        <section class="section">
+            <h2>🛡️ Defense Considerations</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                    ⚠️ <strong>Prior DUI History:</strong> DEFENDANT HAS 1 PRIOR BREATH TEST(S) - prosecutorial leverage
+                </li>
+                <li style="padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                    ✓ <strong>Officer Experience:</strong> RIVERA VICTOR ranks #38 of 5,792 officers (top 99.3%) - highly experienced
+                </li>
+                <li style="padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                    ✓ <strong>Charge Pattern:</strong> Officer's top charge is "UNLAWFUL SPEED" (927 cases)
+                </li>
+                <li style="padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                    ✓ <strong>Current Charge:</strong> Only 4 cases with this exact charge - rare charge, may indicate weak DUI evidence
+                </li>
+                <li style="padding: 10px 0;">
+                    ✓ <strong>Defendant History:</strong> 1 court case(s), 1 breath test(s) on record
+                </li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>Generated by Case Intelligence System | Data from Orange County Clerk Database + FDLE Intoxilyzer Records</p>
+            <p>Confidential Attorney Work Product</p>
+        </footer>
+    </div>
+
+    <script>
+        // Year Chart
+        new Chart(document.getElementById('yearChart'), {
+            type: 'bar',
+            data: {
+                labels: [2024, 2023, 2022],
+                datasets: [{
+                    label: 'Cases Filed',
+                    data: [4, 59, 66],
+                    backgroundColor: '#2c5282'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+    </script>
+</body>
+</html>
