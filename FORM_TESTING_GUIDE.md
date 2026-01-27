@@ -2,9 +2,28 @@
 
 ## Deployment Status
 
-✅ **Deployed:** All changes pushed to GitHub master branch
-🕐 **GitHub Pages Deploy Time:** 2-5 minutes
+✅ **FULLY WORKING:** All issues resolved and deployed
+✅ **Tested:** Form submissions successfully received in JotForm dashboard
 🌐 **Live URL:** https://lotterlaw.com
+📅 **Last Updated:** 2026-01-27 10:40 AM
+
+---
+
+## Final Status
+
+**ALL FIXES APPLIED:**
+1. ✅ Text visibility fixed (text-gray-900 added to form element)
+2. ✅ Alpine.js loading order fixed (contact-form.js loads before Alpine.js)
+3. ✅ JotForm field mapping corrected (actual field names from form structure)
+4. ✅ Form submissions working on all 18 pages
+
+**VERIFIED WORKING:**
+- Form displays with dark text (not white on white)
+- Real-time validation works on all fields
+- Submit button enables/disables correctly
+- Loading spinner shows during submission
+- Success message displays after submission
+- Submissions appear in JotForm dashboard
 
 ---
 
@@ -154,31 +173,62 @@ Test on multiple browsers:
 
 ---
 
-## Known Issues / Limitations
+## Technical Details
 
-### JotForm Field Mapping
+### JotForm Field Mapping (VERIFIED WORKING)
 
-Current mapping (may need adjustment based on actual JotForm form structure):
-- `q3_name` → Full Name
-- `q4_email` → Email Address
-- `q5_phone` → Phone Number
-- `q6_caseType` → Case Type
-- `q7_message` → Message
+Correct field mapping for JotForm form ID **251224345324145**:
 
-**If submissions don't appear in JotForm dashboard**, the field IDs may be incorrect.
+```javascript
+// Name split into first/last
+const nameParts = this.formData.name.trim().split(' ');
+formData.append('q3_name[first]', firstName);
+formData.append('q3_name[last]', lastName);
 
-To verify correct field IDs:
-1. Go to JotForm form editor
-2. Right-click on a field → "Properties"
-3. Check "Field ID" (e.g., `input_3`, `input_4`)
-4. Update `contact-form.js` line 132-136 with correct IDs
+// Other fields
+formData.append('q4_contactNumber[full]', this.formData.phone);
+formData.append('q5_emailAddress', this.formData.email);
+formData.append('q10_pleaseExplain', this.formData.message);
+formData.append('q23_typeA23', this.formData.caseType);
+```
 
-### CORS Issues
+**Key differences from typical JotForm forms:**
+- Name field uses `[first]` and `[last]` sub-fields (not single field)
+- Phone uses `contactNumber[full]` format
+- Email uses `emailAddress` suffix (not just `email`)
+- Message is field #10 (not sequential)
+- Case type is field #23 (custom field)
 
-If form submission fails with CORS error in console:
-- JotForm supports CORS for public forms
-- Verify form ID `251224345324145` is correct
-- Check JotForm form settings (must be public, not private)
+### Script Loading Order (CRITICAL)
+
+```html
+<!-- CORRECT ORDER (working) -->
+<script src="assets/contact-form.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+```
+
+**Why this order matters:**
+1. `contact-form.js` loads immediately (no defer)
+2. Registers `alpine:init` event listener
+3. Alpine.js loads with defer
+4. Alpine initializes and finds the `contactForm()` component
+5. Form works correctly
+
+**Wrong order causes:** `formData is not defined`, `submitForm is not defined` errors
+
+### Text Visibility Fix
+
+Form element includes `text-gray-900` class to override parent section's `text-white`:
+
+```html
+<section class="bg-blue-700 text-white">
+  <form class="bg-white p-8 text-gray-900">
+    <!-- Dark text on white background -->
+  </form>
+</section>
+```
+
+Without `text-gray-900` on the form, all text inherits white from parent section.
 
 ### Cache Issues
 
@@ -215,16 +265,71 @@ git push origin master --force
 
 ## Success Criteria
 
-✅ Task T-009 is complete when:
+✅ **Task T-009 COMPLETED:**
 
-1. All 18 pages have native forms (no JotForm iframes)
-2. Validation working on all fields
-3. Loading spinner shows during submission
-4. Success message displays after successful submission
-5. Error message displays with phone fallback on failure
-6. All verification checklist items passing
-7. Changes deployed to live site (lotterlaw.com)
-8. Test submission appears in JotForm dashboard
+1. ✅ All 18 pages have native forms (no JotForm iframes)
+2. ✅ Validation working on all fields (real-time error display)
+3. ✅ Loading spinner shows during submission
+4. ✅ Success message displays after successful submission
+5. ✅ Error message displays with phone fallback on failure
+6. ✅ All verification checklist items passing
+7. ✅ Changes deployed to live site (lotterlaw.com)
+8. ✅ Test submission received in JotForm dashboard
+
+**Final Commits:**
+- `f6dc5da` - Initial native form implementation
+- `afe403e` - Text color fix (text-gray-900 on inputs)
+- `63c204e` - Text color fix (text-gray-900 on form element)
+- `28a2559` - Script loading order fix
+- `b0faade` - JotForm field mapping fix (FINAL WORKING VERSION)
+
+---
+
+## Troubleshooting Guide
+
+### Issues Encountered & Resolved
+
+**Issue 1: White text on white background**
+- **Symptom:** Can't see text when typing in fields
+- **Cause:** Form inside `text-white` section, text inheriting white color
+- **Fix:** Added `text-gray-900` class to form element
+- **File:** `index.html` line 1838, all practice area pages
+- **Commit:** `63c204e`
+
+**Issue 2: "formData is not defined" errors**
+- **Symptom:** 318+ JavaScript errors in console, form does nothing on submit
+- **Cause:** Alpine.js loading before contact-form.js, component not registered
+- **Fix:** Removed `defer` from contact-form.js, loads before Alpine.js
+- **File:** `index.html` head section, all practice area pages
+- **Commit:** `28a2559`
+
+**Issue 3: "400 Bad Request" from JotForm**
+- **Symptom:** Form submits but shows error message, JotForm rejects submission
+- **Cause:** Incorrect field names (guessed `q3_name` instead of actual `q3_name[first]`)
+- **Fix:** Fetched actual form HTML, used correct field names with array syntax
+- **File:** `assets/contact-form.js` lines 152-166
+- **Commit:** `b0faade`
+
+### How to Diagnose Future Issues
+
+**1. Text not visible:**
+```
+Check: Does parent element have text-white class?
+Fix: Add text-gray-900 to form or input elements
+```
+
+**2. Form doesn't respond to clicks:**
+```
+Check: Open Console (F12), look for "is not defined" errors
+Fix: Verify script loading order (component script before Alpine.js)
+```
+
+**3. Form submits but shows error:**
+```
+Check: Console Network tab, look at POST request payload
+Fix: Compare field names with actual JotForm form HTML
+Tool: curl -s "https://form.jotform.com/[FORM_ID]" | grep 'name="'
+```
 
 ---
 
@@ -244,6 +349,34 @@ git push origin master --force
 
 ---
 
-**Last Updated:** 2026-01-27
-**Commit:** f6dc5da
-**Deployed:** ✅ Yes (GitHub Pages)
+**Last Updated:** 2026-01-27 10:40 AM
+**Final Commit:** b0faade (all fixes applied)
+**Status:** ✅ FULLY WORKING
+**Deployed:** ✅ Live on lotterlaw.com (all 18 pages)
+
+---
+
+## Quick Reference
+
+**Form works on these pages:**
+- Homepage: https://lotterlaw.com
+- DUI: https://lotterlaw.com/practice-areas/dui.html
+- Criminal Traffic: https://lotterlaw.com/practice-areas/criminal-traffic.html
+- All other 15 practice area pages
+
+**Key files:**
+- Form component: `assets/contact-form.js` (single source for all pages)
+- Script loading: contact-form.js → Alpine.js (order matters!)
+- Form styling: `text-gray-900` on form element
+
+**JotForm integration:**
+- Form ID: 251224345324145
+- Submission endpoint: https://submit.jotform.com/submit/251224345324145
+- Field mapping: See Technical Details section above
+
+**Testing:**
+1. Open any page with contact form
+2. Fill all 5 fields (name, email, phone, case type, message)
+3. Click "Send Message"
+4. See green success message
+5. Check JotForm dashboard for submission
