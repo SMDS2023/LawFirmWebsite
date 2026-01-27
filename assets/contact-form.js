@@ -147,13 +147,20 @@ document.addEventListener('alpine:init', () => {
             this.showError = false;
 
             try {
-                // Map to JotForm field names
+                // Map to JotForm field names (actual field names from form 251224345324145)
                 const formData = new URLSearchParams();
-                formData.append('q3_name', this.formData.name);
-                formData.append('q4_email', this.formData.email);
-                formData.append('q5_phone', this.formData.phone);
-                formData.append('q6_caseType', this.formData.caseType);
-                formData.append('q7_message', this.formData.message);
+
+                // Split name into first and last
+                const nameParts = this.formData.name.trim().split(' ');
+                const firstName = nameParts[0] || '';
+                const lastName = nameParts.slice(1).join(' ') || '';
+
+                formData.append('q3_name[first]', firstName);
+                formData.append('q3_name[last]', lastName);
+                formData.append('q4_contactNumber[full]', this.formData.phone);
+                formData.append('q5_emailAddress', this.formData.email);
+                formData.append('q10_pleaseExplain', this.formData.message);
+                formData.append('q23_typeA23', this.formData.caseType);
 
                 // Submit to JotForm
                 const response = await fetch('https://submit.jotform.com/submit/251224345324145', {
