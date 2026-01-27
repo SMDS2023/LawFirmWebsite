@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LotterLaw Analytics Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .report-date {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            font-size: 1.8em;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .section h3 {
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .metric-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .metric-tertiary {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #f9f9f9;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .rank {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .clarity-setup {
+            background: #f0f7ff;
+            border-left: 4px solid #4facfe;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .clarity-setup h3 {
+            color: #4facfe;
+            margin-bottom: 10px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .footer {
+            background: #f9f9f9;
+            padding: 30px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .no-data {
+            color: #999;
+            text-align: center;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>LotterLaw Analytics Report</h1>
+            <p>Google Analytics 4 • Google Search Console • Google Business Profile • Microsoft Clarity</p>
+            <div class="report-date">Generated: January 25, 2026 at 03:30 PM</div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <!-- GOOGLE ANALYTICS SECTION -->
+            <div class="section">
+                <h2>Google Analytics 4 - Visitor Behavior (Last 30 Days)</h2>
+
+                <div class="metrics">
+                    <div class="metric">
+                        <div class="metric-label">Total Sessions</div>
+                        <div class="metric-value">303.0</div>
+                    </div>
+                    <div class="metric metric-secondary">
+                        <div class="metric-label">Unique Users</div>
+                        <div class="metric-value">224.0</div>
+                    </div>
+                    <div class="metric metric-tertiary">
+                        <div class="metric-label">Page Views</div>
+                        <div class="metric-value">0.0</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Bounce Rate</div>
+                        <div class="metric-value">60.7%</div>
+                    </div>
+                    <div class="metric metric-secondary">
+                        <div class="metric-label">Avg Session Duration</div>
+                        <div class="metric-value">152.9</div>
+                    </div>
+                </div>
+
+                <h3>Top 10 Pages</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Page</th>
+                            <th style="text-align: right;">Views</th>
+                            <th style="text-align: right;">Users</th>
+                            <th style="text-align: right;">Avg Time on Page</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td><span class="rank">1</span>/intox8000_Anomalies/</td>
+                            <td style="text-align: right;">232.0</td>
+                            <td style="text-align: right;">61.0</td>
+                            <td style="text-align: right;">216.57208426923077</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">2</span>/intox8000-anomalies.html</td>
+                            <td style="text-align: right;">133.0</td>
+                            <td style="text-align: right;">51.0</td>
+                            <td style="text-align: right;">139.00370575</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">3</span>/</td>
+                            <td style="text-align: right;">78.0</td>
+                            <td style="text-align: right;">57.0</td>
+                            <td style="text-align: right;">85.5783142</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">4</span>/practice-areas/tolls.html</td>
+                            <td style="text-align: right;">9.0</td>
+                            <td style="text-align: right;">9.0</td>
+                            <td style="text-align: right;">34.14652155555555</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">5</span>/blog.html</td>
+                            <td style="text-align: right;">6.0</td>
+                            <td style="text-align: right;">3.0</td>
+                            <td style="text-align: right;">41.418041333333335</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">6</span>/blog/39-license-plate-frames-florida-law.html</td>
+                            <td style="text-align: right;">6.0</td>
+                            <td style="text-align: right;">6.0</td>
+                            <td style="text-align: right;">117.98340183333333</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">7</span>/practice-areas/speeding-ticket.html</td>
+                            <td style="text-align: right;">5.0</td>
+                            <td style="text-align: right;">2.0</td>
+                            <td style="text-align: right;">57.2602165</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">8</span>/practice-areas/dui.html</td>
+                            <td style="text-align: right;">4.0</td>
+                            <td style="text-align: right;">3.0</td>
+                            <td style="text-align: right;">54.51323175</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">9</span>/index.html</td>
+                            <td style="text-align: right;">3.0</td>
+                            <td style="text-align: right;">3.0</td>
+                            <td style="text-align: right;">3.4736246666666664</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">10</span>/intox8000-anomalies.htmlIndexes</td>
+                            <td style="text-align: right;">3.0</td>
+                            <td style="text-align: right;">3.0</td>
+                            <td style="text-align: right;">30.880377666666664</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <h3>Traffic Sources</h3>
+                <div class="metrics">
+
+                    <div class="metric metric-secondary">
+                        <div class="metric-label">Direct</div>
+                        <div class="metric-value">38.3%</div>
+                        <div class="metric-label" style="font-size: 0.8em; margin-top: 5px;">116.0 sessions</div>
+                    </div>
+
+                    <div class="metric metric-secondary">
+                        <div class="metric-label">Referral</div>
+                        <div class="metric-value">19.8%</div>
+                        <div class="metric-label" style="font-size: 0.8em; margin-top: 5px;">60.0 sessions</div>
+                    </div>
+
+                    <div class="metric metric-secondary">
+                        <div class="metric-label">Organic Social</div>
+                        <div class="metric-value">19.1%</div>
+                        <div class="metric-label" style="font-size: 0.8em; margin-top: 5px;">58.0 sessions</div>
+                    </div>
+
+                    <div class="metric metric-secondary">
+                        <div class="metric-label">Organic Search</div>
+                        <div class="metric-value">16.8%</div>
+                        <div class="metric-label" style="font-size: 0.8em; margin-top: 5px;">51.0 sessions</div>
+                    </div>
+
+                    <div class="metric metric-secondary">
+                        <div class="metric-label">Paid Social</div>
+                        <div class="metric-value">4.6%</div>
+                        <div class="metric-label" style="font-size: 0.8em; margin-top: 5px;">14.0 sessions</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- GOOGLE SEARCH CONSOLE SECTION -->
+            <div class="section">
+                <h2>Google Search Console - SEO Performance (Last 30 Days)</h2>
+
+                <div class="metrics">
+                    <div class="metric">
+                        <div class="metric-label">Total Clicks</div>
+                        <div class="metric-value">37.0</div>
+                    </div>
+                    <div class="metric metric-secondary">
+                        <div class="metric-label">Total Impressions</div>
+                        <div class="metric-value">763.0</div>
+                    </div>
+                    <div class="metric metric-tertiary">
+                        <div class="metric-label">Avg CTR</div>
+                        <div class="metric-value">12.45%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Avg Position</div>
+                        <div class="metric-value">#8.9</div>
+                    </div>
+                </div>
+
+                <h3>Top 20 Search Queries</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Search Query</th>
+                            <th style="text-align: right;">Clicks</th>
+                            <th style="text-align: right;">Impressions</th>
+                            <th style="text-align: right;">CTR</th>
+                            <th style="text-align: right;">Position</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td><span class="rank">1</span>jeff lotter</td>
+                            <td style="text-align: right;">13.0</td>
+                            <td style="text-align: right;">56.0</td>
+                            <td style="text-align: right;">23.21%</td>
+                            <td style="text-align: right;">#5.0</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">2</span>jeff lotter attorney</td>
+                            <td style="text-align: right;">11.0</td>
+                            <td style="text-align: right;">39.0</td>
+                            <td style="text-align: right;">28.21%</td>
+                            <td style="text-align: right;">#1.0</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">3</span>lotter law</td>
+                            <td style="text-align: right;">3.0</td>
+                            <td style="text-align: right;">20.0</td>
+                            <td style="text-align: right;">15.00%</td>
+                            <td style="text-align: right;">#1.1</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">4</span>316.1001</td>
+                            <td style="text-align: right;">1.0</td>
+                            <td style="text-align: right;">44.0</td>
+                            <td style="text-align: right;">2.27%</td>
+                            <td style="text-align: right;">#6.6</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">5</span>316.1922</td>
+                            <td style="text-align: right;">1.0</td>
+                            <td style="text-align: right;">225.0</td>
+                            <td style="text-align: right;">0.44%</td>
+                            <td style="text-align: right;">#8.8</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">6</span>dui lawyer near me</td>
+                            <td style="text-align: right;">1.0</td>
+                            <td style="text-align: right;">15.0</td>
+                            <td style="text-align: right;">6.67%</td>
+                            <td style="text-align: right;">#1.4</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">7</span>dui lawyer orlando</td>
+                            <td style="text-align: right;">1.0</td>
+                            <td style="text-align: right;">143.0</td>
+                            <td style="text-align: right;">0.70%</td>
+                            <td style="text-align: right;">#5.8</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">8</span>florida dui lawyer</td>
+                            <td style="text-align: right;">1.0</td>
+                            <td style="text-align: right;">16.0</td>
+                            <td style="text-align: right;">6.25%</td>
+                            <td style="text-align: right;">#3.5</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">9</span>fss 316.1922</td>
+                            <td style="text-align: right;">1.0</td>
+                            <td style="text-align: right;">75.0</td>
+                            <td style="text-align: right;">1.33%</td>
+                            <td style="text-align: right;">#7.4</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">10</span>lotter attorneys</td>
+                            <td style="text-align: right;">1.0</td>
+                            <td style="text-align: right;">9.0</td>
+                            <td style="text-align: right;">11.11%</td>
+                            <td style="text-align: right;">#9.0</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">11</span>speeding ticket lawyer</td>
+                            <td style="text-align: right;">1.0</td>
+                            <td style="text-align: right;">2.0</td>
+                            <td style="text-align: right;">50.00%</td>
+                            <td style="text-align: right;">#8.5</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">12</span>toll lawyer</td>
+                            <td style="text-align: right;">1.0</td>
+                            <td style="text-align: right;">1.0</td>
+                            <td style="text-align: right;">100.00%</td>
+                            <td style="text-align: right;">#1.0</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">13</span>what happens at a motion to suppress hearing</td>
+                            <td style="text-align: right;">1.0</td>
+                            <td style="text-align: right;">27.0</td>
+                            <td style="text-align: right;">3.70%</td>
+                            <td style="text-align: right;">#1.3</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">14</span>"(407) 500-7000" law office of jeff lotter</td>
+                            <td style="text-align: right;">0.0</td>
+                            <td style="text-align: right;">25.0</td>
+                            <td style="text-align: right;">0.00%</td>
+                            <td style="text-align: right;">#2.3</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">15</span>"hto revocation"</td>
+                            <td style="text-align: right;">0.0</td>
+                            <td style="text-align: right;">32.0</td>
+                            <td style="text-align: right;">0.00%</td>
+                            <td style="text-align: right;">#44.9</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">16</span>"toll facility" incident</td>
+                            <td style="text-align: right;">0.0</td>
+                            <td style="text-align: right;">1.0</td>
+                            <td style="text-align: right;">0.00%</td>
+                            <td style="text-align: right;">#11.0</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">17</span>24 hour criminal defense attorney</td>
+                            <td style="text-align: right;">0.0</td>
+                            <td style="text-align: right;">1.0</td>
+                            <td style="text-align: right;">0.00%</td>
+                            <td style="text-align: right;">#2.0</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">18</span>24 hour criminal laywer in orlando fl</td>
+                            <td style="text-align: right;">0.0</td>
+                            <td style="text-align: right;">1.0</td>
+                            <td style="text-align: right;">0.00%</td>
+                            <td style="text-align: right;">#1.0</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">19</span>2nd amendment attorney florida</td>
+                            <td style="text-align: right;">0.0</td>
+                            <td style="text-align: right;">10.0</td>
+                            <td style="text-align: right;">0.00%</td>
+                            <td style="text-align: right;">#15.3</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="rank">20</span>2nd amendment attorney orlando</td>
+                            <td style="text-align: right;">0.0</td>
+                            <td style="text-align: right;">21.0</td>
+                            <td style="text-align: right;">0.00%</td>
+                            <td style="text-align: right;">#41.0</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <!-- GOOGLE MY BUSINESS SECTION -->
+            <div class="section">
+                <h2>🗺️ Google Business Profile - Local Visibility (Last 21 Days)</h2>
+
+                <div class="metrics">
+                    <div class="metric">
+                        <div class="metric-label">📞 Phone Calls</div>
+                        <div class="metric-value">0</div>
+                    </div>
+                    <div class="metric metric-secondary">
+                        <div class="metric-label">🌐 Website Clicks</div>
+                        <div class="metric-value">0</div>
+                    </div>
+                    <div class="metric metric-tertiary">
+                        <div class="metric-label">🧭 Direction Requests</div>
+                        <div class="metric-value">0</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">👁️ Maps Impressions</div>
+                        <div class="metric-value">0</div>
+                    </div>
+                    <div class="metric metric-secondary">
+                        <div class="metric-label">🔍 Search Impressions</div>
+                        <div class="metric-value">0</div>
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-top: 20px;">
+                    <p><strong>Business:</strong> Law Office of Jeff Lotter</p>
+                    <p><strong>Date Range:</strong> unavailable</p>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                        Note: Reviews API integration pending - the Google Business Profile API v1 reviews endpoint requires additional configuration.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- MICROSOFT CLARITY SECTION -->
+            <div class="section">
+                <h2>Microsoft Clarity - Session Recording & Heatmaps</h2>
+
+                <div class="clarity-setup">
+                    <h3>Configuration Status</h3>
+                    <p><span class="status-badge status-pending">[CONFIG] Setup Required</span> Project ID: <code>reu4dibx4h</code></p>
+                    <p style="margin-top: 15px;">
+                        <strong>Current Setup:</strong> Clarity is managed via Google Tag Manager (GTM-52LMX48G)
+                    </p>
+                    <p style="margin-top: 10px;">
+                        <strong>Migration Status:</strong> <span class="status-badge status-active">[OK] Migrated to GTM</span> All hardcoded scripts removed from HTML files.
+                    </p>
+                </div>
+
+
+                <div class="info-box" style="background: #fff3cd; border-color: #ffc107;">
+                    <strong>Clarity API Setup Required</strong>
+                    <p style="margin-top: 10px;">To show live Clarity metrics, run: <code>python clarity_data.py --setup</code></p>
+                    <p style="margin-top: 5px; color: #666;">Reason: Could not fetch data</p>
+                </div>
+
+
+                <h3>Features & Capabilities</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Purpose</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Session Recording</strong></td>
+                            <td>Watch how visitors interact with your site in real-time</td>
+                            <td><span class="status-badge status-active">ACTIVE</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Heatmaps</strong></td>
+                            <td>See which areas users click and scroll through most</td>
+                            <td><span class="status-badge status-active">ACTIVE</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rage Clicks</strong></td>
+                            <td>Identify frustration patterns when users click repeatedly</td>
+                            <td><span class="status-badge status-active">ACTIVE</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dead Clicks</strong></td>
+                            <td>Find non-clickable elements users try to interact with</td>
+                            <td><span class="status-badge status-active">ACTIVE</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>User Segmentation</strong></td>
+                            <td>Filter sessions by device, referrer, custom events</td>
+                            <td><span class="status-badge status-active">ACTIVE</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Access Your Clarity Dashboard</h3>
+                <div style="text-align: center; padding: 30px; background: #f9f9f9; border-radius: 8px; margin: 20px 0;">
+                    <p style="margin-bottom: 15px;">Visit your Clarity dashboard to view session recordings, heatmaps, and user behavior analytics:</p>
+                    <a href="https://clarity.microsoft.com/projects/view/reu4dibx4h/dashboard" target="_blank" style="display: inline-block; background: #4facfe; color: white; padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 1.1em;">
+                        Go to Microsoft Clarity Dashboard
+                    </a>
+                    <p style="margin-top: 15px; color: #666; font-size: 0.9em;">Project ID: <code>reu4dibx4h</code></p>
+                </div>
+
+                <h3>GTM Migration Benefits</h3>
+                <div class="info-box">
+                    <strong>Successfully Migrated to Google Tag Manager!</strong>
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Centralized Management</strong> - All analytics tags managed in one place (GTM)</li>
+                        <li><strong>No Code Changes Needed</strong> - Add/remove tags without touching HTML</li>
+                        <li><strong>Better Performance</strong> - Async loading optimizes page speed</li>
+                        <li><strong>Easy Debugging</strong> - GTM Preview mode for testing</li>
+                        <li><strong>Version Control</strong> - Roll back tag changes if needed</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-size: 0.9em;">
+                        <strong>GTM Container:</strong> <code>GTM-52LMX48G</code> |
+                        <a href="https://tagmanager.google.com/" target="_blank" style="color: #2196f3;">Manage in GTM</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p><strong>LotterLaw Analytics Report</strong></p>
+            <p>Data Sources: Google Analytics 4 • Google Search Console • Google Business Profile • Microsoft Clarity</p>
+            <p style="margin-top: 15px; color: #999; font-size: 0.9em;">Report generated on January 25, 2026 at 03:30 PM</p>
+        </div>
+    </div>
+</body>
+</html>

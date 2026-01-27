@@ -41,6 +41,11 @@ class SEOParser(HTMLParser):
         self.script_type = ""
         self.current_script = ""
 
+        # Word count tracking
+        self.word_count = 0
+        self.body_text = []
+        self.excluded_tag_depth = 0  # Track depth of excluded tags
+
         # Analytics tracking
         self.has_gtm = False
         self.has_ga4 = False
@@ -48,6 +53,10 @@ class SEOParser(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         attrs_dict = dict(attrs)
+
+        # Track excluded tags (script, style, nav, footer, header)
+        if tag in ("script", "style", "nav", "footer", "header"):
+            self.excluded_tag_depth += 1
 
         if tag == "title":
             self.in_title = True
@@ -88,6 +97,10 @@ class SEOParser(HTMLParser):
             self.script_type = attrs_dict.get("type", "")
 
     def handle_endtag(self, tag):
+        # Track excluded tags
+        if tag in ("script", "style", "nav", "footer", "header"):
+            self.excluded_tag_depth = max(0, self.excluded_tag_depth - 1)
+
         if tag == "title":
             self.in_title = False
         elif tag == "h1":
@@ -113,6 +126,106 @@ class SEOParser(HTMLParser):
                 self.has_ga4 = True
             if "reu4dibx4h" in data:
                 self.has_clarity = True
+
+        # Track body content for word count (exclude script/style/nav/footer/header content)
+        if self.excluded_tag_depth == 0 and data.strip():
+            self.body_text.append(data.strip())
+
+
+def count_words(text_parts: list) -> int:
+    """Count words in a list of text parts."""
+    full_text = " ".join(text_parts)
+    # Split on whitespace and filter empty strings
+    words = [w for w in re.split(r'\s+', full_text) if w]
+    return len(words)
+
+
+def check_link_quality(parser: SEOParser, results: dict):
+    """
+    Check link quality based on SEO best practices.
+
+    Best practices:
+    - Total links < 150 (PageRank dilution threshold)
+    - Contextual links: 3-5 per 1,000 words
+    - Link density: < 10 links per 1,000 words
+    """
+    # Calculate word count
+    word_count = count_words(parser.body_text)
+    parser.word_count = word_count  # Store for reference
+
+    # Add word count info check (informational)
+    results["checks"].append({
+        "name": "Word Count",
+        "status": "PASS",
+        "value": f"{word_count} words"
+    })
+    results["passed"] += 1
+
+    # Count all links (internal + external)
+    total_links = len(parser.internal_links) + len(parser.external_links)
+    unique_internal = len(set(parser.internal_links))
+
+    # Check 1: Total link count
+    if total_links < 150:
+        results["checks"].append({
+            "name": "Total Link Count",
+            "status": "PASS",
+            "value": f"{total_links} links (limit: 150)"
+        })
+        results["passed"] += 1
+    else:
+        results["checks"].append({
+            "name": "Total Link Count",
+            "status": "FAIL",
+            "value": f"{total_links} links (exceeds 150 - PageRank dilution risk)"
+        })
+        results["failed"] += 1
+
+    # Check 2: Contextual link minimum (3 per 1000 words)
+    if word_count > 0:
+        expected_min_links = max(3, int(word_count / 1000 * 3))  # 3 links per 1000 words
+
+        if unique_internal >= expected_min_links:
+            results["checks"].append({
+                "name": "Contextual Links",
+                "status": "PASS",
+                "value": f"{unique_internal} links ({word_count} words, target: {expected_min_links})"
+            })
+            results["passed"] += 1
+        elif unique_internal >= 2:
+            # Warn if at least 2 but below target
+            results["checks"].append({
+                "name": "Contextual Links",
+                "status": "WARN",
+                "value": f"{unique_internal} links ({word_count} words, target: {expected_min_links})"
+            })
+            results["warnings"] += 1
+        else:
+            results["checks"].append({
+                "name": "Contextual Links",
+                "status": "FAIL",
+                "value": f"{unique_internal} links ({word_count} words, target: {expected_min_links})"
+            })
+            results["failed"] += 1
+
+    # Check 3: Link density (< 10 per 1000 words)
+    if word_count > 0:
+        link_density = (total_links / word_count) * 1000
+
+        if link_density < 10:
+            results["checks"].append({
+                "name": "Link Density",
+                "status": "PASS",
+                "value": f"{link_density:.1f} links/1000 words (limit: 10)"
+            })
+            results["passed"] += 1
+        else:
+            results["checks"].append({
+                "name": "Link Density",
+                "status": "FAIL",
+                "value": f"{link_density:.1f} links/1000 words (exceeds 10)"
+            })
+            results["failed"] += 1
 
 
 def check_seo(filepath: Path) -> dict:
@@ -194,14 +307,8 @@ def check_seo(filepath: Path) -> dict:
         results["checks"].append({"name": "H1 Tag", "status": "WARN", "value": f"{parser.h1_count} H1 tags (should be 1)"})
         results["warnings"] += 1
 
-    # Internal links
-    unique_internal = len(set(parser.internal_links))
-    if unique_internal >= 2:
-        results["checks"].append({"name": "Internal Links", "status": "PASS", "value": f"{unique_internal} unique links"})
-        results["passed"] += 1
-    else:
-        results["checks"].append({"name": "Internal Links", "status": "WARN", "value": f"{unique_internal} links (recommend 2+)"})
-        results["warnings"] += 1
+    # Link Quality Checks (Enhancement 3: SEO Best Practices)
+    check_link_quality(parser, results)
 
     # Schema markup
     if parser.schema_json:

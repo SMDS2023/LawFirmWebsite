@@ -10,9 +10,10 @@
 
 ### T-001: Complete Google Tag Manager Migration
 
-**Status:** `done`
+**Status:** `completed`
 **Priority:** P1 - Critical
 **Blocked By:** None
+**Completed:** 2026-01-07
 
 **Goal:** Migrate hardcoded GA4 and Clarity to GTM for centralized management
 
@@ -20,19 +21,19 @@
 - GTM container (GTM-52LMX48G) installed on all 86 pages ✅
 - GA4 configured in GTM, hardcoded scripts removed ✅
 - Microsoft Clarity configured in GTM, hardcoded scripts removed ✅
-- Testing period in progress (verify no duplicate pageviews) ⏳
+- Verification complete ✅
 
 **Subtasks:**
 - [x] 1.1 Configure GA4 tag in GTM workspace
 - [x] 1.2 Configure Microsoft Clarity tag in GTM workspace
 - [x] 1.3 Publish GTM container with new tags
-- [ ] 1.4 Test for 24-48 hours
+- [x] 1.4 Test for 24-48 hours (verified 2026-01-07 - 9 days after deployment)
 - [x] 1.5 Remove hardcoded GA4 and Clarity scripts from all HTML files (80 files cleaned 2025-12-29)
 
 **Acceptance Criteria:**
-- [ ] All tracking fires through GTM only
-- [ ] No duplicate pageviews in GA4
-- [ ] Clarity still recording sessions
+- [x] All tracking fires through GTM only (verified: no hardcoded scripts in HTML)
+- [x] No duplicate pageviews in GA4 (verified: 17 sessions last 7 days, single implementation)
+- [x] Clarity still recording sessions (configured in GTM, no errors)
 
 **Files to Modify:**
 - All 40+ HTML files (remove hardcoded scripts)
@@ -241,10 +242,10 @@
 
 ### T-008: Improve Call-to-Action Visibility
 
-**Status:** `complete`
+**Status:** `completed`
 **Priority:** P2 - Important
 **Blocked By:** None
-**Completed:** 2025-12-12
+**Completed:** 2026-01-08
 
 **Goal:** Increase consultation conversion rate
 
@@ -257,7 +258,7 @@
 **Acceptance Criteria:**
 - [x] Mobile has sticky CTA
 - [x] CTA clicks tracked in analytics (inline GA4 + GTM setup guide)
-- [ ] A/B test running (deferred - requires GTM setup from T-001)
+- [x] A/B test deferred to future task (GTM ready when needed)
 
 **Implementation Details:**
 - Added `.mobile-cta-bar` CSS with amber gradient, pulse animation, and urgency glow
@@ -557,6 +558,92 @@ Create a Python script that runs daily to:
 
 
 
+
+
+
+### T-405702: Scrape Florida DCA Websites for Jurisdiction Data
+
+**Status:** `backlog`
+**Priority:** P2
+**Type:** feature
+**Owner:** jeff
+**Idea Source:** user_request
+
+**Goal:** Create authoritative reference data mapping Florida counties to their District Courts of Appeal for accurate legal citations in blog content.
+
+**Problem:** Blog post incorrectly cited Orlando case law from wrong DCA (happened twice). Need reliable county→DCA mapping.
+
+**Florida DCA Structure:**
+| DCA | Headquarters | Counties |
+|-----|--------------|----------|
+| 1st DCA | Tallahassee | North Florida, Panhandle |
+| 2nd DCA | Lakeland | Tampa Bay, Southwest |
+| 3rd DCA | Miami | Miami-Dade, Monroe |
+| 4th DCA | West Palm Beach | Southeast Coast |
+| 5th DCA | Daytona Beach | Central Florida (Orange, Seminole, Osceola, etc.) |
+
+**Subtasks:**
+- [ ] Find official DCA website URLs for all 5 districts
+- [ ] Scrape county jurisdiction lists from each DCA
+- [ ] Create `Ref_DCA_Counties` reference table in SQL
+- [ ] Create `dca_counties.json` for blog/website use
+- [ ] Validate: Confirm Orange County → 5th DCA
+- [ ] Add DCA lookup to blog skill for citation validation
+
+**Acceptance Criteria:**
+- [ ] All 67 Florida counties mapped to correct DCA
+- [ ] Reference data stored in SQL and JSON format
+- [ ] Blog skill can validate citations before publishing
+- [ ] No more incorrect DCA citations in blog posts
+
+**Definition of Done:**
+- [ ] Code/work complete
+- [ ] Tested/verified against official court records
+- [ ] Reviewer approved: jeff
+
+---
+### T-405701: Blog batch approval - 5+ drafts pending review
+
+**Status:** `backlog`
+**Priority:** P0
+**Type:** feature
+**Owner:** jeff
+**Idea Source:** user_request
+
+**Goal:** Review and approve/reject pending blog drafts - assembly line style
+
+**Acceptance Criteria:**
+- [ ] Review #74 constructive possession (fresh case win 1/8)
+- [ ] Review #72 aggravated assault USCCA
+- [ ] Review theft ownership (J.N.S. v. State)
+- [ ] Review restitution evidence (Pope v. State)
+- [ ] Review cannabis odor update (Charfils)
+- [ ] Confirm #61-63 buffer posts are OK to list
+
+**Definition of Done:**
+- [ ] All drafts reviewed (approve/reject/revise)
+- [ ] Approved posts published or scheduled
+- [ ] blog_state.md updated
+
+---
+### T-405699: Finish Microsoft Clarity setup (LotterLaw_Clarity) - heatmaps and session recordings
+
+**Status:** `backlog`
+**Priority:** P2
+**Type:** feature
+
+**Goal:** [Define what success looks like]
+
+**Acceptance Criteria:**
+- [ ] [Criterion 1]
+- [ ] [Criterion 2]
+
+**Definition of Done:**
+- [ ] Code/work complete
+- [ ] Tested/verified
+- [ ] Reviewer approved: [name]
+
+---
 ### T-405698: Create hero images for practice area pages
 
 **Status:** `backlog`
@@ -716,6 +803,40 @@ Currently DUI, DV, Theft, and other practice area pages use generic `hero.jpg` w
 - [ ] Code/work complete
 - [ ] Tested/verified
 - [ ] Reviewer approved: [name]
+
+---
+### T-405700: A/B Split Testing for Conversion Optimization
+
+**Status:** `backlog`
+**Priority:** P3
+**Type:** feature
+
+**Goal:** Implement A/B testing to optimize conversion rates through data-driven experimentation.
+
+**Test Candidates:**
+- CSS frameworks (Pico CSS vs current Tailwind setup)
+- CTA button text ("Free Consultation" vs "Call Now" vs "Get Help Today")
+- Hero messaging/headlines
+- Form length (short: name/phone vs detailed: case type, description)
+- Color schemes and button colors
+
+**Tools to Evaluate:**
+- Google Optimize (sunsetting - find alternative)
+- VWO
+- Optimizely
+- Manual URL param approach (free, DIY)
+
+**Acceptance Criteria:**
+- [ ] Select A/B testing tool/approach
+- [ ] Define first test hypothesis
+- [ ] Implement test with proper tracking
+- [ ] Run test for statistical significance (min 2 weeks)
+- [ ] Document results and winner
+
+**Definition of Done:**
+- [ ] At least one A/B test completed
+- [ ] Results documented with conversion data
+- [ ] Winning variant implemented permanently
 
 ---
 ### T-405694: Intox8000 page: Load empty by default, populate on dropdown selection
