@@ -1472,7 +1472,7 @@
                                 @blur="onBlur('name')"
                                 @input="touched.name && validateName()"
                                 :class="{'border-red-500': touched.name && errors.name}"
-                                class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                                 placeholder="John Smith"
                             />
                             <p x-show="touched.name && errors.name" x-text="errors.name" class="text-red-600 text-sm mt-1"></p>
@@ -1490,7 +1490,7 @@
                                 @blur="onBlur('email')"
                                 @input="touched.email && validateEmail()"
                                 :class="{'border-red-500': touched.email && errors.email}"
-                                class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                                 inputmode="email"
                                 placeholder="john@example.com"
                             />
@@ -1509,7 +1509,7 @@
                                 @blur="onBlur('phone')"
                                 @input="touched.phone && validatePhone()"
                                 :class="{'border-red-500': touched.phone && errors.phone}"
-                                class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                                 inputmode="tel"
                                 placeholder="407-555-1234"
                             />
@@ -1527,7 +1527,7 @@
                                 @blur="onBlur('caseType')"
                                 @change="touched.caseType && validateCaseType()"
                                 :class="{'border-red-500': touched.caseType && errors.caseType}"
-                                class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                             >
                                 <option value="">Select a case type...</option>
                                 <option value="DUI">DUI</option>
@@ -1550,7 +1550,7 @@
                                 @blur="onBlur('message')"
                                 @input="touched.message && validateMessage()"
                                 :class="{'border-red-500': touched.message && errors.message}"
-                                class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                                 rows="4"
                                 placeholder="Please provide details about your case..."
                             ></textarea>
