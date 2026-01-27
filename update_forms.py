@@ -37,7 +37,7 @@ ALPINEJS_PATTERN = r'(<script defer src="https://cdn\.jsdelivr\.net/npm/alpinejs
 
 # Native form HTML
 NATIVE_FORM = '''                 <div class="max-w-2xl mx-auto section-fade-in">
-                    <form x-data="contactForm()" @submit.prevent="submitForm()" class="bg-white p-8 rounded-lg shadow-xl space-y-6">
+                    <form x-data="contactForm()" @submit.prevent="submitForm()" class="bg-white p-8 rounded-lg shadow-xl space-y-6 text-gray-900">
                         <!-- Success Alert -->
                         <div x-show="showSuccess" role="alert" class="bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-lg">
                             <strong class="font-bold">Success!</strong>
