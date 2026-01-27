@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Weekly Court Analytics - December 22 - December 28, 2025</title>
+    <style>
+        :root {
+            --primary: #0A1A33;
+            --accent: #0DAEFF;
+            --gray: #6B7685;
+            --light: #f5f7fa;
+            --success: #22c55e;
+            --warning: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--light);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a3a5c 100%);
+            color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+        }
+
+        header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        header .subtitle { color: var(--accent); font-size: 1.1rem; }
+        header .date-range { margin-top: 1rem; opacity: 0.8; }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .kpi-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .kpi-card .value { font-size: 2.5rem; font-weight: 700; color: var(--primary); }
+        .kpi-card .label { color: var(--gray); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .kpi-card.accent .value { color: var(--accent); }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--light);
+        }
+
+        .bar-chart { display: flex; flex-direction: column; gap: 0.75rem; }
+        .bar-row { display: flex; align-items: center; gap: 1rem; }
+        .bar-label { min-width: 180px; font-size: 0.9rem; color: var(--primary); }
+        .bar-container {
+            flex: 1;
+            background: var(--light);
+            height: 28px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent) 0%, #0a8fd4 100%);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 8px;
+            min-width: 40px;
+        }
+        .bar-value { font-size: 0.8rem; font-weight: 600; color: white; }
+
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--light); }
+        th { background: var(--light); font-weight: 600; color: var(--gray); font-size: 0.85rem; text-transform: uppercase; }
+        tr:hover { background: #fafbfc; }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-filing { background: #dbeafe; color: #1e40af; }
+
+        footer { text-align: center; padding: 2rem; color: var(--gray); font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            header { padding: 1.5rem; }
+            header h1 { font-size: 1.5rem; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+            .kpi-card .value { font-size: 1.75rem; }
+            .kpi-card .label { font-size: 0.75rem; }
+            .bar-label { min-width: 100px; font-size: 0.8rem; }
+            table { font-size: 0.85rem; }
+            th, td { padding: 0.5rem; }
+            .section { padding: 1rem; }
+            .section h2 { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Weekly Court Analytics Report</h1>
+            <div class="subtitle">Orange County, Florida - Practice Area Breakdown</div>
+            <div class="date-range">Week of December 22 - December 28, 2025</div>
+        </header>
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="value">5,112</div>
+                <div class="label">Total Court Cases</div>
+            </div>
+            <div class="kpi-card accent">
+                <div class="value">5,017</div>
+                <div class="label">New Filings</div>
+            </div>
+            <div class="kpi-card">
+                <div class="value">95</div>
+                <div class="label">Dispositions</div>
+            </div>
+            <div class="kpi-card">
+                <div class="value">21</div>
+                <div class="label">Practice Areas</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Top Practice Areas</h2>
+            <div class="bar-chart">
+                <div class="bar-row">
+                    <span class="bar-label">Administrative</span>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: 100.0%;">
+                            <span class="bar-value">2,534</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-label">Traffic Control</span>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: 45.0%;">
+                            <span class="bar-value">1,141</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-label">Speed Violation</span>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: 16.3%;">
+                            <span class="bar-value">414</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-label">Driver License</span>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: 7.7%;">
+                            <span class="bar-value">196</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-label">Substance Abuse</span>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: 5.9%;">
+                            <span class="bar-value">150</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-label">Domestic Crimes</span>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: 4.9%;">
+                            <span class="bar-value">123</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-label">Property</span>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: 4.8%;">
+                            <span class="bar-value">121</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-label">Safety Equipment</span>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: 3.1%;">
+                            <span class="bar-value">79</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Top Agencies & Officers by Practice Area</h2>
+            <p style="color: var(--gray); margin-bottom: 1rem; font-size: 0.9rem;">
+                Criminal cases with identified law enforcement. Traffic infractions are automated and excluded.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Practice Area</th>
+                        <th>Top Agencies</th>
+                        <th>Top Officers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Substance Abuse</strong></td>
+                        <td><div>Orlando PD <span class="badge badge-filing">87</span></div><div>Orange County SO <span class="badge badge-filing">49</span></div><div>FHP <span class="badge badge-filing">4</span></div></td>
+                        <td><div>Hernandez, Michael (OPD) <span class="badge badge-filing">9</span></div><div>Sparhawk, Maygan (OCSO) <span class="badge badge-filing">9</span></div><div>Crist, Jalen (OPD) <span class="badge badge-filing">8</span></div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Property</strong></td>
+                        <td><div>Orange County SO <span class="badge badge-filing">57</span></div><div>Orlando PD <span class="badge badge-filing">44</span></div><div>Apopka PD <span class="badge badge-filing">4</span></div></td>
+                        <td><div>Guadalupe, Gabriel (OPD) <span class="badge badge-filing">6</span></div><div>Ordyk, Nicholas (OCSO) <span class="badge badge-filing">6</span></div><div>Nan (nan) <span class="badge badge-filing">3</span></div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Domestic Crimes</strong></td>
+                        <td><div>Orange County SO <span class="badge badge-filing">52</span></div><div>Orlando PD <span class="badge badge-filing">40</span></div><div>Apopka PD <span class="badge badge-filing">15</span></div></td>
+                        <td><div>Nan (nan) <span class="badge badge-filing">6</span></div><div>Maruna, Heather (Ocoee PD) <span class="badge badge-filing">3</span></div><div>Braverman, Jacob (Apopka PD) <span class="badge badge-filing">3</span></div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Municipal Ordinance</strong></td>
+                        <td><div>Orlando PD <span class="badge badge-filing">35</span></div></td>
+                        <td><div>Daniels, Damon (OPD) <span class="badge badge-filing">3</span></div><div>Shaylor, Joel (OPD) <span class="badge badge-filing">3</span></div><div>Brisinte, Angelo (OPD) <span class="badge badge-filing">2</span></div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Persons</strong></td>
+                        <td><div>Orange County SO <span class="badge badge-filing">30</span></div><div>Orlando PD <span class="badge badge-filing">15</span></div><div>Apopka PD <span class="badge badge-filing">4</span></div></td>
+                        <td><div>Pooler, James C (Eatonville PD) <span class="badge badge-filing">3</span></div><div>Lessman, David (OCSO) <span class="badge badge-filing">2</span></div><div>Linton, Ryan (OCSO) <span class="badge badge-filing">2</span></div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Obstruction</strong></td>
+                        <td><div>Orange County SO <span class="badge badge-filing">30</span></div><div>Orlando PD <span class="badge badge-filing">26</span></div><div>Eatonville PD <span class="badge badge-filing">3</span></div></td>
+                        <td><div>Bhatia, Ajay (OCSO) <span class="badge badge-filing">3</span></div><div>Rodriguez, Cervera Adrian (OCSO) <span class="badge badge-filing">3</span></div><div>Rodriguez, Jasmin (OCSO) <span class="badge badge-filing">3</span></div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>DUI Related</strong></td>
+                        <td><div>Orlando PD <span class="badge badge-filing">11</span></div><div>FHP <span class="badge badge-filing">10</span></div><div>Orange County SO <span class="badge badge-filing">9</span></div></td>
+                        <td><div>Bonanno, Christian (FHP) <span class="badge badge-filing">4</span></div><div>Nan (nan) <span class="badge badge-filing">4</span></div><div>Shipley, Daniel J (Apopka PD) <span class="badge badge-filing">3</span></div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Weapons</strong></td>
+                        <td><div>Orlando PD <span class="badge badge-filing">7</span></div><div>Orange County SO <span class="badge badge-filing">6</span></div><div>Apopka PD <span class="badge badge-filing">1</span></div></td>
+                        <td><div>Luna, Lemos Josue (OCSO) <span class="badge badge-filing">3</span></div><div>Nombre, Amos (OCSO) <span class="badge badge-filing">1</span></div><div>Silber, Matthew (OCSO) <span class="badge badge-filing">1</span></div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sex Crimes</strong></td>
+                        <td><div>Orlando PD <span class="badge badge-filing">1</span></div></td>
+                        <td><div>Albizu, Leonardo (OPD) <span class="badge badge-filing">1</span></div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Additional Data Sources</h2>
+            <div class="kpi-grid" style="margin-bottom: 0;">
+                <div class="kpi-card">
+                    <div class="value">2,801</div>
+                    <div class="label">Court Hearings</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="value">116</div>
+                    <div class="label">Active Warrants</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            Generated by CaseAIntel Analytics Pipeline | December 29, 2025<br>
+            Data Source: Orange County Clerk of Courts
+        </footer>
+    </div>
+</body>
+</html>
