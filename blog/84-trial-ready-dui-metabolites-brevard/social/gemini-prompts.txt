@@ -1,0 +1,64 @@
+# Prompts for Generating Additional Social Media Visuals
+
+## Quote Card Prompt
+Create a professional quote card image for criminal defense law firm social media:
+
+Visual Style:
+- Navy blue (#1e3a5f) background
+- Gold (#d4a437) accent border
+- Clean, modern typography
+- Courthouse or Florida palm trees in subtle background
+
+Text Content:
+Quote: "When you're ready for trial — truly ready — the State has to make a choice. And sometimes that choice is to resolve the case fairly rather than roll the dice in front of a jury."
+
+Attribution: "Jeff Lotter, Criminal Defense Attorney | Orlando, FL"
+
+Bottom: "LotterLaw.com | 407-500-7000"
+
+Dimensions: 1080x1080 (Instagram square)
+Style: Professional, empowering, hopeful
+
+---
+
+## Stats Card Prompt
+Create an infographic card showing case outcome statistics:
+
+Visual Style:
+- Clean white background
+- Navy blue headers
+- Green checkmarks for positive outcomes
+- Gold accents for emphasis
+
+Content Layout:
+Header: "CASE OUTCOME: Trial-Ready Defense Works"
+
+Stats:
+• 14 Years → 0 Years (Maximum Exposure → Actual Sentence)
+• 9 Charges → 2 Withholds + 4 Dropped + 3 Dismissed
+• 2 DUI Felonies → Reduced to Reckless (Withhold)
+• 0 Convictions on Record
+
+Footer: "Facing DUI charges? 407-500-7000 | LotterLaw.com"
+
+Dimensions: 1200x1200 (multi-platform square)
+Style: Data-driven, clear, professional
+
+---
+
+## Video Thumbnail Prompt (Future)
+Create a YouTube/TikTok thumbnail for case breakdown video:
+
+Visual Elements:
+- Split screen design
+- Left side: Courtroom/legal setting
+- Right side: FDLE lab report visual
+- Center overlay: "Metabolites ≠ Impairment"
+
+Text Overlays:
+Top: "DUI CASE BREAKDOWN"
+Center (large): "When Science Wins"
+Bottom: "Real Case | Brevard County"
+
+Dimensions: 1920x1080 (16:9 video thumbnail)
+Style: Bold, attention-grabbing, educational
