@@ -1,0 +1,106 @@
+{
+  "post_number": 84,
+  "slug": "trial-ready-dui-metabolites-brevard",
+  "title": "Trial-Ready Defense Forces Favorable DUI Resolution in Brevard",
+  "publish_date": "2026-01-25",
+  "url": "https://lotterlaw.com/blog/84-trial-ready-dui-metabolites-brevard/",
+  "word_count": 1193,
+  "read_time": "6 min",
+
+  "aspects": [
+    {
+      "id": 1,
+      "title": "Metabolite Science",
+      "angle": "Educational",
+      "hook": "Metabolites ≠ Active Drugs",
+      "folder": "aspect-1-metabolite-science",
+      "platforms": ["X", "Instagram", "LinkedIn"],
+      "content_types": ["x-thread", "instagram-carousel", "linkedin-post", "gemini-prompts"],
+      "posting_schedule": {
+        "week": 1,
+        "suggested_days": ["Monday (X thread)", "Wednesday (Instagram carousel)"]
+      },
+      "key_messages": [
+        "Urine tests detect metabolites (inactive), not active drugs",
+        "THC metabolite can be detected 3-30 days after use",
+        "Metabolites prove prior use, not current impairment",
+        "Blood tests are the gold standard for DUI cases"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Trial Readiness Strategy",
+      "angle": "Behind-the-Scenes / Strategy",
+      "hook": "When preparation = leverage",
+      "folder": "aspect-2-trial-strategy",
+      "platforms": ["X", "Facebook"],
+      "content_types": ["x-thread", "facebook-story", "gemini-prompts"],
+      "posting_schedule": {
+        "week": 2,
+        "suggested_days": ["Tuesday (X thread)", "Thursday (Facebook story)"]
+      },
+      "key_messages": [
+        "Most defense work is invisible (lab analysis, witness coordination)",
+        "Trial readiness forces the State to make a choice",
+        "Opposing continuances when prepared = leverage",
+        "Preparation isn't posturing - it's actual readiness"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Case Result",
+      "angle": "Testimonial / Outcome",
+      "hook": "14 years → 0 years",
+      "folder": "aspect-3-case-result",
+      "platforms": ["Instagram", "Facebook"],
+      "content_types": ["instagram-post", "facebook-story", "testimonial-quote", "gemini-prompts"],
+      "posting_schedule": {
+        "week": 3,
+        "suggested_days": ["Friday (Instagram)", "Saturday (Facebook)"]
+      },
+      "key_messages": [
+        "From 14 years maximum exposure to zero convictions",
+        "DUI reduced to reckless driving (withhold)",
+        "4 serious charges dropped completely",
+        "Zero jail time, zero prison time"
+      ]
+    }
+  ],
+
+  "posting_strategy": {
+    "option_1": {
+      "name": "Spaced Content (Recommended)",
+      "duration": "3 weeks",
+      "description": "Post one aspect per week for sustained engagement",
+      "benefits": [
+        "One blog generates 3 weeks of content",
+        "Each aspect gets focused attention",
+        "Audience doesn't feel overwhelmed",
+        "Multiple touch-points over time"
+      ]
+    },
+    "option_2": {
+      "name": "Saturation Campaign",
+      "duration": "1 week",
+      "description": "Post all 3 aspects within the same week",
+      "benefits": [
+        "Maximum visibility in short time",
+        "Good for major case results",
+        "Cross-platform reinforcement"
+      ]
+    }
+  },
+
+  "legacy_files": {
+    "note": "Old flat structure files retained for reference",
+    "files": ["facebook.txt", "x-twitter.txt", "instagram-carousel.txt", "gemini-prompts.txt"],
+    "status": "superseded_by_aspects",
+    "migration_date": "2026-01-28"
+  },
+
+  "cta": {
+    "primary": "Call/Text: 407-500-7000",
+    "spanish": "Spanish: 407-536-7508",
+    "message": "Facing DUI charges in Central Florida? Free consultation."
+  }
+}
