@@ -326,27 +326,6 @@
 
 ## Phase 5: New Content Pages
 
-### T-010: Create Case Results Page
-
-**Status:** `pending`
-**Priority:** P3 - Nice to Have
-**Blocked By:** None
-
-**Goal:** Showcase case outcomes to build credibility
-
-**Subtasks:**
-- [ ] 10.1 Create `/case-results.html` page
-- [ ] 10.2 Organize by practice area (DUI, criminal, traffic)
-- [ ] 10.3 Add appropriate disclaimers
-- [ ] 10.4 Link from homepage and practice areas
-
-**Acceptance Criteria:**
-- [ ] Page lists 10+ case results
-- [ ] Filterable by practice area
-- [ ] Disclaimer present
-
----
-
 ### T-011: Create Service Area Page
 
 **Status:** `pending`
