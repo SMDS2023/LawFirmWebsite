@@ -1,0 +1,42 @@
+When Forensic Science Fails to Prove Impairment: The Metabolite Problem in Florida DUI Cases
+
+In a recent Brevard County DUI case, the State's forensic evidence created more questions than answers.
+
+The breath test: 0.000 — zero alcohol.
+The urine test: Positive for THC metabolite, benzodiazepine metabolites, and amphetamine.
+
+The State proceeded with a drug DUI prosecution.
+
+Here's the legal and scientific problem:
+
+Urine tests detect METABOLITES — the inactive byproducts left over after the body processes a substance. The THC metabolite found (11-Nor-9-carboxy-delta-9-THC) can remain detectable for 3-30 days after use. In frequent users, up to 90 days.
+
+The presence of a metabolite cannot establish impairment at the time of driving. It can only establish prior use.
+
+This distinction matters immensely in DUI defense. Blood tests show what's actively in your system. Urine tests show what was there at some indeterminate point in the past.
+
+In this case, we were fully prepared for trial. Witnesses coordinated. Cross-examination prepared on DRE protocol. Science breakdown ready.
+
+When the State requested a continuance the Friday before trial, we opposed it. At Monday's calendar call, the State had to make a choice: prove the case now or resolve it fairly.
+
+The case resolved:
+- DUI with property damage → Reckless driving (withhold of adjudication)
+- 4 additional charges → Nolle prosequi
+- All traffic citations → Dismissed
+
+Zero convictions. Zero jail time.
+
+The lesson for legal professionals: Forensic evidence is only as good as the science behind it. When prosecutors rely on metabolite-positive urine tests to prove impairment, the burden should shift back to the State to explain how inactive metabolites establish current impairment.
+
+Often, they can't.
+
+---
+
+Jeff Lotter
+Criminal Defense Attorney | DUI Defense
+Orlando, Florida
+407-500-7000
+
+Full case breakdown: https://lotterlaw.com/blog/84-trial-ready-dui-metabolites-brevard/
+
+#CriminalDefense #DUIDefense #ForensicScience #LegalStrategy #FloridaLaw #TrialStrategy

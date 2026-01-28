@@ -1,0 +1,151 @@
+# Visual Assets - Aspect 1: Metabolite Science
+
+## Carousel Slide 1: Cover (Instagram)
+Create a professional educational cover image for criminal defense law firm:
+
+Visual Elements:
+- Science lab setting (beakers, test tubes)
+- FDLE laboratory reference (subtle)
+- Urine test vial visual
+- Navy blue (#1e3a5f) and gold (#d4a437) color scheme
+
+Text Overlays:
+Main: "Metabolites ≠ Impairment"
+Subtext: "The DUI Science Prosecutors Won't Explain"
+Bottom: "LotterLaw.com"
+
+Style: Educational, scientific, professional
+Dimensions: 1080x1080 (Instagram square)
+
+---
+
+## Carousel Slide 2: What Are Metabolites (Instagram)
+Create an explainer slide with simple visual metaphor:
+
+Visual Elements:
+- Split screen design
+- Left: Fire burning (active drug)
+- Right: Ashes remaining (metabolite)
+- Arrow showing transformation over time
+
+Text:
+"WHAT IS A METABOLITE?"
+"Like ashes from a fire. The fire is out, but the ashes remain."
+
+Style: Simple, clear, memorable
+Dimensions: 1080x1080
+
+---
+
+## Carousel Slide 3: THC Detection Window (Instagram)
+Create a timeline infographic:
+
+Visual Elements:
+- Calendar/timeline visualization
+- Day 1: "Marijuana use"
+- Days 3-30: "Metabolite still detectable"
+- Emphasis on detection window length
+
+Text:
+"THC METABOLITE DETECTION"
+"11-Nor-9-carboxy-delta-9-THC"
+"Detectable: 3-30 days"
+"❌ Does NOT prove impairment"
+
+Style: Data visualization, clear timeline
+Dimensions: 1080x1080
+
+---
+
+## Carousel Slide 4: Blood vs. Urine Comparison (Instagram)
+Create a comparison chart:
+
+Visual Elements:
+- Two columns side-by-side
+- Blood test vial icon vs. Urine test cup icon
+- Green checkmarks for blood
+- Red X marks for urine
+
+Text:
+"BLOOD VS. URINE TESTS"
+
+Blood Tests:
+✓ Active drugs
+✓ Impairment NOW
+✓ Gold standard
+
+Urine Tests:
+❌ Metabolites (inactive)
+❌ Prior use
+❌ Can't prove impairment
+
+Style: Comparison chart, clinical
+Dimensions: 1080x1080
+
+---
+
+## Carousel Slide 5: Case Result (Instagram)
+Create a before/after result slide:
+
+Visual Elements:
+- Split design
+- Left: Red warning (Charges)
+- Right: Green success (Result)
+- Navy/gold brand colors
+
+Text:
+"BREVARD COUNTY DUI CASE"
+
+Before:
+• Breath: 0.000
+• Urine: Metabolites only
+• State: Drug DUI prosecution
+
+After:
+✓ DUI → Reckless (withhold)
+✓ No convictions
+✓ 4 charges dropped
+
+Style: Results-focused, clean
+Dimensions: 1080x1080
+
+---
+
+## Quote Card for X Thread
+Create a shareable quote card:
+
+Visual:
+- Navy blue background
+- Gold accent border
+- Courtroom or lab setting (subtle background)
+
+Text:
+"Urine tests detect metabolites — the inactive leftovers after your body processes a drug. They can stay in your system for weeks.
+
+Metabolites don't prove impairment. They only prove prior use."
+
+Attribution: "Jeff Lotter | Criminal Defense Attorney"
+Bottom: "LotterLaw.com | 407-500-7000"
+
+Dimensions: 1200x675 (Twitter share-optimized)
+Style: Educational, authoritative
+
+---
+
+## LinkedIn Featured Image
+Create a professional header image:
+
+Visual:
+- Courtroom setting
+- Science lab overlay
+- Professional, credible aesthetic
+- Navy and gold brand colors
+
+Text:
+"When Forensic Science Fails to Prove Impairment"
+"The Metabolite Problem in DUI Cases"
+
+Footer: "Jeff Lotter | Criminal Defense | Orlando, FL"
+
+Dimensions: 1200x627 (LinkedIn article header)
+Style: Professional, academic, credible
