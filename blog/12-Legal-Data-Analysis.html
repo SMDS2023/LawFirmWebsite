@@ -39,67 +39,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <link href="../styles.css" rel="stylesheet"/>
-<style>
-        /* General blog content image styling for responsiveness and aesthetics */
-        .blog-content img {
-            max-width: 100%;
-            height: auto;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-        }
-        /* Custom checkmark list styling */
-        .checkmark-list li { 
-            position: relative;
-            padding-left: 1.75rem; /* Space for the checkmark */
-            margin-bottom: 0.75rem; /* Space between list items */
-        }
-        .checkmark-list li::before {
-            content: ''; /* Required for pseudo-elements */
-            position: absolute;
-            left: 0;
-            top: 5px; /* Adjust vertical alignment of the checkmark */
-            width: 1rem; /* Size of the checkmark icon */
-            height: 1rem;
-            /* Inline SVG for a blue checkmark, optimized for display */
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="%232563EB"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>');
-            background-repeat: no-repeat;
-            background-size: contain; /* Ensure the SVG fits within the defined size */
-        }
-        /* Styling for the container of the Power BI dashboard iframe */
-        .dashboard-container {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); /* Subtle gradient background */
-            border-radius: 1rem; /* Rounded corners */
-            padding: 2rem; /* Padding around the dashboard */
-            margin: 2rem 0; /* Vertical margin for spacing */
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Soft shadow */
-        }
-        /* Styling for the Power BI iframe itself */
-        .dashboard-iframe {
-            width: 100%; /* Full width within its container */
-            max-width: 100%; /* Ensure it doesn't exceed its container */
-            height: 500px; /* Fixed height for the iframe */
-            border-radius: 0.75rem; /* Rounded corners for the iframe */
-            box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.15); /* Deeper shadow */
-            border: 2px solid #e2e8f0; /* Light border */
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
-        }
-        /* Hover effects for the iframe */
-        .dashboard-iframe:hover {
-            transform: translateY(-2px); /* Slight lift effect */
-            box-shadow: 0 12px 30px -6px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
-        }
-        /* Responsive adjustments for smaller screens */
-        @media (max-width: 768px) {
-            .dashboard-iframe {
-                height: 400px; /* Adjust height for mobile */
-            }
-            .dashboard-container {
-                padding: 1rem; /* Reduce padding on mobile */
-            }
-        }
-    </style>
+
 <!-- Schema.org Article -->
 <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -254,7 +194,7 @@
 <p>This level of granular, local insight is simply unavailable anywhere else and provides us with a strategic advantage that benefits every client we represent.</p>
 <h2 class="text-2xl font-semibold text-blue-700 mt-8 mb-4">How Interactive Data Analysis Transforms Your Defense</h2>
 <p>Our data-driven approach delivers concrete advantages that directly impact your case outcome:</p>
-<ul class="checkmark-list my-4">
+<ul class="checkmark-list my-4 list-disc pl-6">
 <li><strong>Precision Strategy Development:</strong> Instead of generic defense approaches, we craft strategies based on what has actually worked in Orange County for cases like yours.</li>
 <li><strong>Predictive Case Assessment:</strong> Our dashboard helps us provide you with realistic, data-backed assessments of potential risks and opportunities in your specific situation.</li>
 <li><strong>Enhanced Negotiation Power:</strong> When we enter plea negotiations, we come armed with concrete data about typical outcomes, giving us significant leverage with prosecutors.</li>
@@ -293,89 +233,62 @@
                 </div>
             </div>
         </div>
+        <!-- Related Articles -->
+        <div class="border-t pt-8 mt-8">
+            <h3 class="text-xl font-bold text-gray-900 mb-6">Related Articles</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <a href="91-officer-jason-raynor-act-resisting-arrest.html" class="block p-4 bg-white rounded-lg border hover:shadow-md transition-shadow">
+                    <h4 class="font-semibold text-blue-800 mb-2">Florida's Officer Jason Raynor Act: What It Means for Your Right to Resist an Unlawful Arrest</h4>
+                    <p class="text-gray-600 text-sm">Florida's Officer Jason Raynor Act makes resisting any arrest illegal unless the officer acted in ba...</p>
+                </a>
+                <a href="84-trial-ready-dui-metabolites-brevard.html" class="block p-4 bg-white rounded-lg border hover:shadow-md transition-shadow">
+                    <h4 class="font-semibold text-blue-800 mb-2">Trial-Ready Defense Forces Favorable DUI Resolution in Brevard</h4>
+                    <p class="text-gray-600 text-sm"></p>
+                </a>
+                <a href="83-battery-charges-florida-degrees-defenses.html" class="block p-4 bg-white rounded-lg border hover:shadow-md transition-shadow">
+                    <h4 class="font-semibold text-blue-800 mb-2">Battery Charges in Florida: Degrees, Defenses, and What to Expect</h4>
+                    <p class="text-gray-600 text-sm">Facing battery charges in Orlando? Learn the difference between simple, felony, and aggravated batte...</p>
+                </a>
+                <a href="81-ai-dui-trial-preparation-orlando.html" class="block p-4 bg-white rounded-lg border hover:shadow-md transition-shadow">
+                    <h4 class="font-semibold text-blue-800 mb-2">The First Trial Where AI Sat at the Defense Table: What I Learned About Using Technology in DUI Cases</h4>
+                    <p class="text-gray-600 text-sm">How artificial intelligence is transforming DUI trial preparation in Orlando. Learn what AI does wel...</p>
+                </a>
+            </div>
+        </div>
 
 </article>
 </main>
-<!-- Footer -->
-<footer class="bg-gray-800 text-gray-400 py-6 text-center">
-<div class="container mx-auto px-6">
-<div class="mb-2">
-<a class="text-sm hover:text-white hover:underline" href="../privacy.html">Privacy Policy</a>
-</div>
-<p class="text-sm">© <span id="current-year"></span> Lotter Law. All Rights Reserved.</p>
-<p class="text-xs mt-2">Disclaimer: The information on this website is for general information purposes only. Nothing on this site should be taken as legal advice for any individual case or situation. This information is not intended to create, and receipt or viewing does not constitute, an attorney-client relationship.</p>
-</div>
-</footer>
-<!-- Scripts -->
-<script>
-        // Mobile Menu Toggle Logic
-        const menuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (menuButton && mobileMenu) {
-            menuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                 const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-                 menuButton.setAttribute('aria-expanded', !isExpanded);
-            });
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    const href = link.getAttribute('href');
-                    if (href && (href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:') || href.includes('index.html#') || href.endsWith('blog.html') )) {
-                       mobileMenu.classList.add('hidden');
-                       menuButton.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            });
-        }
+<!-- Footer -->    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Lotter Law</h4>
+                    <p class="text-sm">Criminal defense and DUI attorney serving Orlando and Central Florida.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Contact</h4>
+                    <p class="text-sm">
+                        <a href="tel:407-500-7000" class="hover:text-white">407-500-7000</a><br>
+                        <a href="mailto:jeff@jlotterlaw.com" class="hover:text-white">jeff@jlotterlaw.com</a>
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Office</h4>
+                    <p class="text-sm">
+                        37 N. Orange Ave., Suite 500<br>
+                        Orlando, FL 32801
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2026 Lotter Law. All rights reserved.</p>
+                <p class="mt-2 text-gray-500 text-xs">
+                    The information on this website is for general information purposes only. Nothing on this site should be taken as legal advice for any individual case or situation.
+                </p>
+            </div>
+        </div>
+    </footer>
 
-        // Set current year
-        const currentYearElement = document.getElementById('current-year');
-        if (currentYearElement) {
-            currentYearElement.textContent = new Date().getFullYear();
-        }
-
-        // Smooth scrolling
-         function smoothScrollToTarget(targetHref) {
-             const isIndexLink = targetHref.includes('index.html#');
-             const actualId = targetHref.substring(targetHref.indexOf('#'));
-             if (isIndexLink && !(window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('index'))) {
-                 sessionStorage.setItem('scrollToId', actualId);
-                 window.location.href = '../index.html';
-             } else {
-                 const targetElement = document.querySelector(actualId);
-                 if (targetElement) {
-                     const header = document.querySelector('header.sticky');
-                     const headerOffset = header ? header.offsetHeight : 70;
-                     const elementPosition = targetElement.getBoundingClientRect().top;
-                     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                 }
-             }
-         }
-         document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-             const href = anchor.getAttribute('href');
-             if (href === '#' || anchor.closest('.testimonial-slide')) return; 
-             
-             anchor.addEventListener('click', function (e) {
-                 const hrefAttribute = this.getAttribute('href');
-                 if (hrefAttribute.startsWith('#') || hrefAttribute.includes('index.html#')) {
-                    e.preventDefault();
-                    smoothScrollToTarget(hrefAttribute);
-                 }
-             });
-         });
-    </script>
-<!-- Mobile Sticky CTA Bar -->
-<div class="mobile-cta-bar urgent" id="mobile-cta-bar">
-<a aria-label="Call Lotter Law for a free consultation" href="tel:407-500-7000" onclick="if(typeof gtag === 'function') gtag('event', 'click_to_call', {event_category: 'CTA', event_label: 'Mobile Sticky Bar', phone_number: '407-500-7000'});">
-<svg aria-hidden="true" class="cta-icon" fill="none" height="24" stroke="currentColor" viewbox="0 0 24 24" width="24">
-<path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<span class="cta-text">
-<span class="cta-text-main">Free Consultation</span>
-<span class="cta-text-sub">Call Now: 407-500-7000</span>
-</span>
-</a>
-</div>
 </body>
 </html>
