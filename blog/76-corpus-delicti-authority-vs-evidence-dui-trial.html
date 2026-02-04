@@ -43,110 +43,7 @@
 <script defer="" src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <!-- Site Styles -->
 <link href="../styles.css" rel="stylesheet"/>
-<style>
-        .blog-content h2 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            color: #1e40af;
-            margin-top: 4rem;
-            margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #dbeafe;
-        }
-        .blog-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1f2937;
-            margin-top: 3rem;
-            margin-bottom: 1.5rem;
-        }
-        .blog-content p {
-            color: #374151;
-            line-height: 1.75;
-            margin-bottom: 1.5rem;
-            font-size: 1.125rem;
-        }
-        .blog-content ul, .blog-content ol {
-            margin-bottom: 2.5rem;
-            margin-left: 1.5rem;
-            padding-left: 1rem;
-        }
-        .blog-content ul {
-            list-style-type: disc;
-        }
-        .blog-content ol {
-            list-style-type: decimal;
-        }
-        .blog-content blockquote {
-            margin-top: 2.5rem;
-            margin-bottom: 2.5rem;
-        }
-        .blog-content li {
-            color: #374151;
-            font-size: 1.125rem;
-            line-height: 1.75;
-            margin-bottom: 1rem;
-        }
-        .blog-content li strong {
-            color: #111827;
-        }
-        .key-point {
-            background-color: #eff6ff;
-            border-left: 4px solid #2563eb;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 0.5rem 0.5rem 0;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-        .key-point h3 {
-            margin-top: 0 !important;
-            color: #1e40af;
-        }
-        .warning-box {
-            background-color: #fffbeb;
-            border-left: 4px solid #f59e0b;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 0.5rem 0.5rem 0;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-        .warning-box h3 {
-            margin-top: 0 !important;
-            color: #b45309;
-        }
-        .defense-tip {
-            background-color: #f0fdf4;
-            border-left: 4px solid #16a34a;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 0.5rem 0.5rem 0;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-        .defense-tip h3 {
-            margin-top: 0 !important;
-            color: #15803d;
-        }
-        .blog-content a {
-            color: #2563eb;
-            text-decoration: underline;
-        }
-        .blog-content a:hover {
-            color: #1e40af;
-        }
-        .floating-cta {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-        }
-        .floating-cta.fab-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+
 <!-- Schema.org Article -->
 <script type="application/ld+json">
     {
@@ -297,7 +194,7 @@
 <p>
                     Every jury in Florida receives standard instructions on reasonable doubt. The instruction tells jurors that reasonable doubt can arise from:
                 </p>
-<ul>
+<ul class="list-disc pl-6">
 <li><strong>The evidence:</strong> What was presented proves innocence or undermines guilt</li>
 <li><strong>Conflict in the evidence:</strong> Witnesses contradict each other</li>
 <li><strong>Lack of evidence:</strong> Critical proof is simply absent</li>
@@ -325,7 +222,7 @@
 <p>
                     Throughout the trial, the officer referred to our client as the "at-fault driver." But this is a <strong>legal conclusion</strong>, not a fact. It presupposes:
                 </p>
-<ul>
+<ul class="list-disc pl-6">
 <li><strong>Identity:</strong> Who was driving?</li>
 <li><strong>Causation:</strong> What caused the crash?</li>
 <li><strong>Fault:</strong> Who is legally responsible?</li>
@@ -337,7 +234,7 @@
 <p>
                     When the State lacks evidence, prosecutors often turn to officer training and experience to fill the gaps. In this trial, the State attempted to use the officer's credentials to:
                 </p>
-<ul>
+<ul class="list-disc pl-6">
 <li><strong>Fill witness gaps</strong> — no one saw the defendant drive</li>
 <li><strong>Supply missing foundational facts</strong> — keys were in the defendant's pocket, but no one tested whether they fit the vehicle</li>
 <li><strong>Replace actual testing with conclusions</strong> — based on experience rather than evidence</li>
@@ -375,7 +272,7 @@
 <p>
                     A pattern emerged at trial: as the State's evidence weakened, bolstering increased. The prosecution emphasized:
                 </p>
-<ul>
+<ul class="list-disc pl-6">
 <li>Number of field sobriety exercises conducted</li>
 <li>Number of DUI arrests in the officer's career</li>
 <li>Years of experience</li>
@@ -401,7 +298,7 @@
 <p>
                     The initial charging document included not just DUI, but also:
                 </p>
-<ul>
+<ul class="list-disc pl-6">
 <li>Possession of multiple driver's licenses</li>
 <li>Vape pen possession</li>
 </ul>
@@ -473,7 +370,7 @@ Doubt Lives</h2>
 <p>
                     In this case:
                 </p>
-<ul>
+<ul class="list-disc pl-6">
 <li><strong>Expected witnesses never appeared</strong> — no one testified about who was driving</li>
 <li><strong>Video evidence disappeared</strong> — the officer mentioned it existed, but it was never produced</li>
 <li><strong>DRE testimony excluded</strong> — the judge ruled the officer couldn't give expert HGN testimony because he wasn't currently certified, even though he was DRE-trained</li>
@@ -502,7 +399,7 @@ Doubt Lives</h2>
 <p>
                     The jury instructions made clear:
                 </p>
-<ul>
+<ul class="list-disc pl-6">
 <li>The defendant is <strong>presumed innocent</strong></li>
 <li>The State bears the <strong>entire burden of proof</strong></li>
 <li>Reasonable doubt can arise from the evidence, conflict in the evidence, or <strong>lack of evidence</strong></li>
@@ -542,7 +439,7 @@ Doubt Lives</h2>
                     The jury instruction is clear: reasonable doubt can arise from lack of evidence. That means you don't need to present a competing story. You don't need to prove what "really" happened. You just need to show that the State didn't prove <em>their</em> story beyond a reasonable doubt.
                 </p>
 <h2>Related Resources</h2>
-<ul>
+<ul class="list-disc pl-6">
 <li><a href="26-hit-and-run-corpus-delicti-defense.html">Corpus Delicti in Hit-and-Run Cases: Why Silence is Your Best Defense</a></li>
 <li><a href="02-refuse-sfst.html">It's Perfectly Legal to Refuse Roadside Sobriety Tests in Florida</a></li>
 <li><a href="21-challenging-hgn-eye-test-dui.html">Challenging the HGN Eye Test in DUI Cases</a></li>
@@ -575,6 +472,18 @@ Doubt Lives</h2>
 </div>
 </div>
 </section>
+
+            <!-- CTA Box -->
+            <div class="bg-green-50 border-l-4 border-green-600 p-6 my-8">
+                <h3 class="font-semibold text-green-800 text-lg mb-3">Need Legal Help?</h3>
+                <p class="text-gray-700 mb-4">
+                    If you're facing criminal charges in Central Florida, an experienced defense attorney can make the difference. Get a free consultation to discuss your case.
+                </p>
+                <p class="text-gray-700">
+                    <strong>Contact Lotter Law</strong> at <a href="tel:407-500-7000" class="text-green-700 font-semibold hover:underline">407-500-7000</a> for a free consultation.
+                </p>
+            </div>
+
 </div>
         <!-- Author Bio -->
         <div class="border-t pt-8 mt-12">
@@ -589,62 +498,62 @@ Doubt Lives</h2>
                 </div>
             </div>
         </div>
+        <!-- Related Articles -->
+        <div class="border-t pt-8 mt-8">
+            <h3 class="text-xl font-bold text-gray-900 mb-6">Related Articles</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <a href="84-trial-ready-dui-metabolites-brevard.html" class="block p-4 bg-white rounded-lg border hover:shadow-md transition-shadow">
+                    <h4 class="font-semibold text-blue-800 mb-2">Trial-Ready Defense Forces Favorable DUI Resolution in Brevard</h4>
+                    <p class="text-gray-600 text-sm"></p>
+                </a>
+                <a href="80-orlando-dui-lawyer-local-experience.html" class="block p-4 bg-white rounded-lg border hover:shadow-md transition-shadow">
+                    <h4 class="font-semibold text-blue-800 mb-2">Orlando DUI Lawyer: Why Local Experience Matters</h4>
+                    <p class="text-gray-600 text-sm">Not all DUI lawyers know Orange County courts. Local experience means knowing the judges, prosecutor...</p>
+                </a>
+                <a href="71-data-driven-defense-weekly-court-filings.html" class="block p-4 bg-white rounded-lg border hover:shadow-md transition-shadow">
+                    <h4 class="font-semibold text-blue-800 mb-2">Data-Driven Defense: What Nearly 10,000 Court Filings Reveal About New Year's Week</h4>
+                    <p class="text-gray-600 text-sm">Defense attorneys who understand case patterns build better strategies. See what nearly 10,000 Orang...</p>
+                </a>
+                <a href="46-nta-citation-vs-traffic-ticket-florida.html" class="block p-4 bg-white rounded-lg border hover:shadow-md transition-shadow">
+                    <h4 class="font-semibold text-blue-800 mb-2">You Got a Ticket - Are You Under Arrest?</h4>
+                    <p class="text-gray-600 text-sm"></p>
+                </a>
+            </div>
+        </div>
 
 </article>
 </main>
-<!-- Footer -->
-<footer class="bg-gray-800 text-gray-400 py-6 text-center">
-<div class="container mx-auto px-6">
-<div class="mb-2">
-<a class="text-sm hover:text-white hover:underline" href="../privacy.html">Privacy Policy</a>
-<span class="mx-2">|</span>
-<a class="text-sm hover:text-white hover:underline" href="../terms-and-conditions.html">Terms and Conditions</a>
-</div>
-<p class="text-sm">© <span id="current-year"></span> Lotter Law. All Rights Reserved.</p>
-<p class="text-xs mt-2">Disclaimer: The information on this website is for general information purposes only. Nothing on this site should be taken as legal advice for any individual case or situation. This information is not intended to create, and receipt or viewing does not constitute, an attorney-client relationship.</p>
-</div>
-</footer>
-<!-- Scripts -->
-<script>
-        // Mobile Menu Toggle
-        const menuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+<!-- Footer -->    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Lotter Law</h4>
+                    <p class="text-sm">Criminal defense and DUI attorney serving Orlando and Central Florida.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Contact</h4>
+                    <p class="text-sm">
+                        <a href="tel:407-500-7000" class="hover:text-white">407-500-7000</a><br>
+                        <a href="mailto:jeff@jlotterlaw.com" class="hover:text-white">jeff@jlotterlaw.com</a>
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Office</h4>
+                    <p class="text-sm">
+                        37 N. Orange Ave., Suite 500<br>
+                        Orlando, FL 32801
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2026 Lotter Law. All rights reserved.</p>
+                <p class="mt-2 text-gray-500 text-xs">
+                    The information on this website is for general information purposes only. Nothing on this site should be taken as legal advice for any individual case or situation.
+                </p>
+            </div>
+        </div>
+    </footer>
 
-        if (menuButton && mobileMenu) {
-            menuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-                menuButton.setAttribute('aria-expanded', !isExpanded);
-            });
-
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    const href = link.getAttribute('href');
-                    if (href && (href.startsWith('../index.html#') || href.startsWith('tel:') || href.startsWith('mailto:'))) {
-                        mobileMenu.classList.add('hidden');
-                        menuButton.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            });
-        }
-
-        // Set current year
-        const currentYearElement = document.getElementById('current-year');
-        if (currentYearElement) {
-            currentYearElement.textContent = new Date().getFullYear();
-        }
-    </script>
-<!-- Mobile Sticky CTA Bar -->
-<div class="mobile-cta-bar urgent" id="mobile-cta-bar">
-<a aria-label="Call Lotter Law for a free consultation" href="tel:407-500-7000" onclick="if(typeof gtag === 'function') gtag('event', 'click_to_call', {event_category: 'CTA', event_label: 'Mobile Sticky Bar', phone_number: '407-500-7000'});">
-<svg aria-hidden="true" class="cta-icon" fill="none" height="24" stroke="currentColor" viewbox="0 0 24 24" width="24">
-<path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<span class="cta-text">
-<span class="cta-text-main">Free Consultation</span>
-<span class="cta-text-sub">Call Now: 407-500-7000</span>
-</span>
-</a>
-</div>
 </body>
 </html>
