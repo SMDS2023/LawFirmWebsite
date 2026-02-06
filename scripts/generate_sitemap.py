@@ -26,14 +26,39 @@ def extract_metadata_from_html(html_file):
 
     return date, title
 
+def get_listed_blog_posts(blog_html_path):
+    """Extract blog post filenames that are actually listed in blog.html.
+
+    This ensures only published posts appear in sitemap, not staged posts.
+    """
+    with open(blog_html_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    # Find all blog post links in blog.html
+    # Pattern: href="blog/XX-slug.html" or href="/blog/XX-slug.html"
+    pattern = r'href="/?blog/([^"]+\.html)"'
+    matches = re.findall(pattern, content)
+
+    return set(matches)  # Return unique filenames
+
 def generate_sitemap(website_dir):
     """Generate complete sitemap.xml from filesystem."""
     website_path = Path(website_dir)
     blog_dir = website_path / 'blog'
+    blog_html_path = website_path / 'blog.html'
 
-    # Get all blog posts
+    # Get posts that are actually listed in blog.html (not staged posts)
+    listed_posts = get_listed_blog_posts(blog_html_path)
+
+    # Get all blog posts, but only include those in the listing
     blog_posts = []
+    skipped_count = 0
     for html_file in sorted(blog_dir.glob('*.html')):
+        # Skip posts not yet listed (staged posts)
+        if html_file.name not in listed_posts:
+            skipped_count += 1
+            continue
+
         try:
             date, title = extract_metadata_from_html(html_file)
             blog_posts.append({
@@ -114,6 +139,8 @@ def generate_sitemap(website_dir):
         f.write('\n'.join(sitemap_lines))
 
     print(f"[OK] Generated sitemap.xml with {len(blog_posts)} blog posts")
+    if skipped_count > 0:
+        print(f"     Skipped {skipped_count} staged post(s) not yet listed in blog.html")
     return len(blog_posts)
 
 if __name__ == '__main__':
