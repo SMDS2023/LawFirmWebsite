@@ -53,18 +53,116 @@
             '/dl_license.html': '/practice-areas/driver-license-restoration.html',
             '/other-criminal-offenses.html': '/practice-areas/other-crimes.html',
 
-            // Old blog format (blog-XX.html → blog/XX-title.html)
-            '/blog-01.html': '/blog/01-no-jurisdiction-for-crash-investigation.html',
-            '/blog-02.html': '/blog/02-refuse-sfst.html',
-            '/blog-03.html': '/blog/03-understanding-probable-cause.html',
-            '/blog-04.html': '/blog/04-Forensic-Video-Analysis.html',
-            '/blog-05.html': '/blog/05-data-driven-defense.html',
-            '/blog-06.html': '/blog/06-interlock-violation-kicked-from-diversion.html',
-            '/blog-07.html': '/blog/07-pre-trial-motions.html',
+            // Old blog format (blog-XX.html → blog/slug/)
+            '/blog-01.html': '/blog/no-jurisdiction-for-crash-investigation/',
+            '/blog-02.html': '/blog/refuse-sfst/',
+            '/blog-03.html': '/blog/understanding-probable-cause/',
+            '/blog-04.html': '/blog/Forensic-Video-Analysis/',
+            '/blog-05.html': '/blog/data-driven-defense/',
+            '/blog-06.html': '/blog/interlock-violation-kicked-from-diversion/',
+            '/blog-07.html': '/blog/pre-trial-motions/',
 
             // Old standalone blog topics
-            '/probable-cause.html': '/blog/03-understanding-probable-cause.html',
-            '/pre-trial-motions.html': '/blog/07-pre-trial-motions.html',
+            '/probable-cause.html': '/blog/understanding-probable-cause/',
+            '/pre-trial-motions.html': '/blog/pre-trial-motions/',
+
+            // Blog migration redirects: numbered flat files → clean folder URLs (2026-02-07)
+            '/blog/01-no-jurisdiction-for-crash-investigation.html': '/blog/no-jurisdiction-for-crash-investigation/',
+            '/blog/02-refuse-sfst.html': '/blog/refuse-sfst/',
+            '/blog/03-understanding-probable-cause.html': '/blog/understanding-probable-cause/',
+            '/blog/04-Forensic-Video-Analysis.html': '/blog/Forensic-Video-Analysis/',
+            '/blog/05-data-driven-defense.html': '/blog/data-driven-defense/',
+            '/blog/06-interlock-violation-kicked-from-diversion.html': '/blog/interlock-violation-kicked-from-diversion/',
+            '/blog/07-pre-trial-motions.html': '/blog/pre-trial-motions/',
+            '/blog/08-state-trooper.html': '/blog/state-trooper/',
+            '/blog/09-deputy-sheriff.html': '/blog/deputy-sheriff/',
+            '/blog/10-veteran.html': '/blog/veteran/',
+            '/blog/11-valencia-police-academy.html': '/blog/valencia-police-academy/',
+            '/blog/12-Legal-Data-Analysis.html': '/blog/Legal-Data-Analysis/',
+            '/blog/13-florida-laws-july-2025.html': '/blog/florida-laws-july-2025/',
+            '/blog/14-marijuana-weapons-fss-790.html': '/blog/marijuana-weapons-fss-790/',
+            '/blog/15-speeding-tickets-75-year-trap.html': '/blog/speeding-tickets-75-year-trap/',
+            '/blog/16-Speeding-Tickets-Orange-County-FL-Past-12-Months.html': '/blog/Speeding-Tickets-Orange-County-FL-Past-12-Months/',
+            '/blog/17-hiring-attorney-tickets.html': '/blog/hiring-attorney-tickets/',
+            '/blog/18-securely-encased-vs-concealed.html': '/blog/securely-encased-vs-concealed/',
+            '/blog/19-new-dui-refusal-law.html': '/blog/new-dui-refusal-law/',
+            '/blog/20-sealing-expunging-criminal-records.html': '/blog/sealing-expunging-criminal-records/',
+            '/blog/20-veterans-treatment-court-orlando.html': '/blog/veterans-treatment-court-orlando/',
+            '/blog/21-challenging-hgn-eye-test-dui.html': '/blog/challenging-hgn-eye-test-dui/',
+            '/blog/21-medical-marijuana-original-packaging.html': '/blog/medical-marijuana-original-packaging/',
+            '/blog/22-florida-privacy-rights-beyond-miranda.html': '/blog/florida-privacy-rights-beyond-miranda/',
+            '/blog/23-fto-factor-rookie-tax.html': '/blog/fto-factor-rookie-tax/',
+            '/blog/24-lgops-decentralized-leadership.html': '/blog/lgops-decentralized-leadership/',
+            '/blog/25-retail-theft-five-year-statute-limitations.html': '/blog/retail-theft-five-year-statute-limitations/',
+            '/blog/26-hit-and-run-corpus-delicti-defense.html': '/blog/hit-and-run-corpus-delicti-defense/',
+            '/blog/27-domestic-violence-no-bond-pretrial-release.html': '/blog/domestic-violence-no-bond-pretrial-release/',
+            '/blog/28-firearm-carry-on-tsa-airport.html': '/blog/firearm-carry-on-tsa-airport/',
+            '/blog/29-can-ai-testify-against-you.html': '/blog/can-ai-testify-against-you/',
+            '/blog/30-securely-encased-concealed-carry-dismissed.html': '/blog/securely-encased-concealed-carry-dismissed/',
+            '/blog/31-thanksgiving-burglary-dismissal.html': '/blog/thanksgiving-burglary-dismissal/',
+            '/blog/32-super-speeder-radar-foundation-dismissed.html': '/blog/super-speeder-radar-foundation-dismissed/',
+            '/blog/33-nvdl-mandatory-minimum-immigration-enforcement.html': '/blog/nvdl-mandatory-minimum-immigration-enforcement/',
+            '/blog/34-careless-driving-chain-reaction-not-guilty.html': '/blog/careless-driving-chain-reaction-not-guilty/',
+            '/blog/35-discovery-delays-ongoing-investigation.html': '/blog/discovery-delays-ongoing-investigation/',
+            '/blog/38-hto-status-removed-vacating-dwls-conviction.html': '/blog/hto-status-removed-vacating-dwls-conviction/',
+            '/blog/39-license-plate-frames-florida-law.html': '/blog/license-plate-frames-florida-law/',
+            '/blog/40-richardson-hearing-super-speeder-evidence-excluded.html': '/blog/richardson-hearing-super-speeder-evidence-excluded/',
+            '/blog/41-hit-and-run-private-property-jurisdiction-dismissed.html': '/blog/hit-and-run-private-property-jurisdiction-dismissed/',
+            '/blog/42-sanford-police-fraud-accountability.html': '/blog/sanford-police-fraud-accountability/',
+            '/blog/43-motion-to-suppress-what-to-expect.html': '/blog/motion-to-suppress-what-to-expect/',
+            '/blog/44-felon-possession-firearm-dismissed-terry-frisk.html': '/blog/felon-possession-firearm-dismissed-terry-frisk/',
+            '/blog/45-news-13-super-speeder-interview.html': '/blog/news-13-super-speeder-interview/',
+            '/blog/46-nta-citation-vs-traffic-ticket-florida.html': '/blog/nta-citation-vs-traffic-ticket-florida/',
+            '/blog/47-traffic-stop-rights-florida.html': '/blog/traffic-stop-rights-florida/',
+            '/blog/48-trump-marijuana-reschedule-florida.html': '/blog/trump-marijuana-reschedule-florida/',
+            '/blog/49-toll-violations-orlando-florida.html': '/blog/toll-violations-orlando-florida/',
+            '/blog/50-intoxilyzer-8000-florida-history.html': '/blog/intoxilyzer-8000-florida-history/',
+            '/blog/51-repple-breath-test-jurisdiction.html': '/blog/repple-breath-test-jurisdiction/',
+            '/blog/54-new-year-clear-your-record-2026.html': '/blog/new-year-clear-your-record-2026/',
+            '/blog/55-first-time-reckless-driving-florida.html': '/blog/first-time-reckless-driving-florida/',
+            '/blog/56-stand-your-ground-florida-self-defense.html': '/blog/stand-your-ground-florida-self-defense/',
+            '/blog/57-holiday-domestic-violence-arrests.html': '/blog/holiday-domestic-violence-arrests/',
+            '/blog/59-intoxilyzer-8000-data-analysis.html': '/blog/intoxilyzer-8000-data-analysis/',
+            '/blog/60-intoxilyzer-9000-florida-transition.html': '/blog/intoxilyzer-9000-florida-transition/',
+            '/blog/61-container-weight-drug-charges-florida.html': '/blog/container-weight-drug-charges-florida/',
+            '/blog/62-disorderly-conduct-intoxication-defense.html': '/blog/disorderly-conduct-intoxication-defense/',
+            '/blog/63-resisting-arrest-unlawful-arrest-defense.html': '/blog/resisting-arrest-unlawful-arrest-defense/',
+            '/blog/64-withhold-wildcard-drug-offender-probation.html': '/blog/withhold-wildcard-drug-offender-probation/',
+            '/blog/65-withhold-wisdom-prior-withholds-not-convictions.html': '/blog/withhold-wisdom-prior-withholds-not-convictions/',
+            '/blog/66-first-traffic-court-hearing-florida.html': '/blog/first-traffic-court-hearing-florida/',
+            '/blog/67-toll-violations-florida.html': '/blog/toll-violations-florida/',
+            '/blog/68-dwlsr-vs-no-valid-license-florida.html': '/blog/dwlsr-vs-no-valid-license-florida/',
+            '/blog/69-super-bowl-dui-florida.html': '/blog/super-bowl-dui-florida/',
+            '/blog/70-dui-checkpoint-rights-florida.html': '/blog/dui-checkpoint-rights-florida/',
+            '/blog/71-data-driven-defense-weekly-court-filings.html': '/blog/data-driven-defense-weekly-court-filings/',
+            '/blog/72-restitution-evidence-florida.html': '/blog/restitution-evidence-florida/',
+            '/blog/73-multiple-toll-violations.html': '/blog/multiple-toll-violations/',
+            '/blog/74-constructive-possession-drugs-car-dismissed.html': '/blog/constructive-possession-drugs-car-dismissed/',
+            '/blog/75-dui-dwi-defense-florida-guide.html': '/blog/dui-dwi-defense-florida-guide/',
+            '/blog/76-corpus-delicti-authority-vs-evidence-dui-trial.html': '/blog/corpus-delicti-authority-vs-evidence-dui-trial/',
+            '/blog/77-florida-stand-your-ground-law.html': '/blog/florida-stand-your-ground-law/',
+            '/blog/78-cannabis-odor-probable-cause-florida.html': '/blog/cannabis-odor-probable-cause-florida/',
+            '/blog/79-criminal-punishment-scoresheet-florida.html': '/blog/criminal-punishment-scoresheet-florida/',
+            '/blog/80-orlando-dui-lawyer-local-experience.html': '/blog/orlando-dui-lawyer-local-experience/',
+            '/blog/81-ai-dui-trial-preparation-orlando.html': '/blog/ai-dui-trial-preparation-orlando/',
+            '/blog/82-stand-your-ground-motion-dismiss-vs-c4.html': '/blog/stand-your-ground-motion-dismiss-vs-c4/',
+            '/blog/83-battery-charges-florida-degrees-defenses.html': '/blog/battery-charges-florida-degrees-defenses/',
+            '/blog/84-trial-ready-dui-metabolites-brevard.html': '/blog/trial-ready-dui-metabolites-brevard/',
+            '/blog/87-leave-scene-immigration-criminal-dropped.html': '/blog/leave-scene-immigration-criminal-dropped/',
+            '/blog/88-florida-dl-number-soundex-randomized.html': '/blog/florida-dl-number-soundex-randomized/',
+            '/blog/89-mangione-backpack-search-arrest.html': '/blog/mangione-backpack-search-arrest/',
+            '/blog/90-consent-search-dog-alert-attic.html': '/blog/consent-search-dog-alert-attic/',
+            '/blog/91-officer-jason-raynor-act-resisting-arrest.html': '/blog/officer-jason-raynor-act-resisting-arrest/',
+            '/blog/92-tell-employer-about-arrest.html': '/blog/tell-employer-about-arrest/',
+            '/blog/95-eyewitness-identification-lineups-photo-arrays-florida.html': '/blog/eyewitness-identification-lineups-photo-arrays-florida/',
+            '/blog/97-orlando-weekly-arrest-breakdown-january-26-february-2-2026.html': '/blog/orlando-weekly-arrest-breakdown-january-26-february-2-2026/',
+            '/blog/98-super-bowl-sunday-enforcement-tactics.html': '/blog/super-bowl-sunday-enforcement-tactics/',
+            '/blog/100-first-court-appearance-orlando.html': '/blog/first-court-appearance-orlando/',
+            '/blog/start-here.html': '/blog/start-here/',
+            '/blog/Case-Analysis-01-fellow-officer-rule.html': '/blog/Case-Analysis-01-fellow-officer-rule/',
+            '/blog/dui-defense-guide.html': '/blog/dui-defense-guide/',
+            '/blog/theft-defense-guide.html': '/blog/theft-defense-guide/',
+            '/blog/domestic-violence-defense-guide.html': '/blog/domestic-violence-defense-guide/',
 
             // Navigation pages
             '/about/': '/index.html#team',
@@ -84,6 +182,19 @@
         if (redirects[path]) {
             window.location.replace(redirects[path]);
             return;
+        }
+
+        // Fuzzy blog redirect fallback (catches edge cases from migration)
+        if (path.startsWith('/blog/') && !redirects[path]) {
+            const blogMatch = path.match(/^\/blog\/\d+-(.+)\.html$/);
+            if (blogMatch) {
+                window.location.replace('/blog/' + blogMatch[1] + '/');
+                return;
+            }
+            if (!path.endsWith('/') && !path.endsWith('.html') && !path.includes('.')) {
+                window.location.replace(path + '/');
+                return;
+            }
         }
 
         // Check for paths that start with known ghost directories

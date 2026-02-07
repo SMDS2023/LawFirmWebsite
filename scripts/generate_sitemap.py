@@ -2,7 +2,8 @@
 """
 Regenerative Sitemap Generator for LotterLaw Website
 
-Scans blog directory and generates complete sitemap.xml from scratch.
+Scans blog directory for folder-based posts (blog/slug/index.html)
+and generates complete sitemap.xml from scratch.
 Self-healing: Always reflects current filesystem state.
 """
 
@@ -27,19 +28,33 @@ def extract_metadata_from_html(html_file):
     return date, title
 
 def get_listed_blog_posts(blog_html_path):
-    """Extract blog post filenames that are actually listed in blog.html.
+    """Extract blog post slugs that are actually listed in blog.html.
 
     This ensures only published posts appear in sitemap, not staged posts.
+    Supports both folder-style (blog/slug/) and legacy (blog/XX-slug.html) hrefs.
     """
     with open(blog_html_path, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # Find all blog post links in blog.html
-    # Pattern: href="blog/XX-slug.html" or href="/blog/XX-slug.html"
-    pattern = r'href="/?blog/([^"]+\.html)"'
-    matches = re.findall(pattern, content)
+    listed_slugs = set()
 
-    return set(matches)  # Return unique filenames
+    # Folder-style: href="blog/slug/" or href="/blog/slug/"
+    folder_matches = re.findall(r'href="/?blog/([^/"]+)/"', content)
+    listed_slugs.update(folder_matches)
+
+    # Legacy flat file style: href="blog/XX-slug.html"
+    flat_matches = re.findall(r'href="/?blog/([^"]+\.html)"', content)
+    for fname in flat_matches:
+        # Strip .html extension to get slug
+        slug = Path(fname).stem
+        # Strip number prefix if present
+        num_match = re.match(r'^\d+-(.+)$', slug)
+        if num_match:
+            listed_slugs.add(num_match.group(1))
+        else:
+            listed_slugs.add(slug)
+
+    return listed_slugs
 
 def generate_sitemap(website_dir):
     """Generate complete sitemap.xml from filesystem."""
@@ -48,26 +63,32 @@ def generate_sitemap(website_dir):
     blog_html_path = website_path / 'blog.html'
 
     # Get posts that are actually listed in blog.html (not staged posts)
-    listed_posts = get_listed_blog_posts(blog_html_path)
+    listed_slugs = get_listed_blog_posts(blog_html_path)
 
-    # Get all blog posts, but only include those in the listing
+    # Scan for folder-based blog posts: blog/slug/index.html
     blog_posts = []
     skipped_count = 0
-    for html_file in sorted(blog_dir.glob('*.html')):
+    for index_file in sorted(blog_dir.glob('*/index.html')):
+        slug = index_file.parent.name
+
+        # Skip category directory and other non-post folders
+        if slug == 'category':
+            continue
+
         # Skip posts not yet listed (staged posts)
-        if html_file.name not in listed_posts:
+        if slug not in listed_slugs:
             skipped_count += 1
             continue
 
         try:
-            date, title = extract_metadata_from_html(html_file)
+            date, title = extract_metadata_from_html(index_file)
             blog_posts.append({
-                'filename': html_file.name,
+                'slug': slug,
                 'date': date,
                 'title': title
             })
         except Exception as e:
-            print(f"Warning: Could not parse {html_file.name}: {e}")
+            print(f"Warning: Could not parse {slug}/index.html: {e}")
 
     # Build sitemap XML
     sitemap_lines = [
@@ -113,7 +134,7 @@ def generate_sitemap(website_dir):
 
     for post in blog_posts:
         sitemap_lines.append('  <url>')
-        sitemap_lines.append(f'    <loc>https://lotterlaw.com/blog/{post["filename"]}</loc>')
+        sitemap_lines.append(f'    <loc>https://lotterlaw.com/blog/{post["slug"]}/</loc>')
         sitemap_lines.append(f'    <lastmod>{post["date"]}</lastmod>')
         sitemap_lines.append('    <changefreq>monthly</changefreq>')
 
