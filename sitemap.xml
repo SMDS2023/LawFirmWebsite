@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <!-- Main Pages -->
   <url>
     <loc>https://lotterlaw.com/</loc>
@@ -39,13 +39,19 @@
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/dui.html</loc>
-    <lastmod>2026-02-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/dui.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/dui.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/dui.html"/>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/criminal-traffic.html</loc>
-    <lastmod>2026-02-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/criminal-traffic.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/criminal-traffic.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/criminal-traffic.html"/>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -99,7 +105,10 @@
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/driver-license-restoration.html</loc>
-    <lastmod>2026-02-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/driver-license-restoration.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/driver-license-restoration.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/driver-license-restoration.html"/>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -124,6 +133,35 @@
   <url>
     <loc>https://lotterlaw.com/practice-areas/other-crimes.html</loc>
     <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Spanish Practice Area Pages -->
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/dui.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/dui.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/dui.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/dui.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/criminal-traffic.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/criminal-traffic.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/criminal-traffic.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/criminal-traffic.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/driver-license-restoration.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/driver-license-restoration.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/driver-license-restoration.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/driver-license-restoration.html"/>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
