@@ -352,10 +352,15 @@ def calculate_delta(current, previous):
 
 def get_clarity_data(config, start_date, end_date):
     """
-    Fetch Clarity metrics via REST API.
+    Fetch Clarity metrics via Data Export API.
+
+    API: GET https://www.clarity.ms/export-data/api/v1/project-live-insights
+    Note: API only supports numOfDays=1,2,3 (last 24/48/72 hours), not arbitrary date ranges.
+    We use numOfDays=3 for weekly reports as the best available window.
 
     Returns dict with:
         - total_sessions, rage_clicks, dead_clicks, quick_backs, scroll_depth
+        - engagement_time, active_time, bot_sessions, users, pages_per_session
         - recordings_link: URL to Clarity dashboard
     """
     clarity_config = config.get("clarity", {})
@@ -387,27 +392,65 @@ def get_clarity_data(config, start_date, end_date):
         return get_mock_clarity_data(project_id)
 
     try:
-        # Clarity API endpoint
-        url = f"https://www.clarity.ms/api/v1/projects/{project_id}/metrics"
-        headers = {"Authorization": f"Bearer {api_key}"}
-        params = {
-            "startDate": start_date.strftime("%Y-%m-%d"),
-            "endDate": end_date.strftime("%Y-%m-%d"),
+        # Clarity Data Export API endpoint
+        url = "https://www.clarity.ms/export-data/api/v1/project-live-insights"
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
         }
+        params = {"numOfDays": "3"}
 
         response = requests.get(url, headers=headers, params=params, timeout=30)
         response.raise_for_status()
 
-        data = response.json()
+        raw_metrics = response.json()
 
-        return {
-            "total_sessions": data.get("totalSessions", 0),
-            "rage_clicks": data.get("rageClicks", 0),
-            "dead_clicks": data.get("deadClicks", 0),
-            "quick_backs": data.get("quickBacks", 0),
-            "scroll_depth": data.get("scrollDepth", 0),
+        # Parse the array of metric objects into a flat dict
+        result = {
+            "total_sessions": 0,
+            "bot_sessions": 0,
+            "users": 0,
+            "pages_per_session": 0,
+            "rage_clicks": 0,
+            "dead_clicks": 0,
+            "quick_backs": 0,
+            "scroll_depth": 0,
+            "script_errors": 0,
+            "engagement_time": 0,
+            "active_time": 0,
             "recordings_link": f"https://clarity.microsoft.com/projects/{project_id}/recordings",
         }
+
+        for metric in raw_metrics:
+            name = metric.get("metricName", "")
+            info = metric.get("information", [{}])
+
+            if name == "Traffic" and info:
+                result["total_sessions"] = int(info[0].get("totalSessionCount", 0))
+                result["bot_sessions"] = int(info[0].get("totalBotSessionCount", 0))
+                result["users"] = int(info[0].get("distinctUserCount", 0))
+                result["pages_per_session"] = round(float(info[0].get("pagesPerSessionPercentage", 0)), 2)
+
+            elif name == "RageClickCount" and info:
+                result["rage_clicks"] = int(info[0].get("subTotal", 0))
+
+            elif name == "DeadClickCount" and info:
+                result["dead_clicks"] = int(info[0].get("subTotal", 0))
+
+            elif name == "QuickbackClick" and info:
+                result["quick_backs"] = int(info[0].get("subTotal", 0))
+
+            elif name == "ScrollDepth" and info:
+                result["scroll_depth"] = round(float(info[0].get("averageScrollDepth", 0)), 1)
+
+            elif name == "ScriptErrorCount" and info:
+                result["script_errors"] = int(info[0].get("subTotal", 0))
+
+            elif name == "EngagementTime" and info:
+                result["engagement_time"] = int(info[0].get("totalTime", 0))
+                result["active_time"] = int(info[0].get("activeTime", 0))
+
+        return result
 
     except Exception as e:
         print(f"Error fetching Clarity data: {e}")
@@ -418,10 +461,16 @@ def get_mock_clarity_data(project_id=""):
     """Return mock Clarity data for testing/demo."""
     return {
         "total_sessions": 892,
+        "bot_sessions": 45,
+        "users": 756,
+        "pages_per_session": 2.1,
         "rage_clicks": 12,
         "dead_clicks": 34,
         "quick_backs": 8,
         "scroll_depth": 72,
+        "script_errors": 0,
+        "engagement_time": 350,
+        "active_time": 90,
         "recordings_link": f"https://clarity.microsoft.com/projects/{project_id}/recordings" if project_id else None,
     }
 
