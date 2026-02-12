@@ -21,6 +21,9 @@
   </url>
   <url>
     <loc>https://lotterlaw.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/"/>
     <lastmod>2026-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -53,12 +56,18 @@
   <!-- Practice Area Pages -->
   <url>
     <loc>https://lotterlaw.com/practice-areas/assault-battery.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/assault-battery.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/assault-battery.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/assault-battery.html"/>
     <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/auto-registration.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/auto-registration.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/auto-registration.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/auto-registration.html"/>
     <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -83,6 +92,9 @@
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/drug-offense.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/drug-offense.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/drug-offense.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/drug-offense.html"/>
     <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -98,66 +110,99 @@
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/dv.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/dv.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/dv.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/dv.html"/>
     <lastmod>2026-01-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/excessive-speed.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/excessive-speed.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/excessive-speed.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/excessive-speed.html"/>
     <lastmod>2025-11-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/hit-and-run.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/hit-and-run.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/hit-and-run.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/hit-and-run.html"/>
     <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/moving-violations.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/moving-violations.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/moving-violations.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/moving-violations.html"/>
     <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/other-crimes.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/other-crimes.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/other-crimes.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/other-crimes.html"/>
     <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/seal-and-expunge.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/seal-and-expunge.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/seal-and-expunge.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/seal-and-expunge.html"/>
     <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/speeding-ticket.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/speeding-ticket.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/speeding-ticket.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/speeding-ticket.html"/>
     <lastmod>2025-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/suspended-license.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/suspended-license.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/suspended-license.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/suspended-license.html"/>
     <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/theft.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/theft.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/theft.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/theft.html"/>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/tolls.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/tolls.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/tolls.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/tolls.html"/>
     <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://lotterlaw.com/practice-areas/weapons.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/weapons.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/weapons.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/weapons.html"/>
     <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -190,6 +235,142 @@
     <lastmod>2026-02-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lotterlaw.com/es/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/assault-battery.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/assault-battery.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/assault-battery.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/assault-battery.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/auto-registration.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/auto-registration.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/auto-registration.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/auto-registration.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/drug-offense.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/drug-offense.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/drug-offense.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/drug-offense.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/dv.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/dv.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/dv.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/dv.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/excessive-speed.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/excessive-speed.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/excessive-speed.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/excessive-speed.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/hit-and-run.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/hit-and-run.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/hit-and-run.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/hit-and-run.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/moving-violations.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/moving-violations.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/moving-violations.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/moving-violations.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/other-crimes.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/other-crimes.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/other-crimes.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/other-crimes.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/seal-and-expunge.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/seal-and-expunge.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/seal-and-expunge.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/seal-and-expunge.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/speeding-ticket.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/speeding-ticket.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/speeding-ticket.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/speeding-ticket.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/suspended-license.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/suspended-license.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/suspended-license.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/suspended-license.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/theft.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/theft.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/theft.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/theft.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/tolls.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/tolls.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/tolls.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/tolls.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/es/practice-areas/weapons.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lotterlaw.com/practice-areas/weapons.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lotterlaw.com/es/practice-areas/weapons.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lotterlaw.com/practice-areas/weapons.html"/>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- Blog Category Pages -->
