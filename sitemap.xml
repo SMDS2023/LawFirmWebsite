@@ -745,7 +745,7 @@
     <loc>https://lotterlaw.com/blog/florida-stand-your-ground-law/</loc>
     <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://lotterlaw.com/blog/cannabis-odor-probable-cause-florida/</loc>
@@ -790,6 +790,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://lotterlaw.com/blog/aggravated-assault-florida/</loc>
+    <lastmod>2026-02-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://lotterlaw.com/blog/orlando-weekly-arrest-breakdown-january-26-february-2-2026/</loc>
     <lastmod>2026-02-06</lastmod>
     <changefreq>monthly</changefreq>
@@ -830,53 +836,5 @@
     <lastmod>2026-02-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://lotterlaw.com/blog/veteran/</loc>
-    <lastmod>2025-12-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lotterlaw.com/blog/criminal-punishment-scoresheet-florida/</loc>
-    <lastmod>2026-01-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lotterlaw.com/blog/orlando-dui-lawyer-local-experience/</loc>
-    <lastmod>2026-01-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lotterlaw.com/blog/ai-dui-trial-preparation-orlando/</loc>
-    <lastmod>2026-01-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lotterlaw.com/blog/stand-your-ground-motion-dismiss-vs-c4/</loc>
-    <lastmod>2026-01-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lotterlaw.com/blog/battery-charges-florida-degrees-defenses/</loc>
-    <lastmod>2026-01-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lotterlaw.com/blog/trial-ready-dui-metabolites-brevard/</loc>
-    <lastmod>2026-01-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lotterlaw.com/blog/florida-dl-number-soundex-randomized/</loc>
-    <lastmod>2026-01-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 </urlset>
