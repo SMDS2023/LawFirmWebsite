@@ -13,6 +13,41 @@ document.addEventListener('alpine:init', () => {
             message: ''
         },
 
+        // UTM tracking data (populated on init, submitted as hidden fields)
+        utmData: {},
+
+        // Capture UTM params from URL and store in sessionStorage (first-touch attribution)
+        init() {
+            const params = new URLSearchParams(window.location.search);
+            const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid'];
+
+            // Store UTM params in sessionStorage (first-touch: don't overwrite existing)
+            utmKeys.forEach(key => {
+                const value = params.get(key);
+                if (value && !sessionStorage.getItem(key)) {
+                    sessionStorage.setItem(key, value);
+                }
+            });
+
+            // Also capture fbclid as gclid (both are click IDs)
+            const fbclid = params.get('fbclid');
+            if (fbclid && !sessionStorage.getItem('gclid')) {
+                sessionStorage.setItem('gclid', fbclid);
+            }
+
+            // Capture landing page (first page in session)
+            if (!sessionStorage.getItem('landing_page')) {
+                sessionStorage.setItem('landing_page', window.location.pathname);
+            }
+
+            // Load UTM data for form submission
+            this.utmData = {};
+            utmKeys.forEach(key => {
+                this.utmData[key] = sessionStorage.getItem(key) || '';
+            });
+            this.utmData.landing_page = sessionStorage.getItem('landing_page') || window.location.pathname;
+        },
+
         // Validation state
         errors: {
             name: '',
@@ -163,6 +198,15 @@ document.addEventListener('alpine:init', () => {
                 formData.append('q10_pleaseExplain', this.formData.message);
                 formData.append('q23_typeA23', this.formData.caseType);
 
+                // Append UTM tracking hidden fields
+                formData.append('q24_utmSource', this.utmData.utm_source || '');
+                formData.append('q25_utmMedium', this.utmData.utm_medium || '');
+                formData.append('q26_utmCampaign', this.utmData.utm_campaign || '');
+                formData.append('q27_utmContent', this.utmData.utm_content || '');
+                formData.append('q28_utmTerm', this.utmData.utm_term || '');
+                formData.append('q29_gclid', this.utmData.gclid || '');
+                formData.append('q30_landingPage', this.utmData.landing_page || window.location.pathname);
+
                 // Submit to JotForm
                 const response = await fetch('https://submit.jotform.com/submit/251224345324145', {
                     method: 'POST',
@@ -176,13 +220,17 @@ document.addEventListener('alpine:init', () => {
                     // Show success message
                     this.showSuccess = true;
 
-                    // Track in GTM with language tag
+                    // Track in GTM with language tag and UTM attribution
                     if (window.dataLayer) {
                         window.dataLayer.push({
                             'event': 'form_submission',
                             'form_name': 'contact_form',
                             'case_type': this.formData.caseType,
-                            'form_language': 'es'
+                            'form_language': 'es',
+                            'utm_source': this.utmData.utm_source || 'direct',
+                            'utm_medium': this.utmData.utm_medium || '',
+                            'utm_campaign': this.utmData.utm_campaign || '',
+                            'landing_page': this.utmData.landing_page || ''
                         });
                     }
 
