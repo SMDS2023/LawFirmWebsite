@@ -349,6 +349,19 @@ body.navigating-to-section {
     visibility: hidden;
 }
 
+/* Blog body text: prevent dead clicks on non-interactive elements */
+.prose p,
+.prose blockquote,
+.prose li,
+.prose strong,
+.prose em,
+.prose h2,
+.prose h3,
+.prose h4 {
+    cursor: default;
+    user-select: text;
+}
+
 /* ADDITIONAL FIXES FOR PRACTICE AREA PAGES */
 
 /* Ensure all sections are visible */
