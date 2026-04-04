@@ -1,0 +1,166 @@
+{
+  "id": 2,
+  "title": "Basic Court Phrases",
+  "theme": "pickleball",
+  "vocabulary": [
+    {
+      "spanish": "Buen tiro",
+      "english": "Nice shot",
+      "audio": "audio/02-buen-tiro.mp3"
+    },
+    {
+      "spanish": "Vamos",
+      "english": "Let's go / Come on",
+      "audio": "audio/02-vamos.mp3"
+    },
+    {
+      "spanish": "Mi servicio",
+      "english": "My serve",
+      "audio": "audio/02-mi-servicio.mp3"
+    },
+    {
+      "spanish": "Fuera",
+      "english": "Out",
+      "audio": "audio/02-fuera.mp3"
+    },
+    {
+      "spanish": "Dentro",
+      "english": "In",
+      "audio": "audio/02-dentro.mp3"
+    },
+    {
+      "spanish": "Punto",
+      "english": "Point",
+      "audio": "audio/02-punto.mp3"
+    },
+    {
+      "spanish": "Cambiar",
+      "english": "Switch / Change",
+      "audio": "audio/02-cambiar.mp3"
+    },
+    {
+      "spanish": "Listo",
+      "english": "Ready (masculine)",
+      "audio": "audio/02-listo.mp3"
+    },
+    {
+      "spanish": "Lista",
+      "english": "Ready (feminine)",
+      "audio": "audio/02-lista.mp3"
+    },
+    {
+      "spanish": "Jugar",
+      "english": "To play",
+      "audio": "audio/02-jugar.mp3"
+    }
+  ],
+  "phrases": [
+    {
+      "spanish": "¡Buen tiro!",
+      "english": "Nice shot!",
+      "audio": "audio/02-phrase-1.mp3"
+    },
+    {
+      "spanish": "Es mi servicio",
+      "english": "It's my serve",
+      "audio": "audio/02-phrase-2.mp3"
+    },
+    {
+      "spanish": "¿Listo para jugar?",
+      "english": "Ready to play?",
+      "audio": "audio/02-phrase-3.mp3"
+    },
+    {
+      "spanish": "La pelota está fuera",
+      "english": "The ball is out",
+      "audio": "audio/02-phrase-4.mp3"
+    },
+    {
+      "spanish": "¡Vamos a jugar!",
+      "english": "Let's play!",
+      "audio": "audio/02-phrase-5.mp3"
+    },
+    {
+      "spanish": "Es tu punto",
+      "english": "It's your point",
+      "audio": "audio/02-phrase-6.mp3"
+    }
+  ],
+  "dialogue": {
+    "context": "Playing a game and calling shots",
+    "lines": [
+      {
+        "speaker": "A",
+        "spanish": "¿Estás listo?",
+        "english": "Are you ready?"
+      },
+      {
+        "speaker": "B",
+        "spanish": "Sí, estoy listo. Es mi servicio.",
+        "english": "Yes, I'm ready. It's my serve."
+      },
+      {
+        "speaker": "A",
+        "spanish": "¡Vamos!",
+        "english": "Let's go!"
+      },
+      {
+        "speaker": "B",
+        "spanish": "Cero-cero, servicio.",
+        "english": "Zero-zero, serve."
+      },
+      {
+        "speaker": "A",
+        "spanish": "¡Fuera!",
+        "english": "Out!"
+      },
+      {
+        "speaker": "B",
+        "spanish": "No, está dentro.",
+        "english": "No, it's in."
+      },
+      {
+        "speaker": "A",
+        "spanish": "Tienes razón. Es tu punto.",
+        "english": "You're right. It's your point."
+      },
+      {
+        "speaker": "B",
+        "spanish": "¡Buen tiro!",
+        "english": "Nice shot!"
+      },
+      {
+        "speaker": "A",
+        "spanish": "Gracias. Vamos a cambiar de lado.",
+        "english": "Thanks. Let's switch sides."
+      }
+    ]
+  },
+  "quiz": [
+    {
+      "question": "How do you say 'nice shot' in Spanish?",
+      "options": ["Buen día", "Buen tiro", "Buen punto"],
+      "correct": 1
+    },
+    {
+      "question": "What does 'fuera' mean?",
+      "options": ["In", "Out", "Point"],
+      "correct": 1
+    },
+    {
+      "question": "How would you say 'It's my serve'?",
+      "options": ["Es mi punto", "Es mi servicio", "Mi tiro"],
+      "correct": 1
+    },
+    {
+      "question": "What does '¿Listo?' mean?",
+      "options": ["Let's go?", "Ready?", "Your turn?"],
+      "correct": 1
+    },
+    {
+      "question": "How do you say 'Let's play'?",
+      "options": ["Vamos a jugar", "Jugar vamos", "A jugar"],
+      "correct": 0
+    }
+  ]
+}
