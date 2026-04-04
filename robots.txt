@@ -8,4 +8,7 @@ Disallow: /practice-area/
 Disallow: /justify-the-papers
 Disallow: /the-power-of-justice
 
+# Unpublished/private sections
+Disallow: /spanish-tutor/
+
 Sitemap: https://lotterlaw.com/sitemap.xml
