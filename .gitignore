@@ -35,6 +35,15 @@ scripts/_current_session.txt
 *.tmp
 *.bak
 *.log
+__pycache__/
+*.py[cod]
+
+# Local agent/editor state
+.claude/settings.local.json
+
+# Generated website/blog artifacts
+output/
+analytics/reports/
 
 # Node modules (if you add build tools later)
 node_modules/
@@ -44,5 +53,12 @@ yarn-error.log
 # Build outputs (if you add build process later)
 dist/
 build/
+
+# Local backup snapshots belong in storage, not the deploy repo
+.backup_before_clarity/
+
+# Python environments
+.venv/
+venv/
 nul
 assets/nul
