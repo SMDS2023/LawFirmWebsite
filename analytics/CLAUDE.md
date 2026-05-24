@@ -2,13 +2,14 @@
 
 > **Last Updated:** 2025-12-12
 > **Parent Project:** LotterLaw Website
-> **Purpose:** Weekly analytics reporting from GA4, Clarity, and GTM
+> **Purpose:** Weekly analytics reporting from GA4, Clarity, Search Console, and GTM
 
 ## Project Overview
 
 Automated weekly analytics report generator that pulls data from:
 - **Google Analytics 4** - Traffic, sessions, pageviews, conversions
 - **Microsoft Clarity** - User behavior, rage clicks, scroll depth
+- **Google Search Console** - Search clicks, impressions, CTR, position, top queries/pages
 - **Google Tag Manager** - Container status and tag health
 
 ## Folder Structure
@@ -47,11 +48,32 @@ python analytics_report.py --week 2025-W50
 python analytics_report.py --dry-run
 ```
 
+## Data Integrity Rule
+
+Production analytics reports must use live data or fail. Missing credentials,
+API errors, unavailable libraries, or empty upstream responses should produce a
+nonzero exit code rather than substitute fake numbers.
+
+Mock data is only allowed for original report/template design work and must be
+requested explicitly:
+
+```bash
+python analytics_report.py --dry-run --allow-mock
+```
+
+Do not use `--allow-mock` for business reporting, SEO decisions, weekly reports,
+or client-facing analysis.
+
+As of 2026-05-24, live Lotter Law reports are expected to fetch GA4, Microsoft
+Clarity, and Google Search Console. If any configured live source fails, the
+report should exit nonzero rather than omit that source silently.
+
 ## Configuration
 
 Edit `config.yaml` to set:
 - GA4 property ID and credentials path
 - Clarity project ID
+- Search Console domain property and OAuth token path
 - GTM container ID
 - Alert thresholds (bounce rate, rage clicks, etc.)
 

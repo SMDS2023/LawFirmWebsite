@@ -4,16 +4,24 @@
 ga4:
   # GA4 Property ID (from Analytics Admin > Property Settings)
   property_id: "properties/513600781"
-  # Use OAuth token instead of service account
-  token_file: "C:\\Users\\jeff\\.config\\google-auth\\analytics_token.json"
+  # Preferred: service account JSON stored in gitignored analytics/credentials/
+  credentials_file: "credentials/ga4_service_account.json"
+  # Alternative: OAuth token JSON stored in gitignored analytics/credentials/
+  token_file: "credentials/analytics_token.json"
 
 clarity:
   # Microsoft Clarity Project ID (from Project Settings)
   project_id: "reu4dibx4h"
   # API token file path (JWT token for Data Export API)
-  token_file: "C:\\Users\\jeff\\.config\\google-auth\\clarity_token.txt"
+  token_file: "credentials/clarity_token.txt"
   # Fallback to environment variable if token file not found
   api_key_env: "CLARITY_API_KEY"
+
+search_console:
+  # Domain property from Google Search Console
+  site_url: "sc-domain:lotterlaw.com"
+  # Uses the same OAuth token when it includes webmasters.readonly scope
+  token_file: "credentials/analytics_token.json"
 
 gtm:
   # Google Tag Manager Container ID
@@ -50,3 +58,9 @@ metrics:
     - deadClicks
     - quickBacks
     - scrollDepth
+
+  search_console:
+    - clicks
+    - impressions
+    - ctr
+    - position

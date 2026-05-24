@@ -7,6 +7,37 @@
 
 ## Backlog
 
+### T-000: Fail Closed on Missing Analytics Data
+**Priority:** P0
+**Status:** `completed`
+**Type:** safety
+
+Analytics reports must fail rather than silently substitute mock numbers when
+GA4, Clarity, or Search Console data is unavailable.
+
+**Acceptance Criteria:**
+- [x] Missing GA4 credentials returns a nonzero exit code
+- [x] Missing Clarity credentials returns a nonzero exit code
+- [x] Missing Search Console credentials/access returns a nonzero exit code
+- [x] Mock data requires explicit `--allow-mock`
+- [x] CLI output states when mock data is being used
+- [x] Production report generation aborts before saving fake data
+
+### T-000A: Add Search Console to Live Report
+**Priority:** P0
+**Status:** `completed`
+**Type:** feature
+
+Google Search Console is now a required live source for Lotter Law weekly
+analytics reports.
+
+**Acceptance Criteria:**
+- [x] `config.yaml` has `search_console.site_url`
+- [x] OAuth token includes `webmasters.readonly`
+- [x] Report fetches clicks, impressions, CTR, average position
+- [x] Report shows top queries and top search pages
+- [x] Missing Search Console access fails closed unless `--allow-mock` is explicit
+
 ### T-001: Configure GA4 Credentials
 **Priority:** P0
 **Status:** `pending`
