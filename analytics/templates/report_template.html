@@ -315,6 +315,80 @@
         </div>
 
         <div class="section">
+            <h2>Organic Search (Google Search Console)</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="label">Clicks</div>
+                    <div class="value">{{ search_console.clicks | default('--') }}</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="label">Impressions</div>
+                    <div class="value">{{ search_console.impressions | default('--') }}</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="label">CTR</div>
+                    <div class="value">{{ search_console.ctr | default('--') }}%</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="label">Avg Position</div>
+                    <div class="value">{{ search_console.position | default('--') }}</div>
+                </div>
+            </div>
+            <div class="two-col">
+                <div>
+                    <h3 style="font-size: 1rem; color: var(--primary); margin-bottom: 0.75rem;">Top Queries</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Query</th>
+                                <th>Clicks</th>
+                                <th>Impr.</th>
+                                <th>Pos.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in search_console.top_queries %}
+                            <tr>
+                                <td>{{ row.query }}</td>
+                                <td>{{ row.clicks }}</td>
+                                <td>{{ row.impressions }}</td>
+                                <td>{{ row.position }}</td>
+                            </tr>
+                            {% else %}
+                            <tr><td colspan="4">No query data available</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3 style="font-size: 1rem; color: var(--primary); margin-bottom: 0.75rem;">Top Search Pages</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Page</th>
+                                <th>Clicks</th>
+                                <th>Impr.</th>
+                                <th>Pos.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in search_console.top_pages %}
+                            <tr>
+                                <td>{{ row.page }}</td>
+                                <td>{{ row.clicks }}</td>
+                                <td>{{ row.impressions }}</td>
+                                <td>{{ row.position }}</td>
+                            </tr>
+                            {% else %}
+                            <tr><td colspan="4">No page data available</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
             <h2>User Behavior (Microsoft Clarity)</h2>
             <div class="kpi-grid">
                 <div class="kpi-card">
@@ -416,7 +490,7 @@
                     </tbody>
                 </table>
                 {% else %}
-                <p>No conversion data available</p>
+                <p>{{ ga4.conversions_status or "No configured lead-action events were recorded for this date range." }}</p>
                 {% endif %}
             </div>
         </div>
