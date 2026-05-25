@@ -21,6 +21,7 @@ import json
 import shutil
 from pathlib import Path
 from datetime import datetime, timedelta
+from urllib.parse import quote
 from dateutil.parser import parse as parse_date
 from dateutil.relativedelta import relativedelta, MO
 import requests
@@ -38,7 +39,6 @@ try:
     GA4_AVAILABLE = True
 except ImportError:
     GA4_AVAILABLE = False
-    print("Warning: google-analytics-data not installed. GA4 data will be mocked.")
 
 # ============================================================================
 # Configuration
@@ -46,6 +46,17 @@ except ImportError:
 
 SCRIPT_DIR = Path(__file__).parent.absolute()
 CONFIG_PATH = SCRIPT_DIR / "config.yaml"
+GA4_CONVERSION_EVENTS = {
+    "form_submission": "Contact Form Submit",
+    "click_to_call": "Phone Click",
+    "generate_lead": "Lead Generated",
+    "contact_form_submit": "Contact Form Submit",
+    "phone_click": "Phone Click",
+}
+
+
+class AnalyticsDataUnavailable(RuntimeError):
+    """Raised when required live analytics data cannot be fetched."""
 
 
 def load_config():
@@ -55,6 +66,34 @@ def load_config():
 
     with open(CONFIG_PATH, "r") as f:
         return yaml.safe_load(f)
+
+
+def configured_path(path_value):
+    """Resolve a config path, preserving absolute paths."""
+    if not path_value:
+        return None
+
+    # Preserve Windows-style paths in diagnostics instead of joining them to
+    # SCRIPT_DIR on macOS.
+    if ":" in path_value and "\\" in path_value:
+        return Path(path_value)
+
+    path = Path(path_value)
+    if path.is_absolute():
+        return path
+    return SCRIPT_DIR / path
+
+
+def load_refreshed_oauth_credentials(token_file):
+    """Load and refresh a Google OAuth token file without exposing token values."""
+    from google.oauth2.credentials import Credentials
+    from google.auth.transport.requests import Request
+
+    creds = Credentials.from_authorized_user_file(str(token_file))
+    if creds.refresh_token:
+        creds.refresh(Request())
+        token_file.write_text(creds.to_json(), encoding="utf-8")
+    return creds
 
 
 # ============================================================================
@@ -96,7 +135,7 @@ def format_date(d):
 # Google Analytics 4
 # ============================================================================
 
-def get_ga4_data(config, start_date, end_date):
+def get_ga4_data(config, start_date, end_date, allow_mock=False):
     """
     Fetch GA4 metrics via Data API.
 
@@ -112,44 +151,39 @@ def get_ga4_data(config, start_date, end_date):
     property_id = ga4_config.get("property_id", "")
 
     # Try OAuth token first, fallback to service account
-    token_file = ga4_config.get("token_file", "")
-    credentials_file = SCRIPT_DIR / ga4_config.get("credentials_file", "") if "credentials_file" in ga4_config else None
+    token_file = configured_path(ga4_config.get("token_file", ""))
+    credentials_file = configured_path(ga4_config.get("credentials_file", ""))
 
     if not GA4_AVAILABLE:
-        return get_mock_ga4_data()
+        if allow_mock:
+            return get_mock_ga4_data()
+        raise AnalyticsDataUnavailable(
+            "GA4 Data API dependency is not installed. Run "
+            "`analytics/.venv/bin/python -m pip install -r analytics/requirements.txt`."
+        )
 
     try:
         # Initialize client with OAuth token or service account
-        if token_file and Path(token_file).exists():
+        if token_file and token_file.exists():
             print(f"Using GA4 OAuth token from {token_file}")
-            from google.oauth2.credentials import Credentials
-            from google.auth.transport.requests import Request
-            import json
-
-            with open(token_file, 'r') as f:
-                token_data = json.load(f)
-
-            creds = Credentials(
-                token=token_data['token'],
-                refresh_token=token_data.get('refresh_token'),
-                token_uri=token_data.get('token_uri', 'https://oauth2.googleapis.com/token'),
-                client_id=token_data.get('client_id'),
-                client_secret=token_data.get('client_secret'),
-                scopes=token_data.get('scopes', [])
-            )
-
-            # Refresh if needed
-            if creds.expired and creds.refresh_token:
-                creds.refresh(Request())
-
+            creds = load_refreshed_oauth_credentials(token_file)
             client = BetaAnalyticsDataClient(credentials=creds)
         elif credentials_file and credentials_file.exists():
             print(f"Using GA4 service account from {credentials_file}")
             os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(credentials_file)
             client = BetaAnalyticsDataClient()
         else:
-            print(f"Warning: GA4 credentials not found")
-            return get_mock_ga4_data()
+            if allow_mock:
+                return get_mock_ga4_data()
+            configured = [
+                str(path) for path in (token_file, credentials_file)
+                if path is not None
+            ]
+            raise AnalyticsDataUnavailable(
+                "GA4 credentials not found. Configure a valid `ga4.token_file` "
+                "or `ga4.credentials_file` in analytics/config.yaml. "
+                f"Checked: {configured or 'no credential paths configured'}"
+            )
 
         # Current week metrics
         current_metrics = fetch_ga4_metrics(client, property_id, start_date, end_date)
@@ -188,11 +222,22 @@ def get_ga4_data(config, start_date, end_date):
             client, property_id, start_date, end_date
         )
 
+        # Conversion-like events tracked through GTM/dataLayer
+        conversions, conversions_status = fetch_ga4_conversions(
+            client, property_id, start_date, end_date
+        )
+        current_metrics["conversions"] = conversions
+        current_metrics["conversions_status"] = conversions_status
+
         return current_metrics
 
     except Exception as e:
-        print(f"Error fetching GA4 data: {e}")
-        return get_mock_ga4_data()
+        if allow_mock:
+            print(f"Warning: GA4 fetch failed; using mock data because --allow-mock was set: {e}")
+            return get_mock_ga4_data()
+        if isinstance(e, AnalyticsDataUnavailable):
+            raise
+        raise AnalyticsDataUnavailable(f"Error fetching GA4 data: {e}") from e
 
 
 def fetch_ga4_metrics(client, property_id, start_date, end_date):
@@ -302,9 +347,54 @@ def fetch_ga4_devices(client, property_id, start_date, end_date):
     ]
 
 
+def fetch_ga4_conversions(client, property_id, start_date, end_date, limit=100):
+    """Fetch configured conversion-like event counts from GA4."""
+    request = RunReportRequest(
+        property=property_id,
+        date_ranges=[DateRange(
+            start_date=start_date.strftime("%Y-%m-%d"),
+            end_date=end_date.strftime("%Y-%m-%d")
+        )],
+        dimensions=[Dimension(name="eventName")],
+        metrics=[Metric(name="eventCount")],
+        limit=limit
+    )
+
+    try:
+        response = client.run_report(request)
+    except Exception as e:
+        print(f"Warning: GA4 conversion event query failed: {e}")
+        return [], (
+            "Conversion event query unavailable. Check GA4 event/key-event "
+            "configuration and API access."
+        )
+
+    found = {}
+    for row in response.rows:
+        event_name = row.dimension_values[0].value
+        if event_name in GA4_CONVERSION_EVENTS:
+            label = GA4_CONVERSION_EVENTS[event_name]
+            found[label] = found.get(label, 0) + int(row.metric_values[0].value)
+
+    conversions = [
+        {"name": label, "count": count}
+        for label, count in found.items()
+        if count > 0
+    ]
+
+    if conversions:
+        return conversions, "Fetched tracked GA4 event counts for configured lead actions."
+
+    return [], (
+        "No configured lead-action events were recorded for this date range. "
+        "Confirm GTM publishes form_submission and click_to_call into GA4 key events."
+    )
+
+
 def get_mock_ga4_data():
     """Return mock GA4 data for testing/demo."""
     return {
+        "_mock": True,
         "sessions": 1234,
         "users": 987,
         "pageviews": 3456,
@@ -336,6 +426,7 @@ def get_mock_ga4_data():
             {"name": "Contact Form Submit", "count": 23},
             {"name": "Phone Click", "count": 45},
         ],
+        "conversions_status": "Mock conversion data.",
     }
 
 
@@ -350,7 +441,7 @@ def calculate_delta(current, previous):
 # Microsoft Clarity
 # ============================================================================
 
-def get_clarity_data(config, start_date, end_date):
+def get_clarity_data(config, start_date, end_date, allow_mock=False):
     """
     Fetch Clarity metrics via Data Export API.
 
@@ -368,8 +459,8 @@ def get_clarity_data(config, start_date, end_date):
 
     # Try to load API token from file first, fallback to environment variable
     api_key = None
-    token_file = clarity_config.get("token_file", "")
-    if token_file and Path(token_file).exists():
+    token_file = configured_path(clarity_config.get("token_file", ""))
+    if token_file and token_file.exists():
         try:
             with open(token_file, 'r', encoding='utf-8') as f:
                 api_key = f.read().strip()
@@ -378,7 +469,10 @@ def get_clarity_data(config, start_date, end_date):
                     api_key = api_key[1:]
             print(f"Loaded Clarity token from {token_file}")
         except Exception as e:
-            print(f"Warning: Could not read token file {token_file}: {e}")
+            if allow_mock:
+                print(f"Warning: Could not read Clarity token; using mock data because --allow-mock was set: {e}")
+                return get_mock_clarity_data(project_id)
+            raise AnalyticsDataUnavailable(f"Could not read Clarity token file {token_file}: {e}") from e
 
     # Fallback to environment variable
     if not api_key:
@@ -388,8 +482,13 @@ def get_clarity_data(config, start_date, end_date):
             print(f"Loaded Clarity token from environment variable {api_key_env}")
 
     if not api_key:
-        print(f"Warning: Clarity API token not found in file or environment variable")
-        return get_mock_clarity_data(project_id)
+        if allow_mock:
+            return get_mock_clarity_data(project_id)
+        raise AnalyticsDataUnavailable(
+            "Clarity API token not found. Configure `clarity.token_file` in "
+            "analytics/config.yaml or set the configured environment variable "
+            f"`{clarity_config.get('api_key_env', 'CLARITY_API_KEY')}`."
+        )
 
     try:
         # Clarity Data Export API endpoint
@@ -453,13 +552,16 @@ def get_clarity_data(config, start_date, end_date):
         return result
 
     except Exception as e:
-        print(f"Error fetching Clarity data: {e}")
-        return get_mock_clarity_data(project_id)
+        if allow_mock:
+            print(f"Warning: Clarity fetch failed; using mock data because --allow-mock was set: {e}")
+            return get_mock_clarity_data(project_id)
+        raise AnalyticsDataUnavailable(f"Error fetching Clarity data: {e}") from e
 
 
 def get_mock_clarity_data(project_id=""):
     """Return mock Clarity data for testing/demo."""
     return {
+        "_mock": True,
         "total_sessions": 892,
         "bot_sessions": 45,
         "users": 756,
@@ -472,6 +574,126 @@ def get_mock_clarity_data(project_id=""):
         "engagement_time": 350,
         "active_time": 90,
         "recordings_link": f"https://clarity.microsoft.com/projects/{project_id}/recordings" if project_id else None,
+    }
+
+
+# ============================================================================
+# Google Search Console
+# ============================================================================
+
+def get_search_console_data(config, start_date, end_date, allow_mock=False):
+    """
+    Fetch Google Search Console search performance data.
+
+    Returns dict with:
+        - clicks, impressions, ctr, position
+        - top_queries: list of {query, clicks, impressions, ctr, position}
+        - top_pages: list of {page, clicks, impressions, ctr, position}
+    """
+    search_config = config.get("search_console", {})
+    site_url = search_config.get("site_url", "")
+    token_file = configured_path(
+        search_config.get("token_file") or config.get("ga4", {}).get("token_file", "")
+    )
+
+    if not site_url:
+        if allow_mock:
+            return get_mock_search_console_data()
+        raise AnalyticsDataUnavailable(
+            "Search Console site URL is not configured. Set `search_console.site_url` "
+            "in analytics/config.yaml."
+        )
+
+    if not token_file or not token_file.exists():
+        if allow_mock:
+            return get_mock_search_console_data()
+        raise AnalyticsDataUnavailable(
+            "Search Console OAuth token not found. Configure "
+            "`search_console.token_file` in analytics/config.yaml."
+        )
+
+    try:
+        from google.auth.transport.requests import AuthorizedSession
+
+        creds = load_refreshed_oauth_credentials(token_file)
+        scopes = set(creds.scopes or [])
+        if "https://www.googleapis.com/auth/webmasters.readonly" not in scopes:
+            raise AnalyticsDataUnavailable(
+                "Search Console token is missing the webmasters.readonly scope."
+            )
+
+        session = AuthorizedSession(creds)
+        totals = fetch_search_console_rows(session, site_url, start_date, end_date, [])
+        queries = fetch_search_console_rows(session, site_url, start_date, end_date, ["query"], row_limit=10)
+        pages = fetch_search_console_rows(session, site_url, start_date, end_date, ["page"], row_limit=10)
+
+        total = totals[0] if totals else {}
+        return {
+            "site_url": site_url,
+            "clicks": int(total.get("clicks", 0)),
+            "impressions": int(total.get("impressions", 0)),
+            "ctr": round(float(total.get("ctr", 0)) * 100, 1),
+            "position": round(float(total.get("position", 0)), 1),
+            "top_queries": [format_search_console_row(row, "query") for row in queries],
+            "top_pages": [format_search_console_row(row, "page") for row in pages],
+        }
+
+    except Exception as e:
+        if allow_mock:
+            print(f"Warning: Search Console fetch failed; using mock data because --allow-mock was set: {e}")
+            return get_mock_search_console_data()
+        if isinstance(e, AnalyticsDataUnavailable):
+            raise
+        raise AnalyticsDataUnavailable(f"Error fetching Search Console data: {e}") from e
+
+
+def fetch_search_console_rows(session, site_url, start_date, end_date, dimensions, row_limit=1):
+    """Fetch Search Console rows for one dimension set."""
+    url = (
+        "https://www.googleapis.com/webmasters/v3/sites/"
+        f"{quote(site_url, safe='')}/searchAnalytics/query"
+    )
+    payload = {
+        "startDate": start_date.strftime("%Y-%m-%d"),
+        "endDate": end_date.strftime("%Y-%m-%d"),
+        "dimensions": dimensions,
+        "rowLimit": row_limit,
+    }
+    response = session.post(url, json=payload, timeout=30)
+    if response.status_code >= 400:
+        raise AnalyticsDataUnavailable(
+            f"Search Console API returned {response.status_code}: {response.text[:500]}"
+        )
+    return response.json().get("rows", [])
+
+
+def format_search_console_row(row, key_name):
+    """Normalize one Search Console API row for templates."""
+    keys = row.get("keys") or [""]
+    return {
+        key_name: keys[0],
+        "clicks": int(row.get("clicks", 0)),
+        "impressions": int(row.get("impressions", 0)),
+        "ctr": round(float(row.get("ctr", 0)) * 100, 1),
+        "position": round(float(row.get("position", 0)), 1),
+    }
+
+
+def get_mock_search_console_data():
+    """Return mock Search Console data for testing/demo."""
+    return {
+        "_mock": True,
+        "site_url": "sc-domain:example.com",
+        "clicks": 42,
+        "impressions": 1000,
+        "ctr": 4.2,
+        "position": 12.3,
+        "top_queries": [
+            {"query": "example legal question", "clicks": 12, "impressions": 100, "ctr": 12.0, "position": 3.4},
+        ],
+        "top_pages": [
+            {"page": "https://example.com/blog/example/", "clicks": 12, "impressions": 100, "ctr": 12.0, "position": 3.4},
+        ],
     }
 
 
@@ -560,7 +782,7 @@ def generate_alerts(config, ga4_data, clarity_data):
 # Report Generation
 # ============================================================================
 
-def generate_report(ga4_data, clarity_data, gtm_status, alerts, week_label, start_date, end_date):
+def generate_report(ga4_data, clarity_data, search_console_data, gtm_status, alerts, week_label, start_date, end_date):
     """
     Generate HTML report from template.
 
@@ -573,6 +795,7 @@ def generate_report(ga4_data, clarity_data, gtm_status, alerts, week_label, star
     html = template.render(
         ga4=ga4_data,
         clarity=clarity_data,
+        search_console=search_console_data,
         gtm=gtm_status,
         alerts=alerts,
         week_label=week_label,
@@ -631,6 +854,14 @@ def main():
         action="store_true",
         help="Print report to stdout instead of saving"
     )
+    parser.add_argument(
+        "--allow-mock",
+        action="store_true",
+        help=(
+            "Use design/demo mock data when live analytics are unavailable. "
+            "Do not use for production reports."
+        )
+    )
 
     args = parser.parse_args()
 
@@ -651,11 +882,23 @@ def main():
     print(f"Date range: {format_date(start_date)} - {format_date(end_date)}")
 
     # Fetch data from all sources
-    print("\nFetching GA4 data...")
-    ga4_data = get_ga4_data(config, start_date, end_date)
+    try:
+        print("\nFetching GA4 data...")
+        ga4_data = get_ga4_data(config, start_date, end_date, allow_mock=args.allow_mock)
 
-    print("Fetching Clarity data...")
-    clarity_data = get_clarity_data(config, start_date, end_date)
+        print("Fetching Clarity data...")
+        clarity_data = get_clarity_data(config, start_date, end_date, allow_mock=args.allow_mock)
+
+        print("Fetching Search Console data...")
+        search_console_data = get_search_console_data(config, start_date, end_date, allow_mock=args.allow_mock)
+    except AnalyticsDataUnavailable as e:
+        print(f"\nERROR: {e}", file=sys.stderr)
+        print("Report generation aborted; no mock analytics data was used.", file=sys.stderr)
+        return 2
+
+    if ga4_data.get("_mock") or clarity_data.get("_mock") or search_console_data.get("_mock"):
+        print("\nWARNING: Report uses mock analytics data because --allow-mock was set.")
+        print("This output is for template/design testing only, not business reporting.")
 
     print("Checking GTM status...")
     gtm_status = get_gtm_status(config)
@@ -671,7 +914,16 @@ def main():
 
     # Generate report
     print("\nGenerating HTML report...")
-    html = generate_report(ga4_data, clarity_data, gtm_status, alerts, week_label, start_date, end_date)
+    html = generate_report(
+        ga4_data,
+        clarity_data,
+        search_console_data,
+        gtm_status,
+        alerts,
+        week_label,
+        start_date,
+        end_date,
+    )
 
     if args.dry_run:
         print("\n" + "=" * 60)
