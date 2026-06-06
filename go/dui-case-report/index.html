@@ -284,7 +284,7 @@
                 groups.set(row.officer, group);
             });
             return Array.from(groups.values())
-                .sort((a, b) => a.formalName.localeCompare(b.formalName) || a.agency.localeCompare(b.agency))
+                .sort((a, b) => (b.count - a.count) || a.formalName.localeCompare(b.formalName) || a.agency.localeCompare(b.agency))
                 .map(group => ({
                     value: group.value,
                     label: `${group.formalName} - ${group.agency} - ${formatDuiCount(group.count)}`
