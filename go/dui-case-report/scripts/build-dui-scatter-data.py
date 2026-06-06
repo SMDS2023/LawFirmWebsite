@@ -22,6 +22,28 @@ DEFAULT_OUT = Path(__file__).resolve().parents[1] / "data" / "dui-scatter-data.j
 MIN_OFFICER_CASES = 6
 MIN_BUCKET_CASES = 3
 
+ORANGE_COUNTY_AGENCY_NAMES = {
+    "Apopka Police Department",
+    "Belle Isle Police Department",
+    "Eatonville Police Department",
+    "Edgewood Police Department",
+    "Maitland Police Department",
+    "Oakland Police Department",
+    "Ocoee Police Department",
+    "Orange County Sheriff's Office",
+    "Orlando Police Department",
+    "UCF Police Department",
+    "University of Central Florida Police Department",
+    "Windermere Police Department",
+    "Winter Garden Police Department",
+    "Winter Park Police Department",
+}
+
+STATE_ENFORCEMENT_AGENCY_TYPES = {
+    "Highway Patrol",
+    "State Agency",
+}
+
 FORBIDDEN_KEYS = {
     "case_number",
     "defendant",
@@ -69,7 +91,7 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
         raise RuntimeError("No DUI filing dates available")
 
     period_start = _start_month(max_filing_date)
-    agency_dim = dim_agency.select(["agency_key", "display_name", "officer_title"])
+    agency_dim = dim_agency.select(["agency_key", "display_name", "agency_type", "officer_title"])
     officer_dim = dim_officer.select(["officer_key", "canonical_name", "name_full_formal"])
 
     case_level = (
@@ -83,7 +105,6 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
             & pl.col("primary_officer_key").is_not_null()
             & pl.col("bac_value").is_not_null()
             & pl.col("bac_value").is_between(0, 0.50)
-            & (pl.col("is_local_agency") == True)
         )
         .select([
             "case_number",
@@ -119,7 +140,11 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
                 + 1
             ).cast(pl.Int64).alias("month"),
         ])
-        .filter(pl.col("agency").is_not_null() & pl.col("officer").is_not_null())
+        .filter(
+            pl.col("agency").is_not_null()
+            & pl.col("officer").is_not_null()
+            & _public_agency_scope_expr()
+        )
     )
 
     officer_totals = (
@@ -160,6 +185,7 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
         "source": "court_filings current_state parquet joined to dim_agency.display_name and dim_officer display fields",
         "grain": "agency/officer/anonymized filing-period bucket",
         "period": "last 12 court-filing months",
+        "agencyScope": "Orange County local/in-county agencies plus state enforcement agencies; out-of-county agencies excluded",
         "minOfficerCases": MIN_OFFICER_CASES,
         "minBucketCases": MIN_BUCKET_CASES,
         "rowCount": len(rows),
@@ -182,6 +208,13 @@ def assert_safe_payload(payload: dict) -> None:
             raise RuntimeError(f"Month bucket out of range: {row['month']}")
         if int(row["caseCount"]) < MIN_BUCKET_CASES:
             raise RuntimeError("Bucket support below public threshold")
+
+
+def _public_agency_scope_expr() -> pl.Expr:
+    return (
+        pl.col("agency").is_in(sorted(ORANGE_COUNTY_AGENCY_NAMES))
+        | pl.col("agency_type").is_in(sorted(STATE_ENFORCEMENT_AGENCY_TYPES))
+    )
 
 
 def _formal_officer_label(name: str | None, title: str | None) -> str:

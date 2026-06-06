@@ -1,12 +1,13 @@
 window.duiScatterDataPayload = {
   "metadata": {
-    "agencyCount": 8,
+    "agencyCount": 9,
+    "agencyScope": "Orange County local/in-county agencies plus state enforcement agencies; out-of-county agencies excluded",
     "grain": "agency/officer/anonymized filing-period bucket",
     "minBucketCases": 3,
     "minOfficerCases": 6,
-    "officerCount": 32,
+    "officerCount": 35,
     "period": "last 12 court-filing months",
-    "rowCount": 80,
+    "rowCount": 95,
     "source": "court_filings current_state parquet joined to dim_agency.display_name and dim_officer display fields"
   },
   "rows": [
@@ -36,6 +37,141 @@ window.duiScatterDataPayload = {
       "officer": "Zachary Mathews",
       "officerLabel": "Officer Mathews",
       "under08Count": 2
+    },
+    {
+      "agency": "Florida Highway Patrol",
+      "bac": 0.152,
+      "caseCount": 5,
+      "month": 8,
+      "officer": "Kristopher Hall",
+      "officerLabel": "Trooper Hall",
+      "under08Count": 1
+    },
+    {
+      "agency": "Florida Highway Patrol",
+      "bac": 0.012,
+      "caseCount": 5,
+      "month": 10,
+      "officer": "Kristopher Hall",
+      "officerLabel": "Trooper Hall",
+      "under08Count": 4
+    },
+    {
+      "agency": "Florida Highway Patrol",
+      "bac": 0.106,
+      "caseCount": 4,
+      "month": 12,
+      "officer": "Kristopher Hall",
+      "officerLabel": "Trooper Hall",
+      "under08Count": 2
+    },
+    {
+      "agency": "Florida Highway Patrol",
+      "bac": 0.181,
+      "caseCount": 3,
+      "month": 1,
+      "officer": "Rogers Garcia",
+      "officerLabel": "Trooper Garcia",
+      "under08Count": 1
+    },
+    {
+      "agency": "Florida Highway Patrol",
+      "bac": 0.117,
+      "caseCount": 5,
+      "month": 2,
+      "officer": "Rogers Garcia",
+      "officerLabel": "Trooper Garcia",
+      "under08Count": 1
+    },
+    {
+      "agency": "Florida Highway Patrol",
+      "bac": 0.071,
+      "caseCount": 4,
+      "month": 1,
+      "officer": "Tyler Novak",
+      "officerLabel": "Trooper Novak",
+      "under08Count": 2
+    },
+    {
+      "agency": "Florida Highway Patrol",
+      "bac": 0.141,
+      "caseCount": 7,
+      "month": 2,
+      "officer": "Tyler Novak",
+      "officerLabel": "Trooper Novak",
+      "under08Count": 2
+    },
+    {
+      "agency": "Florida Highway Patrol",
+      "bac": 0.157,
+      "caseCount": 6,
+      "month": 3,
+      "officer": "Tyler Novak",
+      "officerLabel": "Trooper Novak",
+      "under08Count": 1
+    },
+    {
+      "agency": "Florida Highway Patrol",
+      "bac": 0.192,
+      "caseCount": 4,
+      "month": 4,
+      "officer": "Tyler Novak",
+      "officerLabel": "Trooper Novak",
+      "under08Count": 0
+    },
+    {
+      "agency": "Florida Highway Patrol",
+      "bac": 0.123,
+      "caseCount": 6,
+      "month": 5,
+      "officer": "Tyler Novak",
+      "officerLabel": "Trooper Novak",
+      "under08Count": 1
+    },
+    {
+      "agency": "Florida Highway Patrol",
+      "bac": 0.186,
+      "caseCount": 8,
+      "month": 6,
+      "officer": "Tyler Novak",
+      "officerLabel": "Trooper Novak",
+      "under08Count": 1
+    },
+    {
+      "agency": "Florida Highway Patrol",
+      "bac": 0.076,
+      "caseCount": 6,
+      "month": 8,
+      "officer": "Tyler Novak",
+      "officerLabel": "Trooper Novak",
+      "under08Count": 3
+    },
+    {
+      "agency": "Florida Highway Patrol",
+      "bac": 0.05,
+      "caseCount": 8,
+      "month": 10,
+      "officer": "Tyler Novak",
+      "officerLabel": "Trooper Novak",
+      "under08Count": 4
+    },
+    {
+      "agency": "Florida Highway Patrol",
+      "bac": 0.122,
+      "caseCount": 3,
+      "month": 11,
+      "officer": "Tyler Novak",
+      "officerLabel": "Trooper Novak",
+      "under08Count": 1
+    },
+    {
+      "agency": "Florida Highway Patrol",
+      "bac": 0.086,
+      "caseCount": 8,
+      "month": 12,
+      "officer": "Tyler Novak",
+      "officerLabel": "Trooper Novak",
+      "under08Count": 3
     },
     {
       "agency": "Maitland Police Department",
