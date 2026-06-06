@@ -118,7 +118,7 @@
                     </div>
                 </div>
             </details>
-            <p class="text-xs text-gray-400 mt-3">Draft visualization uses sample aggregate data. Production should use canonical agency and officer dimensions.</p>
+            <p class="text-xs text-gray-400 mt-3">Generated aggregate court-data view. Agency and officer labels use canonical dimensions; low-support buckets are suppressed.</p>
         </section>
 
         <section class="bg-blue-600 rounded-xl shadow-lg p-5 md:p-6 mb-6">
@@ -221,39 +221,12 @@
         </a>
     </div>
 
+    <script src="data/dui-scatter-data.js"></script>
     <script>
         document.getElementById('yr').textContent = new Date().getFullYear();
 
-        const duiScatterData = [
-            { agency: 'Orlando Police Department', officer: 'Officer Adams', month: 1, bac: 0.07 },
-            { agency: 'Orlando Police Department', officer: 'Officer Adams', month: 2, bac: 0.09 },
-            { agency: 'Orlando Police Department', officer: 'Officer Adams', month: 4, bac: 0.12 },
-            { agency: 'Orlando Police Department', officer: 'Officer Adams', month: 6, bac: 0.16 },
-            { agency: 'Orlando Police Department', officer: 'Officer Adams', month: 9, bac: 0.10 },
-            { agency: 'Orlando Police Department', officer: 'Officer Brooks', month: 1, bac: 0.11 },
-            { agency: 'Orlando Police Department', officer: 'Officer Brooks', month: 3, bac: 0.14 },
-            { agency: 'Orlando Police Department', officer: 'Officer Brooks', month: 5, bac: 0.18 },
-            { agency: 'Orlando Police Department', officer: 'Officer Brooks', month: 8, bac: 0.13 },
-            { agency: 'Orlando Police Department', officer: 'Officer Cruz', month: 2, bac: 0.06 },
-            { agency: 'Orlando Police Department', officer: 'Officer Cruz', month: 7, bac: 0.15 },
-            { agency: 'Orlando Police Department', officer: 'Officer Cruz', month: 10, bac: 0.19 },
-            { agency: 'Orange County Sheriff Office', officer: 'Deputy Ellis', month: 1, bac: 0.08 },
-            { agency: 'Orange County Sheriff Office', officer: 'Deputy Ellis', month: 4, bac: 0.11 },
-            { agency: 'Orange County Sheriff Office', officer: 'Deputy Ellis', month: 7, bac: 0.17 },
-            { agency: 'Orange County Sheriff Office', officer: 'Deputy Ellis', month: 11, bac: 0.21 },
-            { agency: 'Orange County Sheriff Office', officer: 'Deputy Grant', month: 2, bac: 0.10 },
-            { agency: 'Orange County Sheriff Office', officer: 'Deputy Grant', month: 5, bac: 0.13 },
-            { agency: 'Orange County Sheriff Office', officer: 'Deputy Grant', month: 9, bac: 0.12 },
-            { agency: 'Orange County Sheriff Office', officer: 'Deputy Hart', month: 3, bac: 0.09 },
-            { agency: 'Orange County Sheriff Office', officer: 'Deputy Hart', month: 6, bac: 0.16 },
-            { agency: 'Orange County Sheriff Office', officer: 'Deputy Hart', month: 8, bac: 0.22 },
-            { agency: 'Winter Park Police Department', officer: 'Officer Lane', month: 1, bac: 0.12 },
-            { agency: 'Winter Park Police Department', officer: 'Officer Lane', month: 4, bac: 0.14 },
-            { agency: 'Winter Park Police Department', officer: 'Officer Lane', month: 9, bac: 0.18 },
-            { agency: 'Winter Park Police Department', officer: 'Officer Moore', month: 3, bac: 0.08 },
-            { agency: 'Winter Park Police Department', officer: 'Officer Moore', month: 5, bac: 0.11 },
-            { agency: 'Winter Park Police Department', officer: 'Officer Moore', month: 10, bac: 0.15 }
-        ];
+        const duiScatterDataPayload = window.duiScatterDataPayload || { rows: [] };
+        const duiScatterData = Array.isArray(duiScatterDataPayload.rows) ? duiScatterDataPayload.rows : [];
 
         const agencySelect = document.getElementById('agency-filter');
         const officerSelect = document.getElementById('officer-filter');
@@ -270,6 +243,28 @@
 
         function uniqueValues(items, key) {
             return Array.from(new Set(items.map(item => item[key]))).sort();
+        }
+
+        function setSelectOptions(select, options, allLabel) {
+            select.textContent = '';
+            const allOption = document.createElement('option');
+            allOption.value = 'all';
+            allOption.textContent = allLabel;
+            select.appendChild(allOption);
+            options.forEach(value => {
+                const option = document.createElement('option');
+                option.value = value;
+                option.textContent = value;
+                select.appendChild(option);
+            });
+        }
+
+        function caseCountFor(rows) {
+            return rows.reduce((total, row) => total + Number(row.caseCount || 1), 0);
+        }
+
+        function under08CountFor(rows) {
+            return rows.reduce((total, row) => total + Number(row.under08Count || (row.bac < 0.08 ? 1 : 0)), 0);
         }
 
         function median(values) {
@@ -311,14 +306,14 @@
         }
 
         function populateFilters() {
-            agencySelect.innerHTML = '<option value="all">All agencies</option>' + uniqueValues(duiScatterData, 'agency').map(agency => `<option value="${agency}">${agency}</option>`).join('');
+            setSelectOptions(agencySelect, uniqueValues(duiScatterData, 'agency'), 'All agencies');
             updateOfficerOptions();
         }
 
         function updateOfficerOptions() {
             const agency = agencySelect.value;
             const rows = agency === 'all' ? duiScatterData : duiScatterData.filter(row => row.agency === agency);
-            officerSelect.innerHTML = '<option value="all">All officers</option>' + uniqueValues(rows, 'officer').map(officer => `<option value="${officer}">${officer}</option>`).join('');
+            setSelectOptions(officerSelect, uniqueValues(rows, 'officer'), 'All officers');
         }
 
         function findUniqueOfficerMatch(requestedOfficer) {
@@ -364,7 +359,7 @@
             if (selectedOfficer === 'all') return '--';
             const counts = {};
             rows.forEach(row => {
-                counts[row.officer] = (counts[row.officer] || 0) + 1;
+                counts[row.officer] = (counts[row.officer] || 0) + Number(row.caseCount || 1);
             });
             const ranked = Object.entries(counts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
             const index = ranked.findIndex(([officer]) => officer === selectedOfficer);
@@ -387,8 +382,9 @@
             const pad = { left: 50, right: 18, top: 18, bottom: 42 };
             const plotW = width - pad.left - pad.right;
             const plotH = height - pad.top - pad.bottom;
-            const xFor = month => pad.left + ((month - 1) / 10) * plotW;
-            const yFor = bac => pad.top + (1 - (bac / 0.24)) * plotH;
+            const axisMax = 0.30;
+            const xFor = month => pad.left + ((month - 1) / 11) * plotW;
+            const yFor = bac => pad.top + (1 - (Math.min(bac, axisMax) / axisMax)) * plotH;
 
             scatterCtx.clearRect(0, 0, width, height);
             scatterCtx.fillStyle = '#f8fafc';
@@ -396,13 +392,13 @@
 
             scatterCtx.strokeStyle = '#e2e8f0';
             scatterCtx.lineWidth = 1;
-            for (let i = 0; i <= 4; i += 1) {
-                const y = pad.top + (i / 4) * plotH;
+            for (let i = 0; i <= 5; i += 1) {
+                const y = pad.top + (i / 5) * plotH;
                 scatterCtx.beginPath();
                 scatterCtx.moveTo(pad.left, y);
                 scatterCtx.lineTo(width - pad.right, y);
                 scatterCtx.stroke();
-                const label = (0.24 - i * 0.06).toFixed(2).replace(/^0/, '');
+                const label = (axisMax - i * 0.06).toFixed(2).replace(/^0/, '');
                 scatterCtx.fillStyle = '#64748b';
                 scatterCtx.font = '12px Inter, sans-serif';
                 scatterCtx.textAlign = 'right';
@@ -419,7 +415,7 @@
             scatterCtx.fillStyle = '#64748b';
             scatterCtx.textAlign = 'center';
             scatterCtx.font = '12px Inter, sans-serif';
-            ['Jan', 'Mar', 'May', 'Jul', 'Sep', 'Nov'].forEach((label, index) => {
+            ['1', '3', '5', '7', '9', '11'].forEach((label, index) => {
                 scatterCtx.fillText(label, xFor(index * 2 + 1), height - 16);
             });
             scatterCtx.save();
@@ -443,11 +439,11 @@
             });
 
             hookOfficer.textContent = officer === 'all' ? 'your officer' : officer;
-            officerArrests.textContent = String(selectedRows.length);
+            officerArrests.textContent = String(caseCountFor(selectedRows));
             officerRank.textContent = officerRankFor(agencyRowsForOfficer(officer), officer);
             officerOverallRank.textContent = `All officers: ${officerRankFor(duiScatterData, officer)}`;
             officerMedian.textContent = formatBac(median(selectedRows.map(row => row.bac)));
-            officerUnderThreshold.textContent = `Under .08: ${selectedRows.filter(row => row.bac < 0.08).length}`;
+            officerUnderThreshold.textContent = `Under .08: ${under08CountFor(selectedRows)}`;
             officerHighlighted.textContent = officer === 'all' ? 'All' : String(selectedRows.length);
         }
 
