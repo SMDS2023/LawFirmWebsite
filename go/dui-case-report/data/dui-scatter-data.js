@@ -18,6 +18,7 @@ window.duiScatterDataPayload = {
       "month": 1,
       "officer": "Daniel J. Shipley",
       "officerLabel": "Officer Shipley",
+      "refusalCount": 4,
       "under08Count": 2
     },
     {
@@ -27,6 +28,7 @@ window.duiScatterDataPayload = {
       "month": 10,
       "officer": "Juan Sanchez",
       "officerLabel": "Officer Sanchez",
+      "refusalCount": 1,
       "under08Count": 0
     },
     {
@@ -36,6 +38,7 @@ window.duiScatterDataPayload = {
       "month": 11,
       "officer": "Zachary Mathews",
       "officerLabel": "Officer Mathews",
+      "refusalCount": 8,
       "under08Count": 2
     },
     {
@@ -45,6 +48,7 @@ window.duiScatterDataPayload = {
       "month": 8,
       "officer": "Kristopher Hall",
       "officerLabel": "Trooper Hall",
+      "refusalCount": 5,
       "under08Count": 1
     },
     {
@@ -54,6 +58,7 @@ window.duiScatterDataPayload = {
       "month": 10,
       "officer": "Kristopher Hall",
       "officerLabel": "Trooper Hall",
+      "refusalCount": 5,
       "under08Count": 4
     },
     {
@@ -63,6 +68,7 @@ window.duiScatterDataPayload = {
       "month": 12,
       "officer": "Kristopher Hall",
       "officerLabel": "Trooper Hall",
+      "refusalCount": 5,
       "under08Count": 2
     },
     {
@@ -72,6 +78,7 @@ window.duiScatterDataPayload = {
       "month": 1,
       "officer": "Rogers Garcia",
       "officerLabel": "Trooper Garcia",
+      "refusalCount": 4,
       "under08Count": 1
     },
     {
@@ -81,6 +88,7 @@ window.duiScatterDataPayload = {
       "month": 2,
       "officer": "Rogers Garcia",
       "officerLabel": "Trooper Garcia",
+      "refusalCount": 4,
       "under08Count": 1
     },
     {
@@ -90,6 +98,7 @@ window.duiScatterDataPayload = {
       "month": 1,
       "officer": "Tyler Novak",
       "officerLabel": "Trooper Novak",
+      "refusalCount": 25,
       "under08Count": 2
     },
     {
@@ -99,6 +108,7 @@ window.duiScatterDataPayload = {
       "month": 2,
       "officer": "Tyler Novak",
       "officerLabel": "Trooper Novak",
+      "refusalCount": 25,
       "under08Count": 2
     },
     {
@@ -108,6 +118,7 @@ window.duiScatterDataPayload = {
       "month": 3,
       "officer": "Tyler Novak",
       "officerLabel": "Trooper Novak",
+      "refusalCount": 25,
       "under08Count": 1
     },
     {
@@ -117,6 +128,7 @@ window.duiScatterDataPayload = {
       "month": 4,
       "officer": "Tyler Novak",
       "officerLabel": "Trooper Novak",
+      "refusalCount": 25,
       "under08Count": 0
     },
     {
@@ -126,6 +138,7 @@ window.duiScatterDataPayload = {
       "month": 5,
       "officer": "Tyler Novak",
       "officerLabel": "Trooper Novak",
+      "refusalCount": 25,
       "under08Count": 1
     },
     {
@@ -135,6 +148,7 @@ window.duiScatterDataPayload = {
       "month": 6,
       "officer": "Tyler Novak",
       "officerLabel": "Trooper Novak",
+      "refusalCount": 25,
       "under08Count": 1
     },
     {
@@ -144,6 +158,7 @@ window.duiScatterDataPayload = {
       "month": 8,
       "officer": "Tyler Novak",
       "officerLabel": "Trooper Novak",
+      "refusalCount": 25,
       "under08Count": 3
     },
     {
@@ -153,6 +168,7 @@ window.duiScatterDataPayload = {
       "month": 10,
       "officer": "Tyler Novak",
       "officerLabel": "Trooper Novak",
+      "refusalCount": 25,
       "under08Count": 4
     },
     {
@@ -162,6 +178,7 @@ window.duiScatterDataPayload = {
       "month": 11,
       "officer": "Tyler Novak",
       "officerLabel": "Trooper Novak",
+      "refusalCount": 25,
       "under08Count": 1
     },
     {
@@ -171,6 +188,7 @@ window.duiScatterDataPayload = {
       "month": 12,
       "officer": "Tyler Novak",
       "officerLabel": "Trooper Novak",
+      "refusalCount": 25,
       "under08Count": 3
     },
     {
@@ -180,6 +198,7 @@ window.duiScatterDataPayload = {
       "month": 8,
       "officer": "B Rosa",
       "officerLabel": "Officer Rosa",
+      "refusalCount": 8,
       "under08Count": 0
     },
     {
@@ -189,6 +208,7 @@ window.duiScatterDataPayload = {
       "month": 2,
       "officer": "Gary Andrews",
       "officerLabel": "Officer Andrews",
+      "refusalCount": 6,
       "under08Count": 0
     },
     {
@@ -198,6 +218,7 @@ window.duiScatterDataPayload = {
       "month": 6,
       "officer": "Gary Andrews",
       "officerLabel": "Officer Andrews",
+      "refusalCount": 6,
       "under08Count": 1
     },
     {
@@ -207,6 +228,7 @@ window.duiScatterDataPayload = {
       "month": 11,
       "officer": "Gary Andrews",
       "officerLabel": "Officer Andrews",
+      "refusalCount": 6,
       "under08Count": 1
     },
     {
@@ -216,6 +238,7 @@ window.duiScatterDataPayload = {
       "month": 5,
       "officer": "Payton L. Moreno",
       "officerLabel": "Officer Moreno",
+      "refusalCount": 2,
       "under08Count": 0
     },
     {
@@ -225,6 +248,7 @@ window.duiScatterDataPayload = {
       "month": 6,
       "officer": "Payton L. Moreno",
       "officerLabel": "Officer Moreno",
+      "refusalCount": 2,
       "under08Count": 0
     },
     {
@@ -234,6 +258,7 @@ window.duiScatterDataPayload = {
       "month": 7,
       "officer": "Payton L. Moreno",
       "officerLabel": "Officer Moreno",
+      "refusalCount": 2,
       "under08Count": 0
     },
     {
@@ -243,6 +268,7 @@ window.duiScatterDataPayload = {
       "month": 5,
       "officer": "Bryan Valdes",
       "officerLabel": "Officer Valdes",
+      "refusalCount": 4,
       "under08Count": 0
     },
     {
@@ -252,6 +278,7 @@ window.duiScatterDataPayload = {
       "month": 5,
       "officer": "Luis Silva",
       "officerLabel": "Officer Silva",
+      "refusalCount": 7,
       "under08Count": 0
     },
     {
@@ -261,6 +288,7 @@ window.duiScatterDataPayload = {
       "month": 6,
       "officer": "Luis Silva",
       "officerLabel": "Officer Silva",
+      "refusalCount": 7,
       "under08Count": 1
     },
     {
@@ -270,6 +298,7 @@ window.duiScatterDataPayload = {
       "month": 7,
       "officer": "Luis Silva",
       "officerLabel": "Officer Silva",
+      "refusalCount": 7,
       "under08Count": 3
     },
     {
@@ -279,6 +308,7 @@ window.duiScatterDataPayload = {
       "month": 9,
       "officer": "Luis Silva",
       "officerLabel": "Officer Silva",
+      "refusalCount": 7,
       "under08Count": 1
     },
     {
@@ -288,6 +318,7 @@ window.duiScatterDataPayload = {
       "month": 10,
       "officer": "Luis Silva",
       "officerLabel": "Officer Silva",
+      "refusalCount": 7,
       "under08Count": 1
     },
     {
@@ -297,6 +328,7 @@ window.duiScatterDataPayload = {
       "month": 11,
       "officer": "Luis Silva",
       "officerLabel": "Officer Silva",
+      "refusalCount": 7,
       "under08Count": 1
     },
     {
@@ -306,6 +338,7 @@ window.duiScatterDataPayload = {
       "month": 12,
       "officer": "Luis Silva",
       "officerLabel": "Officer Silva",
+      "refusalCount": 7,
       "under08Count": 0
     },
     {
@@ -315,6 +348,7 @@ window.duiScatterDataPayload = {
       "month": 4,
       "officer": "Ajay Bhatia",
       "officerLabel": "Deputy Bhatia",
+      "refusalCount": 5,
       "under08Count": 1
     },
     {
@@ -324,6 +358,7 @@ window.duiScatterDataPayload = {
       "month": 12,
       "officer": "Anthony Acosta",
       "officerLabel": "Deputy Acosta",
+      "refusalCount": 2,
       "under08Count": 0
     },
     {
@@ -333,6 +368,7 @@ window.duiScatterDataPayload = {
       "month": 10,
       "officer": "Benjamin Thomas",
       "officerLabel": "Deputy Thomas",
+      "refusalCount": 11,
       "under08Count": 0
     },
     {
@@ -342,6 +378,7 @@ window.duiScatterDataPayload = {
       "month": 3,
       "officer": "Diarmuid McGrory",
       "officerLabel": "Deputy McGrory",
+      "refusalCount": 3,
       "under08Count": 1
     },
     {
@@ -351,6 +388,7 @@ window.duiScatterDataPayload = {
       "month": 5,
       "officer": "Galloza M. Alicea",
       "officerLabel": "Deputy Alicea",
+      "refusalCount": 5,
       "under08Count": 0
     },
     {
@@ -360,6 +398,7 @@ window.duiScatterDataPayload = {
       "month": 6,
       "officer": "Galloza M. Alicea",
       "officerLabel": "Deputy Alicea",
+      "refusalCount": 5,
       "under08Count": 0
     },
     {
@@ -369,6 +408,7 @@ window.duiScatterDataPayload = {
       "month": 7,
       "officer": "Galloza M. Alicea",
       "officerLabel": "Deputy Alicea",
+      "refusalCount": 5,
       "under08Count": 1
     },
     {
@@ -378,6 +418,7 @@ window.duiScatterDataPayload = {
       "month": 9,
       "officer": "Galloza M. Alicea",
       "officerLabel": "Deputy Alicea",
+      "refusalCount": 5,
       "under08Count": 1
     },
     {
@@ -387,6 +428,7 @@ window.duiScatterDataPayload = {
       "month": 10,
       "officer": "Galloza M. Alicea",
       "officerLabel": "Deputy Alicea",
+      "refusalCount": 5,
       "under08Count": 0
     },
     {
@@ -396,6 +438,7 @@ window.duiScatterDataPayload = {
       "month": 2,
       "officer": "Paul Ortiz",
       "officerLabel": "Deputy Ortiz",
+      "refusalCount": 1,
       "under08Count": 0
     },
     {
@@ -405,6 +448,7 @@ window.duiScatterDataPayload = {
       "month": 1,
       "officer": "Richard Sheiman",
       "officerLabel": "Deputy Sheiman",
+      "refusalCount": 24,
       "under08Count": 3
     },
     {
@@ -414,6 +458,7 @@ window.duiScatterDataPayload = {
       "month": 3,
       "officer": "Richard Sheiman",
       "officerLabel": "Deputy Sheiman",
+      "refusalCount": 24,
       "under08Count": 1
     },
     {
@@ -423,6 +468,7 @@ window.duiScatterDataPayload = {
       "month": 5,
       "officer": "Richard Sheiman",
       "officerLabel": "Deputy Sheiman",
+      "refusalCount": 24,
       "under08Count": 3
     },
     {
@@ -432,6 +478,7 @@ window.duiScatterDataPayload = {
       "month": 6,
       "officer": "Richard Sheiman",
       "officerLabel": "Deputy Sheiman",
+      "refusalCount": 24,
       "under08Count": 5
     },
     {
@@ -441,6 +488,7 @@ window.duiScatterDataPayload = {
       "month": 7,
       "officer": "Richard Sheiman",
       "officerLabel": "Deputy Sheiman",
+      "refusalCount": 24,
       "under08Count": 2
     },
     {
@@ -450,6 +498,7 @@ window.duiScatterDataPayload = {
       "month": 8,
       "officer": "Richard Sheiman",
       "officerLabel": "Deputy Sheiman",
+      "refusalCount": 24,
       "under08Count": 2
     },
     {
@@ -459,6 +508,7 @@ window.duiScatterDataPayload = {
       "month": 10,
       "officer": "Richard Sheiman",
       "officerLabel": "Deputy Sheiman",
+      "refusalCount": 24,
       "under08Count": 2
     },
     {
@@ -468,6 +518,7 @@ window.duiScatterDataPayload = {
       "month": 12,
       "officer": "Richard Sheiman",
       "officerLabel": "Deputy Sheiman",
+      "refusalCount": 24,
       "under08Count": 3
     },
     {
@@ -477,6 +528,7 @@ window.duiScatterDataPayload = {
       "month": 4,
       "officer": "Rosado G. Marrero",
       "officerLabel": "Deputy Marrero",
+      "refusalCount": 8,
       "under08Count": 1
     },
     {
@@ -486,6 +538,7 @@ window.duiScatterDataPayload = {
       "month": 5,
       "officer": "Rosado G. Marrero",
       "officerLabel": "Deputy Marrero",
+      "refusalCount": 8,
       "under08Count": 2
     },
     {
@@ -495,6 +548,7 @@ window.duiScatterDataPayload = {
       "month": 6,
       "officer": "Rosado G. Marrero",
       "officerLabel": "Deputy Marrero",
+      "refusalCount": 8,
       "under08Count": 1
     },
     {
@@ -504,6 +558,7 @@ window.duiScatterDataPayload = {
       "month": 7,
       "officer": "Rosado G. Marrero",
       "officerLabel": "Deputy Marrero",
+      "refusalCount": 8,
       "under08Count": 0
     },
     {
@@ -513,6 +568,7 @@ window.duiScatterDataPayload = {
       "month": 9,
       "officer": "Rosado G. Marrero",
       "officerLabel": "Deputy Marrero",
+      "refusalCount": 8,
       "under08Count": 0
     },
     {
@@ -522,6 +578,7 @@ window.duiScatterDataPayload = {
       "month": 11,
       "officer": "Rosado G. Marrero",
       "officerLabel": "Deputy Marrero",
+      "refusalCount": 8,
       "under08Count": 0
     },
     {
@@ -531,6 +588,7 @@ window.duiScatterDataPayload = {
       "month": 12,
       "officer": "Rosado G. Marrero",
       "officerLabel": "Deputy Marrero",
+      "refusalCount": 8,
       "under08Count": 3
     },
     {
@@ -540,6 +598,7 @@ window.duiScatterDataPayload = {
       "month": 9,
       "officer": "Zachary Jefremow",
       "officerLabel": "Deputy Jefremow",
+      "refusalCount": 5,
       "under08Count": 0
     },
     {
@@ -549,6 +608,7 @@ window.duiScatterDataPayload = {
       "month": 10,
       "officer": "Zachary Jefremow",
       "officerLabel": "Deputy Jefremow",
+      "refusalCount": 5,
       "under08Count": 5
     },
     {
@@ -558,6 +618,7 @@ window.duiScatterDataPayload = {
       "month": 5,
       "officer": "Adem Altinerlielmas",
       "officerLabel": "Officer Altinerlielmas",
+      "refusalCount": 7,
       "under08Count": 0
     },
     {
@@ -567,6 +628,7 @@ window.duiScatterDataPayload = {
       "month": 10,
       "officer": "Adem Altinerlielmas",
       "officerLabel": "Officer Altinerlielmas",
+      "refusalCount": 7,
       "under08Count": 1
     },
     {
@@ -576,6 +638,7 @@ window.duiScatterDataPayload = {
       "month": 8,
       "officer": "Andres Ruiz",
       "officerLabel": "Officer Ruiz",
+      "refusalCount": 4,
       "under08Count": 0
     },
     {
@@ -585,6 +648,7 @@ window.duiScatterDataPayload = {
       "month": 3,
       "officer": "Aracely Cantu",
       "officerLabel": "Officer Cantu",
+      "refusalCount": 3,
       "under08Count": 1
     },
     {
@@ -594,6 +658,7 @@ window.duiScatterDataPayload = {
       "month": 6,
       "officer": "Ariel Clabaugh",
       "officerLabel": "Officer Clabaugh",
+      "refusalCount": 4,
       "under08Count": 0
     },
     {
@@ -603,6 +668,7 @@ window.duiScatterDataPayload = {
       "month": 2,
       "officer": "Damon Daniels",
       "officerLabel": "Officer Daniels",
+      "refusalCount": 3,
       "under08Count": 1
     },
     {
@@ -612,6 +678,7 @@ window.duiScatterDataPayload = {
       "month": 5,
       "officer": "Delince Jules",
       "officerLabel": "Officer Jules",
+      "refusalCount": 26,
       "under08Count": 1
     },
     {
@@ -621,6 +688,7 @@ window.duiScatterDataPayload = {
       "month": 6,
       "officer": "Delince Jules",
       "officerLabel": "Officer Jules",
+      "refusalCount": 26,
       "under08Count": 1
     },
     {
@@ -630,6 +698,7 @@ window.duiScatterDataPayload = {
       "month": 7,
       "officer": "Delince Jules",
       "officerLabel": "Officer Jules",
+      "refusalCount": 26,
       "under08Count": 2
     },
     {
@@ -639,6 +708,7 @@ window.duiScatterDataPayload = {
       "month": 8,
       "officer": "Delince Jules",
       "officerLabel": "Officer Jules",
+      "refusalCount": 26,
       "under08Count": 3
     },
     {
@@ -648,6 +718,7 @@ window.duiScatterDataPayload = {
       "month": 9,
       "officer": "Delince Jules",
       "officerLabel": "Officer Jules",
+      "refusalCount": 26,
       "under08Count": 0
     },
     {
@@ -657,6 +728,7 @@ window.duiScatterDataPayload = {
       "month": 10,
       "officer": "Delince Jules",
       "officerLabel": "Officer Jules",
+      "refusalCount": 26,
       "under08Count": 3
     },
     {
@@ -666,6 +738,7 @@ window.duiScatterDataPayload = {
       "month": 11,
       "officer": "Delince Jules",
       "officerLabel": "Officer Jules",
+      "refusalCount": 26,
       "under08Count": 1
     },
     {
@@ -675,6 +748,7 @@ window.duiScatterDataPayload = {
       "month": 12,
       "officer": "Delince Jules",
       "officerLabel": "Officer Jules",
+      "refusalCount": 26,
       "under08Count": 4
     },
     {
@@ -684,6 +758,7 @@ window.duiScatterDataPayload = {
       "month": 1,
       "officer": "Edwin Rosario",
       "officerLabel": "Officer Rosario",
+      "refusalCount": 8,
       "under08Count": 2
     },
     {
@@ -693,6 +768,7 @@ window.duiScatterDataPayload = {
       "month": 5,
       "officer": "Joseph Vazquez",
       "officerLabel": "Officer Vazquez",
+      "refusalCount": 26,
       "under08Count": 1
     },
     {
@@ -702,6 +778,7 @@ window.duiScatterDataPayload = {
       "month": 6,
       "officer": "Joseph Vazquez",
       "officerLabel": "Officer Vazquez",
+      "refusalCount": 26,
       "under08Count": 1
     },
     {
@@ -711,6 +788,7 @@ window.duiScatterDataPayload = {
       "month": 7,
       "officer": "Joseph Vazquez",
       "officerLabel": "Officer Vazquez",
+      "refusalCount": 26,
       "under08Count": 2
     },
     {
@@ -720,6 +798,7 @@ window.duiScatterDataPayload = {
       "month": 8,
       "officer": "Joseph Vazquez",
       "officerLabel": "Officer Vazquez",
+      "refusalCount": 26,
       "under08Count": 2
     },
     {
@@ -729,6 +808,7 @@ window.duiScatterDataPayload = {
       "month": 9,
       "officer": "Joseph Vazquez",
       "officerLabel": "Officer Vazquez",
+      "refusalCount": 26,
       "under08Count": 2
     },
     {
@@ -738,6 +818,7 @@ window.duiScatterDataPayload = {
       "month": 10,
       "officer": "Joseph Vazquez",
       "officerLabel": "Officer Vazquez",
+      "refusalCount": 26,
       "under08Count": 2
     },
     {
@@ -747,6 +828,7 @@ window.duiScatterDataPayload = {
       "month": 11,
       "officer": "Joseph Vazquez",
       "officerLabel": "Officer Vazquez",
+      "refusalCount": 26,
       "under08Count": 2
     },
     {
@@ -756,6 +838,7 @@ window.duiScatterDataPayload = {
       "month": 12,
       "officer": "Joseph Vazquez",
       "officerLabel": "Officer Vazquez",
+      "refusalCount": 26,
       "under08Count": 4
     },
     {
@@ -765,6 +848,7 @@ window.duiScatterDataPayload = {
       "month": 3,
       "officer": "Joshua Rios",
       "officerLabel": "Officer Rios",
+      "refusalCount": 10,
       "under08Count": 0
     },
     {
@@ -774,6 +858,7 @@ window.duiScatterDataPayload = {
       "month": 4,
       "officer": "Joshua Rios",
       "officerLabel": "Officer Rios",
+      "refusalCount": 10,
       "under08Count": 1
     },
     {
@@ -783,6 +868,7 @@ window.duiScatterDataPayload = {
       "month": 7,
       "officer": "Joshua Rios",
       "officerLabel": "Officer Rios",
+      "refusalCount": 10,
       "under08Count": 0
     },
     {
@@ -792,6 +878,7 @@ window.duiScatterDataPayload = {
       "month": 8,
       "officer": "Joshua Rios",
       "officerLabel": "Officer Rios",
+      "refusalCount": 10,
       "under08Count": 1
     },
     {
@@ -801,6 +888,7 @@ window.duiScatterDataPayload = {
       "month": 9,
       "officer": "Joshua Rios",
       "officerLabel": "Officer Rios",
+      "refusalCount": 10,
       "under08Count": 1
     },
     {
@@ -810,6 +898,7 @@ window.duiScatterDataPayload = {
       "month": 10,
       "officer": "Joshua Rios",
       "officerLabel": "Officer Rios",
+      "refusalCount": 10,
       "under08Count": 2
     },
     {
@@ -819,6 +908,7 @@ window.duiScatterDataPayload = {
       "month": 3,
       "officer": "Juan Carvajal",
       "officerLabel": "Officer Carvajal",
+      "refusalCount": 1,
       "under08Count": 0
     },
     {
@@ -828,6 +918,7 @@ window.duiScatterDataPayload = {
       "month": 3,
       "officer": "Steven Santos",
       "officerLabel": "Officer Santos",
+      "refusalCount": 7,
       "under08Count": 2
     },
     {
@@ -837,6 +928,7 @@ window.duiScatterDataPayload = {
       "month": 7,
       "officer": "William Lufkin",
       "officerLabel": "Officer Lufkin",
+      "refusalCount": 1,
       "under08Count": 3
     },
     {
@@ -846,6 +938,7 @@ window.duiScatterDataPayload = {
       "month": 6,
       "officer": "Corey T. Conte",
       "officerLabel": "Officer Conte",
+      "refusalCount": 3,
       "under08Count": 0
     },
     {
@@ -855,6 +948,7 @@ window.duiScatterDataPayload = {
       "month": 3,
       "officer": "A Torres",
       "officerLabel": "Officer Torres",
+      "refusalCount": 2,
       "under08Count": 1
     },
     {
@@ -864,6 +958,7 @@ window.duiScatterDataPayload = {
       "month": 9,
       "officer": "C Campbell",
       "officerLabel": "Officer Campbell",
+      "refusalCount": 8,
       "under08Count": 1
     }
   ]

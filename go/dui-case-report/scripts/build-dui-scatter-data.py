@@ -3,8 +3,9 @@
 
 The public artifact contains only canonical agency/officer labels, anonymized
 filing-period buckets, formal title/last officer labels, aggregate case counts,
-bucket median BAC, and under-.08 counts. It intentionally excludes case numbers,
-defendant names, exact dates, raw filing text, and database credentials.
+bucket median BAC, aggregate refusal counts, and under-.08 counts. It
+intentionally excludes case numbers, defendant names, exact dates, raw filing
+text, and database credentials.
 """
 
 from __future__ import annotations
@@ -94,7 +95,7 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
     agency_dim = dim_agency.select(["agency_key", "display_name", "agency_type", "officer_title"])
     officer_dim = dim_officer.select(["officer_key", "canonical_name", "name_full_formal"])
 
-    case_level = (
+    scoped_cases = (
         filings
         .filter(
             (pl.col("is_dui") == True)
@@ -103,8 +104,6 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
             & (pl.col("file_date") >= pl.lit(period_start))
             & pl.col("primary_agency_key").is_not_null()
             & pl.col("primary_officer_key").is_not_null()
-            & pl.col("bac_value").is_not_null()
-            & pl.col("bac_value").is_between(0, 0.50)
         )
         .select([
             "case_number",
@@ -114,6 +113,7 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
             "primary_agency",
             "primary_officer",
             "bac_value",
+            "alcohol_test_refused",
         ])
         .group_by("case_number")
         .agg([
@@ -123,6 +123,7 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
             pl.col("primary_agency").drop_nulls().first().alias("primary_agency"),
             pl.col("primary_officer").drop_nulls().first().alias("primary_officer"),
             pl.col("bac_value").max().alias("bac"),
+            pl.col("alcohol_test_refused").fill_null(False).max().alias("refused"),
         ])
         .join(agency_dim, on="agency_key", how="left")
         .join(officer_dim, on="officer_key", how="left")
@@ -147,6 +148,8 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
         )
     )
 
+    case_level = scoped_cases.filter(pl.col("bac").is_not_null() & pl.col("bac").is_between(0, 0.50))
+
     officer_totals = (
         case_level
         .group_by(["agency", "officer"])
@@ -154,14 +157,23 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
         .filter(pl.col("total_cases") >= MIN_OFFICER_CASES)
     )
 
+    refusal_totals = (
+        scoped_cases
+        .join(officer_totals.select(["agency", "officer"]), on=["agency", "officer"], how="inner")
+        .group_by(["agency", "officer"])
+        .agg(pl.col("refused").sum().alias("refusalCount"))
+    )
+
     bucketed = (
         case_level
         .join(officer_totals, on=["agency", "officer"], how="inner")
+        .join(refusal_totals, on=["agency", "officer"], how="left")
         .group_by(["agency", "officer", "officer_title", "month"])
         .agg([
             pl.len().alias("caseCount"),
             pl.col("bac").median().round(3).alias("bac"),
             (pl.col("bac") < 0.08).sum().alias("under08Count"),
+            pl.col("refusalCount").drop_nulls().first().fill_null(0).alias("refusalCount"),
         ])
         .filter(pl.col("caseCount") >= MIN_BUCKET_CASES)
         .sort(["agency", "officer", "month"])
@@ -177,6 +189,7 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
             "bac": float(row["bac"]),
             "caseCount": int(row["caseCount"]),
             "under08Count": int(row["under08Count"]),
+            "refusalCount": int(row["refusalCount"]),
         }
         for row in bucketed.iter_rows(named=True)
     ]
@@ -201,7 +214,7 @@ def assert_safe_payload(payload: dict) -> None:
         if key in text:
             raise RuntimeError(f"Forbidden field leaked into artifact: {key}")
     for row in payload["rows"]:
-        missing = {"agency", "officer", "officerLabel", "month", "bac", "caseCount", "under08Count"} - set(row)
+        missing = {"agency", "officer", "officerLabel", "month", "bac", "caseCount", "under08Count", "refusalCount"} - set(row)
         if missing:
             raise RuntimeError(f"Row missing required keys: {sorted(missing)}")
         if not (1 <= int(row["month"]) <= 12):
