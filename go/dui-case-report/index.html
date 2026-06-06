@@ -64,6 +64,9 @@
             <p class="text-lg text-gray-600 text-center lg:text-left max-w-3xl">
                 Here is how that officer's DUI enforcement compares across the county — based only on public court records, with no personal details shown.
             </p>
+            <p id="preselect-note" class="hidden mt-3 rounded-lg bg-blue-50 border border-blue-100 px-4 py-3 text-sm text-blue-900 text-center lg:text-left">
+                Your mailer link pre-selected this aggregate agency/officer view. These points are not your case.
+            </p>
 
             <dl class="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-5">
                 <div class="rounded-xl bg-white border border-blue-100 shadow-sm p-4">
@@ -259,6 +262,7 @@
         const officerRank = document.getElementById('officer-rank');
         const officerMedian = document.getElementById('officer-median');
         const officerHighlighted = document.getElementById('officer-highlighted');
+        const preselectNote = document.getElementById('preselect-note');
 
         function uniqueValues(items, key) {
             return Array.from(new Set(items.map(item => item[key]))).sort();
@@ -275,6 +279,33 @@
             return value === null ? '--' : value.toFixed(3).replace(/^0/, '');
         }
 
+        function normalizeLookupValue(value) {
+            return String(value || '').trim().toLowerCase();
+        }
+
+        function findKnownValue(values, requestedValue) {
+            const normalizedRequest = normalizeLookupValue(requestedValue);
+            if (!normalizedRequest) return null;
+            return values.find(value => normalizeLookupValue(value) === normalizedRequest) || null;
+        }
+
+        function getDeepLinkParams() {
+            const query = new URLSearchParams(window.location.search);
+            const hashText = window.location.hash.replace(/^#\\??/, '');
+            const hash = hashText.includes('=') ? new URLSearchParams(hashText) : new URLSearchParams();
+            const read = (...keys) => {
+                for (const key of keys) {
+                    const value = query.get(key) || hash.get(key);
+                    if (value) return value;
+                }
+                return '';
+            };
+            return {
+                agency: read('agency', 'a'),
+                officer: read('officer', 'o')
+            };
+        }
+
         function populateFilters() {
             agencySelect.innerHTML = '<option value="all">All agencies</option>' + uniqueValues(duiScatterData, 'agency').map(agency => `<option value="${agency}">${agency}</option>`).join('');
             updateOfficerOptions();
@@ -284,6 +315,45 @@
             const agency = agencySelect.value;
             const rows = agency === 'all' ? duiScatterData : duiScatterData.filter(row => row.agency === agency);
             officerSelect.innerHTML = '<option value="all">All officers</option>' + uniqueValues(rows, 'officer').map(officer => `<option value="${officer}">${officer}</option>`).join('');
+        }
+
+        function findUniqueOfficerMatch(requestedOfficer) {
+            const knownOfficers = uniqueValues(duiScatterData, 'officer');
+            const officer = findKnownValue(knownOfficers, requestedOfficer);
+            if (!officer) return null;
+            const agencies = uniqueValues(duiScatterData.filter(row => row.officer === officer), 'agency');
+            return agencies.length === 1 ? { agency: agencies[0], officer } : null;
+        }
+
+        function applyDeepLinkPreselect() {
+            const params = getDeepLinkParams();
+            const agencies = uniqueValues(duiScatterData, 'agency');
+            const requestedAgency = findKnownValue(agencies, params.agency);
+            const uniqueOfficerMatch = findUniqueOfficerMatch(params.officer);
+            let applied = false;
+
+            if (requestedAgency) {
+                agencySelect.value = requestedAgency;
+                updateOfficerOptions();
+                applied = true;
+            } else if (uniqueOfficerMatch) {
+                agencySelect.value = uniqueOfficerMatch.agency;
+                updateOfficerOptions();
+                applied = true;
+            }
+
+            if (params.officer) {
+                const currentOfficers = Array.from(officerSelect.options).map(option => option.value);
+                const requestedOfficer = findKnownValue(currentOfficers, params.officer);
+                if (requestedOfficer) {
+                    officerSelect.value = requestedOfficer;
+                    applied = true;
+                }
+            }
+
+            if (applied) {
+                preselectNote.classList.remove('hidden');
+            }
         }
 
         function officerRankFor(rows, selectedOfficer) {
@@ -376,6 +446,7 @@
         officerSelect.addEventListener('change', drawScatter);
         window.addEventListener('resize', drawScatter);
         populateFilters();
+        applyDeepLinkPreselect();
         drawScatter();
 
         document.getElementById('private-report-form').addEventListener('submit', function (event) {
