@@ -76,6 +76,7 @@
                 <div class="rounded-xl bg-white border border-blue-100 shadow-sm p-4">
                     <dt class="text-xs font-bold text-gray-500 uppercase tracking-wide">Agency rank</dt>
                     <dd id="officer-rank" class="text-3xl font-extrabold text-blue-950 mt-1">--</dd>
+                    <p id="officer-overall-rank" class="text-xs font-semibold text-gray-500 mt-1">All officers: --</p>
                 </div>
                 <div class="rounded-xl bg-white border border-blue-100 shadow-sm p-4">
                     <dt class="text-xs font-bold text-gray-500 uppercase tracking-wide">Median BAC</dt>
@@ -261,6 +262,7 @@
         const hookOfficer = document.getElementById('hook-officer');
         const officerArrests = document.getElementById('officer-arrests');
         const officerRank = document.getElementById('officer-rank');
+        const officerOverallRank = document.getElementById('officer-overall-rank');
         const officerMedian = document.getElementById('officer-median');
         const officerHighlighted = document.getElementById('officer-highlighted');
         const officerUnderThreshold = document.getElementById('officer-under-threshold');
@@ -369,6 +371,12 @@
             return index === -1 ? '--' : `#${index + 1}`;
         }
 
+        function agencyRowsForOfficer(selectedOfficer) {
+            if (selectedOfficer === 'all') return [];
+            const agencies = uniqueValues(duiScatterData.filter(row => row.officer === selectedOfficer), 'agency');
+            return agencies.length === 1 ? duiScatterData.filter(row => row.agency === agencies[0]) : [];
+        }
+
         function drawScatter() {
             const agency = agencySelect.value;
             const officer = officerSelect.value;
@@ -436,7 +444,8 @@
 
             hookOfficer.textContent = officer === 'all' ? 'your officer' : officer;
             officerArrests.textContent = String(selectedRows.length);
-            officerRank.textContent = officerRankFor(baseRows, officer);
+            officerRank.textContent = officerRankFor(agencyRowsForOfficer(officer), officer);
+            officerOverallRank.textContent = `All officers: ${officerRankFor(duiScatterData, officer)}`;
             officerMedian.textContent = formatBac(median(selectedRows.map(row => row.bac)));
             officerUnderThreshold.textContent = `Under .08: ${selectedRows.filter(row => row.bac < 0.08).length}`;
             officerHighlighted.textContent = officer === 'all' ? 'All' : String(selectedRows.length);
