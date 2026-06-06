@@ -2,9 +2,9 @@
 """Build privacy-safe aggregate DUI scatter data for the static page.
 
 The public artifact contains only canonical agency/officer labels, anonymized
-filing-period buckets, aggregate case counts, bucket median BAC, and under-.08
-counts. It intentionally excludes case numbers, defendant names, exact dates,
-raw filing text, and database credentials.
+filing-period buckets, formal title/last officer labels, aggregate case counts,
+bucket median BAC, and under-.08 counts. It intentionally excludes case numbers,
+defendant names, exact dates, raw filing text, and database credentials.
 """
 
 from __future__ import annotations
@@ -69,7 +69,7 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
         raise RuntimeError("No DUI filing dates available")
 
     period_start = _start_month(max_filing_date)
-    agency_dim = dim_agency.select(["agency_key", "display_name"])
+    agency_dim = dim_agency.select(["agency_key", "display_name", "officer_title"])
     officer_dim = dim_officer.select(["officer_key", "canonical_name", "name_full_formal"])
 
     case_level = (
@@ -132,7 +132,7 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
     bucketed = (
         case_level
         .join(officer_totals, on=["agency", "officer"], how="inner")
-        .group_by(["agency", "officer", "month"])
+        .group_by(["agency", "officer", "officer_title", "month"])
         .agg([
             pl.len().alias("caseCount"),
             pl.col("bac").median().round(3).alias("bac"),
@@ -147,6 +147,7 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
         {
             "agency": row["agency"],
             "officer": row["officer"],
+            "officerLabel": _formal_officer_label(row["officer"], row.get("officer_title")),
             "month": int(row["month"]),
             "bac": float(row["bac"]),
             "caseCount": int(row["caseCount"]),
@@ -174,13 +175,22 @@ def assert_safe_payload(payload: dict) -> None:
         if key in text:
             raise RuntimeError(f"Forbidden field leaked into artifact: {key}")
     for row in payload["rows"]:
-        missing = {"agency", "officer", "month", "bac", "caseCount", "under08Count"} - set(row)
+        missing = {"agency", "officer", "officerLabel", "month", "bac", "caseCount", "under08Count"} - set(row)
         if missing:
             raise RuntimeError(f"Row missing required keys: {sorted(missing)}")
         if not (1 <= int(row["month"]) <= 12):
             raise RuntimeError(f"Month bucket out of range: {row['month']}")
         if int(row["caseCount"]) < MIN_BUCKET_CASES:
             raise RuntimeError("Bucket support below public threshold")
+
+
+def _formal_officer_label(name: str | None, title: str | None) -> str:
+    cleaned_name = " ".join(str(name or "").replace(",", " ").split())
+    cleaned_title = " ".join(str(title or "").split()) or "Officer"
+    if not cleaned_name:
+        return cleaned_title or "Officer"
+    last_name = cleaned_name.split()[-1]
+    return f"{cleaned_title} {last_name}".strip() or cleaned_name
 
 
 def write_artifact(rows: list[dict], metadata: dict, out_path: Path) -> None:

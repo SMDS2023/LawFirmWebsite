@@ -251,10 +251,10 @@
             allOption.value = 'all';
             allOption.textContent = allLabel;
             select.appendChild(allOption);
-            options.forEach(value => {
+            options.forEach(item => {
                 const option = document.createElement('option');
-                option.value = value;
-                option.textContent = value;
+                option.value = typeof item === 'string' ? item : item.value;
+                option.textContent = typeof item === 'string' ? item : item.label;
                 select.appendChild(option);
             });
         }
@@ -265,6 +265,36 @@
 
         function under08CountFor(rows) {
             return rows.reduce((total, row) => total + Number(row.under08Count || (row.bac < 0.08 ? 1 : 0)), 0);
+        }
+
+        function formatDuiCount(count) {
+            return `${count} DUI${count === 1 ? '' : 's'}`;
+        }
+
+        function officerGroupsFor(rows) {
+            const groups = new Map();
+            rows.forEach(row => {
+                const group = groups.get(row.officer) || {
+                    value: row.officer,
+                    formalName: row.officerLabel || row.officer,
+                    agency: row.agency,
+                    count: 0
+                };
+                group.count += Number(row.caseCount || 1);
+                groups.set(row.officer, group);
+            });
+            return Array.from(groups.values())
+                .sort((a, b) => a.formalName.localeCompare(b.formalName) || a.agency.localeCompare(b.agency))
+                .map(group => ({
+                    value: group.value,
+                    label: `${group.formalName} - ${group.agency} - ${formatDuiCount(group.count)}`
+                }));
+        }
+
+        function officerLabelFor(selectedOfficer, rows) {
+            if (selectedOfficer === 'all') return 'your officer';
+            const row = rows.find(item => item.officer === selectedOfficer) || duiScatterData.find(item => item.officer === selectedOfficer);
+            return row ? (row.officerLabel || row.officer) : selectedOfficer;
         }
 
         function median(values) {
@@ -313,7 +343,7 @@
         function updateOfficerOptions() {
             const agency = agencySelect.value;
             const rows = agency === 'all' ? duiScatterData : duiScatterData.filter(row => row.agency === agency);
-            setSelectOptions(officerSelect, uniqueValues(rows, 'officer'), 'All officers');
+            setSelectOptions(officerSelect, officerGroupsFor(rows), `All officers - ${formatDuiCount(caseCountFor(rows))}`);
         }
 
         function findUniqueOfficerMatch(requestedOfficer) {
@@ -438,7 +468,7 @@
                 }
             });
 
-            hookOfficer.textContent = officer === 'all' ? 'your officer' : officer;
+            hookOfficer.textContent = officerLabelFor(officer, selectedRows);
             officerArrests.textContent = String(caseCountFor(selectedRows));
             officerRank.textContent = officerRankFor(agencyRowsForOfficer(officer), officer);
             officerOverallRank.textContent = `All officers: ${officerRankFor(duiScatterData, officer)}`;
