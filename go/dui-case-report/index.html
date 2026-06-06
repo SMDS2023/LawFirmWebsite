@@ -130,6 +130,10 @@
                 </div>
                 <form id="private-report-form" class="bg-white rounded-xl p-4 space-y-3 lg:w-[360px] shrink-0" novalidate>
                     <div>
+                        <label for="name" class="block text-xs font-semibold text-gray-700 mb-1">Name</label>
+                        <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100">
+                    </div>
+                    <div>
                         <label for="case-number" class="block text-xs font-semibold text-gray-700 mb-1">Case number</label>
                         <input id="case-number" name="case-number" type="text" inputmode="text" autocomplete="off" placeholder="Example: 2026-CT-______" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100">
                     </div>
@@ -137,8 +141,8 @@
                         <label for="email" class="block text-xs font-semibold text-gray-700 mb-1">Email</label>
                         <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100">
                     </div>
-                    <label class="flex items-start gap-2 text-xs text-gray-700">
-                        <input type="checkbox" class="mt-0.5 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                    <label for="consultation-consent" class="flex items-start gap-2 text-xs text-gray-700">
+                        <input id="consultation-consent" name="consultation-consent" type="checkbox" class="mt-0.5 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
                         <span>I want Lotter Law to review the case and contact me about a consultation.</span>
                     </label>
                     <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl text-base transition shadow">
@@ -514,17 +518,152 @@
         applyDeepLinkPreselect();
         drawScatter();
 
-        document.getElementById('private-report-form').addEventListener('submit', function (event) {
-            event.preventDefault();
+        const jotformSubmitUrl = 'https://submit.jotform.com/submit/251224345324145';
+
+        function inputValue(id) {
+            return (document.getElementById(id)?.value || '').trim();
+        }
+
+        function splitName(fullName) {
+            const parts = fullName.trim().split(/\s+/);
+            return {
+                first: parts[0] || '',
+                last: parts.slice(1).join(' ')
+            };
+        }
+
+        function isEmail(value) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        }
+
+        function setFormStatus(message, tone) {
             const status = document.getElementById('form-status');
-            status.textContent = 'Draft only: this prototype does not submit or store case numbers, emails, or consultation requests yet.';
-            status.classList.remove('hidden');
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                event: 'private_report_form_draft_submit',
-                page_path: '/go/dui-case-report/',
-                submission_mode: 'blocked_static_prototype'
-            });
+            status.textContent = message;
+            status.classList.remove('hidden', 'bg-blue-50', 'border-blue-200', 'text-blue-900', 'bg-green-50', 'border-green-200', 'text-green-900', 'bg-red-50', 'border-red-200', 'text-red-900');
+            if (tone === 'success') {
+                status.classList.add('bg-green-50', 'border-green-200', 'text-green-900');
+            } else if (tone === 'error') {
+                status.classList.add('bg-red-50', 'border-red-200', 'text-red-900');
+            } else {
+                status.classList.add('bg-blue-50', 'border-blue-200', 'text-blue-900');
+            }
+        }
+
+        function attributionValue(key) {
+            const query = new URLSearchParams(window.location.search);
+            const queryValue = query.get(key);
+            if (queryValue) {
+                sessionStorage.setItem(key, queryValue);
+                return queryValue;
+            }
+            return sessionStorage.getItem(key) || '';
+        }
+
+        function buildJotformPayload() {
+            const fullName = inputValue('name');
+            const name = splitName(fullName);
+            const caseNumber = inputValue('case-number');
+            const email = inputValue('email');
+            const consultationRequested = document.getElementById('consultation-consent').checked;
+            const selectedAgency = agencySelect.value === 'all' ? 'All agencies' : agencySelect.value;
+            const selectedOfficer = officerSelect.value === 'all' ? 'All officers' : officerLabelFor(officerSelect.value, duiScatterData);
+            const selectedOfficerOption = officerSelect.selectedOptions[0]?.textContent || selectedOfficer;
+            const message = [
+                'DUI private report request',
+                `Case number: ${caseNumber}`,
+                `Selected agency: ${selectedAgency}`,
+                `Selected officer: ${selectedOfficer}`,
+                `Officer dropdown: ${selectedOfficerOption}`,
+                `Report type: DUI officer/BAC report`,
+                `Consultation requested: ${consultationRequested ? 'Yes' : 'No'}`,
+                `Source URL: ${window.location.href}`
+            ].join('\n');
+            const formData = new URLSearchParams();
+
+            formData.append('q3_name[first]', name.first);
+            formData.append('q3_name[last]', name.last);
+            formData.append('q5_emailAddress', email);
+            formData.append('q18_caseNumber', caseNumber);
+            formData.append('q10_pleaseExplain', message);
+            formData.append('q23_typeA23', 'DUI / criminal traffic');
+            formData.append('q24_utm_source', attributionValue('utm_source'));
+            formData.append('q25_utm_medium', attributionValue('utm_medium'));
+            formData.append('q26_utm_campaign', attributionValue('utm_campaign'));
+            formData.append('q27_utm_content', attributionValue('utm_content'));
+            formData.append('q28_utm_term', attributionValue('utm_term'));
+            formData.append('q29_gclid', attributionValue('gclid') || attributionValue('fbclid'));
+            formData.append('q30_landing_page', sessionStorage.getItem('landing_page') || window.location.href);
+
+            if (!sessionStorage.getItem('landing_page')) {
+                sessionStorage.setItem('landing_page', window.location.href);
+            }
+
+            return { formData, caseNumber, email, consultationRequested, selectedAgency, selectedOfficer };
+        }
+
+        document.getElementById('private-report-form').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const name = inputValue('name');
+            const caseNumber = inputValue('case-number');
+            const email = inputValue('email');
+            const submitButton = event.currentTarget.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+
+            if (!name || name.length < 2) {
+                setFormStatus('Please enter your name.', 'error');
+                return;
+            }
+            if (!caseNumber) {
+                setFormStatus('Please enter your case number.', 'error');
+                return;
+            }
+            if (!isEmail(email)) {
+                setFormStatus('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            const payload = buildJotformPayload();
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            setFormStatus('Sending your request...', 'info');
+
+            try {
+                const response = await fetch(jotformSubmitUrl, {
+                    method: 'POST',
+                    body: payload.formData,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Jotform returned ${response.status}`);
+                }
+
+                setFormStatus('Request received. We will review it and follow up shortly.', 'success');
+                event.currentTarget.reset();
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: 'private_report_form_submit',
+                    page_path: '/go/dui-case-report/',
+                    submission_mode: 'jotform',
+                    selected_agency: payload.selectedAgency,
+                    selected_officer: payload.selectedOfficer,
+                    consultation_requested: payload.consultationRequested
+                });
+            } catch (error) {
+                console.error('Private report submission error:', error);
+                setFormStatus('We could not send that request. Please call 407-500-7000.', 'error');
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: 'private_report_form_submit_error',
+                    page_path: '/go/dui-case-report/',
+                    submission_mode: 'jotform'
+                });
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
         });
     </script>
 </body>
