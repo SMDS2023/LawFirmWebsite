@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Build privacy-safe aggregate DUI scatter data for the static page.
+"""Build public DUI BAC scatter data for the static page.
 
-The public artifact contains only canonical agency/officer labels, anonymized
-filing-period buckets, formal title/last officer labels, aggregate case counts,
-bucket median BAC, aggregate refusal counts, and under-.08 counts. It
-intentionally excludes case numbers, defendant names, exact dates, raw filing
+The public artifact contains only canonical agency/officer labels, formal
+title/last officer labels, offense dates, BAC values, and aggregate refusal
+counts. It intentionally excludes case numbers, defendant names, raw filing
 text, and database credentials.
 """
 
@@ -21,7 +20,6 @@ import polars as pl
 DEFAULT_DATA_ROOT = Path.home() / "data-analysis" / "output"
 DEFAULT_OUT = Path(__file__).resolve().parents[1] / "data" / "dui-scatter-data.js"
 MIN_OFFICER_CASES = 6
-MIN_BUCKET_CASES = 3
 
 ORANGE_COUNTY_AGENCY_NAMES = {
     "Apopka Police Department",
@@ -54,7 +52,6 @@ FORBIDDEN_KEYS = {
     "citation_number",
     "raw_file_id",
     "file_date",
-    "offense_date",
     "arrest_date",
 }
 
@@ -81,17 +78,17 @@ def _start_month(max_filing_date: date) -> date:
 
 def build_rows(data_root: Path) -> tuple[list[dict], dict]:
     filings, dim_agency, dim_officer = _read_sources(data_root)
-    max_filing_date = (
+    max_offense_date = (
         filings
-        .filter((pl.col("is_dui") == True) & pl.col("file_date").is_not_null())
-        .select(pl.col("file_date").max())
+        .filter((pl.col("is_dui") == True) & pl.col("offense_date").is_not_null())
+        .select(pl.col("offense_date").max())
         .collect()
         .item()
     )
-    if max_filing_date is None:
-        raise RuntimeError("No DUI filing dates available")
+    if max_offense_date is None:
+        raise RuntimeError("No DUI offense dates available")
 
-    period_start = _start_month(max_filing_date)
+    period_start = _start_month(max_offense_date)
     agency_dim = dim_agency.select(["agency_key", "display_name", "agency_type", "officer_title"])
     officer_dim = dim_officer.select(["officer_key", "canonical_name", "name_full_formal"])
 
@@ -100,14 +97,14 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
         .filter(
             (pl.col("is_dui") == True)
             & (~pl.col("is_future").fill_null(False))
-            & pl.col("file_date").is_not_null()
-            & (pl.col("file_date") >= pl.lit(period_start))
+            & pl.col("offense_date").is_not_null()
+            & (pl.col("offense_date") >= pl.lit(period_start))
             & pl.col("primary_agency_key").is_not_null()
             & pl.col("primary_officer_key").is_not_null()
         )
         .select([
             "case_number",
-            "file_date",
+            "offense_date",
             "primary_agency_key",
             "primary_officer_key",
             "primary_agency",
@@ -117,7 +114,7 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
         ])
         .group_by("case_number")
         .agg([
-            pl.col("file_date").min().alias("file_date"),
+            pl.col("offense_date").min().alias("offense_date"),
             pl.col("primary_agency_key").drop_nulls().first().alias("agency_key"),
             pl.col("primary_officer_key").drop_nulls().first().alias("officer_key"),
             pl.col("primary_agency").drop_nulls().first().alias("primary_agency"),
@@ -134,12 +131,6 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
                 pl.col("canonical_name"),
                 pl.col("primary_officer"),
             ]).alias("officer"),
-            (
-                ((pl.col("file_date").dt.year() - period_start.year) * 12)
-                + pl.col("file_date").dt.month()
-                - period_start.month
-                + 1
-            ).cast(pl.Int64).alias("month"),
         ])
         .filter(
             pl.col("agency").is_not_null()
@@ -164,19 +155,16 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
         .agg(pl.col("refused").sum().alias("refusalCount"))
     )
 
-    bucketed = (
+    point_rows = (
         case_level
         .join(officer_totals, on=["agency", "officer"], how="inner")
         .join(refusal_totals, on=["agency", "officer"], how="left")
-        .group_by(["agency", "officer", "officer_title", "month"])
-        .agg([
-            pl.len().alias("caseCount"),
-            pl.col("bac").median().round(3).alias("bac"),
-            (pl.col("bac") < 0.08).sum().alias("under08Count"),
-            pl.col("refusalCount").drop_nulls().first().fill_null(0).alias("refusalCount"),
+        .with_columns([
+            pl.lit(1).alias("caseCount"),
+            (pl.col("bac") < 0.08).cast(pl.Int64).alias("under08Count"),
+            pl.col("refusalCount").fill_null(0),
         ])
-        .filter(pl.col("caseCount") >= MIN_BUCKET_CASES)
-        .sort(["agency", "officer", "month"])
+        .sort(["agency", "officer", "offense_date", "bac"])
         .collect()
     )
 
@@ -185,22 +173,24 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
             "agency": row["agency"],
             "officer": row["officer"],
             "officerLabel": _formal_officer_label(row["officer"], row.get("officer_title")),
-            "month": int(row["month"]),
+            "offenseDate": row["offense_date"].isoformat(),
             "bac": float(row["bac"]),
             "caseCount": int(row["caseCount"]),
             "under08Count": int(row["under08Count"]),
             "refusalCount": int(row["refusalCount"]),
         }
-        for row in bucketed.iter_rows(named=True)
+        for row in point_rows.iter_rows(named=True)
     ]
 
     metadata = {
         "source": "court_filings current_state parquet joined to dim_agency.display_name and dim_officer display fields",
-        "grain": "agency/officer/anonymized filing-period bucket",
-        "period": "last 12 court-filing months",
+        "grain": "agency/officer/offense-date BAC point",
+        "period": "last 12 offense-date months",
+        "dateStart": period_start.isoformat(),
+        "dateEnd": max_offense_date.isoformat(),
+        "dateRangeLabel": f"{_format_display_date(period_start)} - {_format_display_date(max_offense_date)}",
         "agencyScope": "Orange County local/in-county agencies plus state enforcement agencies; out-of-county agencies excluded",
         "minOfficerCases": MIN_OFFICER_CASES,
-        "minBucketCases": MIN_BUCKET_CASES,
         "rowCount": len(rows),
         "agencyCount": len({row["agency"] for row in rows}),
         "officerCount": len({(row["agency"], row["officer"]) for row in rows}),
@@ -214,13 +204,11 @@ def assert_safe_payload(payload: dict) -> None:
         if key in text:
             raise RuntimeError(f"Forbidden field leaked into artifact: {key}")
     for row in payload["rows"]:
-        missing = {"agency", "officer", "officerLabel", "month", "bac", "caseCount", "under08Count", "refusalCount"} - set(row)
+        missing = {"agency", "officer", "officerLabel", "offenseDate", "bac", "caseCount", "under08Count", "refusalCount"} - set(row)
         if missing:
             raise RuntimeError(f"Row missing required keys: {sorted(missing)}")
-        if not (1 <= int(row["month"]) <= 12):
-            raise RuntimeError(f"Month bucket out of range: {row['month']}")
-        if int(row["caseCount"]) < MIN_BUCKET_CASES:
-            raise RuntimeError("Bucket support below public threshold")
+        if not str(row["offenseDate"]):
+            raise RuntimeError("Missing offense date")
 
 
 def _public_agency_scope_expr() -> pl.Expr:
@@ -228,6 +216,10 @@ def _public_agency_scope_expr() -> pl.Expr:
         pl.col("agency").is_in(sorted(ORANGE_COUNTY_AGENCY_NAMES))
         | pl.col("agency_type").is_in(sorted(STATE_ENFORCEMENT_AGENCY_TYPES))
     )
+
+
+def _format_display_date(value: date) -> str:
+    return f"{value.strftime('%b')} {value.day}, {value.year}"
 
 
 def _formal_officer_label(name: str | None, title: str | None) -> str:

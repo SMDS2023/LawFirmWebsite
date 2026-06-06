@@ -113,12 +113,13 @@
                 <div class="rounded-xl border border-gray-200 bg-gray-50 p-3">
                     <canvas id="bac-scatter" class="block w-full h-[280px] md:h-[320px]" width="720" height="340" aria-label="BAC scatter plot"></canvas>
                     <div class="flex justify-between text-xs text-gray-500 px-2 pt-2">
-                        <span>Earlier filings</span>
-                        <span>Recent filings</span>
+                        <span>Earlier offenses</span>
+                        <span>Recent offenses</span>
                     </div>
                 </div>
             </details>
-            <p class="text-xs text-gray-400 mt-3">Generated 12-month aggregate court-data view. Agency and officer labels use canonical dimensions; low-support buckets are suppressed.</p>
+            <p id="chart-date-range" class="text-xs text-gray-500 mt-3">Offense date range: --</p>
+            <p class="text-xs text-gray-400 mt-1">Generated 12-month public-record BAC view. Agency and officer labels use canonical dimensions; case names and identifiers are not shown.</p>
         </section>
 
         <section class="bg-blue-600 rounded-xl shadow-lg p-5 md:p-6 mb-6">
@@ -221,12 +222,13 @@
         </a>
     </div>
 
-    <script src="data/dui-scatter-data.js?v=20260606-refusals"></script>
+    <script src="data/dui-scatter-data.js?v=20260606-offense-bac"></script>
     <script>
         document.getElementById('yr').textContent = new Date().getFullYear();
 
         const duiScatterDataPayload = window.duiScatterDataPayload || { rows: [] };
         const duiScatterData = Array.isArray(duiScatterDataPayload.rows) ? duiScatterDataPayload.rows : [];
+        const duiScatterMetadata = duiScatterDataPayload.metadata || {};
 
         const agencySelect = document.getElementById('agency-filter');
         const officerSelect = document.getElementById('officer-filter');
@@ -240,6 +242,9 @@
         const officerHighlighted = document.getElementById('officer-highlighted');
         const officerUnderThreshold = document.getElementById('officer-under-threshold');
         const preselectNote = document.getElementById('preselect-note');
+        const chartDateRange = document.getElementById('chart-date-range');
+
+        chartDateRange.textContent = `Offense date range: ${duiScatterMetadata.dateRangeLabel || 'last 12 months'}`;
 
         function uniqueValues(items, key) {
             return Array.from(new Set(items.map(item => item[key]))).sort();
@@ -315,6 +320,16 @@
 
         function formatBac(value) {
             return value === null ? '--' : value.toFixed(3).replace(/^0/, '');
+        }
+
+        function dateTimeFor(value) {
+            const time = Date.parse(`${value}T00:00:00`);
+            return Number.isFinite(time) ? time : null;
+        }
+
+        function formatAxisDate(value) {
+            const date = new Date(value);
+            return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
         }
 
         function normalizeLookupValue(value) {
@@ -422,7 +437,18 @@
             const plotW = width - pad.left - pad.right;
             const plotH = height - pad.top - pad.bottom;
             const axisMax = 0.30;
-            const xFor = month => pad.left + ((month - 1) / 11) * plotW;
+            const rowTimes = baseRows.map(row => dateTimeFor(row.offenseDate)).filter(time => time !== null);
+            const metadataStart = dateTimeFor(duiScatterMetadata.dateStart);
+            const metadataEnd = dateTimeFor(duiScatterMetadata.dateEnd);
+            const dateStart = metadataStart ?? Math.min(...rowTimes);
+            const dateEnd = metadataEnd ?? Math.max(...rowTimes);
+            const dateSpan = Math.max(dateEnd - dateStart, 1);
+            const xForDate = value => {
+                const time = dateTimeFor(value);
+                if (time === null) return pad.left;
+                const ratio = Math.max(0, Math.min(1, (time - dateStart) / dateSpan));
+                return pad.left + ratio * plotW;
+            };
             const yFor = bac => pad.top + (1 - (Math.min(bac, axisMax) / axisMax)) * plotH;
 
             scatterCtx.clearRect(0, 0, width, height);
@@ -452,10 +478,14 @@
             scatterCtx.stroke();
 
             scatterCtx.fillStyle = '#64748b';
-            scatterCtx.textAlign = 'center';
             scatterCtx.font = '12px Inter, sans-serif';
-            ['1', '3', '5', '7', '9', '11'].forEach((label, index) => {
-                scatterCtx.fillText(label, xFor(index * 2 + 1), height - 16);
+            [
+                { align: 'left', label: formatAxisDate(dateStart), x: pad.left },
+                { align: 'center', label: formatAxisDate(dateStart + dateSpan / 2), x: pad.left + plotW / 2 },
+                { align: 'right', label: formatAxisDate(dateEnd), x: width - pad.right }
+            ].forEach(tick => {
+                scatterCtx.textAlign = tick.align;
+                scatterCtx.fillText(tick.label, tick.x, height - 16);
             });
             scatterCtx.save();
             scatterCtx.translate(16, height / 2);
@@ -467,7 +497,7 @@
                 const isSelected = officer !== 'all' && row.officer === officer;
                 const isDimmed = officer !== 'all' && !isSelected;
                 scatterCtx.beginPath();
-                scatterCtx.arc(xFor(row.month), yFor(row.bac), isSelected ? 7 : 4.5, 0, Math.PI * 2);
+                scatterCtx.arc(xForDate(row.offenseDate), yFor(row.bac), isSelected ? 5 : 3.5, 0, Math.PI * 2);
                 scatterCtx.fillStyle = isSelected ? '#2563eb' : isDimmed ? 'rgba(148, 163, 184, 0.35)' : 'rgba(15, 23, 42, 0.45)';
                 scatterCtx.fill();
                 if (isSelected) {
