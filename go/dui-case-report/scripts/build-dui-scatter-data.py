@@ -46,8 +46,14 @@ def _read_sources(data_root: Path) -> tuple[pl.LazyFrame, pl.LazyFrame, pl.LazyF
     )
 
 
+def _add_months(value: date, months: int) -> date:
+    month_index = value.year * 12 + (value.month - 1) + months
+    return date(month_index // 12, (month_index % 12) + 1, 1)
+
+
 def _start_month(max_filing_date: date) -> date:
-    return date(max_filing_date.year - 1, max_filing_date.month, 1)
+    # Inclusive 12-month public chart window ending in the latest filing month.
+    return _add_months(date(max_filing_date.year, max_filing_date.month, 1), -11)
 
 
 def build_rows(data_root: Path) -> tuple[list[dict], dict]:
@@ -152,7 +158,7 @@ def build_rows(data_root: Path) -> tuple[list[dict], dict]:
     metadata = {
         "source": "court_filings current_state parquet joined to dim_agency.display_name and dim_officer display fields",
         "grain": "agency/officer/anonymized filing-period bucket",
-        "period": "recent court-filing period buckets",
+        "period": "last 12 court-filing months",
         "minOfficerCases": MIN_OFFICER_CASES,
         "minBucketCases": MIN_BUCKET_CASES,
         "rowCount": len(rows),
@@ -171,7 +177,7 @@ def assert_safe_payload(payload: dict) -> None:
         missing = {"agency", "officer", "month", "bac", "caseCount", "under08Count"} - set(row)
         if missing:
             raise RuntimeError(f"Row missing required keys: {sorted(missing)}")
-        if not (1 <= int(row["month"]) <= 13):
+        if not (1 <= int(row["month"]) <= 12):
             raise RuntimeError(f"Month bucket out of range: {row['month']}")
         if int(row["caseCount"]) < MIN_BUCKET_CASES:
             raise RuntimeError("Bucket support below public threshold")
