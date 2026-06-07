@@ -128,7 +128,7 @@
                     <h2 class="text-2xl font-extrabold">Get a report customized to your case.</h2>
                     <p class="text-blue-100 mt-1 max-w-xl">Enter your case number and we'll prepare a private 24-month report about your arresting officer, your charge, common outcomes, and how long similar cases stay open. No legal advice — just a focused case roadmap.</p>
                 </div>
-                <form id="private-report-form" class="bg-white rounded-xl p-4 space-y-3 lg:w-[360px] shrink-0" novalidate>
+                <form id="private-report-form" class="bg-white rounded-xl p-4 space-y-3 lg:w-[360px] shrink-0" action="https://submit.jotform.com/submit/251224345324145" method="post" target="private-report-jotform-frame" novalidate>
                     <div>
                         <label for="name" class="block text-xs font-semibold text-gray-700 mb-1">Name</label>
                         <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100">
@@ -150,6 +150,7 @@
                     </button>
                     <p id="form-status" class="hidden rounded-lg bg-blue-50 border border-blue-200 px-3 py-2 text-xs text-blue-900"></p>
                 </form>
+                <iframe id="private-report-jotform-frame" name="private-report-jotform-frame" title="Private report form submission" class="hidden"></iframe>
             </div>
         </section>
 
@@ -488,8 +489,6 @@
         applyDeepLinkPreselect();
         drawScatter();
 
-        const jotformSubmitUrl = 'https://submit.jotform.com/submit/251224345324145';
-
         function inputValue(id) {
             return (document.getElementById(id)?.value || '').trim();
         }
@@ -550,6 +549,8 @@
             ].join('\n');
             const formData = new URLSearchParams();
 
+            formData.append('formID', '251224345324145');
+            formData.append('simple_spc', '251224345324145-251224345324145');
             formData.append('q3_name[first]', name.first);
             formData.append('q3_name[last]', name.last);
             formData.append('q5_emailAddress', email);
@@ -571,12 +572,47 @@
             return { formData, caseNumber, email, consultationRequested, selectedAgency, selectedOfficer };
         }
 
-        document.getElementById('private-report-form').addEventListener('submit', async function (event) {
+        function syncJotformHiddenFields(form, formData) {
+            form.querySelectorAll('[data-jotform-field="true"]').forEach(field => field.remove());
+            formData.forEach((value, key) => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = value;
+                input.dataset.jotformField = 'true';
+                form.appendChild(input);
+            });
+        }
+
+        let pendingJotformSubmit = false;
+        let pendingJotformTimer = null;
+
+        function finishJotformSubmit(form, submitButton, originalButtonText, payload) {
+            if (!pendingJotformSubmit) return;
+            pendingJotformSubmit = false;
+            window.clearTimeout(pendingJotformTimer);
+            setFormStatus('Request received. We will review it and follow up shortly.', 'success');
+            form.reset();
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'private_report_form_submit',
+                page_path: '/go/dui-case-report/',
+                submission_mode: 'jotform_iframe',
+                selected_agency: payload.selectedAgency,
+                selected_officer: payload.selectedOfficer,
+                consultation_requested: payload.consultationRequested
+            });
+        }
+
+        document.getElementById('private-report-form').addEventListener('submit', function (event) {
             event.preventDefault();
+            const form = event.currentTarget;
             const name = inputValue('name');
             const caseNumber = inputValue('case-number');
             const email = inputValue('email');
-            const submitButton = event.currentTarget.querySelector('button[type="submit"]');
+            const submitButton = form.querySelector('button[type="submit"]');
             const originalButtonText = submitButton.textContent;
 
             if (!name || name.length < 2) {
@@ -593,47 +629,21 @@
             }
 
             const payload = buildJotformPayload();
+            syncJotformHiddenFields(form, payload.formData);
             submitButton.disabled = true;
             submitButton.textContent = 'Sending...';
             setFormStatus('Sending your request...', 'info');
+            pendingJotformSubmit = true;
 
-            try {
-                const response = await fetch(jotformSubmitUrl, {
-                    method: 'POST',
-                    body: payload.formData,
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
-                });
+            const iframe = document.getElementById('private-report-jotform-frame');
+            iframe.onload = function () {
+                finishJotformSubmit(form, submitButton, originalButtonText, payload);
+            };
+            pendingJotformTimer = window.setTimeout(function () {
+                finishJotformSubmit(form, submitButton, originalButtonText, payload);
+            }, 2500);
 
-                if (!response.ok) {
-                    throw new Error(`Jotform returned ${response.status}`);
-                }
-
-                setFormStatus('Request received. We will review it and follow up shortly.', 'success');
-                event.currentTarget.reset();
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({
-                    event: 'private_report_form_submit',
-                    page_path: '/go/dui-case-report/',
-                    submission_mode: 'jotform',
-                    selected_agency: payload.selectedAgency,
-                    selected_officer: payload.selectedOfficer,
-                    consultation_requested: payload.consultationRequested
-                });
-            } catch (error) {
-                console.error('Private report submission error:', error);
-                setFormStatus('We could not send that request. Please call 407-500-7000.', 'error');
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({
-                    event: 'private_report_form_submit_error',
-                    page_path: '/go/dui-case-report/',
-                    submission_mode: 'jotform'
-                });
-            } finally {
-                submitButton.disabled = false;
-                submitButton.textContent = originalButtonText;
-            }
+            HTMLFormElement.prototype.submit.call(form);
         });
     </script>
 </body>
