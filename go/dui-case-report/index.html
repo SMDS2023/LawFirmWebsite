@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-52LMX48G');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orange County DUI Case Report | Lotter Law Orlando</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="A privacy-safe Orange County DUI case report page from Lotter Law. Review general next steps and request a free consultation.">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%231e40af'/%3E%3Ctext x='16' y='21' font-family='Georgia,serif' font-size='14' font-weight='bold' fill='white' text-anchor='middle'%3ELL%3C/text%3E%3C/svg%3E">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .cta-pulse { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+            50% { box-shadow: 0 0 0 12px rgba(37, 99, 235, 0); }
+        }
+    </style>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'landing_page_view',
+            'letter_type': 'dui_case_report',
+            'page_path': '/go/dui-case-report/'
+        });
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52LMX48G"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="bg-white shadow-sm py-3 px-4">
+        <div class="max-w-lg mx-auto flex justify-between items-center">
+            <a href="../../index.html">
+                <img src="../../assets/Lotter-Law-logo-02.jpg" alt="Lotter Law" class="h-10" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-xl font-bold text-blue-800\'>Lotter Law</span>';">
+            </a>
+            <a href="tel:407-500-7000" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg text-sm transition">
+                Call Now
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-6 pb-28">
+        <section class="mb-6">
+            <p class="text-sm font-semibold text-blue-700 uppercase tracking-wide text-center lg:text-left">Orange County DUI enforcement context</p>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-blue-950 mt-2 mb-2 leading-tight text-center lg:text-left">
+                Look up your arresting officer
+            </h1>
+            <p class="text-lg text-gray-600 text-center lg:text-left max-w-3xl">
+                See how <span id="hook-officer" class="font-semibold text-blue-700">your officer</span>'s DUI enforcement compares across the county — based only on public court records, with no personal details shown.
+            </p>
+            <p id="preselect-note" class="hidden mt-3 rounded-lg bg-blue-50 border border-blue-100 px-4 py-3 text-sm text-blue-900 text-center lg:text-left">
+                Your mailer link pre-selected this aggregate agency/officer view. These points are not your case.
+            </p>
+
+            <dl class="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-5">
+                <div class="rounded-xl bg-white border border-blue-100 shadow-sm p-4">
+                    <dt class="text-xs font-bold text-gray-500 uppercase tracking-wide">DUI arrests</dt>
+                    <dd id="officer-arrests" class="text-3xl font-extrabold text-blue-950 mt-1">--</dd>
+                </div>
+                <div class="rounded-xl bg-white border border-blue-100 shadow-sm p-4">
+                    <dt class="text-xs font-bold text-gray-500 uppercase tracking-wide">Agency rank</dt>
+                    <dd id="officer-rank" class="text-3xl font-extrabold text-blue-950 mt-1">--</dd>
+                    <p id="officer-overall-rank" class="text-xs font-semibold text-gray-500 mt-1">All officers: --</p>
+                </div>
+                <div class="rounded-xl bg-white border border-blue-100 shadow-sm p-4">
+                    <dt class="text-xs font-bold text-gray-500 uppercase tracking-wide">Median BAC</dt>
+                    <dd id="officer-median" class="text-3xl font-extrabold text-blue-950 mt-1">--</dd>
+                    <p id="officer-under-threshold" class="text-xs font-semibold text-gray-500 mt-1">Under .08: --</p>
+                </div>
+                <div class="rounded-xl bg-white border border-blue-100 shadow-sm p-4">
+                    <dt class="text-xs font-bold text-gray-500 uppercase tracking-wide">DUI Refusals</dt>
+                    <dd id="officer-highlighted" class="text-3xl font-extrabold text-blue-950 mt-1">--</dd>
+                </div>
+            </dl>
+        </section>
+
+        <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 md:p-6 mb-6">
+            <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between mb-5">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-blue-950">BAC results by agency and officer</h2>
+                    <p class="text-sm text-gray-600 mt-2 max-w-2xl">Aggregate public-record context. <span class="font-semibold">These are not your case</span> — your own details stay private and appear only in the report you request below.</p>
+                </div>
+                <div class="grid gap-3 sm:grid-cols-2 lg:w-[420px]">
+                    <div>
+                        <label for="agency-filter" class="block text-sm font-semibold text-gray-700 mb-1">Agency</label>
+                        <select id="agency-filter" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100"></select>
+                    </div>
+                    <div>
+                        <label for="officer-filter" class="block text-sm font-semibold text-gray-700 mb-1">Officer</label>
+                        <select id="officer-filter" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100"></select>
+                    </div>
+                </div>
+            </div>
+
+            <details open class="group">
+                <summary class="md:hidden cursor-pointer text-sm font-semibold text-blue-700 mb-3 select-none">Show / hide chart</summary>
+                <div class="rounded-xl border border-gray-200 bg-gray-50 p-3">
+                    <canvas id="bac-scatter" class="block w-full h-[280px] md:h-[320px]" width="720" height="340" aria-label="BAC scatter plot"></canvas>
+                    <div class="flex justify-between text-xs text-gray-500 px-2 pt-2">
+                        <span>Earlier offenses</span>
+                        <span>Recent offenses</span>
+                    </div>
+                </div>
+            </details>
+            <p id="chart-date-range" class="text-xs text-gray-500 mt-3">Offense date range: --</p>
+            <p class="text-xs text-gray-400 mt-1">Generated 12-month public-record BAC view. Agency and officer labels use canonical dimensions; case names and identifiers are not shown.</p>
+        </section>
+
+        <section class="bg-blue-600 rounded-xl shadow-lg p-5 md:p-6 mb-6">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+                <div class="text-white">
+                    <h2 class="text-2xl font-extrabold">Get a report customized to your case.</h2>
+                    <p class="text-blue-100 mt-1 max-w-xl">Enter your case number and we'll prepare a private 24-month report about your arresting officer, your charge, common outcomes, and how long similar cases stay open. No legal advice — just a focused case roadmap.</p>
+                </div>
+                <form id="private-report-form" class="bg-white rounded-xl p-4 space-y-3 lg:w-[360px] shrink-0" action="https://submit.jotform.com/submit/251224345324145" method="post" target="private-report-jotform-frame" novalidate>
+                    <div>
+                        <label for="name" class="block text-xs font-semibold text-gray-700 mb-1">Name</label>
+                        <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100">
+                    </div>
+                    <div>
+                        <label for="case-number" class="block text-xs font-semibold text-gray-700 mb-1">Case number</label>
+                        <input id="case-number" name="case-number" type="text" inputmode="text" autocomplete="off" placeholder="Example: 2026-CT-______" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-xs font-semibold text-gray-700 mb-1">Email</label>
+                        <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100">
+                    </div>
+                    <label for="consultation-consent" class="flex items-start gap-2 text-xs text-gray-700">
+                        <input id="consultation-consent" name="consultation-consent" type="checkbox" class="mt-0.5 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                        <span>I want Lotter Law to review the case and contact me about a consultation.</span>
+                    </label>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl text-base transition shadow">
+                        Get My Private Report
+                    </button>
+                    <p id="form-status" class="hidden rounded-lg bg-blue-50 border border-blue-200 px-3 py-2 text-xs text-blue-900"></p>
+                </form>
+                <iframe id="private-report-jotform-frame" name="private-report-jotform-frame" title="Private report form submission" class="hidden"></iframe>
+            </div>
+        </section>
+
+        <section class="bg-blue-50 rounded-xl p-6 mb-6">
+            <h2 class="text-xl font-bold text-blue-900 mb-3">Why talk with Lotter Law?</h2>
+            <p class="text-gray-700 mb-4">Jeff Lotter is a criminal defense attorney, former Florida State Trooper, former Orange County Deputy Sheriff, and NHTSA-certified DUI Detection Instructor.</p>
+            <p class="text-gray-700">That background helps him look at DUI cases from both sides of the investigation: what the officer was trained to do, and what the State still has to prove.</p>
+        </section>
+
+        <section class="text-center mb-6">
+            <a href="tel:407-500-7000" class="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-xl text-xl transition shadow-lg">
+                407-500-7000
+            </a>
+            <p class="text-gray-500 text-sm mt-2">Free and confidential consultation</p>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-400 py-4 text-center text-sm">
+        <div class="max-w-lg mx-auto px-4">
+            <p>&copy; <span id="yr"></span> Lotter Law. All Rights Reserved.</p>
+            <p class="text-xs mt-1">200 E. Robinson St., Suite 1140, Orlando, FL 32801</p>
+            <p class="text-xs mt-2">The information on this page is for general information purposes only and does not constitute legal advice. Contacting us does not create an attorney-client relationship.</p>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3 md:hidden z-50 flex gap-2">
+        <a href="tel:407-500-7000" class="flex-1 flex items-center justify-center bg-white border border-blue-600 text-blue-700 font-bold py-3 px-3 rounded-lg text-sm transition">
+            Call
+        </a>
+        <a href="#private-report-form" class="flex-[2] flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-3 rounded-lg text-sm transition">
+            Get My Private Report
+        </a>
+    </div>
+
+    <script src="data/dui-scatter-data.js?v=20260606-offense-bac"></script>
+    <script>
+        document.getElementById('yr').textContent = new Date().getFullYear();
+
+        const duiScatterDataPayload = window.duiScatterDataPayload || { rows: [] };
+        const duiScatterData = Array.isArray(duiScatterDataPayload.rows) ? duiScatterDataPayload.rows : [];
+        const duiScatterMetadata = duiScatterDataPayload.metadata || {};
+
+        const agencySelect = document.getElementById('agency-filter');
+        const officerSelect = document.getElementById('officer-filter');
+        const scatterCanvas = document.getElementById('bac-scatter');
+        const scatterCtx = scatterCanvas.getContext('2d');
+        const hookOfficer = document.getElementById('hook-officer');
+        const officerArrests = document.getElementById('officer-arrests');
+        const officerRank = document.getElementById('officer-rank');
+        const officerOverallRank = document.getElementById('officer-overall-rank');
+        const officerMedian = document.getElementById('officer-median');
+        const officerHighlighted = document.getElementById('officer-highlighted');
+        const officerUnderThreshold = document.getElementById('officer-under-threshold');
+        const preselectNote = document.getElementById('preselect-note');
+        const chartDateRange = document.getElementById('chart-date-range');
+
+        chartDateRange.textContent = `Offense date range: ${duiScatterMetadata.dateRangeLabel || 'last 12 months'}`;
+
+        function uniqueValues(items, key) {
+            return Array.from(new Set(items.map(item => item[key]))).sort();
+        }
+
+        function setSelectOptions(select, options, allLabel) {
+            select.textContent = '';
+            const allOption = document.createElement('option');
+            allOption.value = 'all';
+            allOption.textContent = allLabel;
+            select.appendChild(allOption);
+            options.forEach(item => {
+                const option = document.createElement('option');
+                option.value = typeof item === 'string' ? item : item.value;
+                option.textContent = typeof item === 'string' ? item : item.label;
+                select.appendChild(option);
+            });
+        }
+
+        function caseCountFor(rows) {
+            return rows.reduce((total, row) => total + Number(row.caseCount || 1), 0);
+        }
+
+        function under08CountFor(rows) {
+            return rows.reduce((total, row) => total + Number(row.under08Count || (row.bac < 0.08 ? 1 : 0)), 0);
+        }
+
+        function refusalCountFor(rows) {
+            const groups = new Map();
+            rows.forEach(row => {
+                const key = `${row.agency}::${row.officer}`;
+                if (!groups.has(key)) groups.set(key, Number(row.refusalCount || 0));
+            });
+            return Array.from(groups.values()).reduce((total, count) => total + count, 0);
+        }
+
+        function formatDuiCount(count) {
+            return `${count} DUI${count === 1 ? '' : 's'}`;
+        }
+
+        function officerGroupsFor(rows) {
+            const groups = new Map();
+            rows.forEach(row => {
+                const group = groups.get(row.officer) || {
+                    value: row.officer,
+                    formalName: row.officerLabel || row.officer,
+                    agency: row.agency,
+                    count: 0
+                };
+                group.count += Number(row.caseCount || 1);
+                groups.set(row.officer, group);
+            });
+            return Array.from(groups.values())
+                .sort((a, b) => (b.count - a.count) || a.formalName.localeCompare(b.formalName) || a.agency.localeCompare(b.agency))
+                .map(group => ({
+                    value: group.value,
+                    label: `${group.formalName} - ${group.agency} - ${formatDuiCount(group.count)}`
+                }));
+        }
+
+        function officerLabelFor(selectedOfficer, rows) {
+            if (selectedOfficer === 'all') return 'your officer';
+            const row = rows.find(item => item.officer === selectedOfficer) || duiScatterData.find(item => item.officer === selectedOfficer);
+            return row ? (row.officerLabel || row.officer) : selectedOfficer;
+        }
+
+        function median(values) {
+            if (!values.length) return null;
+            const sorted = [...values].sort((a, b) => a - b);
+            const middle = Math.floor(sorted.length / 2);
+            return sorted.length % 2 ? sorted[middle] : (sorted[middle - 1] + sorted[middle]) / 2;
+        }
+
+        function formatBac(value) {
+            return value === null ? '--' : value.toFixed(3).replace(/^0/, '');
+        }
+
+        function dateTimeFor(value) {
+            const time = Date.parse(`${value}T00:00:00`);
+            return Number.isFinite(time) ? time : null;
+        }
+
+        function formatAxisDate(value) {
+            const date = new Date(value);
+            return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+        }
+
+        function normalizeLookupValue(value) {
+            return String(value || '').trim().toLowerCase();
+        }
+
+        function findKnownValue(values, requestedValue) {
+            const normalizedRequest = normalizeLookupValue(requestedValue);
+            if (!normalizedRequest) return null;
+            return values.find(value => normalizeLookupValue(value) === normalizedRequest) || null;
+        }
+
+        function getDeepLinkParams() {
+            const query = new URLSearchParams(window.location.search);
+            const hashText = window.location.hash.replace(/^#\\??/, '');
+            const hash = hashText.includes('=') ? new URLSearchParams(hashText) : new URLSearchParams();
+            const read = (...keys) => {
+                for (const key of keys) {
+                    const value = query.get(key) || hash.get(key);
+                    if (value) return value;
+                }
+                return '';
+            };
+            return {
+                agency: read('agency', 'a'),
+                officer: read('officer', 'o')
+            };
+        }
+
+        function populateFilters() {
+            setSelectOptions(agencySelect, uniqueValues(duiScatterData, 'agency'), 'All agencies');
+            updateOfficerOptions();
+        }
+
+        function updateOfficerOptions() {
+            const agency = agencySelect.value;
+            const rows = agency === 'all' ? duiScatterData : duiScatterData.filter(row => row.agency === agency);
+            setSelectOptions(officerSelect, officerGroupsFor(rows), `All officers - ${formatDuiCount(caseCountFor(rows))}`);
+        }
+
+        function findUniqueOfficerMatch(requestedOfficer) {
+            const knownOfficers = uniqueValues(duiScatterData, 'officer');
+            const officer = findKnownValue(knownOfficers, requestedOfficer);
+            if (!officer) return null;
+            const agencies = uniqueValues(duiScatterData.filter(row => row.officer === officer), 'agency');
+            return agencies.length === 1 ? { agency: agencies[0], officer } : null;
+        }
+
+        function applyDeepLinkPreselect() {
+            const params = getDeepLinkParams();
+            const agencies = uniqueValues(duiScatterData, 'agency');
+            const requestedAgency = findKnownValue(agencies, params.agency);
+            const uniqueOfficerMatch = findUniqueOfficerMatch(params.officer);
+            let applied = false;
+
+            if (requestedAgency) {
+                agencySelect.value = requestedAgency;
+                updateOfficerOptions();
+                applied = true;
+            } else if (uniqueOfficerMatch) {
+                agencySelect.value = uniqueOfficerMatch.agency;
+                updateOfficerOptions();
+                applied = true;
+            }
+
+            if (params.officer) {
+                const currentOfficers = Array.from(officerSelect.options).map(option => option.value);
+                const requestedOfficer = findKnownValue(currentOfficers, params.officer);
+                if (requestedOfficer) {
+                    officerSelect.value = requestedOfficer;
+                    applied = true;
+                }
+            }
+
+            if (applied) {
+                preselectNote.classList.remove('hidden');
+            }
+        }
+
+        function officerRankFor(rows, selectedOfficer) {
+            if (selectedOfficer === 'all') return '--';
+            const counts = {};
+            rows.forEach(row => {
+                counts[row.officer] = (counts[row.officer] || 0) + Number(row.caseCount || 1);
+            });
+            const ranked = Object.entries(counts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+            const index = ranked.findIndex(([officer]) => officer === selectedOfficer);
+            return index === -1 ? '--' : `#${index + 1}`;
+        }
+
+        function agencyRowsForOfficer(selectedOfficer) {
+            if (selectedOfficer === 'all') return [];
+            const agencies = uniqueValues(duiScatterData.filter(row => row.officer === selectedOfficer), 'agency');
+            return agencies.length === 1 ? duiScatterData.filter(row => row.agency === agencies[0]) : [];
+        }
+
+        function drawScatter() {
+            const agency = agencySelect.value;
+            const officer = officerSelect.value;
+            const baseRows = agency === 'all' ? duiScatterData : duiScatterData.filter(row => row.agency === agency);
+            const selectedRows = officer === 'all' ? baseRows : baseRows.filter(row => row.officer === officer);
+            const width = scatterCanvas.width;
+            const height = scatterCanvas.height;
+            const pad = { left: 50, right: 18, top: 18, bottom: 42 };
+            const plotW = width - pad.left - pad.right;
+            const plotH = height - pad.top - pad.bottom;
+            const axisMax = 0.30;
+            const rowTimes = baseRows.map(row => dateTimeFor(row.offenseDate)).filter(time => time !== null);
+            const metadataStart = dateTimeFor(duiScatterMetadata.dateStart);
+            const metadataEnd = dateTimeFor(duiScatterMetadata.dateEnd);
+            const dateStart = metadataStart ?? Math.min(...rowTimes);
+            const dateEnd = metadataEnd ?? Math.max(...rowTimes);
+            const dateSpan = Math.max(dateEnd - dateStart, 1);
+            const xForDate = value => {
+                const time = dateTimeFor(value);
+                if (time === null) return pad.left;
+                const ratio = Math.max(0, Math.min(1, (time - dateStart) / dateSpan));
+                return pad.left + ratio * plotW;
+            };
+            const yFor = bac => pad.top + (1 - (Math.min(bac, axisMax) / axisMax)) * plotH;
+
+            scatterCtx.clearRect(0, 0, width, height);
+            scatterCtx.fillStyle = '#f8fafc';
+            scatterCtx.fillRect(0, 0, width, height);
+
+            scatterCtx.strokeStyle = '#e2e8f0';
+            scatterCtx.lineWidth = 1;
+            for (let i = 0; i <= 5; i += 1) {
+                const y = pad.top + (i / 5) * plotH;
+                scatterCtx.beginPath();
+                scatterCtx.moveTo(pad.left, y);
+                scatterCtx.lineTo(width - pad.right, y);
+                scatterCtx.stroke();
+                const label = (axisMax - i * 0.06).toFixed(2).replace(/^0/, '');
+                scatterCtx.fillStyle = '#64748b';
+                scatterCtx.font = '12px Inter, sans-serif';
+                scatterCtx.textAlign = 'right';
+                scatterCtx.fillText(label, pad.left - 10, y + 4);
+            }
+
+            scatterCtx.strokeStyle = '#94a3b8';
+            scatterCtx.beginPath();
+            scatterCtx.moveTo(pad.left, pad.top);
+            scatterCtx.lineTo(pad.left, height - pad.bottom);
+            scatterCtx.lineTo(width - pad.right, height - pad.bottom);
+            scatterCtx.stroke();
+
+            scatterCtx.fillStyle = '#64748b';
+            scatterCtx.font = '12px Inter, sans-serif';
+            [
+                { align: 'left', label: formatAxisDate(dateStart), x: pad.left },
+                { align: 'center', label: formatAxisDate(dateStart + dateSpan / 2), x: pad.left + plotW / 2 },
+                { align: 'right', label: formatAxisDate(dateEnd), x: width - pad.right }
+            ].forEach(tick => {
+                scatterCtx.textAlign = tick.align;
+                scatterCtx.fillText(tick.label, tick.x, height - 16);
+            });
+            scatterCtx.save();
+            scatterCtx.translate(16, height / 2);
+            scatterCtx.rotate(-Math.PI / 2);
+            scatterCtx.fillText('BAC result', 0, 0);
+            scatterCtx.restore();
+
+            baseRows.forEach(row => {
+                const isSelected = officer !== 'all' && row.officer === officer;
+                const isDimmed = officer !== 'all' && !isSelected;
+                scatterCtx.beginPath();
+                scatterCtx.arc(xForDate(row.offenseDate), yFor(row.bac), isSelected ? 5 : 3.5, 0, Math.PI * 2);
+                scatterCtx.fillStyle = isSelected ? '#2563eb' : isDimmed ? 'rgba(148, 163, 184, 0.35)' : 'rgba(15, 23, 42, 0.45)';
+                scatterCtx.fill();
+                if (isSelected) {
+                    scatterCtx.strokeStyle = '#f59e0b';
+                    scatterCtx.lineWidth = 3;
+                    scatterCtx.stroke();
+                }
+            });
+
+            hookOfficer.textContent = officerLabelFor(officer, selectedRows);
+            officerArrests.textContent = String(caseCountFor(selectedRows));
+            officerRank.textContent = officerRankFor(agencyRowsForOfficer(officer), officer);
+            officerOverallRank.textContent = `All officers: ${officerRankFor(duiScatterData, officer)}`;
+            officerMedian.textContent = formatBac(median(selectedRows.map(row => row.bac)));
+            officerUnderThreshold.textContent = `Under .08: ${under08CountFor(selectedRows)}`;
+            officerHighlighted.textContent = String(refusalCountFor(selectedRows));
+        }
+
+        agencySelect.addEventListener('change', function () {
+            updateOfficerOptions();
+            drawScatter();
+        });
+        officerSelect.addEventListener('change', drawScatter);
+        window.addEventListener('resize', drawScatter);
+        populateFilters();
+        applyDeepLinkPreselect();
+        drawScatter();
+
+        function inputValue(id) {
+            return (document.getElementById(id)?.value || '').trim();
+        }
+
+        function splitName(fullName) {
+            const parts = fullName.trim().split(/\s+/);
+            return {
+                first: parts[0] || '',
+                last: parts.slice(1).join(' ')
+            };
+        }
+
+        function isEmail(value) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        }
+
+        function setFormStatus(message, tone) {
+            const status = document.getElementById('form-status');
+            status.textContent = message;
+            status.classList.remove('hidden', 'bg-blue-50', 'border-blue-200', 'text-blue-900', 'bg-green-50', 'border-green-200', 'text-green-900', 'bg-red-50', 'border-red-200', 'text-red-900');
+            if (tone === 'success') {
+                status.classList.add('bg-green-50', 'border-green-200', 'text-green-900');
+            } else if (tone === 'error') {
+                status.classList.add('bg-red-50', 'border-red-200', 'text-red-900');
+            } else {
+                status.classList.add('bg-blue-50', 'border-blue-200', 'text-blue-900');
+            }
+        }
+
+        function attributionValue(key) {
+            const query = new URLSearchParams(window.location.search);
+            const queryValue = query.get(key);
+            if (queryValue) {
+                sessionStorage.setItem(key, queryValue);
+                return queryValue;
+            }
+            return sessionStorage.getItem(key) || '';
+        }
+
+        function buildJotformPayload() {
+            const fullName = inputValue('name');
+            const name = splitName(fullName);
+            const caseNumber = inputValue('case-number');
+            const email = inputValue('email');
+            const consultationRequested = document.getElementById('consultation-consent').checked;
+            const selectedAgency = agencySelect.value === 'all' ? 'All agencies' : agencySelect.value;
+            const selectedOfficer = officerSelect.value === 'all' ? 'All officers' : officerLabelFor(officerSelect.value, duiScatterData);
+            const selectedOfficerOption = officerSelect.selectedOptions[0]?.textContent || selectedOfficer;
+            const message = [
+                'DUI private report request',
+                `Case number: ${caseNumber}`,
+                `Selected agency: ${selectedAgency}`,
+                `Selected officer: ${selectedOfficer}`,
+                `Officer dropdown: ${selectedOfficerOption}`,
+                `Report type: DUI officer/BAC report`,
+                `Consultation requested: ${consultationRequested ? 'Yes' : 'No'}`,
+                `Source URL: ${window.location.href}`
+            ].join('\n');
+            const formData = new URLSearchParams();
+
+            formData.append('formID', '251224345324145');
+            formData.append('simple_spc', '251224345324145-251224345324145');
+            formData.append('q3_name[first]', name.first);
+            formData.append('q3_name[last]', name.last);
+            formData.append('q5_emailAddress', email);
+            formData.append('q18_caseNumber', caseNumber);
+            formData.append('q10_pleaseExplain', message);
+            formData.append('q23_typeA23', 'DUI / criminal traffic');
+            formData.append('q24_utm_source', attributionValue('utm_source'));
+            formData.append('q25_utm_medium', attributionValue('utm_medium'));
+            formData.append('q26_utm_campaign', attributionValue('utm_campaign'));
+            formData.append('q27_utm_content', attributionValue('utm_content'));
+            formData.append('q28_utm_term', attributionValue('utm_term'));
+            formData.append('q29_gclid', attributionValue('gclid') || attributionValue('fbclid'));
+            formData.append('q30_landing_page', sessionStorage.getItem('landing_page') || window.location.href);
+
+            if (!sessionStorage.getItem('landing_page')) {
+                sessionStorage.setItem('landing_page', window.location.href);
+            }
+
+            return { formData, caseNumber, email, consultationRequested, selectedAgency, selectedOfficer };
+        }
+
+        function syncJotformHiddenFields(form, formData) {
+            form.querySelectorAll('[data-jotform-field="true"]').forEach(field => field.remove());
+            formData.forEach((value, key) => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = value;
+                input.dataset.jotformField = 'true';
+                form.appendChild(input);
+            });
+        }
+
+        let pendingJotformSubmit = false;
+        let pendingJotformTimer = null;
+
+        function finishJotformSubmit(form, submitButton, originalButtonText, payload) {
+            if (!pendingJotformSubmit) return;
+            pendingJotformSubmit = false;
+            window.clearTimeout(pendingJotformTimer);
+            setFormStatus('Request received. We will review it and follow up shortly.', 'success');
+            form.reset();
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'private_report_form_submit',
+                page_path: '/go/dui-case-report/',
+                submission_mode: 'jotform_iframe',
+                selected_agency: payload.selectedAgency,
+                selected_officer: payload.selectedOfficer,
+                consultation_requested: payload.consultationRequested
+            });
+        }
+
+        document.getElementById('private-report-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const form = event.currentTarget;
+            const name = inputValue('name');
+            const caseNumber = inputValue('case-number');
+            const email = inputValue('email');
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+
+            if (!name || name.length < 2) {
+                setFormStatus('Please enter your name.', 'error');
+                return;
+            }
+            if (!caseNumber) {
+                setFormStatus('Please enter your case number.', 'error');
+                return;
+            }
+            if (!isEmail(email)) {
+                setFormStatus('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            const payload = buildJotformPayload();
+            syncJotformHiddenFields(form, payload.formData);
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            setFormStatus('Sending your request...', 'info');
+            pendingJotformSubmit = true;
+
+            const iframe = document.getElementById('private-report-jotform-frame');
+            iframe.onload = function () {
+                finishJotformSubmit(form, submitButton, originalButtonText, payload);
+            };
+            pendingJotformTimer = window.setTimeout(function () {
+                finishJotformSubmit(form, submitButton, originalButtonText, payload);
+            }, 2500);
+
+            HTMLFormElement.prototype.submit.call(form);
+        });
+    </script>
+</body>
+</html>
