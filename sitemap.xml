@@ -1105,7 +1105,7 @@
     <loc>https://lotterlaw.com/blog/seal-misdemeanor-conviction-hb745-florida/</loc>
     <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lotterlaw.com/blog/single-incident-dv-injunction-sb32-florida/</loc>
@@ -1128,6 +1128,12 @@
   <url>
     <loc>https://lotterlaw.com/blog/dui-reduced-reckless-driving-florida/</loc>
     <lastmod>2026-03-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lotterlaw.com/blog/cdl-dui-reckless-driving-florida/</loc>
+    <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
