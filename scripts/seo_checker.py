@@ -34,7 +34,7 @@ class SEOParser(HTMLParser):
         self.h2_count = 0
         self.internal_links = []
         self.external_links = []
-        self.schema_json = ""
+        self.schema_jsons = []
         self.in_title = False
         self.in_h1 = False
         self.in_script = False
@@ -95,6 +95,13 @@ class SEOParser(HTMLParser):
         elif tag == "script":
             self.in_script = True
             self.script_type = attrs_dict.get("type", "")
+            src = attrs_dict.get("src", "")
+            if "GTM-52LMX48G" in src:
+                self.has_gtm = True
+            if "G-2MCJ8E0XS5" in src:
+                self.has_ga4 = True
+            if "reu4dibx4h" in src:
+                self.has_clarity = True
 
     def handle_endtag(self, tag):
         # Track excluded tags
@@ -108,7 +115,9 @@ class SEOParser(HTMLParser):
         elif tag == "script":
             self.in_script = False
             if self.script_type == "application/ld+json":
-                self.schema_json = self.current_script.strip()
+                schema_json = self.current_script.strip()
+                if schema_json:
+                    self.schema_jsons.append(schema_json)
             self.current_script = ""
             self.script_type = ""
 
@@ -138,6 +147,23 @@ def count_words(text_parts: list) -> int:
     # Split on whitespace and filter empty strings
     words = [w for w in re.split(r'\s+', full_text) if w]
     return len(words)
+
+
+def schema_types(obj) -> set:
+    """Recursively collect @type values from JSON-LD."""
+    found = set()
+    if isinstance(obj, dict):
+        value = obj.get("@type")
+        if isinstance(value, str):
+            found.add(value)
+        elif isinstance(value, list):
+            found.update(str(item) for item in value)
+        for child in obj.values():
+            found.update(schema_types(child))
+    elif isinstance(obj, list):
+        for child in obj:
+            found.update(schema_types(child))
+    return found
 
 
 def check_link_quality(parser: SEOParser, results: dict):
@@ -311,18 +337,29 @@ def check_seo(filepath: Path) -> dict:
     check_link_quality(parser, results)
 
     # Schema markup
-    if parser.schema_json:
-        try:
-            schema = json.loads(parser.schema_json)
-            if schema.get("@type") == "Article":
-                results["checks"].append({"name": "Article Schema", "status": "PASS", "value": "Valid JSON-LD"})
+    if parser.schema_jsons:
+        parsed_schemas = []
+        invalid_count = 0
+        for schema_json in parser.schema_jsons:
+            try:
+                parsed_schemas.append(json.loads(schema_json))
+            except json.JSONDecodeError:
+                invalid_count += 1
+
+        if invalid_count:
+            results["checks"].append({"name": "Article Schema", "status": "FAIL", "value": f"{invalid_count} invalid JSON-LD block(s)"})
+            results["failed"] += 1
+        else:
+            types = set()
+            for schema in parsed_schemas:
+                types.update(schema_types(schema))
+            article_types = {"Article", "BlogPosting", "NewsArticle"}
+            if types & article_types:
+                results["checks"].append({"name": "Article Schema", "status": "PASS", "value": f"Valid JSON-LD ({', '.join(sorted(types & article_types))})"})
                 results["passed"] += 1
             else:
-                results["checks"].append({"name": "Article Schema", "status": "WARN", "value": f"Type: {schema.get('@type', 'unknown')}"})
+                results["checks"].append({"name": "Article Schema", "status": "WARN", "value": f"Types: {', '.join(sorted(types)) or 'unknown'}"})
                 results["warnings"] += 1
-        except json.JSONDecodeError:
-            results["checks"].append({"name": "Article Schema", "status": "FAIL", "value": "Invalid JSON-LD"})
-            results["failed"] += 1
     else:
         results["checks"].append({"name": "Article Schema", "status": "FAIL", "value": "No schema found"})
         results["failed"] += 1
@@ -339,15 +376,15 @@ def check_seo(filepath: Path) -> dict:
         results["checks"].append({"name": "Google Analytics 4", "status": "PASS", "value": "G-2MCJ8E0XS5"})
         results["passed"] += 1
     else:
-        results["checks"].append({"name": "Google Analytics 4", "status": "FAIL", "value": "Missing G-2MCJ8E0XS5"})
-        results["failed"] += 1
+        results["checks"].append({"name": "Google Analytics 4", "status": "WARN", "value": "No direct GA4 tag found; may be routed through GTM"})
+        results["warnings"] += 1
 
     if parser.has_clarity:
         results["checks"].append({"name": "Microsoft Clarity", "status": "PASS", "value": "reu4dibx4h"})
         results["passed"] += 1
     else:
-        results["checks"].append({"name": "Microsoft Clarity", "status": "FAIL", "value": "Missing reu4dibx4h"})
-        results["failed"] += 1
+        results["checks"].append({"name": "Microsoft Clarity", "status": "WARN", "value": "No direct Clarity tag found; may be routed through GTM"})
+        results["warnings"] += 1
 
     return results
 
