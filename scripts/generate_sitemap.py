@@ -78,17 +78,23 @@ def get_tracked_files(website_path):
 
 
 def extract_metadata_from_html(html_file):
-    """Extract publish date and title from blog post HTML."""
+    """Extract publish date, modified date, title, and indexability."""
     with open(html_file, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    date_match = re.search(r'"datePublished":\s*"([^"]+)"', content)
-    date = date_match.group(1) if date_match else datetime.now().strftime("%Y-%m-%d")
+    published_match = re.search(r'"datePublished":\s*"([^"]+)"', content)
+    published = published_match.group(1) if published_match else datetime.now().strftime("%Y-%m-%d")
+
+    modified_match = re.search(r'"dateModified":\s*"([^"]+)"', content)
+    modified = modified_match.group(1) if modified_match else published
 
     title_match = re.search(r'<title>([^<]+)</title>', content)
     title = title_match.group(1) if title_match else ""
 
-    return date, title
+    noindex = bool(re.search(r'<meta\s+name="robots"\s+content="[^"]*noindex', content, re.I))
+    refresh = bool(re.search(r'<meta\s+http-equiv="refresh"', content, re.I))
+
+    return published[:10], modified[:10], title, noindex or refresh
 
 
 def get_listed_blog_posts(blog_html_path):
@@ -281,8 +287,11 @@ def generate_sitemap(website_dir):
         if not is_tracked(f'blog/{slug}/index.html'):
             continue
         try:
-            date, title = extract_metadata_from_html(index_file)
-            raw_posts.append({'slug': slug, 'date': date, 'title': title})
+            published, modified, title, noindex = extract_metadata_from_html(index_file)
+            if noindex:
+                skipped_count += 1
+                continue
+            raw_posts.append({'slug': slug, 'date': published, 'lastmod': modified, 'title': title})
         except Exception as e:
             print(f"Warning: Could not parse {slug}/index.html: {e}")
 
@@ -300,7 +309,7 @@ def generate_sitemap(website_dir):
 
         blog_entries.append({
             'loc': f"https://lotterlaw.com/blog/{post['slug']}/",
-            'lastmod': post['date'],
+            'lastmod': post['lastmod'],
             'changefreq': 'monthly',
             'priority': priority,
             'hreflang': [],
@@ -348,7 +357,7 @@ def generate_sitemap(website_dir):
     # Write sitemap
     output_file = website_path / 'sitemap.xml'
     with open(output_file, 'w', encoding='utf-8') as f:
-        f.write('\n'.join(lines))
+        f.write('\n'.join(lines) + '\n')
 
     total = len(main_pages) + len(practice_pages) + len(spanish_pages) + len(category_pages) + len(blog_entries)
     print(f"[OK] Generated sitemap.xml with {total} URLs")

@@ -1,0 +1,29 @@
+name: SEO and Link Audit
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Regenerate sitemap
+        run: python scripts/generate_sitemap.py .
+
+      - name: Require committed sitemap output
+        run: git diff --exit-code sitemap.xml
+
+      - name: Run blog SEO and link audit
+        run: python scripts/audit_blog_seo.py

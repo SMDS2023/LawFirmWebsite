@@ -5,7 +5,7 @@ Add BreadcrumbList Schema to Blog Posts
 Adds breadcrumb structured data to blog posts for improved SEO.
 """
 
-import os
+import json
 import re
 from pathlib import Path
 
@@ -28,33 +28,35 @@ def extract_title(content: str) -> str:
 
 def generate_breadcrumb_schema(title: str, canonical_url: str) -> str:
     """Generate BreadcrumbList schema JSON-LD markup."""
+    schema_obj = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": BASE_URL,
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": f"{BASE_URL}/blog.html",
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": title,
+                "item": canonical_url,
+            },
+        ],
+    }
+    schema_json = json.dumps(schema_obj, indent=2)
     schema = f'''
     <!-- Schema.org BreadcrumbList -->
     <script type="application/ld+json">
-    {{
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {{
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "{BASE_URL}"
-        }},
-        {{
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Blog",
-          "item": "{BASE_URL}/blog.html"
-        }},
-        {{
-          "@type": "ListItem",
-          "position": 3,
-          "name": "{title}",
-          "item": "{canonical_url}"
-        }}
-      ]
-    }}
+{schema_json}
     </script>
 '''
     return schema
@@ -65,19 +67,19 @@ def add_breadcrumb_to_file(filepath: Path) -> bool:
         content = f.read()
 
     if has_breadcrumb_schema(content):
-        print(f"  SKIP: {filepath.name} (already has breadcrumb)")
+        print(f"  SKIP: {filepath.parent.name}/index.html (already has breadcrumb)")
+        return False
+    if re.search(r'<meta\s+name="robots"\s+content="[^"]*noindex', content, re.I) or re.search(r'<meta\s+http-equiv="refresh"', content, re.I):
+        print(f"  SKIP: {filepath.parent.name}/index.html (noindex or redirect)")
         return False
 
-    # Extract title and canonical URL
     title = extract_title(content)
-    # Escape quotes in title for JSON
-    title = title.replace('"', '\\"')
 
     canonical_match = re.search(r'<link\s+rel="canonical"\s+href="([^"]+)"', content)
     if canonical_match:
         canonical_url = canonical_match.group(1)
     else:
-        canonical_url = f"{BASE_URL}/blog/{filepath.name}"
+        canonical_url = f"{BASE_URL}/blog/{filepath.parent.name}/"
 
     schema = generate_breadcrumb_schema(title, canonical_url)
 
@@ -88,10 +90,10 @@ def add_breadcrumb_to_file(filepath: Path) -> bool:
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(new_content)
 
-        print(f"  ADDED: {filepath.name}")
+        print(f"  ADDED: {filepath.parent.name}/index.html")
         return True
     else:
-        print(f"  ERROR: {filepath.name} (no </head> tag found)")
+        print(f"  ERROR: {filepath.parent.name}/index.html (no </head> tag found)")
         return False
 
 def main():
@@ -104,8 +106,11 @@ def main():
         print(f"ERROR: Blog directory not found: {BLOG_DIR}")
         return
 
-    html_files = list(BLOG_DIR.glob("*.html"))
-    print(f"\nFound {len(html_files)} HTML files in {BLOG_DIR}\n")
+    html_files = [
+        path for path in BLOG_DIR.glob("*/index.html")
+        if path.parent.name != "category"
+    ]
+    print(f"\nFound {len(html_files)} folder-style blog post files in {BLOG_DIR}\n")
 
     added_count = 0
     skipped_count = 0

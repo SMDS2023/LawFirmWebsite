@@ -211,7 +211,7 @@ See `YT_Comments_Scrape/README.md` for instructions on scraping new videos.
 #### Adding a New Blog Post
 
 1. **Create the blog post HTML file:**
-   - Save as `blog/XX-your-post-title.html` (use next available number)
+   - Save as `blog/your-post-title/index.html`
    - Use existing blog posts as templates
 
 2. **REQUIRED: Add SEO tags in the `<head>` section:**
@@ -220,13 +220,13 @@ See `YT_Comments_Scrape/README.md` for instructions on scraping new videos.
 
    ```html
    <!-- Canonical URL -->
-   <link rel="canonical" href="https://lotterlaw.com/blog/XX-your-post-title.html">
+   <link rel="canonical" href="https://lotterlaw.com/blog/your-post-title/">
 
    <!-- Open Graph Tags -->
    <meta property="og:title" content="Your Post Title | Lotter Law">
    <meta property="og:description" content="A compelling 1-2 sentence description of the post.">
    <meta property="og:type" content="article">
-   <meta property="og:url" content="https://lotterlaw.com/blog/XX-your-post-title.html">
+   <meta property="og:url" content="https://lotterlaw.com/blog/your-post-title/">
    <meta property="og:image" content="https://lotterlaw.com/assets/Lotter-Law-logo-02.jpg">
    <meta property="og:site_name" content="Lotter Law">
 
@@ -245,17 +245,24 @@ See `YT_Comments_Scrape/README.md` for instructions on scraping new videos.
 
 3. **Update blog.html:**
    - Add a new `<article>` entry at the top of the blog listing
+   - Link to `blog/your-post-title/`
    - Include title, date, summary, and link
    - For case results, add the green "Case Result" label
 
-4. **Commit and merge:**
+4. **Regenerate and audit SEO/indexing:**
    ```bash
-   git add blog/XX-your-post-title.html blog.html
+   python scripts/generate_sitemap.py .
+   python scripts/audit_blog_seo.py
+   ```
+
+5. **Commit and merge:**
+   ```bash
+   git add blog/your-post-title/index.html blog.html sitemap.xml
    git commit -m "Add blog post: Your Title Here"
    git push origin your-branch-name
    ```
 
-5. **Merge to master** via pull request
+6. **Merge to master** via pull request
 
 #### Blog Post SEO Checklist
 
@@ -269,6 +276,15 @@ Before publishing any blog post, verify:
 - [ ] Twitter tags mirror the OG content
 - [ ] Meta description tag is present and unique
 - [ ] Meta keywords tag includes relevant terms
+- [ ] Article, BlogPosting, or NewsArticle JSON-LD is present
+- [ ] BreadcrumbList JSON-LD is present
+- [ ] Post is listed in `blog.html`
+- [ ] Post is listed in `sitemap.xml`
+- [ ] `python scripts/audit_blog_seo.py` passes with zero errors
+
+#### Automated SEO Checks
+
+Pull requests and pushes to `master` run `.github/workflows/seo-audit.yml`. The workflow regenerates `sitemap.xml`, requires the generated output to be committed, and runs `scripts/audit_blog_seo.py` to catch broken local links, missing blog index entries, missing sitemap entries, noindex mistakes, malformed JSON-LD, missing canonical/OG/Twitter tags, and missing breadcrumb schema.
 
 #### Adding a New Practice Area
 
