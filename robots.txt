@@ -11,4 +11,66 @@ Disallow: /the-power-of-justice
 # Unpublished/private sections
 Disallow: /spanish-tutor/
 
+# =====================================================================
+# AI / LLM crawler policy
+# Stance: ALLOW real-time "answer" bots that read a page to respond to a
+# user and cite us (drives referral visibility). BLOCK bulk crawlers that
+# scrape content for model training. Regular search crawlers (Googlebot,
+# Bingbot) and social preview bots are covered by "User-agent: *" above and
+# remain fully allowed -- including Google AI Overviews, which use Googlebot.
+# =====================================================================
+
+# --- Allowed: live-retrieval / answer engines (cite us) ---
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# --- Blocked: model-training crawlers ---
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+# AI usage: content may be cited with attribution to Lotter Law
+# (https://lotterlaw.com). For licensing/training inquiries: jeff@jlotterlaw.com
+
 Sitemap: https://lotterlaw.com/sitemap.xml
