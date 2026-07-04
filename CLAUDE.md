@@ -41,6 +41,21 @@ Orlando criminal defense and DUI attorney website. Static site hosted on GitHub 
 
 ---
 
+## Blog Workflow (Primary)
+
+**All blog work runs through the skill at `.claude/skills/blog/SKILL.md`** —
+multi-source ideation (calendar, Gmail, police academy manual, OCSO policy
+manual, verified case law library) → research → write → Gate 1 → enrich →
+Gate 2 → stage → go-live → Facebook/GMB distribution.
+
+- Pipeline state: `BLOG_PIPELINE.md` (repo root)
+- Source registry: `.claude/skills/blog/DATA_SOURCES.md`
+- Drafts: `blog-drafts/` (feature branches only)
+- Supersedes `scripts/blog_topic_generator.py`, `scripts/blog_draft_generator.py`,
+  and the legacy Mac-local `~/.claude/skills/blog/` skill.
+
+---
+
 ## Agent Orchestration Protocol
 
 ### Startup Sequence
