@@ -49,10 +49,20 @@ For each surviving candidate, draft:
 
 ## Duplicate / gap check
 
-List `blog/` slugs and grep the corpus for the candidate's core terms. If the
-topic is covered, the brief must state a **new angle** ("existing post covers
-the statute; this one covers the hearing itself") or be killed. Note the
-existing post — it becomes a mandatory internal link.
+List **every** slug under `blog/` (full `ls`, never a truncated or sampled
+listing) AND `grep -rli` the corpus for the candidate's core terms — a topic
+often has multiple posts under non-obvious slugs (lesson: "stand your ground"
+had four). If the topic is covered, the brief must state a **new angle** not
+covered by ANY existing post, or be killed. List every existing related post
+in the brief — they become mandatory internal links.
+
+## No legal assertions in briefs
+
+A brief describes what a source will be *checked for* — it never states a
+legal standard, burden, or holding as fact. Write "F.S. §776.032 → verify
+burden and hearing procedure," not "the State must prove X." Legal accuracy
+enters the pipeline at RESEARCH, from the actual texts; and Jeff corrects
+the story itself at brief review. He was there — the brief wasn't.
 
 ## Scoring
 

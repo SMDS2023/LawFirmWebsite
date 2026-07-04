@@ -20,26 +20,13 @@
 > existing-post gap check. Awaiting Jeff's pick for RESEARCH.
 
 ### BRIEF-202607-01: What Actually Happens at a Stand Your Ground Hearing
-- **Status:** proposed
-- **The story (anonymized):** This June I litigated a Stand Your Ground
-  motion to dismiss in a Seminole County felony case — a full evidentiary
-  hearing, with subpoenaed witnesses, in front of a judge, months before any
-  trial date. Most people (and plenty of lawyers) don't realize self-defense
-  immunity is decided at a hearing like this, not by a jury.
-- **Why now:** Fresh from the hearing; the existing SYG post drives steady
-  traffic but never explains the hearing itself.
-- **Authority cross-refs:** F.S. §776.032 (immunity + burden) → the State
-  must overcome immunity by clear and convincing evidence; Case law library
-  "Stand Your Ground" category (VERIFIED set with R2 PDFs) → hearing
-  procedure and burden-shifting; existing post
-  `florida-stand-your-ground-law` → doctrine backdrop (mandatory link).
-- **The hook:** "My client's trial was months away. The hearing that could
-  end the case happened in June — and no jury was in the room."
-- **SEO:** "stand your ground hearing Florida" · informational · gap: law
-  covered, hearing process not.
-- **CTA angle:** Immunity is won by preparation before trial — get counsel in
-  early.
-- **Score:** S3 A3 T1 G2 = **9/10**
+- **Status:** killed (2026-07-04)
+- **Kill reason:** Duplicate — the dedupe check missed three existing SYG
+  posts (`stand-your-ground-motion-dismiss-vs-c4` already covers the
+  immunity hearing; also `stand-your-ground-florida-self-defense`,
+  `stand-your-ground-case-dropped-florida`). Jeff also flagged the brief's
+  legal characterization of the hearing as wrong — reinforcing the rule that
+  briefs never assert legal standards (see `ideate.md`).
 
 ### BRIEF-202607-02: The State Offered DUI Diversion. Should You Take It?
 - **Status:** proposed
