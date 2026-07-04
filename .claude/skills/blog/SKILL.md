@@ -17,7 +17,8 @@ authority sources so it says something no competitor can copy.
 ## Pipeline
 
 ```
-IDEATE → RESEARCH → WRITE → [GATE 1: Jeff approves draft]
+IDEATE → [GATE 0: Story Check — Jeff confirms the story is true]
+       → RESEARCH → WRITE → [GATE 1: Jeff approves draft]
        → ENRICH → [GATE 2: Jeff approves enriched post]
        → STAGE → GOLIVE → DISTRIBUTE (facebook / gmb)
 ```
@@ -54,8 +55,16 @@ academy manual): `DATA_SOURCES.md`. Read it before IDEATE or RESEARCH.
 4. If a pipeline entry says `awaiting-gate-1` or `awaiting-gate-2`, do not
    advance it without Jeff's explicit approval in this conversation.
 
-## The two approval gates (hard rules)
+## The three approval gates (hard rules)
 
+- **Gate 0 (story check):** before researching any brief, present a short
+  "outline of understanding" of the story — what happened, in plain
+  sentences — and ask: **"Do I have it right?"** Jeff confirms, corrects, or
+  kills. Why this gate exists: calendars record what was *scheduled*, not
+  what *happened* (hearings get continued, canceled, resolved on paper — a
+  calendared SYG hearing once never took place). Email helps verify, but
+  some truth lives only in Lawmatics or Jeff's head. He was there; the
+  sources weren't. Never write a story he hasn't confirmed.
 - **Gate 1 (raw draft):** present the draft per `write.md` § "Gate 1 review".
   Jeff advances it by saying **"Enrich"** (or requests edits / cancels).
 - **Gate 2 (enriched):** present per `enrich.md` § "Gate 2 review". Jeff

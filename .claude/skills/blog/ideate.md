@@ -78,8 +78,11 @@ the story itself at brief review. He was there — the brief wasn't.
 
 1. Append briefs to `BLOG_PIPELINE.md` under "Proposed briefs" (anonymized —
    the file is public).
-2. Present the top ~5 to Jeff ranked by score, one short paragraph each, and
-   ask which to advance to RESEARCH. Do not start writing anything.
+2. Present the top ~5 to Jeff ranked by score, one short paragraph each.
+3. For the briefs Jeff picks, run **Gate 0 (Story Check — see SKILL.md)**:
+   give your outline of understanding of each story and ask "Do I have it
+   right?" Only confirmed stories advance to RESEARCH. Remember: a calendar
+   entry proves something was scheduled, never that it happened.
 
 ## Kill list (learned failures — reject on sight)
 

@@ -34,6 +34,11 @@ embed direct `mail.google.com` thread links — follow those first.
 **Rule:** email is verification material only. Never quote, never name, never
 commit email content to the repo.
 
+**Limit:** calendar + email still may not show how a matter resolved. Case
+notes live in **Lawmatics** (CRM — no connector in this environment). When a
+load-bearing fact can't be confirmed from email, ask Jeff at Gate 0 / Gate 1
+instead of inferring.
+
 ## 3. Google Drive (MCP: `mcp__Google_Drive__*`)
 
 | Document | File/Folder ID | What it proves |

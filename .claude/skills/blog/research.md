@@ -25,10 +25,13 @@ For each authority cross-ref promised in the brief:
 
 ## Verify the story
 
-Cross-check the narrative against Gmail/calendar (remote sessions): sequence
-of events, what was offered, what the order said, what procedure was actually
-followed. Fix the brief if reality differs. Nothing from email is quoted or
-committed — it only makes the story true.
+The brief arrives Gate-0-confirmed by Jeff; research still cross-checks the
+details against Gmail (sequence of events, what was offered, what the order
+said, what procedure was actually followed) and fixes anything that differs.
+Calendar entries prove scheduling only — outcomes live in email, Lawmatics,
+or Jeff's answers. If email is inconclusive on a load-bearing fact, ask Jeff
+rather than assume. Nothing from email is quoted or committed — it only
+makes the story true.
 
 ## Source Pack format (append to the brief in BLOG_PIPELINE.md)
 

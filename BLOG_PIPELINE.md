@@ -1,8 +1,9 @@
 # Blog Pipeline State
 
 > Single source of truth for the blog workflow (`.claude/skills/blog/SKILL.md`).
-> Statuses: `proposed` → `researching` → `awaiting-gate-1` → `enriching` →
-> `awaiting-gate-2` → `staged` → `live` (or `killed`).
+> Statuses: `proposed` → `story-confirmed` (Gate 0) → `researching` →
+> `awaiting-gate-1` → `enriching` → `awaiting-gate-2` → `staged` → `live`
+> (or `killed`).
 > This file is public — everything here must already be anonymized.
 >
 > Draft HTML lives in the Drive folder
