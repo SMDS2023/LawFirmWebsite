@@ -1,7 +1,10 @@
 # ENRICH — Images, Links, Schema (ends at Gate 2)
 
-Input: a Gate-1-approved draft in `blog-drafts/<slug>/`. Work in place —
-the draft file is the artifact that gets staged.
+Input: a Gate-1-approved draft — download it from Drive using the file ID in
+the pipeline entry (`mcp__Google_Drive__download_file_content` or
+`read_file_content`), work on it in the scratchpad, then upload the result
+as `<slug>.enriched.html` (same folder, same upload rules as `write.md`).
+The enriched file is the artifact that gets staged.
 
 ## 1. Images
 
@@ -37,7 +40,10 @@ the draft file is the artifact that gets staged.
 
 ## 4. Update state
 
-`BLOG_PIPELINE.md` → status `awaiting-gate-2`. Commit to the feature branch.
+Upload `<slug>.enriched.html` to the drafts folder. `BLOG_PIPELINE.md` →
+status `awaiting-gate-2` with the enriched file's Drive ID and viewUrl.
+Commit only the pipeline update (plus any new image assets under
+`assets/blog/`) to the feature branch.
 
 ## Gate 2 review (present to Jeff, then STOP)
 

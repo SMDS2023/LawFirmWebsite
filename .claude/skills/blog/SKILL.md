@@ -28,10 +28,17 @@ Stage instructions live in this directory:
 |-------|------|--------|
 | Ideate | `ideate.md` | Story briefs appended to `BLOG_PIPELINE.md` |
 | Research | `research.md` | Source Pack added to the brief |
-| Write | `write.md` | Draft at `blog-drafts/<slug>/index.html` |
-| Enrich | `enrich.md` | Images, links, schema on the draft |
+| Write | `write.md` | `<slug>.draft.html` in the Drive drafts folder |
+| Enrich | `enrich.md` | `<slug>.enriched.html` in the Drive drafts folder |
 | Stage / Go-live | `publish.md` | Post at `blog/<slug>/`, listing + sitemap |
 | Distribute | `facebook.md`, `gmb.md` | Copy-paste drafts for Jeff |
+
+**Draft storage is Google Drive, not the repo** — folder "LotterLaw Blog
+Drafts" (`DATA_SOURCES.md` §8). Drafts stay private until STAGE moves the
+final HTML into `blog/<slug>/index.html`. The Drive connector cannot edit
+files in place, so each revision is a fresh upload and `BLOG_PIPELINE.md`
+records the **current** file ID — the ID in the pipeline is always the live
+version.
 
 Source registry (calendar IDs, Drive file IDs, case law library, OCSO,
 academy manual): `DATA_SOURCES.md`. Read it before IDEATE or RESEARCH.
@@ -39,8 +46,9 @@ academy manual): `DATA_SOURCES.md`. Read it before IDEATE or RESEARCH.
 ## Step 0 — Validate state (always, before anything else)
 
 1. Read `BLOG_PIPELINE.md` (repo root). It is the single source of truth for
-   what is proposed, drafted, approved, staged, or live.
-2. Check `blog-drafts/` against `blog/` for slug collisions. A slug that
+   what is proposed, drafted, approved, staged, or live — including the Drive
+   file ID of every active draft.
+2. Check slugs in the pipeline against `blog/` for collisions. A slug that
    already exists under `blog/` is taken — pick a new one.
 3. Confirm you are on a feature branch (`claude/...`), never `master`.
 4. If a pipeline entry says `awaiting-gate-1` or `awaiting-gate-2`, do not
@@ -82,18 +90,22 @@ you can't verify, write `[CITE NEEDED]` and flag it at the gate review.
 
 - All work on a feature branch; merge to `master` via PR (protected).
 - Direct push only if Jeff explicitly approves it in the conversation.
-- Drafts live in `blog-drafts/` and exist only on feature branches; the
-  publish step moves the final post to `blog/<slug>/index.html` and deletes
-  the draft folder.
+- Drafts are **never committed to the repo** — they live in the Drive drafts
+  folder until STAGE writes the final post to `blog/<slug>/index.html`.
 
 ## Environment notes
 
 - **Remote (claude.ai/code) sessions** have MCP connectors for Google
-  Calendar, Gmail, and Drive — IDEATE and RESEARCH run fully here.
+  Calendar, Gmail, and Drive — the full pipeline runs here.
 - **Local sessions** without those connectors: skip live calendar/email
   sweeps and work from `BLOG_PIPELINE.md`, `BLOG_IDEAS.md`, and
-  `.claude/knowledge/EDITORIAL-CALENDAR-2026.md` instead. Say which sources
-  were unavailable.
+  `.claude/knowledge/EDITORIAL-CALENDAR-2026.md`; drafts can be written
+  locally but must reach the Drive drafts folder (Jeff uploads, or hand off
+  to a remote session) before the pipeline advances. Say which sources were
+  unavailable.
+- **Case law library**: if `smds2023/legalaintel` isn't already in the
+  session, ask Jeff to add it (`add_repo`) — he has approved this. The
+  library markdown is `data/case-law/case_law_library.md` in that repo.
 - The legacy Mac-only skill (`~/.claude/skills/blog/`) and Python generators
   (`scripts/blog_topic_generator.py`) are superseded by this workflow.
 

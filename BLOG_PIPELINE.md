@@ -4,6 +4,10 @@
 > Statuses: `proposed` → `researching` → `awaiting-gate-1` → `enriching` →
 > `awaiting-gate-2` → `staged` → `live` (or `killed`).
 > This file is public — everything here must already be anonymized.
+>
+> Draft HTML lives in the Drive folder
+> ["LotterLaw Blog Drafts"](https://drive.google.com/drive/folders/1B88L_n4ONjOP_VnOOmRRHj1vzxzxmdPq)
+> — each active entry below records the current draft's Drive file ID.
 
 ## Active drafts
 

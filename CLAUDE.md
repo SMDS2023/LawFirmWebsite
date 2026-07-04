@@ -50,7 +50,9 @@ Gate 2 → stage → go-live → Facebook/GMB distribution.
 
 - Pipeline state: `BLOG_PIPELINE.md` (repo root)
 - Source registry: `.claude/skills/blog/DATA_SOURCES.md`
-- Drafts: `blog-drafts/` (feature branches only)
+- Drafts: Google Drive folder "LotterLaw Blog Drafts" (never committed;
+  IDs tracked in `BLOG_PIPELINE.md`)
+- Case law: `SMDS2023/LegalAIntel` repo — Jeff has approved `add_repo`
 - Supersedes `scripts/blog_topic_generator.py`, `scripts/blog_draft_generator.py`,
   and the legacy Mac-local `~/.claude/skills/blog/` skill.
 

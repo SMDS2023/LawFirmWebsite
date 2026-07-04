@@ -5,8 +5,10 @@ only on Jeff's explicit say-so in the conversation.
 
 ## STAGE (reachable by URL, not listed anywhere)
 
-1. Move `blog-drafts/<slug>/index.html` → `blog/<slug>/index.html` (create
-   the folder; delete the draft folder). Fix any path depth changes.
+1. Download `<slug>.enriched.html` from Drive (file ID in the pipeline
+   entry) and write it to `blog/<slug>/index.html`. Verify relative paths
+   assume `blog/<slug>/` depth (`../../` to root — the template already
+   does).
 2. Do **not** touch `blog.html` or `sitemap.xml`.
 3. Commit (`feat(blog): Stage <slug>`), push the feature branch, open a PR
    titled `Stage: <post title>`. After merge + 2-5 min Pages deploy, the post
@@ -30,7 +32,8 @@ only on Jeff's explicit say-so in the conversation.
    of opening a second one.
 6. After merge: wait 2-5 min, verify `https://lotterlaw.com/blog/<slug>/`
    returns the post and the card appears on `/blog.html` (cache-bust).
-7. `BLOG_PIPELINE.md` → status `live` with URL and date. Offer Jeff the
+7. `BLOG_PIPELINE.md` → status `live` with URL and date (the Drive draft
+   files stay put as the archive — no cleanup needed). Offer Jeff the
    distribution steps (`facebook.md`, `gmb.md`).
 
 ### blog.html card format

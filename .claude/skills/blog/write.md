@@ -1,12 +1,13 @@
 # WRITE — Draft the Post (ends at Gate 1)
 
-Input: a brief with a completed Source Pack. Output: an HTML draft at
-`blog-drafts/<slug>/index.html`, presented to Jeff for Gate 1.
+Input: a brief with a completed Source Pack. Output: `<slug>.draft.html`
+uploaded to the Drive drafts folder, presented to Jeff for Gate 1.
 
 ## Slug
 
 Kebab-case, keyword-bearing, no client-identifying words, not already under
-`blog/` or `blog-drafts/`. Example: `stand-your-ground-hearing-florida`.
+`blog/` or claimed by a pipeline entry. Example:
+`stand-your-ground-hearing-florida`.
 
 ## Format
 
@@ -62,16 +63,28 @@ concrete, short sentences. Match the exemplars in SKILL.md.
 - **Internal links**: from the Source Pack (1 pillar / 3 supporting / 2
   practice-intake target — final count trued up at ENRICH).
 
+## Save the draft (Drive, not the repo)
+
+1. Compose the full HTML in the scratchpad.
+2. Upload with `mcp__Google_Drive__create_file`: title `<slug>.draft.html`,
+   `parentId` = drafts folder ID (`DATA_SOURCES.md` §8),
+   `contentMimeType: text/html`, `disableConversionToGoogleType: true`,
+   content via `textContent`.
+3. Gate-1 edit rounds re-upload a fresh `<slug>.draft.html` — Drive can't
+   edit in place. The newest file ID is recorded in the pipeline; earlier
+   uploads are dead versions.
+
 ## Update state
 
 Set the brief's status in `BLOG_PIPELINE.md` to `awaiting-gate-1` with the
-draft path. Commit the draft to the feature branch.
+draft's **Drive file ID and viewUrl**. Commit only the pipeline update to the
+feature branch — never the draft itself.
 
 ## Gate 1 review (present to Jeff, then STOP)
 
 ```
 DRAFT REVIEW — <title>
-File: blog-drafts/<slug>/index.html · Words: N
+Draft: <slug>.draft.html · <Drive viewUrl> · Words: N
 Hook: <first two sentences verbatim>
 Preview: <H2 outline>
 SEO: title N chars · meta N chars · keyword "<kw>" in H1/first-100 ✓/✗

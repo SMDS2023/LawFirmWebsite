@@ -53,16 +53,18 @@ pages you need.
 
 ## 4. Case Law Library (LegalAIntel)
 
-- **Source of truth:** D1 table `canonical_case_law` in `legalaintel-shared`
-  (repo `SMDS2023/LegalAIntel`, markdown mirror at
-  `data/case-law/case_law_library.md`). ~85 VERIFIED cases across 21 topic
-  categories (DUI, search & seizure, Stand Your Ground, Terry, Miranda,
-  Brady/preservation, speedy trial, and more).
+- **Source of truth:** D1 database behind **app.legalaintel.com/case-law**
+  (93 VERIFIED cases + 9 statutes across 21 topic categories — DUI, search &
+  seizure, Stand Your Ground, Terry, Miranda, Brady/preservation, speedy
+  trial, and more).
+- **Repo mirror:** `SMDS2023/LegalAIntel` → `data/case-law/case_law_library.md`
+  (reference backup with holdings, cites, links), plus saved opinion
+  PDFs/HTML in the same directory. Jeff has approved adding this repo to any
+  session via `add_repo` — do that at RESEARCH time and read the markdown
+  mirror directly (when cloned: `/workspace/legalaintel/data/case-law/`).
 - **Public PDFs:** `https://api.legalaintel.com/case-law/pdf/case-law/{filename}.pdf`
-- **In a remote session:** ask Jeff to add `SMDS2023/LegalAIntel` via
-  `add_repo` for direct library access; otherwise use the Drive case-law
-  folders and approved public sources (Google Scholar, Florida Law Weekly,
-  Justia, CourtListener).
+- **Fallbacks:** Drive case-law folders (§3) and approved public sources
+  (Google Scholar, Florida Law Weekly, Justia, CourtListener).
 - **HARD RULE:** only cite VERIFIED cases or opinions read this session.
   Otherwise `[CITE NEEDED]`.
 
@@ -90,6 +92,19 @@ Online Sunshine page in posts where useful.
 | `blog/*/index.html` | ~120-post corpus: style reference + duplicate check. |
 | `.claude/knowledge/BRAND-GUIDE.md` | Voice, colors, imagery. |
 | `blog/Speeding-Tickets-Orange-County-FL-Past-12-Months/`, `intox8000-data.json`, `officer-intel.html` | Original datasets — original-research angles. |
+
+## 8. Draft storage (Google Drive)
+
+| Item | Value |
+|------|-------|
+| Folder | **LotterLaw Blog Drafts** |
+| Folder ID | `1B88L_n4ONjOP_VnOOmRRHj1vzxzxmdPq` |
+| URL | https://drive.google.com/drive/folders/1B88L_n4ONjOP_VnOOmRRHj1vzxzxmdPq |
+
+File naming: `<slug>.draft.html` (WRITE output) and `<slug>.enriched.html`
+(ENRICH output). Drive files can't be edited in place through the connector —
+every revision is a new upload, and `BLOG_PIPELINE.md` records the current
+file ID. Drafts never enter the git repo.
 
 ## Cross-reference requirement
 
