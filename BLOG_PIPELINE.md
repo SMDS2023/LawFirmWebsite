@@ -14,11 +14,15 @@
 
 ### dui-pretrial-diversion-orange-county — awaiting-gate-1
 - **Brief:** BRIEF-202607-02
-- **Draft:** `dui-pretrial-diversion-orange-county.draft.html` · Drive ID
-  `1MfG-22-fUvGImi1nhhIHT8sKsJBMcxQP` (uploaded 2026-07-05, 1,318 words)
-- **Gate-1 open items for Jeff:** verify tier terms (lengths, costs, SCRAM
-  scope/duration) against the served PTI contract; confirm "no seal/expunge
-  for DUI conviction" phrasing is how he wants it stated.
+- **Draft (current, rev 2):** `dui-pretrial-diversion-orange-county.draft.html`
+  · Drive ID `1Oj6eNUcC9v93EYnb9l0jwxXQW1P25knb` (uploaded 2026-07-05;
+  rev 1 `1MfG-22...` is superseded)
+- **Rev 2 incorporates Jeff's Gate-1 corrections:** SCRAM required for six
+  months at Tier 2 (cost math updated to ~$1,800–2,200); program currently
+  starts at 12 months with a "terms change regularly" hedge; seal/expunge
+  point corrected to the broader rule (any adjudication ends eligibility to
+  seal/expunge any record); SCRAM facts sourced to scramsystems.com
+  ("samples perspiration every 30 minutes," "a breathalyzer for the ankle").
 
 ## Proposed briefs
 
