@@ -12,17 +12,23 @@
 
 ## Active drafts
 
-### dui-pretrial-diversion-orange-county — awaiting-gate-1
-- **Brief:** BRIEF-202607-02
-- **Draft (current, rev 2):** `dui-pretrial-diversion-orange-county.draft.html`
-  · Drive ID `1Oj6eNUcC9v93EYnb9l0jwxXQW1P25knb` (uploaded 2026-07-05;
-  rev 1 `1MfG-22...` is superseded)
-- **Rev 2 incorporates Jeff's Gate-1 corrections:** SCRAM required for six
-  months at Tier 2 (cost math updated to ~$1,800–2,200); program currently
-  starts at 12 months with a "terms change regularly" hedge; seal/expunge
-  point corrected to the broader rule (any adjudication ends eligibility to
-  seal/expunge any record); SCRAM facts sourced to scramsystems.com
-  ("samples perspiration every 30 minutes," "a breathalyzer for the ankle").
+### dui-pretrial-diversion-orange-county — awaiting-gate-2
+- **Brief:** BRIEF-202607-02 · Gate 1 approved 2026-07-05 (rev 2)
+- **Enriched (current):**
+  `dui-pretrial-diversion-orange-county.enriched.html` · Drive ID
+  `1448YGkhCUWJt1bTfrY4e8pkqKSTrd49E` (drafts `1Oj6eNUc...`/`1MfG-22...`
+  superseded)
+- **Enrichment applied:** 1-3-2 links complete (pillar
+  `dui-dwi-defense-florida-guide`; 4 supporting posts; practice
+  `practice-areas/dui.html` + contact CTA); 2 related-article cards; Article
+  + BreadcrumbList schema; GTM only.
+- **Images:** hero/og PENDING — Gemini prompts delivered to Jeff (house
+  process per `assets/HERO-IMAGE-SPECS-GEMINI.md`); hero block staged in a
+  comment; og/schema URLs point to
+  `assets/blog/dui-pretrial-diversion-orange-county-{hero,og}.jpg`.
+- **Back-links queued for GOLIVE:** add links to this post from
+  `interlock-violation-kicked-from-diversion` and
+  `can-dui-be-dismissed-florida`.
 
 ## Proposed briefs
 
