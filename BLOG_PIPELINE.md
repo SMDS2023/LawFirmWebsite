@@ -30,31 +30,40 @@
   briefs never assert legal standards (see `ideate.md`).
 
 ### BRIEF-202607-02: The State Offered DUI Diversion. Should You Take It?
-- **Status:** proposed
-- **The story (anonymized):** In late June, a client and I worked through a
-  real decision: the State Attorney approved him for DUI pre-trial diversion
-  (Tier 1, breath result under .15). Take the program — with its costs,
-  conditions, and an interlock — or fight a triable case? The email from the
-  SAO looked like good news; the decision was genuinely hard.
+- **Status:** story-confirmed (Gate 0 · 2026-07-05, with corrections)
+- **The story (Jeff-confirmed, anonymized):** In late June, a client and I
+  worked through a real decision: the State Attorney approved him for DUI
+  pre-trial diversion (Tier 1, breath result under .15). The email looked
+  like good news — but the answer depends on the tier. **Jeff's correction
+  that reframes the post:** DUI diversion now requires **SCRAM (continuous
+  alcohol monitoring) at Tier 2** — a device that is expensive, invasive,
+  and prone to problems, which can make diversion an unacceptable option at
+  that tier. The tier you're offered changes the answer.
 - **Why now:** SAO9's tiered DUI PTI program is active and offers are
-  arriving on real cases; nothing on the site explains the tiers or the
-  trade-offs.
-- **Authority cross-refs:** SAO9 DUI PTI program terms (tier structure,
-  conditions) → what you actually sign up for; F.S. §316.193 + §316.656 (no
-  plea-bargain below statutory minimums / withhold rules) → why diversion
-  differs from a plea; existing posts
-  `interlock-violation-kicked-from-diversion` (the cautionary tale — link
-  both ways) and `dui-reduced-reckless-driving-florida`.
+  arriving on real cases; nothing on the site explains the tiers, the SCRAM
+  requirement, or the trade-offs.
+- **Authority cross-refs (verify at research):** SAO9 DUI PTI program terms
+  → tier structure, conditions, SCRAM requirement; SCRAM device
+  documentation + reliability litigation → cost, false-positive record;
+  F.S. §316.193 / §316.656 → verify how diversion differs from a plea and
+  what minimums apply; existing posts
+  `interlock-violation-kicked-from-diversion` (cautionary companion) and
+  `dui-reduced-reckless-driving-florida`.
 - **The hook:** "The State's email said my client was approved. Approved for
   what, exactly, is where the real decision started."
-- **SEO:** "DUI diversion program Orange County" / "DUI PTI Florida" ·
-  commercial-informational · gap: diversion mentioned in passing only.
-- **CTA angle:** An offer is a fork in the road — evaluate the case before
-  you sign it away.
+- **SEO:** "DUI diversion program Orange County" / "DUI PTI Florida" /
+  "SCRAM device Florida DUI" · commercial-informational · gap: diversion
+  mentioned in passing only.
+- **CTA angle:** An offer is a fork in the road — the tier and its
+  conditions decide whether to take it, and that's a lawyer's call.
 - **Score:** S3 A2 T2 G2 = **9/10**
 
 ### BRIEF-202607-03: The Other DUI Trial: Your DHSMV Formal Review
-- **Status:** proposed
+- **Status:** story-confirmed (Gate 0 · 2026-07-05). Jeff: do a **deep dive
+  into the whole formal-review process** — dual purpose: the blog post AND a
+  process map that helps rework the firm's own systems for these hearings.
+  Research output should include an internal-facing process outline, not
+  just post material.
 - **The story (anonymized):** This spring and summer I've handled a run of
   DHSMV formal review hearings — the administrative fight over your license
   that starts a 10-day clock the night of a DUI arrest and finishes long
@@ -74,33 +83,41 @@
 - **CTA angle:** The license fight starts now, not at arraignment.
 - **Score:** S3 A3 T1 G2 = **9/10**
 
-### BRIEF-202607-04: Police Evidence That Deletes Itself
-- **Status:** proposed
-- **The story (anonymized):** In a pending misdemeanor case, the State's
-  digital evidence — body-cam video, a 911 call — arrived as an
-  Evidence.com link with an expiration date. If the defense doesn't download
-  and preserve it in time, it's gone. Discovery now comes with a shelf life,
-  and the burden quietly shifts to the defense to keep the State's own
-  evidence alive.
+### BRIEF-202607-04: How the State Actually Shares the Evidence Against You
+- **Status:** story-confirmed (Gate 0 · 2026-07-05, angle broadened by Jeff)
+- **The story (Jeff-confirmed, anonymized):** In a pending misdemeanor, the
+  State's digital evidence — body-cam video, a 911 call — arrived as an
+  Evidence.com link with an expiration date. **Jeff's reframe:** make the
+  post an explainer of the three systems through which the State shares
+  video and document evidence — **Axon Evidence.com** (agency video/audio,
+  expiring share links), the **Clerk's eFiling portal** (court filings), and
+  **CIS** (the State Attorney's discovery/case system) — how each works,
+  what lives where, and where evidence can quietly slip away.
 - **Why now:** Live issue in current caseload; pairs with the site's Axon
   Draft One post while AI-generated police reports are in the news.
-- **Authority cross-refs:** Case law library "Brady / Evidence Preservation"
-  category (VERIFIED — e.g., duty-to-preserve line of cases) → what happens
-  legally when evidence disappears; Axon Evidence.com sharing/retention
-  documentation → how links and expirations actually work; academy manual
-  report-writing/evidence sections → what officers are trained to preserve;
-  existing post `ai-police-reports-axon-draft-one` (link).
+- **Authority cross-refs (verify at research):** Axon Evidence.com
+  sharing/retention documentation → how links and expirations work; Florida
+  eFiling portal / Ninth Circuit clerk documentation → what defendants can
+  see; SAO discovery-portal practice → how discovery is transmitted; case
+  law library "Brady / Evidence Preservation" category (VERIFIED) → what
+  happens legally when evidence disappears; existing post
+  `ai-police-reports-axon-draft-one` (link).
 - **The hook:** "The State's best evidence against my client came with an
   expiration date — and the countdown was already running."
-- **SEO:** "body camera evidence deleted Florida" / "evidence.com link
-  expired" · informational, low competition · gap: nothing on digital
-  evidence preservation.
+- **SEO:** "how to get police body cam footage Florida" / "evidence.com
+  link expired" / "criminal discovery Florida" · informational, low
+  competition · gap: nothing on the discovery systems themselves.
 - **CTA angle:** Deadlines in a case aren't just court dates — hire counsel
-  who preserves the record before it evaporates.
+  who knows the systems and preserves the record before it evaporates.
 - **Score:** S3 A2 T2 G2 = **9/10**
 
 ### BRIEF-202607-05: School Zones Are Back — and So Are the Cameras
-- **Status:** proposed
+- **Status:** story-confirmed (Gate 0 · 2026-07-05, scope broadened by
+  Jeff): cover the back-to-school enforcement cluster — school-zone
+  speeding AND texting-while-driving (hand-held ban in school zones),
+  passing a stopped school bus, and related school-zone offenses. Anchor
+  story remains the pending Orange County school-zone speeding hearing
+  (scheduled August; not yet held — no outcome claims).
 - **The story (anonymized):** I have a school-zone speeding case set for
   hearing in Orange County traffic court in early August — right as Central
   Florida schools reopen and the school-zone speed cameras and stepped-up
