@@ -12,12 +12,32 @@ The enriched file is the artifact that gets staged.
   `alt`, explicit `width`/`height`, and a caption that adds meaning.
 - Social: `assets/blog/<slug>-og.jpg` (1200×630); set og:image,
   twitter:image, and schema image to it.
-- Sourcing: reuse a fitting image from `assets/`, or flag Gate 2 with a
-  one-line art direction note for Jeff ("dashcam at dusk, no faces") — do not
-  fabricate stock-looking images without telling him. Never use photos that
-  could identify a client, scene, or officer.
 - Uncomment the hero `<figure>` once the asset exists; if the asset is
   pending, leave it commented and mark image status "pending" at Gate 2.
+- Never use photos that could identify a client, scene, or officer.
+
+### Sourcing, in preference order
+
+1. **xAI image API (photorealistic)** — requires `XAI_API_KEY` env var AND
+   `api.x.ai` in the environment's allowed domains (both set at
+   claude.ai/code → environment settings). POST
+   `https://api.x.ai/v1/images/generations` with
+   `{"model": "grok-imagine-image", "prompt": ..., "response_format":
+   "b64_json"}`; decode, then crop/resize with Pillow (`pip install
+   pillow`). On 402 (zero balance — auto-top-up is OFF on Jeff's xAI
+   account), 429 (Tier 0 limits), or connection failure: fall through — do
+   not stall the pipeline.
+2. **Branded og card, generated locally (always works)** — edit
+   `templates/og-card-template.html` (kicker · headline w/ gold accent ·
+   subline · LOTTER LAW footer), render with the pre-installed Chromium:
+   `chromium --headless --no-sandbox --hide-scrollbars
+   --force-device-scale-factor=1 --window-size=1280,900 --screenshot=out.png
+   file://.../og-card.html`, then Pillow-crop to exactly (0,0,1200,630) and
+   save JPG quality≈88 (Chromium's window-size does not equal viewport —
+   always render oversized and crop). Good enough to ship; a photorealistic
+   hero can replace it later.
+3. **Reuse a fitting image from `assets/`**, or flag Gate 2 with a one-line
+   art-direction prompt for Jeff to run in the Grok/Gemini app UI.
 
 ## 2. Internal links (the 1-3-2 rule)
 

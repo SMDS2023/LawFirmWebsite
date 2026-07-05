@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; background: #0a1730; font-family: 'DejaVu Sans', sans-serif; }
+  .card {
+    width: 1200px; height: 630px; position: relative;
+    background: linear-gradient(135deg, #0a1730 0%, #14306b 60%, #1e40af 100%);
+    color: #fff; padding: 56px 80px 48px; display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .rule { width: 90px; height: 6px; background: #f59e0b; border-radius: 3px; margin: 26px 0 34px; }
+  .kicker { font-size: 26px; letter-spacing: 5px; color: #93c5fd; text-transform: uppercase; font-weight: 600; }
+  h1 { font-family: 'DejaVu Serif', Georgia, serif; font-size: 60px; line-height: 1.15; font-weight: 700; max-width: 1000px; }
+  h1 .accent { color: #fbbf24; }
+  .sub { font-size: 30px; color: #cbd5e1; margin-top: 28px; max-width: 950px; line-height: 1.35; }
+  .footer { position: absolute; left: 80px; right: 80px; bottom: 44px; display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: baseline; gap: 18px; }
+  .brand .name { font-family: 'DejaVu Serif', Georgia, serif; font-size: 34px; font-weight: 700; color: #fff; }
+  .brand .name span { color: #fbbf24; }
+  .site { font-size: 26px; color: #93c5fd; letter-spacing: 1px; }
+  .scale {
+    position: absolute; right: -60px; bottom: -90px; font-size: 420px; opacity: 0.08; transform: rotate(-8deg);
+    font-family: 'DejaVu Sans', sans-serif;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div>
+      <div class="kicker">DUI Defense &nbsp;·&nbsp; Orange County</div>
+      <div class="rule"></div>
+      <h1>The State Offered DUI Diversion.<br><span class="accent">Should You Take It?</span></h1>
+      <div class="sub">Two tiers, a SCRAM ankle monitor, and the one clean exit Florida law leaves open.</div>
+    </div>
+    <div class="footer">
+      <div class="brand"><span class="name">LOTTER <span>LAW</span></span></div>
+      <div class="site">lotterlaw.com</div>
+    </div>
+    <div class="scale">&#9878;</div>
+  </div>
+</body>
+</html>

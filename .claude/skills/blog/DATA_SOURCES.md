@@ -98,7 +98,17 @@ Online Sunshine page in posts where useful.
 | `.claude/knowledge/BRAND-GUIDE.md` | Voice, colors, imagery. |
 | `blog/Speeding-Tickets-Orange-County-FL-Past-12-Months/`, `intox8000-data.json`, `officer-intel.html` | Original datasets — original-research angles. |
 
-## 8. Draft storage (Google Drive)
+## 8. Image generation
+
+| Item | Value |
+|------|-------|
+| xAI API | `https://api.x.ai/v1/images/generations`, model `grok-imagine-image` |
+| Key | `XAI_API_KEY` env var (set in claude.ai/code environment settings — NEVER in this repo) |
+| Network | `api.x.ai` must be in the environment's allowed domains; verify with a test call before relying on it |
+| Known risks | Jeff's xAI account has auto-top-up OFF (402 on zero balance) and Tier 0 rate limits (429) — always fall back gracefully |
+| Fallback | Local branded og card via headless Chromium + `templates/og-card-template.html` (see `enrich.md` §1) |
+
+## 9. Draft storage (Google Drive)
 
 | Item | Value |
 |------|-------|
