@@ -12,7 +12,13 @@
 
 ## Active drafts
 
-*(none)*
+### dui-pretrial-diversion-orange-county — awaiting-gate-1
+- **Brief:** BRIEF-202607-02
+- **Draft:** `dui-pretrial-diversion-orange-county.draft.html` · Drive ID
+  `1MfG-22-fUvGImi1nhhIHT8sKsJBMcxQP` (uploaded 2026-07-05, 1,318 words)
+- **Gate-1 open items for Jeff:** verify tier terms (lengths, costs, SCRAM
+  scope/duration) against the served PTI contract; confirm "no seal/expunge
+  for DUI conviction" phrasing is how he wants it stated.
 
 ## Proposed briefs
 
@@ -30,7 +36,7 @@
   briefs never assert legal standards (see `ideate.md`).
 
 ### BRIEF-202607-02: The State Offered DUI Diversion. Should You Take It?
-- **Status:** story-confirmed (Gate 0 · 2026-07-05, with corrections)
+- **Status:** awaiting-gate-1 (drafted 2026-07-05 — see Active drafts)
 - **The story (Jeff-confirmed, anonymized):** In late June, a client and I
   worked through a real decision: the State Attorney approved him for DUI
   pre-trial diversion (Tier 1, breath result under .15). The email looked
@@ -57,6 +63,43 @@
 - **CTA angle:** An offer is a fork in the road — the tier and its
   conditions decide whether to take it, and that's a lawyer's call.
 - **Score:** S3 A2 T2 G2 = **9/10**
+
+#### Source Pack (researched 2026-07-05)
+- **Narrative timeline (anonymized, email-verified):** PTI referral
+  requested mid-June → approved for DUI PTI Tier 1 (BAC < .15) about a week
+  later → PTI contract served by the SAO at month's end → attorney-client
+  decision call. Parallel matters this month show the program's
+  administrative texture: contracts delivered via Dropbox, hard report-by
+  deadlines to Community Corrections, payment by money order with receipt
+  upload, extensions generally refused except near the program end date.
+- **Authorities:**
+  - F.S. §316.656(1) — no court may suspend, defer, or **withhold
+    adjudication** for a §316.193 violation (DUI conviction = mandatory
+    adjudication) · via flsenate.gov · proves why a diversion dismissal is
+    uniquely valuable for DUI.
+  - F.S. §316.656(2)(a) — no judge may accept a plea to a **lesser offense**
+    where BAC ≥ .15 · same source · proves the .15 line cuts twice.
+  - SAO9 DUI PTI program structure — Tier 1: BAC < .15 (per SAO approval
+    language); Tier 2: refusal or ≥ .15; ~12 vs ~15 months, higher costs at
+    Tier 2; **Jeff (Gate 0): Tier 2 now requires SCRAM/continuous alcohol
+    monitoring — expensive, invasive, problem-prone.** `[VERIFY at Gate 1:
+    tier terms against the served PTI contract — lengths, contributions,
+    SCRAM scope/duration]`
+  - SCRAM CAM manufacturer materials (scramsystems.com media FAQ) — setup
+    $50–100, ~$10–12/day (~$300–360/month); transdermal sampling; defense
+    commentary documents false-positive risk from environmental alcohol
+    (sanitizers, lotions, gasoline) · proves cost + reliability argument.
+- **Defense theory / thesis:** Diversion's value is the dismissal (the only
+  clean exit §316.656 leaves open), but the tier decides the price — Tier 2's
+  SCRAM requirement can make 15 months of diversion costlier and riskier
+  than defending the case; and even Tier 1 is an unforgiving compliance
+  gauntlet where one administrative slip puts you back on the trial docket.
+- **Internal links:** pillar `dui-dwi-defense-florida-guide`; supporting
+  `interlock-violation-kicked-from-diversion`,
+  `can-dui-be-dismissed-florida`, `first-dui-florida-penalties`; practice
+  `practice-areas/dui.html` + contact CTA.
+- **Open items:** tier terms vs. served contract (Jeff, Gate 1); SCRAM
+  duration within Tier 2 (Jeff, Gate 1).
 
 ### BRIEF-202607-03: The Other DUI Trial: Your DHSMV Formal Review
 - **Status:** story-confirmed (Gate 0 · 2026-07-05). Jeff: do a **deep dive
