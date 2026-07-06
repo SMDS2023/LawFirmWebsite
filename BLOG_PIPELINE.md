@@ -194,6 +194,24 @@
   you just pay.
 - **Score:** S2 A2 T2 G2 = **8/10**
 
+## Backlog candidates (salvaged from cases-v2 PR #69, 2026-07-06)
+
+> A parallel session, believing this branch lost, rebuilt the workflow in
+> `SMDS2023/cases-v2` PR #69. **This branch is canonical** — that PR should
+> be closed or stripped; do not maintain two copies of the workflow. Items
+> below are the genuinely new ideas worth keeping. They are raw topics, not
+> briefs — run them through IDEATE (story + authority cross-refs + Gate 0)
+> before advancing.
+
+- Bond / pretrial release post (check overlap:
+  `domestic-violence-no-bond-pretrial-release` exists).
+- Richardson-hearing cluster — strong fit: the case law library has a
+  dedicated Richardson/discovery-violation category (per-se reversible
+  error line of cases).
+- DCA restructure explainer.
+- Photorealistic hero prompt for the diversion post exists in that PR —
+  reuse it when the xAI image path opens rather than rewriting.
+
 ## Dedupe notes from this sweep
 
 - July 4th DUI enforcement → covered (`july-4th-dui-enforcement-florida`); skip.
