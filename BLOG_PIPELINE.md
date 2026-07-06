@@ -12,23 +12,20 @@
 
 ## Active drafts
 
-### dui-pretrial-diversion-orange-county — awaiting-gate-2
-- **Brief:** BRIEF-202607-02 · Gate 1 approved 2026-07-05 (rev 2)
-- **Enriched (current):**
-  `dui-pretrial-diversion-orange-county.enriched.html` · Drive ID
-  `1448YGkhCUWJt1bTfrY4e8pkqKSTrd49E` (drafts `1Oj6eNUc...`/`1MfG-22...`
-  superseded)
-- **Enrichment applied:** 1-3-2 links complete (pillar
-  `dui-dwi-defense-florida-guide`; 4 supporting posts; practice
-  `practice-areas/dui.html` + contact CTA); 2 related-article cards; Article
-  + BreadcrumbList schema; GTM only.
-- **Images:** hero/og PENDING — Gemini prompts delivered to Jeff (house
-  process per `assets/HERO-IMAGE-SPECS-GEMINI.md`); hero block staged in a
-  comment; og/schema URLs point to
-  `assets/blog/dui-pretrial-diversion-orange-county-{hero,og}.jpg`.
-- **Back-links queued for GOLIVE:** add links to this post from
-  `interlock-violation-kicked-from-diversion` and
-  `can-dui-be-dismissed-florida`.
+### dui-pretrial-diversion-orange-county — published (pending PR merge)
+- **Brief:** BRIEF-202607-02 · Gate 1 approved 2026-07-05 · Gate 2
+  "Publish Now" 2026-07-06
+- **GOLIVE applied (this branch):** post at
+  `blog/dui-pretrial-diversion-orange-county/index.html` dated 2026-07-06;
+  card at top of `blog.html`; `sitemap.xml` entry + blog.html lastmod;
+  back-links added in `interlock-violation-kicked-from-diversion` and
+  `can-dui-be-dismissed-florida`; og image committed. Live once the PR
+  merges + Pages deploys (2–5 min).
+- **URL after merge:** https://lotterlaw.com/blog/dui-pretrial-diversion-orange-county/
+- **Remaining:** photorealistic hero (xAI, next session with `XAI_API_KEY`)
+  — hero `<figure>` is staged in a comment; Facebook + GMB distribution
+  after live.
+- **Drive archive:** enriched `1448YGkhCUWJt1bTfrY4e8pkqKSTrd49E`.
 
 ## Proposed briefs
 
