@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-52LMX48G');</script>
-    <!-- End Google Tag Manager -->
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Not Found | Lotter Law</title>
@@ -24,10 +17,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Redirect Logic -->
+    <!-- Redirect Logic (must run before GTM so redirected visits don't count as 404 views) -->
     <script>
     (function() {
-        const path = window.location.pathname.toLowerCase();
+        // GitHub Pages URLs are case-sensitive: lowercase only for map lookup,
+        // keep rawPath for building redirect targets. Map keys must be lowercase;
+        // targets carry whatever case the real folder has.
+        const rawPath = window.location.pathname;
+        const path = rawPath.toLowerCase();
+
+        function go(target) {
+            window.__llRedirected = true;
+            window.location.replace(target);
+        }
 
         // Redirect map for old URLs
         const redirects = {
@@ -70,7 +72,7 @@
             '/blog/01-no-jurisdiction-for-crash-investigation.html': '/blog/no-jurisdiction-for-crash-investigation/',
             '/blog/02-refuse-sfst.html': '/blog/refuse-sfst/',
             '/blog/03-understanding-probable-cause.html': '/blog/understanding-probable-cause/',
-            '/blog/04-Forensic-Video-Analysis.html': '/blog/Forensic-Video-Analysis/',
+            '/blog/04-forensic-video-analysis.html': '/blog/Forensic-Video-Analysis/',
             '/blog/05-data-driven-defense.html': '/blog/data-driven-defense/',
             '/blog/06-interlock-violation-kicked-from-diversion.html': '/blog/interlock-violation-kicked-from-diversion/',
             '/blog/07-pre-trial-motions.html': '/blog/pre-trial-motions/',
@@ -78,11 +80,11 @@
             '/blog/09-deputy-sheriff.html': '/blog/deputy-sheriff/',
             '/blog/10-veteran.html': '/blog/veteran/',
             '/blog/11-valencia-police-academy.html': '/blog/valencia-police-academy/',
-            '/blog/12-Legal-Data-Analysis.html': '/blog/Legal-Data-Analysis/',
+            '/blog/12-legal-data-analysis.html': '/blog/Legal-Data-Analysis/',
             '/blog/13-florida-laws-july-2025.html': '/blog/florida-laws-july-2025/',
             '/blog/14-marijuana-weapons-fss-790.html': '/blog/marijuana-weapons-fss-790/',
             '/blog/15-speeding-tickets-75-year-trap.html': '/blog/speeding-tickets-75-year-trap/',
-            '/blog/16-Speeding-Tickets-Orange-County-FL-Past-12-Months.html': '/blog/Speeding-Tickets-Orange-County-FL-Past-12-Months/',
+            '/blog/16-speeding-tickets-orange-county-fl-past-12-months.html': '/blog/Speeding-Tickets-Orange-County-FL-Past-12-Months/',
             '/blog/17-hiring-attorney-tickets.html': '/blog/hiring-attorney-tickets/',
             '/blog/18-securely-encased-vs-concealed.html': '/blog/securely-encased-vs-concealed/',
             '/blog/19-new-dui-refusal-law.html': '/blog/new-dui-refusal-law/',
@@ -159,16 +161,38 @@
             '/blog/98-super-bowl-sunday-enforcement-tactics.html': '/blog/super-bowl-sunday-enforcement-tactics/',
             '/blog/100-first-court-appearance-orlando.html': '/blog/first-court-appearance-orlando/',
             '/blog/start-here.html': '/blog/start-here/',
-            '/blog/Case-Analysis-01-fellow-officer-rule.html': '/blog/Case-Analysis-01-fellow-officer-rule/',
+            '/blog/case-analysis-01-fellow-officer-rule.html': '/blog/Case-Analysis-01-fellow-officer-rule/',
             '/blog/dui-defense-guide.html': '/blog/dui-defense-guide/',
             '/blog/theft-defense-guide.html': '/blog/theft-defense-guide/',
             '/blog/domestic-violence-defense-guide.html': '/blog/domestic-violence-defense-guide/',
 
+            // Social share text for post 79 went out with a wrong URL (folder has no 79- prefix)
+            '/blog/79-criminal-punishment-scoresheet-florida/': '/blog/criminal-punishment-scoresheet-florida/',
+            '/blog/79-criminal-punishment-scoresheet-florida': '/blog/criminal-punishment-scoresheet-florida/',
+
+            // Root-level blog slugs (hit without the /blog/ prefix — social posts, LLM citations)
+            '/tell-employer-about-arrest': '/blog/tell-employer-about-arrest/',
+            '/dwlsr-vs-no-valid-license-florida': '/blog/dwlsr-vs-no-valid-license-florida/',
+            '/first-traffic-court-hearing-florida': '/blog/first-traffic-court-hearing-florida/',
+            '/hto-status-removed-vacating-dwls-conviction': '/blog/hto-status-removed-vacating-dwls-conviction/',
+            '/new-year-clear-your-record-2026': '/blog/new-year-clear-your-record-2026/',
+            '/sealing-expunging-criminal-records': '/blog/sealing-expunging-criminal-records/',
+            '/florida-dl-number-soundex-randomized': '/blog/florida-dl-number-soundex-randomized/',
+            '/withhold-wisdom-prior-withholds-not-convictions': '/blog/withhold-wisdom-prior-withholds-not-convictions/',
+
             // Navigation pages
+            '/blog/': '/blog.html',
             '/about/': '/index.html#team',
             '/about': '/index.html#team',
             '/contact/': '/index.html#contact',
             '/contact': '/index.html#contact',
+            '/contact-us': '/index.html#contact',
+            '/contact_us': '/index.html#contact',
+            '/consultation': '/index.html#contact',
+            '/free-consultation': '/index.html#contact',
+            '/get-in-touch': '/index.html#contact',
+            '/team': '/index.html#team',
+            '/attorneys': '/index.html#team',
             '/practice-area/': '/index.html#practice-areas-grid',
             '/practice-area': '/index.html#practice-areas-grid',
 
@@ -178,21 +202,34 @@
             '/accident-ticket.html': '/practice-areas/criminal-traffic.html'
         };
 
-        // Check for exact match
-        if (redirects[path]) {
-            window.location.replace(redirects[path]);
-            return;
+        // Check for exact match (tolerate a missing/extra trailing slash)
+        const lookups = [path];
+        if (path.length > 1) {
+            lookups.push(path.endsWith('/') ? path.slice(0, -1) : path + '/');
+        }
+        for (const key of lookups) {
+            if (redirects[key]) {
+                go(redirects[key]);
+                return;
+            }
         }
 
-        // Fuzzy blog redirect fallback (catches edge cases from migration)
-        if (path.startsWith('/blog/') && !redirects[path]) {
-            const blogMatch = path.match(/^\/blog\/\d+-(.+)\.html$/);
+        // Fuzzy blog redirect fallback (catches edge cases from migration).
+        // Build targets from rawPath — folder names keep their original case.
+        if (path.startsWith('/blog/')) {
+            const blogMatch = rawPath.match(/^\/blog\/\d+-(.+)\.html$/i);
             if (blogMatch) {
-                window.location.replace('/blog/' + blogMatch[1] + '/');
+                go('/blog/' + blogMatch[1] + '/');
+                return;
+            }
+            // Numbered folder-style URLs (e.g. /blog/88-slug/) — live folders have no number prefix
+            const blogDirMatch = rawPath.match(/^\/blog\/\d+-([^.]+?)\/?$/);
+            if (blogDirMatch) {
+                go('/blog/' + blogDirMatch[1] + '/');
                 return;
             }
             if (!path.endsWith('/') && !path.endsWith('.html') && !path.includes('.')) {
-                window.location.replace(path + '/');
+                go(rawPath + '/');
                 return;
             }
         }
@@ -208,19 +245,20 @@
 
         for (const ghost of ghostPaths) {
             if (path.startsWith(ghost)) {
-                window.location.replace('/index.html');
+                go('/index.html');
                 return;
             }
         }
-
-        // Strip trailing hash fragments for matching
-        const pathWithoutHash = path.split('#')[0];
-        if (redirects[pathWithoutHash]) {
-            window.location.replace(redirects[pathWithoutHash]);
-            return;
-        }
     })();
     </script>
+
+    <!-- Google Tag Manager — gated so redirected visits don't fire a 404 page_view -->
+    <script>if (!window.__llRedirected) {(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-52LMX48G');}</script>
+    <!-- End Google Tag Manager -->
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Google Tag Manager (noscript) -->
