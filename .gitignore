@@ -28,8 +28,19 @@ scripts/config/*token*.json
 scripts/config/google_token.json
 scripts/config/calendar_token.json
 
+# Analytics credentials (must never be committed)
+analytics/credentials/*.json
+analytics/credentials/*.txt
+analytics/credentials/*.p12
+analytics/credentials/*.pem
+analytics/credentials/*.key
+analytics/.venv/
+
 # Script session state
 scripts/_current_session.txt
+
+# Agent leftover cwd files
+tmpclaude-*
 
 # Temporary Files
 *.tmp
