@@ -16,8 +16,7 @@ header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid 
 .brand{font-weight:700;color:#1e40af;font-size:1.25rem;text-decoration:none}
 .badge{font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1e40af;border:1px solid #bfdbfe;background:#eff6ff;padding:.2rem .5rem}
 .cta{display:inline-block;background:#1e40af;color:#fff;text-decoration:none;font-weight:600;font-size:.875rem;padding:.55rem 1rem}
-.stage{position:relative}
-.under{position:absolute;left:0;right:0;top:0;z-index:0;pointer-events:none;will-change:transform}
+.under{position:fixed;left:0;right:0;top:0;height:400vh;z-index:0;pointer-events:none;will-change:transform}
 .station{position:absolute;left:50%;width:min(26rem,86vw);height:5.5rem;margin-left:calc(min(26rem,86vw)/-2);background:#fff}
 .lockup{display:block;width:100%;height:5.5rem;object-fit:contain;background:#fff;padding:.45rem .9rem}
 .phone{font-family:Tinos,serif;font-size:clamp(1.6rem,3.8vw,2.2rem);line-height:5.5rem;height:5.5rem;color:#1e40af;letter-spacing:.02em;text-decoration:none;background:#fff;display:block;text-align:center;padding:0 1.1rem;pointer-events:auto}
@@ -42,61 +41,57 @@ header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid 
   <span class="badge">Test page — not live</span>
   <a class="cta" href="tel:4075007000">Call Now</a>
 </header>
-<div class="stage" id="stage">
-  <div class="under" id="under" aria-hidden="true">
-    <div class="station" id="logoStation">
-      <img class="lockup" src="logo.jpg" alt="">
-    </div>
-    <div class="station" id="phoneStation">
-      <a class="phone" href="tel:4075007000">407-500-7000</a>
-    </div>
+<div class="under" id="under" aria-hidden="true">
+  <div class="station" id="logoStation">
+    <img class="lockup" src="logo.jpg" alt="">
   </div>
-  <main class="sheet" id="top">
-    <section class="block">
-      <div class="inner">
-        <h1>How a Florida traffic stop actually unfolds</h1>
-        <p>I write these so you can see the sequence — the stop, the records, and what the State has to prove — not as a highlight reel. No outcome promises.</p>
-        <p>If you want to talk through your facts, request a consultation or call 407-500-7000.</p>
-      </div>
-    </section>
-    <div class="gap" id="gapLogo" aria-label="Lotter Law"></div>
-    <section class="block">
-      <div class="inner">
-        <h2>What I look at first</h2>
-        <p>The report is only the starting point. I want the video, the device records, and the timeline, because those are what hold up or fall apart in court.</p>
-        <p>This block is the second sheet. It covers most of the screen. The next break is the number.</p>
-      </div>
-    </section>
-    <div class="gap" id="gapPhone" aria-label="Call 407-500-7000"></div>
-    <section class="block note" id="end">
-      <div class="inner">
-        <h2>Request a Consultation</h2>
-        <p>Dummy close for this test. Not published. Not the O-ring draft. Not a live Flock post. Open <a href="README.txt">README.txt</a> for hook notes.</p>
-      </div>
-    </section>
-  </main>
+  <div class="station" id="phoneStation">
+    <a class="phone" href="tel:4075007000">407-500-7000</a>
+  </div>
 </div>
+<main class="sheet" id="top">
+  <section class="block">
+    <div class="inner">
+      <h1>How a Florida traffic stop actually unfolds</h1>
+      <p>I write these so you can see the sequence — the stop, the records, and what the State has to prove — not as a highlight reel. No outcome promises.</p>
+      <p>If you want to talk through your facts, request a consultation or call 407-500-7000.</p>
+    </div>
+  </section>
+  <div class="gap" id="gapLogo" aria-label="Lotter Law"></div>
+  <section class="block">
+    <div class="inner">
+      <h2>What I look at first</h2>
+      <p>The report is only the starting point. I want the video, the device records, and the timeline, because those are what hold up or fall apart in court.</p>
+      <p>This block is the second sheet. It covers most of the screen. The next break is the number.</p>
+    </div>
+  </section>
+  <div class="gap" id="gapPhone" aria-label="Call 407-500-7000"></div>
+  <section class="block note" id="end">
+    <div class="inner">
+      <h2>Request a Consultation</h2>
+      <p>Dummy close for this test. Not published. Not the O-ring draft. Not a live Flock post. Open <a href="README.txt">README.txt</a> for hook notes.</p>
+    </div>
+  </section>
+</main>
 <script>
 (function(){
+  var RATE=0.40;
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var under=document.getElementById('under');
   var logo=document.getElementById('logoStation');
   var phone=document.getElementById('phoneStation');
   var gapLogo=document.getElementById('gapLogo');
   var gapPhone=document.getElementById('gapPhone');
-  var stage=document.getElementById('stage');
+  function docTop(el){return el.getBoundingClientRect().top+(window.scrollY||0)}
   function place(){
-    var s=stage.getBoundingClientRect();
-    var g1=gapLogo.getBoundingClientRect();
-    var g2=gapPhone.getBoundingClientRect();
-    logo.style.top=(g1.top-s.top+g1.height/2-logo.offsetHeight/2)+'px';
-    phone.style.top=(g2.top-s.top+g2.height/2-phone.offsetHeight/2)+'px';
-    under.style.height=stage.offsetHeight+'px';
+    var H=innerHeight;
+    var hold=logo.offsetHeight||88;
+    logo.style.top=(RATE*docTop(gapLogo)+(1-RATE)*(H/2-hold/2))+'px';
+    phone.style.top=(RATE*docTop(gapPhone)+(1-RATE)*(H/2-hold/2))+'px';
   }
   function tick(){
     if(reduce) return;
-    var y=window.scrollY||0;
-    under.style.transform='translate3d(0,'+(-y*0.40).toFixed(1)+'px,0)';
+    under.style.transform='translate3d(0,'+(-((window.scrollY||0)*RATE)).toFixed(1)+'px,0)';
   }
   addEventListener('scroll',tick,{passive:true});
   addEventListener('resize',function(){place();tick();});
