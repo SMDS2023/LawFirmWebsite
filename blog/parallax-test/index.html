@@ -4,30 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Scroll window test | Lotter Law (not live)</title>
+<title>Header zoom test | Lotter Law (not live)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Tinos:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:#f9fafb}
-body{font-family:Inter,sans-serif;color:#1f2937}
+body{font-family:Inter,sans-serif;color:#1f2937;background:#fff}
 a{color:#2563EB}
 header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 1.25rem}
 .brand{font-weight:700;color:#1e40af;font-size:1.25rem;text-decoration:none}
 .badge{font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1e40af;border:1px solid #bfdbfe;background:#eff6ff;padding:.2rem .5rem}
 .cta{display:inline-block;background:#1e40af;color:#fff;text-decoration:none;font-weight:600;font-size:.875rem;padding:.55rem 1rem}
-.block{background:#fff;width:100%;min-height:90vh;display:flex;align-items:center;padding:3rem 1.25rem;box-shadow:0 10px 36px rgba(15,23,42,.07)}
-.inner{max-width:40rem;margin:0 auto;width:100%}
-.inner h1{font-family:Tinos,serif;color:#1e40af;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.2;margin-bottom:1rem}
-.inner h2{color:#1e40af;font-size:1.35rem;margin:0 0 .75rem}
-.inner p{line-height:1.7;margin-bottom:1.05rem;color:#374151}
-.gap{height:22vh;min-height:10rem;width:100%;background:#f9fafb;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.reveal{flex:0 0 5.5rem;width:min(26rem,86vw);height:5.5rem;will-change:transform}
-.lockup{display:block;width:100%;height:5.5rem;object-fit:contain;background:#fff;padding:.45rem .9rem}
-.phone{font-family:Tinos,serif;font-size:clamp(1.6rem,3.8vw,2.2rem);line-height:5.5rem;height:5.5rem;color:#1e40af;letter-spacing:.02em;text-decoration:none;background:#fff;display:block;text-align:center;padding:0 1.1rem}
-.note{min-height:auto;padding:2.5rem 1.25rem 4rem}
+.hero{height:180vh}
+.stage{position:sticky;top:3.4rem;height:calc(100vh - 3.4rem);overflow:hidden;background:#111}
+.shot{width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1);transform-origin:center center;will-change:transform;display:block}
+.article{max-width:40rem;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+.article h1{font-family:Tinos,serif;color:#1e40af;font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.2;margin-bottom:1rem}
+.article p{line-height:1.7;margin-bottom:1.05rem;color:#374151}
 @media (prefers-reduced-motion:reduce){
-  .reveal{transform:none!important}
+  .shot{transform:none!important}
 }
 </style>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-52LMX48G');</script>
@@ -40,52 +35,28 @@ header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid 
   <a class="cta" href="tel:4075007000">Call Now</a>
 </header>
 <main id="top">
-  <section class="block">
-    <div class="inner">
-      <h1>How a Florida traffic stop actually unfolds</h1>
-      <p>I write these so you can see the sequence — the stop, the records, and what the State has to prove — not as a highlight reel. No outcome promises.</p>
-      <p>If you want to talk through your facts, request a consultation or call 407-500-7000.</p>
+  <section class="hero" id="hero" aria-label="Header zoom">
+    <div class="stage">
+      <img class="shot" id="shot" src="layer-front.jpg" alt="">
     </div>
   </section>
-  <div class="gap" aria-label="Lotter Law">
-    <div class="reveal">
-      <img class="lockup" src="logo.jpg" alt="Lotter Law — Criminal Defense">
-    </div>
-  </div>
-  <section class="block">
-    <div class="inner">
-      <h2>What I look at first</h2>
-      <p>The report is only the starting point. I want the video, the device records, and the timeline, because those are what hold up or fall apart in court.</p>
-      <p>This block is the second sheet. It covers most of the screen. The next break is the number.</p>
-    </div>
-  </section>
-  <div class="gap" aria-label="Call 407-500-7000">
-    <div class="reveal">
-      <a class="phone" href="tel:4075007000">407-500-7000</a>
-    </div>
-  </div>
-  <section class="block note" id="end">
-    <div class="inner">
-      <h2>Request a Consultation</h2>
-      <p>Dummy close for this test. Not published. Not the O-ring draft. Not a live Flock post. Open <a href="README.txt">README.txt</a> for hook notes.</p>
-    </div>
-  </section>
+  <article class="article">
+    <h1>Zoomed out, then in</h1>
+    <p>Dummy body. The header still is the window. Scroll up there: it starts wide and tightens in. No body cutout. Lockup stays in the chrome.</p>
+    <p>I write these so you can see how a stop actually works, not as a highlight reel. No outcome promises. Call 407-500-7000 if you want a consultation.</p>
+    <p>Reduced motion keeps the still. This is not published, not the O-ring draft, not a live Flock post.</p>
+  </article>
 </main>
 <script>
 (function(){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var RATE=0.40;
-  var items=[].slice.call(document.querySelectorAll('.reveal'));
+  var hero=document.getElementById('hero');
+  var shot=document.getElementById('shot');
   function tick(){
-    items.forEach(function(el){
-      var gap=el.parentElement;
-      var g=gap.getBoundingClientRect();
-      var max=Math.max(8,(g.height-el.offsetHeight)/2-4);
-      var span=innerHeight+g.height;
-      var p=span>0?Math.min(1,Math.max(0,(innerHeight-g.top)/span)):0.5;
-      var d=(0.5-p)*2*max*RATE/0.40;
-      el.style.transform='translate3d(0,'+d.toFixed(1)+'px,0)';
-    });
+    var r=hero.getBoundingClientRect();
+    var span=r.height-innerHeight;
+    var p=span>0?Math.min(1,Math.max(0,-r.top/span)):0;
+    shot.style.transform='scale('+(1+p*0.45).toFixed(3)+')';
   }
   addEventListener('scroll',tick,{passive:true});
   addEventListener('resize',tick);
