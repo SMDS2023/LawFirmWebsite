@@ -144,11 +144,38 @@
             </div>
         </header>
 
-        <!-- Hero Image -->
-        <figure class="my-8">
-            <img src="../../assets/blog/flock-cameras-florida-alpr-traffic-stops-hero.jpg" alt="A slim solar-powered license plate reader camera mounted on a roadside pole overlooking a multi-lane suburban Orlando roadway at dusk, palm trees and passing car headlights blurred in motion with a sheriff's patrol SUV parked on the shoulder" class="w-full rounded-lg shadow-md" width="1920" height="1080">
+        <!-- Hero Image: still poster + scroll-scrub MP4 -->
+        <figure class="my-8" id="flock-scroll-hero">
+            <img id="flock-scroll-poster" src="/assets/blog/flock-cameras-florida-alpr-traffic-stops-hero.jpg" alt="A slim solar-powered license plate reader camera mounted on a roadside pole overlooking a multi-lane suburban Orlando roadway at dusk, palm trees and passing car headlights blurred in motion with a sheriff's patrol SUV parked on the shoulder" class="w-full rounded-lg shadow-md" width="1920" height="1080">
+            <video id="flock-scroll-video" class="w-full rounded-lg shadow-md hidden" width="1920" height="1080" muted playsinline preload="metadata" poster="/assets/blog/flock-cameras-florida-alpr-traffic-stops-hero.jpg">
+                <source src="/assets/blog/flock-cameras-florida-alpr-traffic-stops-hero.mp4" type="video/mp4">
+            </video>
             <figcaption class="text-sm text-gray-500 mt-2 text-center">Automated license plate readers photograph plates and vehicle details — they do not measure speed or issue tickets.</figcaption>
         </figure>
+        <script>
+        (function () {
+            var video = document.getElementById("flock-scroll-video");
+            var poster = document.getElementById("flock-scroll-poster");
+            if (!video || !poster) return;
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+            function scrub() {
+                if (!video.duration) return;
+                var rect = video.getBoundingClientRect();
+                var vh = window.innerHeight || 1;
+                var t = (vh - rect.top) / (vh + rect.height);
+                if (t < 0) t = 0;
+                if (t > 1) t = 1;
+                video.currentTime = t * video.duration;
+            }
+            video.addEventListener("loadedmetadata", function () {
+                poster.classList.add("hidden");
+                video.classList.remove("hidden");
+                scrub();
+            });
+            window.addEventListener("scroll", scrub, { passive: true });
+            window.addEventListener("resize", scrub);
+        })();
+        </script>
 
         <!-- Article Content -->
         <div class="prose lg:prose-lg max-w-none">
