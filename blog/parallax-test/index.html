@@ -16,20 +16,18 @@ header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid 
 .brand{font-weight:700;color:#1e40af;font-size:1.25rem;text-decoration:none}
 .badge{font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1e40af;border:1px solid #bfdbfe;background:#eff6ff;padding:.2rem .5rem}
 .cta{display:inline-block;background:#1e40af;color:#fff;text-decoration:none;font-weight:600;font-size:.875rem;padding:.55rem 1rem}
-.under{position:fixed;left:0;right:0;top:0;height:400vh;z-index:0;pointer-events:none;will-change:transform}
-.station{position:absolute;left:50%;width:min(26rem,86vw);height:5.5rem;margin-left:calc(min(26rem,86vw)/-2);background:#fff}
-.lockup{display:block;width:100%;height:5.5rem;object-fit:contain;background:#fff;padding:.45rem .9rem}
-.phone{font-family:Tinos,serif;font-size:clamp(1.6rem,3.8vw,2.2rem);line-height:5.5rem;height:5.5rem;color:#1e40af;letter-spacing:.02em;text-decoration:none;background:#fff;display:block;text-align:center;padding:0 1.1rem;pointer-events:auto}
-.sheet{position:relative;z-index:1}
 .block{background:#fff;width:100%;min-height:90vh;display:flex;align-items:center;padding:3rem 1.25rem;box-shadow:0 10px 36px rgba(15,23,42,.07)}
 .inner{max-width:40rem;margin:0 auto;width:100%}
 .inner h1{font-family:Tinos,serif;color:#1e40af;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.2;margin-bottom:1rem}
 .inner h2{color:#1e40af;font-size:1.35rem;margin:0 0 .75rem}
 .inner p{line-height:1.7;margin-bottom:1.05rem;color:#374151}
-.gap{height:16vh;min-height:9rem;width:100%;background:transparent}
+.gap{height:16vh;min-height:9rem;width:100%;background:#f9fafb;display:flex;align-items:center;justify-content:center;overflow:visible}
+.reveal{width:min(26rem,86vw);height:5.5rem}
+.lockup{display:block;width:100%;height:5.5rem;object-fit:contain;background:#fff;padding:.45rem .9rem}
+.phone{font-family:Tinos,serif;font-size:clamp(1.6rem,3.8vw,2.2rem);line-height:5.5rem;height:5.5rem;color:#1e40af;letter-spacing:.02em;text-decoration:none;background:#fff;display:block;text-align:center;padding:0 1.1rem}
 .note{min-height:auto;padding:2.5rem 1.25rem 4rem}
 @media (prefers-reduced-motion:reduce){
-  .under{transform:none!important}
+  .reveal{transform:none!important}
 }
 </style>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-52LMX48G');</script>
@@ -41,15 +39,7 @@ header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid 
   <span class="badge">Test page — not live</span>
   <a class="cta" href="tel:4075007000">Call Now</a>
 </header>
-<div class="under" id="under" aria-hidden="true">
-  <div class="station" id="logoStation">
-    <img class="lockup" src="logo.jpg" alt="">
-  </div>
-  <div class="station" id="phoneStation">
-    <a class="phone" href="tel:4075007000">407-500-7000</a>
-  </div>
-</div>
-<main class="sheet" id="top">
+<main id="top">
   <section class="block">
     <div class="inner">
       <h1>How a Florida traffic stop actually unfolds</h1>
@@ -57,7 +47,11 @@ header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid 
       <p>If you want to talk through your facts, request a consultation or call 407-500-7000.</p>
     </div>
   </section>
-  <div class="gap" id="gapLogo" aria-label="Lotter Law"></div>
+  <div class="gap" aria-label="Lotter Law">
+    <div class="reveal">
+      <img class="lockup" src="logo.jpg" alt="Lotter Law — Criminal Defense">
+    </div>
+  </div>
   <section class="block">
     <div class="inner">
       <h2>What I look at first</h2>
@@ -65,7 +59,11 @@ header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid 
       <p>This block is the second sheet. It covers most of the screen. The next break is the number.</p>
     </div>
   </section>
-  <div class="gap" id="gapPhone" aria-label="Call 407-500-7000"></div>
+  <div class="gap" aria-label="Call 407-500-7000">
+    <div class="reveal">
+      <a class="phone" href="tel:4075007000">407-500-7000</a>
+    </div>
+  </div>
   <section class="block note" id="end">
     <div class="inner">
       <h2>Request a Consultation</h2>
@@ -75,28 +73,16 @@ header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid 
 </main>
 <script>
 (function(){
-  var RATE=0.40;
-  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var under=document.getElementById('under');
-  var logo=document.getElementById('logoStation');
-  var phone=document.getElementById('phoneStation');
-  var gapLogo=document.getElementById('gapLogo');
-  var gapPhone=document.getElementById('gapPhone');
-  function docTop(el){return el.getBoundingClientRect().top+(window.scrollY||0)}
-  function place(){
-    var H=innerHeight;
-    var hold=logo.offsetHeight||88;
-    logo.style.top=(RATE*docTop(gapLogo)+(1-RATE)*(H/2-hold/2))+'px';
-    phone.style.top=(RATE*docTop(gapPhone)+(1-RATE)*(H/2-hold/2))+'px';
-  }
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var items=[].slice.call(document.querySelectorAll('.reveal'));
   function tick(){
-    if(reduce) return;
-    under.style.transform='translate3d(0,'+(-((window.scrollY||0)*RATE)).toFixed(1)+'px,0)';
+    var y=window.scrollY||0;
+    var d=Math.max(-18,Math.min(18,-y*0.40*0.05));
+    items.forEach(function(el){el.style.transform='translate3d(0,'+d.toFixed(1)+'px,0)';});
   }
   addEventListener('scroll',tick,{passive:true});
-  addEventListener('resize',function(){place();tick();});
-  addEventListener('load',function(){place();tick();});
-  place();tick();
+  addEventListener('resize',tick);
+  tick();
 })();
 </script>
 </body>
