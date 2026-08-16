@@ -9,15 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Tinos:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:#f9fafb}
+html,body{background:#fff}
 body{font-family:Inter,sans-serif;color:#1f2937}
 a{color:#2563EB}
 header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 1.25rem}
 .brand{font-weight:700;color:#1e40af;font-size:1.25rem;text-decoration:none}
 .badge{font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1e40af;border:1px solid #bfdbfe;background:#eff6ff;padding:.2rem .5rem}
 .cta{display:inline-block;background:#1e40af;color:#fff;text-decoration:none;font-weight:600;font-size:.875rem;padding:.55rem 1rem}
-.under{position:fixed;inset:0;z-index:0;background:#f9fafb;pointer-events:none}
-.logo-hold{position:absolute;left:50%;top:42%;width:min(28rem,86vw);transform:translate(-50%,-50%)}
+.window{position:fixed;left:0;right:0;top:26vh;height:48vh;z-index:0;background:#f9fafb;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;overflow:hidden;pointer-events:none}
+.logo-hold{position:absolute;left:50%;top:50%;width:min(28rem,86vw);transform:translate(-50%,-50%)}
 .lockup{display:block;width:100%;height:auto;background:#fff;padding:1.25rem 1.4rem}
 .sheet{position:relative;z-index:1}
 .block{background:#fff;width:100%;padding:2.75rem 1.25rem;box-shadow:0 12px 40px rgba(15,23,42,.08)}
@@ -25,7 +25,7 @@ header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid 
 .inner h1{font-family:Tinos,serif;color:#1e40af;font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.2;margin-bottom:1rem}
 .inner h2{color:#1e40af;font-size:1.25rem;margin:0 0 .75rem}
 .inner p{line-height:1.7;margin-bottom:1.05rem;color:#374151}
-.gap{height:52vh;width:100%;background:transparent}
+.gap{height:70vh;width:100%;background:transparent}
 .note{padding-bottom:4rem}
 @media (prefers-reduced-motion:reduce){
   .logo-hold{transform:translate(-50%,-50%)!important}
@@ -35,7 +35,7 @@ header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid 
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52LMX48G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<div class="under" aria-hidden="true">
+<div class="window" aria-hidden="true">
   <div class="logo-hold" id="logoHold">
     <img class="lockup" src="logo.jpg" alt="">
   </div>
@@ -49,8 +49,8 @@ header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid 
 <main id="top">
   <section class="block">
     <div class="inner">
-      <h1>Blocks on top. Full-width window in the break.</h1>
-      <p>Dummy Lotter Law body copy. This block floats on the underlying page. The window is the full-width break after this block — not a box on the right, not an expanding hole.</p>
+      <h1>The window sits in the middle of the screen</h1>
+      <p>Dummy Lotter Law body copy. This block floats on top. The window is the full-width band in the middle of the screen — not a box on the right, not a gap you have to chase.</p>
       <p>I write these so you can see how a stop actually works, not as a highlight reel. No outcome promises. Call 407-500-7000 if you want a consultation.</p>
     </div>
   </section>
@@ -58,7 +58,7 @@ header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid 
   <section class="block">
     <div class="inner">
       <h2>Second block</h2>
-      <p>As the first block ends, the break exposes the lockup underneath. That layer scrolls up slower (Pass A speed). The mark stays in the window until this block approaches and covers it.</p>
+      <p>When this block is off the middle, the lockup sits in that middle window. It scrolls up slowly (Pass A speed) and stays there until the next block covers it.</p>
       <p>More dummy copy so the block has weight. Educational, first person, no client names, no guarantees.</p>
     </div>
   </section>
@@ -66,8 +66,8 @@ header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid 
   <section class="block">
     <div class="inner">
       <h2>Third block</h2>
-      <p>Same idea again. The gap is the window, full screen width. The lockup is on the layer below, on white, not on a dusk still.</p>
-      <p>Keep scrolling. The next break should show the same under-layer drifting up.</p>
+      <p>Same middle window. Full screen width. Lockup on white, on the layer below — not on a dusk still.</p>
+      <p>Keep scrolling. The mark should still be in the middle when the break is open.</p>
     </div>
   </section>
   <div class="gap" aria-label="Window"></div>
@@ -85,7 +85,8 @@ header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid 
   var hold=document.getElementById('logoHold');
   function tick(){
     var y=window.scrollY||0;
-    hold.style.transform='translate(-50%,calc(-50% + '+(-y*0.40).toFixed(1)+'px))';
+    var drift=Math.max(-64,Math.min(64,-y*0.40));
+    hold.style.transform='translate(-50%,calc(-50% + '+drift.toFixed(1)+'px))';
   }
   addEventListener('scroll',tick,{passive:true});
   addEventListener('resize',tick);
