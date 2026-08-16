@@ -9,38 +9,50 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Tinos:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter,sans-serif;color:#1f2937;background:#fff}
+html,body{background:#fff}
+body{font-family:Inter,sans-serif;color:#1f2937}
 a{color:#2563EB}
 header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 1.25rem}
 .brand{font-weight:700;color:#1e40af;font-size:1.25rem;text-decoration:none}
 .badge{font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1e40af;border:1px solid #bfdbfe;background:#eff6ff;padding:.2rem .5rem}
 .cta{display:inline-block;background:#1e40af;color:#fff;text-decoration:none;font-weight:600;font-size:.875rem;padding:.55rem 1rem}
-.article{max-width:40rem;margin:0 auto;padding:2.5rem 1.25rem 1.5rem}
+.under{position:fixed;inset:0;z-index:0;background:#f9fafb;pointer-events:none}
+.slab{width:min(28rem,90vw);margin:0 auto;padding:40vh 0;display:flex;flex-direction:column;align-items:center;gap:50vh}
+.still{width:100%;height:16rem;background:center/cover no-repeat url(layer-under.jpg)}
+.logo-card{background:#fff;padding:1.25rem 1.5rem;width:100%}
+.lockup{display:block;width:100%;height:auto;background:#fff}
+.sheet{position:relative;z-index:1}
+.article{max-width:44rem;margin:0 auto;padding:2.5rem 1.25rem}
 .article h1{font-family:Tinos,serif;color:#1e40af;font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.2;margin-bottom:1rem}
-.article p{line-height:1.7;margin-bottom:1.1rem;color:#374151}
-.break{height:180vh;margin:0}
-.stage{position:sticky;top:3.5rem;height:calc(100vh - 3.5rem);overflow:hidden;background:#f9fafb}
-.under{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column}
-.lower{flex:1 1 auto;background:center/cover no-repeat url(layer-under.jpg);transform:translate3d(0,0,0)}
-.logo-band{flex:0 0 auto;background:#fff;display:flex;align-items:center;justify-content:center;padding:1.1rem 1.25rem;border-top:1px solid #e5e7eb}
-.lockup{display:block;width:min(22rem,70vw);height:auto;background:#fff}
-.top{position:absolute;inset:0;z-index:2;background:#fff;--i:46%;clip-path:polygon(evenodd,0 0,100% 0,100% 100%,0 100%,0 0,var(--i) var(--i),var(--i) calc(100% - var(--i)),calc(100% - var(--i)) calc(100% - var(--i)),calc(100% - var(--i)) var(--i),var(--i) var(--i))}
-.top-copy{max-width:40rem;margin:0 auto;padding:2rem 1.25rem;color:#374151}
-.top-copy p{line-height:1.7;margin-bottom:1.1rem}
-.frame{position:absolute;inset:var(--inset,46%);z-index:3;pointer-events:none;border:2px solid rgba(30,64,175,.35);box-shadow:0 0 0 1px rgba(255,255,255,.7),0 16px 48px rgba(0,0,0,.18)}
-.note{max-width:40rem;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+.article p,.copy p,.note p{line-height:1.7;margin-bottom:1.1rem;color:#374151}
+.row{max-width:56rem;margin:0 auto;padding:0 1.25rem 2rem;display:grid;grid-template-columns:minmax(0,1fr) 17.5rem;gap:1.75rem;align-items:start}
+.copy{background:#fff}
+.window{position:sticky;top:5.5rem;height:22rem;background:transparent;border:2px solid #1e40af;box-shadow:0 0 0 8px #fff,0 16px 40px rgba(0,0,0,.12)}
+.static-logo{display:none;width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem}
+.note{max-width:44rem;margin:0 auto;padding:1rem 1.25rem 4rem;background:#fff}
 .note h2{color:#1e40af;font-size:1.25rem;margin-bottom:.75rem}
-.note p{line-height:1.65;margin-bottom:1rem;color:#374151}
+@media (max-width:720px){
+  .row{grid-template-columns:1fr}
+  .window{position:relative;top:0;height:16rem}
+}
 @media (prefers-reduced-motion:reduce){
-  .lower{transform:none!important}
-  .top{--i:14%}
-  .frame{inset:14%}
+  .under{display:none}
+  .static-logo{display:block}
+  .window{background:#fff}
 }
 </style>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-52LMX48G');</script>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52LMX48G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div class="under" id="under" aria-hidden="true">
+  <div class="slab" id="slab">
+    <div class="still"></div>
+    <div class="logo-card"><img class="lockup" src="logo.jpg" alt=""></div>
+    <div class="still"></div>
+  </div>
+</div>
+<div class="sheet">
 <header>
   <a class="brand" href="#top">Lotter Law</a>
   <span class="badge">Test page — not live</span>
@@ -48,52 +60,41 @@ header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid 
 </header>
 <main id="top">
   <article class="article">
-    <h1>A window in the text, not the header</h1>
-    <p>This is dummy body copy for a Lotter Law test. Keep scrolling. The header stays a normal title. The motion lives in a break in the text.</p>
-    <p>I write these posts so you can see how a stop actually works — cameras, records, and what the State has to prove — not as a highlight reel. No outcome promises. Call 407-500-7000 if you want a consultation.</p>
-    <p>The next stretch is the break. A window opens in this text layer. Under it: a lower image, with the Lotter Law lockup on a white band. The image sits below the top layer.</p>
+    <h1>A box on the right, a slower layer under the page</h1>
+    <p>Dummy body copy for a Lotter Law test. The header is just a title. The window is the box on the right — it does not grow.</p>
+    <p>I write these so you can see how a stop actually works, not as a highlight reel. No outcome promises. Call 407-500-7000 if you want a consultation.</p>
   </article>
-  <section class="break" id="break" aria-label="Scroll window in the body">
-    <div class="stage">
-      <div class="under">
-        <div class="lower" id="lower" role="img" aria-label="Lower still under the text layer"></div>
-        <div class="logo-band">
-          <img class="lockup" src="logo.jpg" alt="Lotter Law — Criminal Defense">
-        </div>
-      </div>
-      <div class="top" id="topPane">
-        <div class="top-copy">
-          <p>This white layer is the text. As you scroll, a hole opens through it. You are still in the body — not a hero.</p>
-          <p>The framed window is the break. Keep going and the aperture grows. Scroll back and the text closes over the image again.</p>
-          <p>Reduced motion skips the animation and leaves the window open.</p>
-        </div>
-      </div>
-      <div class="frame" id="frame"></div>
+  <div class="row">
+    <div class="copy">
+      <p>This column is the top layer. It scrolls with the page. The box to the right is a hole in that layer.</p>
+      <p>Through the box you see a second layer underneath. That layer has the Lotter Law lockup on a white card, with a still above and below it.</p>
+      <p>The under-layer moves slower than this text. Scroll down and the logo drifts through the window. Scroll back and it drifts the other way.</p>
+      <p>The box stays the same size. Only the layer behind it moves.</p>
+      <p>Reduced motion hides the drift and parks the lockup in the box.</p>
+      <p>More dummy copy so there is enough page to scroll. Same voice, no client names, no guarantees.</p>
+      <p>Keep going. The window stays on the right. The logo should lag behind the text.</p>
     </div>
-  </section>
+    <aside class="window" aria-label="Parallax window">
+      <img class="static-logo" src="logo.jpg" alt="Lotter Law — Criminal Defense">
+    </aside>
+  </div>
   <section class="article" id="after">
-    <p>Text picks back up after the break. Same article, same page. The window was only that middle stretch.</p>
-    <p>This mock is not published, not a blog post, and not hooked to the Intoxilyzer O-ring draft or any live Flock HTML. Dummy consultation button — no form.</p>
+    <p>Text continues after the window. Same article. The under-layer is still back there; you just cannot see it without the box.</p>
+    <p>This mock is not published, not a blog post, and not hooked to the Intoxilyzer O-ring draft or any live Flock HTML.</p>
   </section>
   <section class="note">
     <h2>Local mock only</h2>
-    <p>Mid-body window. Shipping lockup sits on a white band under the hole — not on the dusk still. Open <a href="README.txt">README.txt</a> for hook notes.</p>
+    <p>Fixed box on the right. Lockup rides the slower under-layer on white — not on the dusk still. Open <a href="README.txt">README.txt</a> for hook notes.</p>
   </section>
 </main>
+</div>
 <script>
 (function(){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var br=document.getElementById('break'),
-      topPane=document.getElementById('topPane'),
-      lower=document.getElementById('lower'),
-      frame=document.getElementById('frame');
+  var slab=document.getElementById('slab');
   function tick(){
-    var r=br.getBoundingClientRect(), span=r.height-innerHeight;
-    var p=span>0?Math.min(1,Math.max(0,-r.top/span)):1;
-    var i=(46-32*p).toFixed(2)+'%';
-    topPane.style.setProperty('--i',i);
-    frame.style.inset=i;
-    lower.style.transform='translate3d(0,'+(-p*36).toFixed(1)+'px,0)';
+    var y=window.scrollY||0;
+    slab.style.transform='translate3d(0,'+(-y*0.45).toFixed(1)+'px,0)';
   }
   addEventListener('scroll',tick,{passive:true});
   addEventListener('resize',tick);
