@@ -9,84 +9,79 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Tinos:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:#fff}
+html,body{background:#f9fafb}
 body{font-family:Inter,sans-serif;color:#1f2937}
 a{color:#2563EB}
 header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 1.25rem}
 .brand{font-weight:700;color:#1e40af;font-size:1.25rem;text-decoration:none}
 .badge{font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1e40af;border:1px solid #bfdbfe;background:#eff6ff;padding:.2rem .5rem}
 .cta{display:inline-block;background:#1e40af;color:#fff;text-decoration:none;font-weight:600;font-size:.875rem;padding:.55rem 1rem}
-.window{position:fixed;left:0;right:0;top:26vh;height:48vh;z-index:0;background:#f9fafb;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;overflow:hidden;pointer-events:none}
-.logo-hold{position:absolute;left:50%;top:50%;width:min(28rem,86vw);transform:translate(-50%,-50%)}
-.lockup{display:block;width:100%;height:auto;background:#fff;padding:1.25rem 1.4rem}
-.sheet{position:relative;z-index:1}
-.block{background:#fff;width:100%;padding:2.75rem 1.25rem;box-shadow:0 12px 40px rgba(15,23,42,.08)}
-.inner{max-width:40rem;margin:0 auto}
-.inner h1{font-family:Tinos,serif;color:#1e40af;font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.2;margin-bottom:1rem}
-.inner h2{color:#1e40af;font-size:1.25rem;margin:0 0 .75rem}
+.block{background:#fff;width:100%;min-height:90vh;display:flex;align-items:center;padding:3rem 1.25rem;box-shadow:0 10px 36px rgba(15,23,42,.07)}
+.inner{max-width:40rem;margin:0 auto;width:100%}
+.inner h1{font-family:Tinos,serif;color:#1e40af;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.2;margin-bottom:1rem}
+.inner h2{color:#1e40af;font-size:1.35rem;margin:0 0 .75rem}
 .inner p{line-height:1.7;margin-bottom:1.05rem;color:#374151}
-.gap{height:70vh;width:100%;background:transparent}
-.note{padding-bottom:4rem}
+.gap{height:14vh;min-height:7.5rem;width:100%;overflow:hidden;background:#f9fafb;display:flex;align-items:center;justify-content:center}
+.reveal{width:min(26rem,86vw);text-align:center;transform:translate3d(0,0,0)}
+.lockup{display:block;width:100%;height:auto;background:#fff;padding:.85rem 1.1rem}
+.phone{font-family:Tinos,serif;font-size:clamp(1.8rem,4.5vw,2.6rem);color:#1e40af;letter-spacing:.02em;text-decoration:none;background:#fff;display:block;padding:.9rem 1.1rem}
+.note{min-height:auto;padding:2.5rem 1.25rem 4rem}
 @media (prefers-reduced-motion:reduce){
-  .logo-hold{transform:translate(-50%,-50%)!important}
+  .reveal{transform:none!important}
 }
 </style>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-52LMX48G');</script>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52LMX48G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<div class="window" aria-hidden="true">
-  <div class="logo-hold" id="logoHold">
-    <img class="lockup" src="logo.jpg" alt="">
-  </div>
-</div>
-<div class="sheet">
 <header>
   <a class="brand" href="#top">Lotter Law</a>
   <span class="badge">Test page — not live</span>
-  <a class="cta" href="#end">Request a Consultation</a>
+  <a class="cta" href="tel:4075007000">Call Now</a>
 </header>
 <main id="top">
   <section class="block">
     <div class="inner">
-      <h1>The window sits in the middle of the screen</h1>
-      <p>Dummy Lotter Law body copy. This block floats on top. The window is the full-width band in the middle of the screen — not a box on the right, not a gap you have to chase.</p>
-      <p>I write these so you can see how a stop actually works, not as a highlight reel. No outcome promises. Call 407-500-7000 if you want a consultation.</p>
+      <h1>How a Florida traffic stop actually unfolds</h1>
+      <p>I write these so you can see the sequence — the stop, the records, and what the State has to prove — not as a highlight reel. No outcome promises.</p>
+      <p>If you want to talk through your facts, request a consultation or call 407-500-7000.</p>
     </div>
   </section>
-  <div class="gap" aria-label="Window"></div>
+  <div class="gap" aria-label="Lotter Law">
+    <div class="reveal" data-rate="0.40">
+      <img class="lockup" src="logo.jpg" alt="Lotter Law — Criminal Defense">
+    </div>
+  </div>
   <section class="block">
     <div class="inner">
-      <h2>Second block</h2>
-      <p>When this block is off the middle, the lockup sits in that middle window. It scrolls up slowly (Pass A speed) and stays there until the next block covers it.</p>
-      <p>More dummy copy so the block has weight. Educational, first person, no client names, no guarantees.</p>
+      <h2>What I look at first</h2>
+      <p>The report is only the starting point. I want the video, the device records, and the timeline, because those are what hold up or fall apart in court.</p>
+      <p>This block is the second sheet. It covers most of the screen. The next break is the number.</p>
     </div>
   </section>
-  <div class="gap" aria-label="Window"></div>
-  <section class="block">
-    <div class="inner">
-      <h2>Third block</h2>
-      <p>Same middle window. Full screen width. Lockup on white, on the layer below — not on a dusk still.</p>
-      <p>Keep scrolling. The mark should still be in the middle when the break is open.</p>
+  <div class="gap" aria-label="Call 407-500-7000">
+    <div class="reveal" data-rate="0.40">
+      <a class="phone" href="tel:4075007000">407-500-7000</a>
     </div>
-  </section>
-  <div class="gap" aria-label="Window"></div>
+  </div>
   <section class="block note" id="end">
     <div class="inner">
-      <h2>Local mock only</h2>
-      <p>Not published. Not the O-ring draft. Not a live Flock post. Dummy consultation button — no form. Open <a href="README.txt">README.txt</a> for hook notes.</p>
+      <h2>Request a Consultation</h2>
+      <p>Dummy close for this test. Not published. Not the O-ring draft. Not a live Flock post. Open <a href="README.txt">README.txt</a> for hook notes.</p>
     </div>
   </section>
 </main>
-</div>
 <script>
 (function(){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var hold=document.getElementById('logoHold');
+  var items=[].slice.call(document.querySelectorAll('.reveal'));
   function tick(){
-    var y=window.scrollY||0;
-    var drift=Math.max(-64,Math.min(64,-y*0.40));
-    hold.style.transform='translate(-50%,calc(-50% + '+drift.toFixed(1)+'px))';
+    items.forEach(function(el){
+      var gap=el.parentElement.getBoundingClientRect();
+      var mid=gap.top+gap.height/2-innerHeight/2;
+      var rate=parseFloat(el.getAttribute('data-rate')||'0.4');
+      el.style.transform='translate3d(0,'+(-mid*rate).toFixed(1)+'px,0)';
+    });
   }
   addEventListener('scroll',tick,{passive:true});
   addEventListener('resize',tick);
