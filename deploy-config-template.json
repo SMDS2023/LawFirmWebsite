@@ -1,7 +1,0 @@
-{
-  "host": "your-domain.com or ftp.bluehost.com",
-  "username": "your-ftp-username",
-  "password": "your-ftp-password",
-  "remote_path": "/public_html",
-  "port": 21
-}
