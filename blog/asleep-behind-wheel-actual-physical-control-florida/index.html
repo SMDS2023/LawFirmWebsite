@@ -129,38 +129,10 @@
         </header>
 
         <!-- Hero Image -->
-        <!-- Hero: still poster + scroll-scrub MP4 (cruiser in, then lights) -->
-        <figure class="my-8" id="apc-scroll-hero">
-            <img id="apc-scroll-poster" src="/assets/blog/asleep-behind-wheel-actual-physical-control-florida-hero.jpg" alt="Foggy Florida street at dusk; a silver coupe with a driver asleep behind the wheel" class="w-full rounded-lg shadow-md" width="1920" height="1080">
-            <video id="apc-scroll-video" class="w-full rounded-lg shadow-md hidden" width="1920" height="1080" muted playsinline preload="metadata" poster="/assets/blog/asleep-behind-wheel-actual-physical-control-florida-hero.jpg">
-                <source src="/assets/blog/asleep-behind-wheel-actual-physical-control-florida-hero.mp4" type="video/mp4">
-            </video>
+        <figure class="my-8">
+            <img src="/assets/blog/asleep-behind-wheel-actual-physical-control-florida-hero.jpg" alt="Foggy Florida street at dusk; a silver coupe with a driver asleep behind the wheel" class="w-full rounded-lg shadow-md" width="1920" height="1080">
             <figcaption class="text-sm text-gray-500 mt-2 text-center">In Florida, being asleep in the driver's seat of a parked car can still support a DUI charge under the "actual physical control" rule.</figcaption>
         </figure>
-        <script>
-        (function () {
-            var video = document.getElementById("apc-scroll-video");
-            var poster = document.getElementById("apc-scroll-poster");
-            if (!video || !poster) return;
-            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-            function scrub() {
-                if (!video.duration) return;
-                var rect = video.getBoundingClientRect();
-                var vh = window.innerHeight || 1;
-                var t = (vh - rect.top) / (vh + rect.height);
-                if (t < 0) t = 0;
-                if (t > 1) t = 1;
-                video.currentTime = t * video.duration;
-            }
-            video.addEventListener("loadedmetadata", function () {
-                poster.classList.add("hidden");
-                video.classList.remove("hidden");
-                scrub();
-            });
-            window.addEventListener("scroll", scrub, { passive: true });
-            window.addEventListener("resize", scrub);
-        })();
-        </script>
 
         <!-- Article Content -->
         <div class="prose lg:prose-lg max-w-none">
