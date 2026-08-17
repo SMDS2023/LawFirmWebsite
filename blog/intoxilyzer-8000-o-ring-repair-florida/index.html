@@ -149,7 +149,7 @@
              Keep H1 / byline / tags above. Do not overwrite official hero.jpg / og.jpg.
              Window / body-cutout stays parked. -->
         <figure class="my-8 ll-zoom" id="ll-zoom">
-          <div class="ll-zoom-stage">
+          <div class="ll-zoom-stage" id="ll-zoom-stage">
             <img src="../../assets/blog/intoxilyzer-8000-o-ring-repair-florida-hero.jpg" alt="Extreme close-up of a single small black rubber O-ring resting on a brushed stainless-steel lab bench beside the partially disassembled housing of a gray tabletop breath-testing instrument" class="ll-zoom-shot" id="ll-zoom-shot" width="1920" height="1080">
           </div>
           <figcaption class="text-sm text-gray-500 mt-2 text-center">A rubber O-ring that costs about a dollar is now at the center of a challenge to Florida breath-test results.</figcaption>
@@ -164,21 +164,23 @@
         <script>
         (function(){
           if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-          var fig=document.getElementById('ll-zoom');
+          var stage=document.getElementById('ll-zoom-stage');
           var shot=document.getElementById('ll-zoom-shot');
-          if(!fig||!shot) return;
+          if(!stage||!shot) return;
+          var startTop=null;
           function tick(){
-            var r=fig.getBoundingClientRect();
-            var span=Math.max(1,innerHeight*0.7);
-            var p=Math.min(1,Math.max(0,(innerHeight*0.35-r.top)/span));
+            var r=stage.getBoundingClientRect();
+            if(startTop===null) startTop=r.top;
+            var finish=10;
+            var span=Math.max(1,startTop-finish);
+            var p=Math.min(1,Math.max(0,(startTop-r.top)/span));
             shot.style.transform='scale('+(1+p*0.55).toFixed(3)+') translate3d(0,'+(-p*12).toFixed(1)+'%,0)';
           }
           addEventListener('scroll',tick,{passive:true});
-          addEventListener('resize',tick);
+          addEventListener('resize',function(){startTop=null;tick();});
           tick();
         })();
         </script>
-
 
         <!-- Article Content -->
         <div class="prose lg:prose-lg max-w-none">
