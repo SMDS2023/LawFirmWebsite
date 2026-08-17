@@ -144,11 +144,41 @@
             </div>
         </header>
 
-        <!-- Hero Image -->
-        <figure class="my-8">
-            <img src="../../assets/blog/intoxilyzer-8000-o-ring-repair-florida-hero.jpg" alt="Extreme close-up of a single small black rubber O-ring resting on a brushed stainless-steel lab bench beside the partially disassembled housing of a gray tabletop breath-testing instrument" class="w-full rounded-lg shadow-md" width="1920" height="1080">
-            <figcaption class="text-sm text-gray-500 mt-2 text-center">A rubber O-ring that costs about a dollar is now at the center of a challenge to Florida breath-test results.</figcaption>
+        <!-- Hero Image: header-zoom (official still, no jpg overwrite) -->
+        <!-- Drop-in: replace the live O-ring <figure class="my-8">…</figure> only.
+             Keep H1 / byline / tags above. Do not overwrite official hero.jpg / og.jpg.
+             Window / body-cutout stays parked. -->
+        <figure class="my-8 ll-zoom" id="ll-zoom">
+          <div class="ll-zoom-stage">
+            <img src="../../assets/blog/intoxilyzer-8000-o-ring-repair-florida-hero.jpg" alt="Extreme close-up of a single small black rubber O-ring resting on a brushed stainless-steel lab bench beside the partially disassembled housing of a gray tabletop breath-testing instrument" class="ll-zoom-shot" id="ll-zoom-shot" width="1920" height="1080">
+          </div>
+          <figcaption class="text-sm text-gray-500 mt-2 text-center">A rubber O-ring that costs about a dollar is now at the center of a challenge to Florida breath-test results.</figcaption>
         </figure>
+        <style>
+        .ll-zoom-stage{height:36vh;max-height:16rem;overflow:hidden;border-radius:.5rem;background:#111}
+        .ll-zoom-shot{width:100%;height:120%;object-fit:cover;object-position:22% 58%;transform-origin:22% 58%;transform:scale(1) translate3d(0,0,0);display:block;will-change:transform}
+        @media (prefers-reduced-motion:reduce){
+          .ll-zoom-shot{transform:none!important}
+        }
+        </style>
+        <script>
+        (function(){
+          if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          var fig=document.getElementById('ll-zoom');
+          var shot=document.getElementById('ll-zoom-shot');
+          if(!fig||!shot) return;
+          function tick(){
+            var r=fig.getBoundingClientRect();
+            var span=Math.max(1,innerHeight*0.7);
+            var p=Math.min(1,Math.max(0,(innerHeight*0.35-r.top)/span));
+            shot.style.transform='scale('+(1+p*0.55).toFixed(3)+') translate3d(0,'+(-p*12).toFixed(1)+'%,0)';
+          }
+          addEventListener('scroll',tick,{passive:true});
+          addEventListener('resize',tick);
+          tick();
+        })();
+        </script>
+
 
         <!-- Article Content -->
         <div class="prose lg:prose-lg max-w-none">
