@@ -180,6 +180,7 @@
           }
           addEventListener('scroll',tick,{passive:true});
           addEventListener('resize',function(){startTop=null;tick();});
+          addEventListener('load',function(){startTop=null;tick();});
           tick();
         })();
         </script>
