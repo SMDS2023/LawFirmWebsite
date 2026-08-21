@@ -16,12 +16,14 @@ Agents: branch off `master`, PR, stop. Do not commit from leftover `claude/` / `
 
 ## Blog — four homes, not one pile
 
+Chosen factory: **LangGraph** in GitHub `SMDS2023/blog-pipeline` (work in progress). The `/blog` skill on disk is transitional, not origin. OneDrive is a sync accident, not a home. Court-data R2 is not the blog.
+
 | Stage | Home | On this origin? |
 |---|---|---|
-| Idea | `LotterLaw/Ideas/Blog/` | No |
-| Draft / research / images | `LotterLaw/Blog/` | No. Never `git init` that folder. |
-| Published HTML | `LotterLaw/Website/blog/` then PR to `master` | Yes |
-| Factory *code* | GitHub `blog-pipeline` / `blog-production` | Separate system, later |
+| Idea / queue | `blog-pipeline` when that system is ready; until then local files under `LotterLaw/Blog/` | No |
+| Draft HTML, WIP images, research | Same — local until `blog-pipeline` owns them. Not this public repo. | No |
+| Published HTML + live images | `LotterLaw/Website/blog/` then PR to `master` | Yes |
+| Factory *code* | GitHub `SMDS2023/blog-pipeline` (+ `langgraph-harness`). `blog-production` / `/blog` skill are not the destination. | No |
 
 ## Only take what we need (public repo)
 
@@ -51,5 +53,5 @@ One system at a time. Next is not this file.
 
 1. Origin is GitHub. The clone is a copy of origin, not a second original.
 2. `master` is live. If it is not ready for the public, it does not merge.
-3. Drafts stay in `LotterLaw/Blog/`.
+3. Drafts do not live in this public repo. Factory origin is `blog-pipeline` (LangGraph, WIP).
 4. No client files, no tokens, no `.env` values.
