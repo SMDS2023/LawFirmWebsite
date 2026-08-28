@@ -274,4 +274,190 @@ document.addEventListener('alpine:init', () => {
             this.showError = false;
         }
     }));
+
+    // Short opt-in for the Tesla wrap QR lander at /car/. Do not change contactForm above.
+    Alpine.data('qrOptInForm', () => ({
+        formData: {
+            name: '',
+            phone: '',
+            caseType: ''
+        },
+        smsConsent: false,
+        utmData: {},
+        errors: {
+            name: '',
+            phone: '',
+            smsConsent: ''
+        },
+        touched: {
+            name: false,
+            phone: false,
+            smsConsent: false
+        },
+        submitting: false,
+        showSuccess: false,
+        showError: false,
+
+        init() {
+            const params = new URLSearchParams(window.location.search);
+            const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid'];
+
+            utmKeys.forEach(key => {
+                const value = params.get(key);
+                if (value && !sessionStorage.getItem(key)) {
+                    sessionStorage.setItem(key, value);
+                }
+            });
+
+            const fbclid = params.get('fbclid');
+            if (fbclid && !sessionStorage.getItem('gclid')) {
+                sessionStorage.setItem('gclid', fbclid);
+            }
+
+            const defaults = {
+                utm_source: 'qr',
+                utm_medium: 'vehicle',
+                utm_campaign: 'tesla_wrap'
+            };
+            Object.keys(defaults).forEach(key => {
+                if (!sessionStorage.getItem(key)) {
+                    sessionStorage.setItem(key, defaults[key]);
+                }
+            });
+
+            if (!sessionStorage.getItem('landing_page')) {
+                sessionStorage.setItem('landing_page', '/car/');
+            }
+
+            this.utmData = {};
+            utmKeys.forEach(key => {
+                this.utmData[key] = sessionStorage.getItem(key) || '';
+            });
+            this.utmData.landing_page = sessionStorage.getItem('landing_page') || '/car/';
+        },
+
+        validateName() {
+            if (!this.formData.name.trim()) {
+                this.errors.name = 'Name is required';
+                return false;
+            }
+            if (this.formData.name.trim().length < 2) {
+                this.errors.name = 'Name must be at least 2 characters';
+                return false;
+            }
+            this.errors.name = '';
+            return true;
+        },
+
+        validatePhone() {
+            const digits = this.formData.phone.replace(/\D/g, '');
+            if (!this.formData.phone.trim()) {
+                this.errors.phone = 'Phone number is required';
+                return false;
+            }
+            if (digits.length < 10) {
+                this.errors.phone = 'Phone number must be at least 10 digits';
+                return false;
+            }
+            this.errors.phone = '';
+            return true;
+        },
+
+        validateSmsConsent() {
+            if (!this.smsConsent) {
+                this.errors.smsConsent = 'Check the box to agree to text updates';
+                return false;
+            }
+            this.errors.smsConsent = '';
+            return true;
+        },
+
+        validateAll() {
+            const nameValid = this.validateName();
+            const phoneValid = this.validatePhone();
+            const consentValid = this.validateSmsConsent();
+            return nameValid && phoneValid && consentValid;
+        },
+
+        markTouched(field) {
+            this.touched[field] = true;
+        },
+
+        onBlur(field) {
+            this.markTouched(field);
+            const method = 'validate' + field.charAt(0).toUpperCase() + field.slice(1);
+            if (typeof this[method] === 'function') {
+                this[method]();
+            }
+        },
+
+        async submitForm() {
+            Object.keys(this.touched).forEach(key => {
+                this.touched[key] = true;
+            });
+
+            if (!this.validateAll()) {
+                return;
+            }
+
+            this.submitting = true;
+            this.showSuccess = false;
+            this.showError = false;
+
+            try {
+                const formData = new URLSearchParams();
+                const nameParts = this.formData.name.trim().split(' ');
+                const firstName = nameParts[0] || '';
+                const lastName = nameParts.slice(1).join(' ') || '';
+
+                formData.append('q3_name[first]', firstName);
+                formData.append('q3_name[last]', lastName);
+                formData.append('q4_contactNumber[full]', this.formData.phone);
+                formData.append('q10_pleaseExplain', 'Tesla wrap QR lead from /car/. SMS consent: yes.');
+                formData.append('q23_typeA23', this.formData.caseType || 'Other');
+
+                formData.append('q24_utmSource', this.utmData.utm_source || 'qr');
+                formData.append('q25_utmMedium', this.utmData.utm_medium || 'vehicle');
+                formData.append('q26_utmCampaign', this.utmData.utm_campaign || 'tesla_wrap');
+                formData.append('q27_utmContent', this.utmData.utm_content || '');
+                formData.append('q28_utmTerm', this.utmData.utm_term || '');
+                formData.append('q29_gclid', this.utmData.gclid || '');
+                formData.append('q30_landingPage', this.utmData.landing_page || '/car/');
+
+                const response = await fetch('https://submit.jotform.com/submit/251224345324145', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+
+                if (response.ok) {
+                    this.showSuccess = true;
+                    if (window.dataLayer) {
+                        window.dataLayer.push({
+                            'event': 'form_submission',
+                            'form_name': 'car_qr_optin',
+                            'case_type': this.formData.caseType || 'Other',
+                            'utm_source': this.utmData.utm_source || 'qr',
+                            'utm_medium': this.utmData.utm_medium || 'vehicle',
+                            'utm_campaign': this.utmData.utm_campaign || 'tesla_wrap',
+                            'landing_page': this.utmData.landing_page || '/car/'
+                        });
+                    }
+                    this.formData = { name: '', phone: '', caseType: '' };
+                    this.smsConsent = false;
+                    this.touched = { name: false, phone: false, smsConsent: false };
+                    this.errors = { name: '', phone: '', smsConsent: '' };
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                this.showError = true;
+            } finally {
+                this.submitting = false;
+            }
+        }
+    }));
 });
