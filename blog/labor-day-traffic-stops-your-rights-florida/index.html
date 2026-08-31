@@ -144,11 +144,38 @@
             </div>
         </header>
 
-        <!-- Hero Image -->
-        <figure class="my-8">
-            <img src="../../assets/blog/labor-day-traffic-stops-your-rights-florida-hero.jpg" alt="Dusk scene on a wide Central Florida interstate lined with palm trees, holiday-weekend traffic streaming past in both directions, a single patrol cruiser parked on the shoulder with its lightbar casting red and blue reflections onto the pavement" class="w-full rounded-lg shadow-md" width="1920" height="1080">
+        <!-- Hero Image: still poster + scroll-scrub MP4 -->
+        <figure class="my-8" id="labor-scroll-hero">
+            <img id="labor-scroll-poster" src="/assets/blog/labor-day-traffic-stops-your-rights-florida-hero.jpg" alt="Dusk scene on a wide Central Florida interstate lined with palm trees, holiday-weekend traffic streaming past in both directions, a single patrol cruiser parked on the shoulder with its lightbar casting red and blue reflections onto the pavement" class="w-full rounded-lg shadow-md" width="1920" height="1080">
+            <video id="labor-scroll-video" class="w-full rounded-lg shadow-md hidden" width="1920" height="1080" muted playsinline preload="metadata" poster="/assets/blog/labor-day-traffic-stops-your-rights-florida-hero.jpg">
+                <source src="/assets/blog/labor-day-traffic-stops-your-rights-florida-hero.mp4" type="video/mp4">
+            </video>
             <figcaption class="text-sm text-gray-500 mt-2 text-center">Holiday-weekend enforcement details concentrate patrols along Central Florida corridors like I-4 and the Turnpike during the Labor Day campaign window.</figcaption>
         </figure>
+        <script>
+        (function () {
+            var video = document.getElementById("labor-scroll-video");
+            var poster = document.getElementById("labor-scroll-poster");
+            if (!video || !poster) return;
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+            function scrub() {
+                if (!video.duration) return;
+                var rect = video.getBoundingClientRect();
+                var vh = window.innerHeight || 1;
+                var t = (vh - rect.top) / (vh + rect.height);
+                if (t < 0) t = 0;
+                if (t > 1) t = 1;
+                video.currentTime = t * video.duration;
+            }
+            video.addEventListener("loadedmetadata", function () {
+                poster.classList.add("hidden");
+                video.classList.remove("hidden");
+                scrub();
+            });
+            window.addEventListener("scroll", scrub, { passive: true });
+            window.addEventListener("resize", scrub);
+        })();
+        </script>
 
         <!-- Article Content -->
         <div class="prose lg:prose-lg max-w-none">
