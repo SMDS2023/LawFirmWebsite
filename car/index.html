@@ -11,8 +11,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You Scanned the Tesla | Lotter Law Orlando</title>
-    <meta name="description" content="Orlando criminal defense and DUI attorney. Former Florida State Trooper and Deputy Sheriff. Call or text 407-500-7000 for a free consultation.">
+    <title>Orlando DUI, Traffic &amp; Criminal Defense | Lotter Law</title>
+    <meta name="description" content="Orlando DUI, traffic, criminal, and license defense. 200+ five-star reviews. Call or text 407-500-7000 for a free consultation.">
     <meta name="robots" content="noindex, nofollow">
     <link rel="canonical" href="https://lotterlaw.com/car/">
 
@@ -27,12 +27,21 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        :root {
+            --ll-charcoal: #38383c;
+            --ll-gold: #aca068;
+            --ll-blue: #1E3A8A;
+            --ll-blue-mid: #1e40af;
+            --ll-blue-cta: #2563EB;
+        }
+        body { font-family: 'Inter', sans-serif; color: var(--ll-charcoal); }
         .font-hero-heading { font-family: 'Tinos', serif; }
+        .brand-charcoal { color: #38383c; }
+        .brand-gold { color: #aca068; }
         .cta-pulse { animation: pulse 2s infinite; }
         @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.45); }
-            50% { box-shadow: 0 0 0 12px rgba(217, 119, 6, 0); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(172, 160, 104, 0.45); }
+            50% { box-shadow: 0 0 0 12px rgba(172, 160, 104, 0); }
         }
         [x-cloak] { display: none !important; }
         @media (prefers-reduced-motion: reduce) {
@@ -50,17 +59,24 @@
         });
     </script>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50">
+    <!--
+      Dedicated wrap lander at /car/. Keep this URL.
+      Live Model 3 QR (qrId 1M74T8, https://qr1.be/1M74T8) currently hits the homepage
+      with utm_source=vehicle&utm_medium=qr&utm_campaign=model3. Do not retarget that
+      QR here until Art. IV. Form defaults remain qr / vehicle / tesla_wrap; URL params win.
+    -->
+
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52LMX48G"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-    <header class="bg-white shadow-sm py-3 px-4 sticky top-0 z-40">
+    <header class="bg-white shadow-sm py-3 px-4 sticky top-0 z-40 border-b-2" style="border-bottom-color: #aca068;">
         <div class="max-w-lg mx-auto flex justify-between items-center">
             <a href="../index.html" aria-label="Lotter Law home">
-                <img src="../assets/Lotter-Law-logo-02.jpg" alt="Lotter Law Logo" class="h-10 w-auto" width="160" height="40" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-xl font-bold text-blue-800\'>Lotter Law</span>';">
+                <img src="../assets/Lotter-Law-logo-02.jpg" alt="Lotter Law Logo" class="h-10 w-auto" width="160" height="40" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-xl font-bold\' style=\'color:#38383c\'>Lotter Law</span>';">
             </a>
-            <a href="tel:407-500-7000" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg text-sm transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            <a href="tel:407-500-7000" class="text-white font-semibold py-2 px-4 rounded-lg text-sm transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" style="background-color: #2563EB;">
                 Call Now
             </a>
         </div>
@@ -68,40 +84,90 @@
 
     <main class="max-w-lg mx-auto px-4 pt-5 pb-28">
 
-        <section class="mb-6">
-            <picture>
-                <source srcset="../assets/car-wrap-hero.webp" type="image/webp">
-                <img
-                    src="../assets/car-wrap-hero.jpg"
-                    alt="Lotter Law Tesla wrap, Florida plate ALL LAW"
-                    width="880"
-                    height="538"
-                    fetchpriority="high"
-                    loading="eager"
-                    class="w-full h-auto rounded-xl shadow-sm border border-gray-200 object-cover"
-                >
-            </picture>
+        <section class="text-center mb-5">
+            <p class="text-sm font-semibold tracking-wide uppercase mb-2" style="color: #aca068;">Orlando criminal defense</p>
+            <h1 class="font-hero-heading text-4xl font-bold leading-tight mb-3 brand-charcoal">DUI, traffic, criminal, and license defense.</h1>
+            <p class="text-lg text-gray-600">Free consultation. Call or text <a href="tel:407-500-7000" class="font-semibold" style="color: #1e40af;">407-500-7000</a>.</p>
         </section>
 
-        <section class="text-center mb-6">
-            <p class="text-sm font-semibold tracking-wide uppercase text-blue-700 mb-2">Orlando criminal defense</p>
-            <h1 class="font-hero-heading text-4xl font-bold text-blue-900 leading-tight mb-3">You scanned the Tesla.</h1>
-            <p class="text-lg text-gray-600 mb-2">Need a lawyer? This is the firm on the wrap.</p>
-            <p class="text-base text-blue-800 font-medium">Former State Trooper. Former Deputy Sheriff. Now defense.</p>
+        <section class="mb-6" aria-labelledby="services-heading">
+            <h2 id="services-heading" class="text-lg font-bold brand-charcoal mb-3">How we can help</h2>
+            <div class="grid grid-cols-2 gap-3 mb-3">
+                <a href="../practice-areas/dui.html" class="flex flex-col items-center justify-center min-h-[4.5rem] rounded-xl bg-white border-2 text-center px-3 py-3 font-bold hover:shadow-md transition" style="border-color: #aca068; color: #1E3A8A;">
+                    DUI
+                    <span class="text-xs font-medium text-gray-500 mt-1">Arrest &amp; license</span>
+                </a>
+                <a href="../practice-areas/speeding-ticket.html" class="flex flex-col items-center justify-center min-h-[4.5rem] rounded-xl bg-white border-2 text-center px-3 py-3 font-bold hover:shadow-md transition" style="border-color: #aca068; color: #1E3A8A;">
+                    Traffic
+                    <span class="text-xs font-medium text-gray-500 mt-1">Tickets &amp; points</span>
+                </a>
+                <a href="../practice-areas/other-crimes.html" class="flex flex-col items-center justify-center min-h-[4.5rem] rounded-xl bg-white border-2 text-center px-3 py-3 font-bold hover:shadow-md transition" style="border-color: #aca068; color: #1E3A8A;">
+                    Criminal
+                    <span class="text-xs font-medium text-gray-500 mt-1">Charges &amp; court</span>
+                </a>
+                <a href="../practice-areas/suspended-license.html" class="flex flex-col items-center justify-center min-h-[4.5rem] rounded-xl bg-white border-2 text-center px-3 py-3 font-bold hover:shadow-md transition" style="border-color: #aca068; color: #1E3A8A;">
+                    License
+                    <span class="text-xs font-medium text-gray-500 mt-1">Suspension &amp; DHSMV</span>
+                </a>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <a href="../practice-areas/weapons.html" class="px-3 py-2 rounded-full bg-white border border-gray-200 text-sm font-semibold hover:border-blue-600" style="color: #1e40af;">Weapons</a>
+                <a href="../practice-areas/dv.html" class="px-3 py-2 rounded-full bg-white border border-gray-200 text-sm font-semibold hover:border-blue-600" style="color: #1e40af;">DV</a>
+            </div>
         </section>
 
         <section class="grid grid-cols-2 gap-3 mb-8">
-            <a href="tel:407-500-7000" class="cta-pulse inline-flex items-center justify-center bg-amber-600 hover:bg-amber-500 text-white font-bold py-4 px-3 rounded-xl text-lg transition shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
-                Call
+            <a href="tel:407-500-7000" class="cta-pulse inline-flex items-center justify-center text-white font-bold py-4 px-3 rounded-xl text-lg transition shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #2563EB;">
+                Call Now
             </a>
-            <a href="sms:407-500-7000" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-3 rounded-xl text-lg transition shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                Text us
+            <a href="sms:407-500-7000" class="inline-flex items-center justify-center text-white font-bold py-4 px-3 rounded-xl text-lg transition shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" style="background-color: #1e40af;">
+                Text
             </a>
             <p class="col-span-2 text-center text-sm text-gray-500">407-500-7000 · Free &amp; confidential</p>
         </section>
 
+        <section class="mb-6" aria-labelledby="reviews-heading">
+            <h2 id="reviews-heading" class="text-xl font-bold brand-charcoal mb-1">5-star reviews</h2>
+            <p class="text-sm text-gray-500 mb-4">From clients on lotterlaw.com. Initials only.</p>
+
+            <article class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 mb-3">
+                <div class="brand-gold text-xl tracking-widest mb-2" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote class="text-gray-700 italic mb-2">“Great guy, great service with no complaints help get 5 of 6 my criminal charges dismissed. THANKS JEFF!”</blockquote>
+                <p class="text-sm text-gray-500">— FA</p>
+            </article>
+
+            <article class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 mb-3">
+                <div class="brand-gold text-xl tracking-widest mb-2" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote class="text-gray-700 italic mb-2">“Very thorough and detail oriented. Highly recommended thanks Jeff!”</blockquote>
+                <p class="text-sm text-gray-500">— GC</p>
+            </article>
+
+            <article class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 mb-3">
+                <div class="brand-gold text-xl tracking-widest mb-2" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote class="text-gray-700 italic mb-2">“Very easy to work with, professional, and couldn't ask for better results.”</blockquote>
+                <p class="text-sm text-gray-500">— CR</p>
+            </article>
+
+            <article class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 mb-3">
+                <div class="brand-gold text-xl tracking-widest mb-2" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote class="text-gray-700 italic mb-2">“Awesome experience being represented by the Law Office of Jeff Lotter. Talked to them twice and explained the situation and they handled everything else. Had the whole case dismissed: no fines, no points, no school, nothing!”</blockquote>
+                <p class="text-sm text-gray-500">— CM</p>
+            </article>
+
+            <article class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 mb-4">
+                <div class="brand-gold text-xl tracking-widest mb-2" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote class="text-gray-700 italic mb-2">“Jeff Lotter &amp; the staff managed to have my reckless driving ticket dismissed &amp; will think twice about driving safely. No points no fees &amp; no appearances just beyond greatful!! Thank you for your service &amp; for anyone seeking legal help for tickets please check these guys out!”</blockquote>
+                <p class="text-sm text-gray-500">— GG</p>
+            </article>
+
+            <div class="flex justify-center gap-3 flex-wrap">
+                <a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener" onclick="window.dataLayer &amp;&amp; dataLayer.push({'event':'review_link_click','platform':'avvo'})" class="border border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-700 font-semibold py-2 px-4 rounded-lg text-sm transition">Avvo reviews</a>
+                <a href="https://www.google.com/search?q=Lotter+Law+Orlando+reviews" target="_blank" rel="noopener" onclick="window.dataLayer &amp;&amp; dataLayer.push({'event':'review_link_click','platform':'google'})" class="border border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-700 font-semibold py-2 px-4 rounded-lg text-sm transition">Google reviews</a>
+            </div>
+        </section>
+
         <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6" id="callback">
-            <h2 class="text-xl font-bold text-blue-900 mb-1">Prefer a callback?</h2>
+            <h2 class="text-xl font-bold brand-charcoal mb-1">Prefer a callback?</h2>
             <p class="text-gray-600 mb-4">Name, number, and we will reach out.</p>
 
             <form x-data="qrOptInForm()" @submit.prevent="submitForm()" class="space-y-4">
@@ -174,7 +240,8 @@
                             id="qr-sms"
                             x-model="smsConsent"
                             @change="touched.smsConsent = true; validateSmsConsent()"
-                            class="mt-1 h-5 w-5 rounded border-gray-300 text-amber-600 focus:ring-amber-500"
+                            class="mt-1 h-5 w-5 rounded border-gray-300 focus:ring-blue-500"
+                            style="accent-color: #2563EB;"
                         >
                         <span class="text-sm text-gray-600 leading-relaxed">
                             I agree to receive SMS from Lotter Law at this number. Msg frequency varies. Msg &amp; data rates may apply. Reply HELP for help or STOP to unsubscribe. <span class="text-red-500">*</span>
@@ -187,7 +254,8 @@
                     type="submit"
                     x-show="!showSuccess"
                     :disabled="submitting"
-                    class="w-full bg-amber-600 hover:bg-amber-500 disabled:bg-amber-300 text-white font-bold py-4 px-6 rounded-xl text-lg transition shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500"
+                    class="w-full text-white font-bold py-4 px-6 rounded-xl text-lg transition shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+                    style="background-color: #2563EB;"
                 >
                     <span x-show="!submitting">Request a callback</span>
                     <span x-cloak x-show="submitting">Sending…</span>
@@ -195,55 +263,29 @@
             </form>
         </section>
 
-        <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-            <h2 class="text-xl font-bold text-blue-900 mb-4">Why this firm</h2>
-            <ul class="space-y-3 text-gray-700">
-                <li class="flex items-start">
-                    <svg class="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    <span>Former Florida State Trooper and Orange County Deputy Sheriff</span>
-                </li>
-                <li class="flex items-start">
-                    <svg class="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    <span>200+ five-star client reviews</span>
-                </li>
-                <li class="flex items-start">
-                    <svg class="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    <span>Flat-fee pricing with payment plans</span>
-                </li>
-            </ul>
-        </section>
-
         <section class="bg-red-50 border-l-4 border-red-600 rounded-r-lg p-4 mb-6">
             <h2 class="font-bold text-red-800">DUI arrest? 10 days to protect your license.</h2>
             <p class="text-red-700 text-sm mt-1">If the officer took your license, that window is already running. Call before it closes.</p>
         </section>
 
-        <section class="mb-6">
-            <h2 class="text-xl font-bold text-blue-900 mb-3">Charges we handle</h2>
-            <div class="flex flex-wrap gap-2">
-                <a href="../practice-areas/dui.html" class="px-3 py-2 rounded-full bg-white border border-gray-200 text-sm font-semibold text-blue-800 hover:border-blue-600 hover:text-blue-700">DUI</a>
-                <a href="../practice-areas/speeding-ticket.html" class="px-3 py-2 rounded-full bg-white border border-gray-200 text-sm font-semibold text-blue-800 hover:border-blue-600 hover:text-blue-700">Traffic</a>
-                <a href="../practice-areas/suspended-license.html" class="px-3 py-2 rounded-full bg-white border border-gray-200 text-sm font-semibold text-blue-800 hover:border-blue-600 hover:text-blue-700">License</a>
-                <a href="../practice-areas/other-crimes.html" class="px-3 py-2 rounded-full bg-white border border-gray-200 text-sm font-semibold text-blue-800 hover:border-blue-600 hover:text-blue-700">Criminal</a>
-                <a href="../practice-areas/weapons.html" class="px-3 py-2 rounded-full bg-white border border-gray-200 text-sm font-semibold text-blue-800 hover:border-blue-600 hover:text-blue-700">Weapons</a>
-                <a href="../practice-areas/dv.html" class="px-3 py-2 rounded-full bg-white border border-gray-200 text-sm font-semibold text-blue-800 hover:border-blue-600 hover:text-blue-700">DV</a>
-            </div>
-        </section>
-
-        <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6 text-center">
-            <div class="text-amber-400 text-2xl tracking-widest mb-2" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <blockquote class="text-gray-700 italic mb-2">“Great guy, great service with no complaints help get 5 of 6 my criminal charges dismissed. THANKS JEFF!”</blockquote>
-            <p class="text-sm text-gray-500 mb-4">— FA</p>
-            <div class="flex justify-center gap-3 flex-wrap">
-                <a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener" onclick="window.dataLayer &amp;&amp; dataLayer.push({'event':'review_link_click','platform':'avvo'})" class="border border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-700 font-semibold py-2 px-4 rounded-lg text-sm transition">Avvo reviews</a>
-                <a href="https://www.google.com/search?q=Lotter+Law+Orlando+reviews" target="_blank" rel="noopener" onclick="window.dataLayer &amp;&amp; dataLayer.push({'event':'review_link_click','platform':'google'})" class="border border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-700 font-semibold py-2 px-4 rounded-lg text-sm transition">Google reviews</a>
-            </div>
+        <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+            <h2 class="text-xl font-bold brand-charcoal mb-4">Why this firm</h2>
+            <ul class="space-y-3 text-gray-700">
+                <li class="flex items-start">
+                    <svg class="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" style="color: #aca068;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span>200+ five-star client reviews</span>
+                </li>
+                <li class="flex items-start">
+                    <svg class="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" style="color: #aca068;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span>Flat-fee pricing with payment plans</span>
+                </li>
+            </ul>
         </section>
 
         <p class="text-center text-sm text-gray-600 mb-2">
-            <a href="../index.html" class="text-blue-700 font-semibold hover:text-blue-900 underline">Full website</a>
+            <a href="../index.html" class="font-semibold hover:underline" style="color: #1e40af;">Full website</a>
             <span class="text-gray-300 mx-2">|</span>
-            Habla Español: <a href="tel:407-536-7508" class="text-blue-700 font-semibold">407-536-7508</a>
+            Habla Español: <a href="tel:407-536-7508" class="font-semibold" style="color: #1e40af;">407-536-7508</a>
         </p>
         <p class="text-center text-xs text-gray-500">
             <a href="../privacy.html" class="hover:underline">Privacy</a>
@@ -252,7 +294,7 @@
         </p>
     </main>
 
-    <footer class="bg-gray-800 text-gray-400 py-6 text-center text-sm pb-28 md:pb-6">
+    <footer class="text-gray-400 py-6 text-center text-sm pb-28 md:pb-6" style="background-color: #38383c;">
         <div class="max-w-lg mx-auto px-4">
             <p>&copy; <span id="yr"></span> Lotter Law. All Rights Reserved.</p>
             <p class="text-xs mt-1">200 E. Robinson St., Suite 1140, Orlando, FL 32801</p>
@@ -262,10 +304,10 @@
 
     <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-gray-200 p-3 md:hidden z-50" style="padding-bottom: max(0.75rem, env(safe-area-inset-bottom));">
         <div class="max-w-lg mx-auto grid grid-cols-2 gap-2">
-            <a href="tel:407-500-7000" class="flex items-center justify-center bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-4 rounded-lg text-base transition focus:outline-none focus:ring-2 focus:ring-amber-500">
-                Call
+            <a href="tel:407-500-7000" class="flex items-center justify-center text-white font-bold py-3 px-4 rounded-lg text-base transition focus:outline-none focus:ring-2 focus:ring-blue-500" style="background-color: #2563EB;">
+                Call Now
             </a>
-            <a href="sms:407-500-7000" class="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-base transition focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <a href="sms:407-500-7000" class="flex items-center justify-center text-white font-bold py-3 px-4 rounded-lg text-base transition focus:outline-none focus:ring-2 focus:ring-blue-500" style="background-color: #1e40af;">
                 Text
             </a>
         </div>
