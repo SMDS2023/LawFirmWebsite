@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-52LMX48G');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2MCJ8E0XS5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2MCJ8E0XS5');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intoxilyzer 8000 Anomaly Lookup | Lotter Law</title>
+    <meta name="description" content="Search Florida Intoxilyzer 8000 breath test machine calibration anomalies. Find control test failures and zero volume errors by machine serial number.">
+    <link rel="canonical" href="https://lotterlaw.com/intox8000-anomalies.html">
+    <meta property="og:title" content="Intoxilyzer 8000 Anomaly Lookup | Lotter Law">
+    <meta property="og:description" content="Search Florida Intoxilyzer 8000 breath test records for documented calibration and volume anomalies.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lotterlaw.com/intox8000-anomalies.html">
+    <meta property="og:site_name" content="Lotter Law">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0;
+            background: #f5f5f5;
+        }
+        .nav-header {
+            background: #1a1a2e;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a { color: white; text-decoration: none; }
+        .nav-header .logo { font-weight: 700; font-size: 18px; }
+        .nav-header .nav-links { display: flex; gap: 20px; }
+        .nav-header .nav-links a:hover { text-decoration: underline; }
+        .main-content { padding: 20px; }
+        h1 { color: #1a1a2e; margin-bottom: 10px; }
+        .subtitle { color: #666; margin-bottom: 10px; }
+        .intro {
+            background: #fff;
+            border-left: 4px solid #4a90d9;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .intro p { margin: 0 0 10px 0; line-height: 1.6; }
+        .intro p:last-child { margin-bottom: 0; }
+        .stats { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .stat-card {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .stat-card .value { font-size: 24px; font-weight: 700; color: #1a1a2e; }
+        .stat-card .label { font-size: 13px; color: #666; }
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .filter-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-end; }
+        .filter-group { flex: 1; min-width: 220px; }
+        .filter-group label { display: block; font-weight: 600; margin-bottom: 6px; color: #333; }
+        .filter-group select {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            background: white;
+        }
+        .filter-group select:focus { outline: none; border-color: #4a90d9; }
+        .filter-group select.active-filter { border-color: #4a90d9; background: #f0f7ff; }
+        .clear-btn {
+            padding: 10px 20px;
+            background: #e9ecef;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        .clear-btn:hover { background: #ddd; }
+        .results {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .results-header {
+            background: #1a1a2e;
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .results-header .filter-indicator { font-weight: normal; font-size: 14px; opacity: 0.9; }
+        table { width: 100%; border-collapse: collapse; }
+        th {
+            background: #f0f0f0;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+        }
+        th:hover { background: #e5e5e5; }
+        th .sort-icon { margin-left: 5px; opacity: 0.3; }
+        th.sorted .sort-icon { opacity: 1; }
+        td { padding: 12px 15px; border-bottom: 1px solid #eee; }
+        tr:nth-child(even) { background: #fafafa; }
+        tr:hover { background: #f0f7ff; }
+        .flag-badge {
+            display: inline-block;
+            background: #fff3cd;
+            color: #856404;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin: 2px;
+        }
+        .flag-badge.control-low { background: #f8d7da; color: #721c24; }
+        .flag-badge.control-high { background: #d4edda; color: #155724; }
+        .flag-badge.zero-volume { background: #cce5ff; color: #004085; }
+        .flag-badge[data-tooltip] { position: relative; cursor: help; }
+        .flag-badge[data-tooltip]:hover::after,
+        .flag-badge[data-tooltip]:focus::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: normal;
+            white-space: normal;
+            width: 280px;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            margin-bottom: 5px;
+        }
+        .flag-badge[data-tooltip]:hover::before,
+        .flag-badge[data-tooltip]:focus::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #333;
+            margin-bottom: -7px;
+        }
+        a.fdle-link {
+            display: inline-block;
+            background: #4a90d9;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        a.fdle-link:hover { background: #357abd; }
+        a.fdle-link.disabled { background: #ccc; cursor: not-allowed; pointer-events: none; }
+        a.certified-link {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        a.certified-link:hover { background: #218838; }
+        .no-results { padding: 40px; text-align: center; color: #666; }
+        .loading { padding: 40px; text-align: center; color: #666; }
+        #resultCount { padding: 10px 20px; background: #e9ecef; font-size: 14px; color: #495057; }
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .footer a { color: #7db8f7; }
+        .footer .contact { margin-bottom: 10px; }
+        .footer .disclaimer { font-size: 12px; opacity: 0.8; max-width: 800px; margin: 0 auto; }
+        @media (max-width: 768px) {
+            .stats { flex-direction: column; }
+            .filter-group { min-width: 100%; }
+            .nav-header { flex-direction: column; gap: 10px; }
+            th, td { padding: 8px 10px; font-size: 13px; }
+        }
+    
+        /* Loading spinner */
+        #loading {
+            display: none;
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4a90d9;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52LMX48G"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <nav class="nav-header" role="navigation" aria-label="Main navigation">
+        <a href="/" class="logo">Lotter Law</a>
+        <div class="nav-links">
+            <a href="/practice-areas/dui.html">DUI Defense</a>
+            <a href="/blog/intoxilyzer-8000-data-analysis/">The Data</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/#contact">Contact</a>
+        </div>
+    </nav>
+
+    <main class="main-content" role="main">
+        <!-- Loading spinner -->
+        <div id="loading">
+            <div class="spinner"></div>
+            <h2>Loading Anomaly Data...</h2>
+            <p>Please wait while we load Florida Intoxilyzer 8000 anomaly records...</p>
+        </div>
+
+        <!-- Main content (hidden until data loads) -->
+        <div id="content">
+    
+        <h1>Intoxilyzer 8000 Anomaly Lookup</h1>
+        <p class="subtitle">Search breath test records with control test or volume anomalies</p>
+
+        <div class="intro" role="complementary" aria-label="Tool description">
+            <p><strong>A trial prep resource for the Florida defense bar.</strong> This database indexes Intoxilyzer 8000 breath test records where FDLE data shows anomalies—control test results outside the 0.075-0.085 tolerance range, or BAC readings recorded with zero breath volume. These documented irregularities may support challenges to breath test reliability in your client's case.</p>
+            <p>Filter by machine serial number, breath test agency, or operator. Each record links directly to the source PDF on FDLE's website. Created by Jeff Lotter and shared freely with the defense bar.</p>
+        </div>
+
+        <div class="stats" role="region" aria-label="Statistics">
+            <div class="stat-card">
+                <div class="value" id="totalRecords" aria-label="Total anomaly records">-</div>
+                <div class="label">Anomaly Records</div>
+            </div>
+            <div class="stat-card">
+                <div class="value" id="totalMachines" aria-label="Machines with anomalies">-</div>
+                <div class="label">Machines</div>
+            </div>
+            <div class="stat-card">
+                <div class="value" id="totalAgencies" aria-label="Breath test agencies">-</div>
+                <div class="label">Agencies</div>
+            </div>
+            <div class="stat-card">
+                <div class="value" id="totalOfficers" aria-label="Breath test officers">-</div>
+                <div class="label">Officers</div>
+            </div>
+            <div class="stat-card">
+                <div class="value" id="dataDate" aria-label="Data generated date">-</div>
+                <div class="label">Data Generated</div>
+            </div>
+        </div>
+
+        <div class="controls" role="search" aria-label="Filter controls">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="machineSelect" id="machineLabel">Intoxilyzer Machine</label>
+                    <select id="machineSelect" aria-labelledby="machineLabel">
+                        <option value="">-- All Machines --</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="agencySelect" id="agencyLabel">Breath Test Agency</label>
+                    <select id="agencySelect" aria-labelledby="agencyLabel">
+                        <option value="">-- All Agencies --</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="officerSelect" id="officerLabel">Breath Test Officer</label>
+                    <select id="officerSelect" aria-labelledby="officerLabel">
+                        <option value="">-- All Officers --</option>
+                    </select>
+                </div>
+                <button class="clear-btn" id="clearFilters" aria-label="Clear all filters">Clear Filters</button>
+            </div>
+        </div>
+
+        <div class="results" role="region" aria-label="Search results">
+            <div class="results-header">
+                <span>Anomaly Records</span>
+                <span class="filter-indicator" id="filterIndicator"></span>
+            </div>
+            <div id="resultCount" aria-live="polite"></div>
+            <div id="resultsTable" role="table" aria-label="Anomaly records table">
+                <div class="loading">Loading data...</div>
+            </div>
+        </div>
+    
+        </div></main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="contact">
+            <strong>Jeff Lotter</strong> | Orlando DUI Defense |
+            <a href="tel:+14075007000">(407) 500-7000</a> |
+            <a href="mailto:Jeff@jlotterlaw.com">Jeff@jlotterlaw.com</a>
+        </div>
+        <div class="disclaimer">
+            Data extracted from FDLE's public Alcohol Testing Program records. Questions, corrections, or suggestions? Reach out—happy to collaborate with fellow defenders.
+        </div>
+    </footer>
+
+    <script>
+        let allData = null;
+        let currentSort = { column: 'test_datetime', direction: 'desc' };
+        let filtersBound = false;
+
+        function escapeHtml(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function escapeAttr(value) {
+            return escapeHtml(value);
+        }
+
+        function isHttpUrl(value) {
+            try {
+                const parsed = new URL(value);
+                return parsed.protocol === 'https:' || parsed.protocol === 'http:';
+            } catch (e) {
+                return false;
+            }
+        }
+
+        const flagTooltips = {
+            'Control1 Low': 'The machine tested a known 0.08 alcohol control solution. Result was below the acceptable range (0.075-0.085). This may indicate calibration issues.',
+            'Control1 High': 'The machine tested a known 0.08 alcohol control solution. Result was above the acceptable range (0.075-0.085). This may indicate calibration issues.',
+            'Control2 Low': 'The second control test was below tolerance (0.075-0.085). This may indicate calibration issues.',
+            'Control2 High': 'The second control test was above tolerance (0.075-0.085). This may indicate calibration issues.',
+            'Zero Volume': 'The machine reported a BAC reading but recorded zero breath volume. This may indicate operator error or equipment malfunction.'
+        };
+
+        function formatFlags(flags) {
+            if (!flags) return '';
+            return flags.split(', ').map(flag => {
+                let badgeClass = 'flag-badge';
+                let tooltip = '';
+                if (flag.includes('Control1') && flag.includes('Low')) {
+                    badgeClass += ' control-low';
+                    tooltip = flagTooltips['Control1 Low'];
+                } else if (flag.includes('Control1') && flag.includes('High')) {
+                    badgeClass += ' control-high';
+                    tooltip = flagTooltips['Control1 High'];
+                } else if (flag.includes('Control2') && flag.includes('Low')) {
+                    badgeClass += ' control-low';
+                    tooltip = flagTooltips['Control2 Low'];
+                } else if (flag.includes('Control2') && flag.includes('High')) {
+                    badgeClass += ' control-high';
+                    tooltip = flagTooltips['Control2 High'];
+                } else if (flag.includes('Zero Volume')) {
+                    badgeClass += ' zero-volume';
+                    tooltip = flagTooltips['Zero Volume'];
+                }
+                return `<span class="${badgeClass}" tabindex="0" role="button" data-tooltip="${escapeAttr(tooltip)}" aria-label="${escapeAttr(flag)}: ${escapeAttr(tooltip)}">${escapeHtml(flag)}</span>`;
+            }).join(' ');
+        }
+
+        function sortRecords(records, column, direction) {
+            return [...records].sort((a, b) => {
+                let aVal = a[column] || '';
+                let bVal = b[column] || '';
+                if (column === 'test_datetime') {
+                    aVal = new Date(aVal);
+                    bVal = new Date(bVal);
+                }
+                if (aVal < bVal) return direction === 'asc' ? -1 : 1;
+                if (aVal > bVal) return direction === 'asc' ? 1 : -1;
+                return 0;
+            });
+        }
+
+        function renderTable(records) {
+            if (!records || records.length === 0) {
+                document.getElementById('resultsTable').innerHTML =
+                    '<div class="no-results">No matching records found. Try adjusting your filters.</div>';
+                document.getElementById('resultCount').textContent = '';
+                return;
+            }
+            const sorted = sortRecords(records, currentSort.column, currentSort.direction);
+            document.getElementById('resultCount').textContent =
+                `Showing ${sorted.length.toLocaleString()} anomaly record${sorted.length !== 1 ? 's' : ''}`;
+
+            const sortIcon = (col) => {
+                const isActive = currentSort.column === col;
+                const arrow = currentSort.direction === 'asc' ? '▲' : '▼';
+                return `<span class="sort-icon">${isActive ? arrow : '⇅'}</span>`;
+            };
+
+            let html = `
+                <table role="grid" aria-label="Anomaly records">
+                    <thead>
+                        <tr role="row">
+                            <th role="columnheader" data-sort="test_datetime" class="${currentSort.column === 'test_datetime' ? 'sorted' : ''}">Date/Time ${sortIcon('test_datetime')}</th>
+                            <th role="columnheader" data-sort="intox_number" class="${currentSort.column === 'intox_number' ? 'sorted' : ''}">Machine ${sortIcon('intox_number')}</th>
+                            <th role="columnheader" data-sort="defendant_name" class="${currentSort.column === 'defendant_name' ? 'sorted' : ''}">Defendant ${sortIcon('defendant_name')}</th>
+                            <th role="columnheader" data-sort="breath_test_agency" class="${currentSort.column === 'breath_test_agency' ? 'sorted' : ''}">Agency ${sortIcon('breath_test_agency')}</th>
+                            <th role="columnheader" data-sort="breath_test_officer" class="${currentSort.column === 'breath_test_officer' ? 'sorted' : ''}">Officer ${sortIcon('breath_test_officer')}</th>
+                            <th role="columnheader">Flags</th>
+                            <th role="columnheader">FDLE PDF</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            for (const r of sorted) {
+                const fdle = isHttpUrl(r.fdle_url)
+                    ? `<a href="${escapeAttr(r.fdle_url)}" target="_blank" rel="noopener noreferrer" class="fdle-link" aria-label="View FDLE PDF page ${escapeAttr(r.page_number)}">View (p.${escapeHtml(r.page_number)})</a>`
+                    : `<span class="fdle-link disabled" aria-label="PDF not available">N/A</span>`;
+
+                html += `
+                    <tr role="row">
+                        <td role="gridcell">${escapeHtml(r.test_datetime || 'Unknown')}</td>
+                        <td role="gridcell">${escapeHtml(r.intox_number || 'Unknown')}</td>
+                        <td role="gridcell">${escapeHtml(r.defendant_name || 'Unknown')}</td>
+                        <td role="gridcell">${escapeHtml(r.breath_test_agency || '-')}</td>
+                        <td role="gridcell">${escapeHtml(r.breath_test_officer || '-')}</td>
+                        <td role="gridcell">${formatFlags(r.flags)}</td>
+                        <td role="gridcell">${fdle}</td>
+                    </tr>
+                `;
+            }
+            html += '</tbody></table>';
+            document.getElementById('resultsTable').innerHTML = html;
+
+            document.querySelectorAll('th[data-sort]').forEach(th => {
+                th.addEventListener('click', () => {
+                    const col = th.dataset.sort;
+                    if (currentSort.column === col) {
+                        currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                    } else {
+                        currentSort.column = col;
+                        currentSort.direction = 'asc';
+                    }
+                    applyFilters();
+                });
+            });
+        }
+
+        function getFilteredRecords() {
+            if (!allData) return [];
+            const machine = document.getElementById('machineSelect').value;
+            const agency = document.getElementById('agencySelect').value;
+            const officer = document.getElementById('officerSelect').value;
+
+            let records = allData.records;
+            if (machine) records = records.filter(r => r.intox_number === machine);
+            if (agency) records = records.filter(r => r.breath_test_agency === agency);
+            if (officer) records = records.filter(r => r.breath_test_officer === officer);
+            return records;
+        }
+
+        function updateFilterIndicator() {
+            const machine = document.getElementById('machineSelect').value;
+            const agency = document.getElementById('agencySelect').value;
+            const officer = document.getElementById('officerSelect').value;
+
+            const parts = [];
+            if (machine) parts.push(`Machine: ${machine}`);
+            if (agency) parts.push(`Agency: ${agency}`);
+            if (officer) parts.push(`Officer: ${officer}`);
+
+            document.getElementById('filterIndicator').textContent =
+                parts.length > 0 ? `Filtered by: ${parts.join(' | ')}` : '';
+
+            document.getElementById('machineSelect').classList.toggle('active-filter', !!machine);
+            document.getElementById('agencySelect').classList.toggle('active-filter', !!agency);
+            document.getElementById('officerSelect').classList.toggle('active-filter', !!officer);
+        }
+
+        function applyFilters() {
+            const records = getFilteredRecords();
+            renderTable(records);
+            updateFilterIndicator();
+            updateURL();
+        }
+
+        function updateURL() {
+            const params = new URLSearchParams();
+            const machine = document.getElementById('machineSelect').value;
+            const agency = document.getElementById('agencySelect').value;
+            const officer = document.getElementById('officerSelect').value;
+
+            if (machine) params.set('machine', machine);
+            if (agency) params.set('agency', agency);
+            if (officer) params.set('officer', officer);
+
+            const newURL = params.toString()
+                ? `${window.location.pathname}?${params.toString()}`
+                : window.location.pathname;
+            window.history.replaceState({}, '', newURL);
+        }
+
+        function loadFiltersFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            const machine = params.get('machine');
+            const agency = params.get('agency');
+            const officer = params.get('officer');
+
+            if (machine) document.getElementById('machineSelect').value = machine;
+            if (agency) document.getElementById('agencySelect').value = agency;
+            if (officer) document.getElementById('officerSelect').value = officer;
+        }
+
+        function clearFilters() {
+            document.getElementById('machineSelect').value = '';
+            document.getElementById('agencySelect').value = '';
+            document.getElementById('officerSelect').value = '';
+            applyFilters();
+        }
+
+        function populateDropdowns() {
+            const machineSelect = document.getElementById('machineSelect');
+            machineSelect.innerHTML = '<option value="">-- All Machines --</option>';
+            for (const m of allData.machines) {
+                const option = document.createElement('option');
+                option.value = m.intox_number;
+                option.textContent = `${m.intox_number} (${m.anomaly_count} anomalies)`;
+                machineSelect.appendChild(option);
+            }
+
+            const agencySelect = document.getElementById('agencySelect');
+            agencySelect.innerHTML = '<option value="">-- All Agencies --</option>';
+            for (const a of (allData.agencies || [])) {
+                const option = document.createElement('option');
+                option.value = a;
+                option.textContent = a;
+                agencySelect.appendChild(option);
+            }
+
+            const officerSelect = document.getElementById('officerSelect');
+            officerSelect.innerHTML = '<option value="">-- All Officers --</option>';
+            for (const o of (allData.officers || [])) {
+                const option = document.createElement('option');
+                option.value = o;
+                option.textContent = o;
+                officerSelect.appendChild(option);
+            }
+        }
+
+        async function loadData() {
+            const loadingEl = document.getElementById('loading');
+            const contentEl = document.getElementById('content');
+
+            try {
+                loadingEl.style.display = 'block';
+                contentEl.style.display = 'none';
+
+                const response = await fetch('/intox8000-data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                allData = await response.json();
+
+                document.getElementById('totalRecords').textContent = allData.total_records.toLocaleString();
+                document.getElementById('totalMachines').textContent = allData.total_machines.toLocaleString();
+                document.getElementById('totalAgencies').textContent = (allData.total_agencies || allData.agencies?.length || 0).toLocaleString();
+                document.getElementById('totalOfficers').textContent = (allData.total_officers || allData.officers?.length || 0).toLocaleString();
+                document.getElementById('dataDate').textContent = new Date(allData.generated).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+                populateDropdowns();
+
+                if (!filtersBound) {
+                    document.getElementById('machineSelect').addEventListener('change', applyFilters);
+                    document.getElementById('agencySelect').addEventListener('change', applyFilters);
+                    document.getElementById('officerSelect').addEventListener('change', applyFilters);
+                    document.getElementById('clearFilters').addEventListener('click', clearFilters);
+                    filtersBound = true;
+                }
+
+                loadFiltersFromURL();
+                applyFilters();
+
+                loadingEl.style.display = 'none';
+                contentEl.style.display = 'block';
+            } catch (error) {
+                loadingEl.innerHTML = '<div style="color: #d32f2f; text-align: center; padding: 40px;"><h2>Error Loading Data</h2><p>' + escapeHtml(error.message) + '</p><p>Please refresh the page or call 407-500-7000.</p></div>';
+                console.error('Error loading data:', error);
+            }
+        }
+
+        // Initialize
+        loadData();
+    </script>
+</body>
+</html>
