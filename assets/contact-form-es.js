@@ -1,8 +1,48 @@
 // Alpine.js Contact Form Component - Spanish Version
 // Handles validation, submission, and user feedback for native contact forms
-// Same JotForm backend (251224345324145), translated validation messages
+// Same first-party lead endpoint as contact-form.js, translated validation messages
 
 document.addEventListener('alpine:init', () => {
+    const LEAD_ENDPOINT = 'https://lotterlaw-leads.vercel.app/api/lead';
+
+    function installHoneypot(component) {
+        const form = component.$root;
+        if (!form || form.querySelector('[data-lead-honeypot]')) {
+            return;
+        }
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = 'website';
+        input.autocomplete = 'off';
+        input.tabIndex = -1;
+        input.setAttribute('aria-hidden', 'true');
+        input.setAttribute('data-lead-honeypot', '');
+        input.style.position = 'absolute';
+        input.style.left = '-10000px';
+        input.style.width = '1px';
+        input.style.height = '1px';
+        input.style.opacity = '0';
+        input.addEventListener('input', () => {
+            component.formData.website = input.value;
+        });
+        form.appendChild(input);
+    }
+
+    function trackingPayload(component) {
+        return {
+            website: component.formData.website || '',
+            utm_source: component.utmData.utm_source || '',
+            utm_medium: component.utmData.utm_medium || '',
+            utm_campaign: component.utmData.utm_campaign || '',
+            utm_content: component.utmData.utm_content || '',
+            utm_term: component.utmData.utm_term || '',
+            gclid: component.utmData.gclid || '',
+            landing_page: component.utmData.landing_page || window.location.pathname,
+            referrer: document.referrer || '',
+            user_agent: navigator.userAgent || ''
+        };
+    }
+
     Alpine.data('contactForm', () => ({
         // Form state
         formData: {
@@ -10,7 +50,8 @@ document.addEventListener('alpine:init', () => {
             email: '',
             phone: '',
             caseType: '',
-            message: ''
+            message: '',
+            website: ''
         },
 
         // UTM tracking data (populated on init, submitted as hidden fields)
@@ -18,6 +59,7 @@ document.addEventListener('alpine:init', () => {
 
         // Capture UTM params from URL and store in sessionStorage (first-touch attribution)
         init() {
+            installHoneypot(this);
             const params = new URLSearchParams(window.location.search);
             const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid'];
 
@@ -183,40 +225,25 @@ document.addEventListener('alpine:init', () => {
             this.showError = false;
 
             try {
-                // Map to JotForm field names (actual field names from form 251224345324145)
-                const formData = new URLSearchParams();
-
-                // Split name into first and last
-                const nameParts = this.formData.name.trim().split(' ');
-                const firstName = nameParts[0] || '';
-                const lastName = nameParts.slice(1).join(' ') || '';
-
-                formData.append('q3_name[first]', firstName);
-                formData.append('q3_name[last]', lastName);
-                formData.append('q4_contactNumber[full]', this.formData.phone);
-                formData.append('q5_emailAddress', this.formData.email);
-                formData.append('q10_pleaseExplain', this.formData.message);
-                formData.append('q23_typeA23', this.formData.caseType);
-
-                // Append UTM tracking hidden fields
-                formData.append('q24_utmSource', this.utmData.utm_source || '');
-                formData.append('q25_utmMedium', this.utmData.utm_medium || '');
-                formData.append('q26_utmCampaign', this.utmData.utm_campaign || '');
-                formData.append('q27_utmContent', this.utmData.utm_content || '');
-                formData.append('q28_utmTerm', this.utmData.utm_term || '');
-                formData.append('q29_gclid', this.utmData.gclid || '');
-                formData.append('q30_landingPage', this.utmData.landing_page || window.location.pathname);
-
-                // Submit to JotForm
-                const response = await fetch('https://submit.jotform.com/submit/251224345324145', {
+                const response = await fetch(LEAD_ENDPOINT, {
                     method: 'POST',
-                    body: formData,
                     headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        form: 'contact',
+                        name: this.formData.name,
+                        phone: this.formData.phone,
+                        email: this.formData.email,
+                        message: this.formData.message,
+                        caseType: this.formData.caseType,
+                        smsConsent: true,
+                        ...trackingPayload(this)
+                    })
                 });
+                const result = await response.json().catch(() => ({ ok: false }));
 
-                if (response.ok) {
+                if (response.ok && result.ok) {
                     // Show success message
                     this.showSuccess = true;
 
@@ -242,7 +269,7 @@ document.addEventListener('alpine:init', () => {
                     throw new Error('Form submission failed');
                 }
             } catch (error) {
-                console.error('Form submission error:', error);
+                console.error('Form submission failed.');
                 this.showError = true;
             } finally {
                 this.submitting = false;
@@ -256,7 +283,8 @@ document.addEventListener('alpine:init', () => {
                 email: '',
                 phone: '',
                 caseType: '',
-                message: ''
+                message: '',
+                website: ''
             };
             this.errors = {
                 name: '',
