@@ -41,7 +41,7 @@ npm run test:browser
 
 The browser runner saves evidence under `../verification/browser` by default, or `BROWSER_PROOF_DIR`. It serves the actual checkout files at intercepted site URLs. Only UI runtime CDNs are fetched; the lead API, analytics and third-party forms are intercepted or blocked. It creates no real prospect and sends no email. The Google origin is a synthetic referral page, Android referrer is explicitly simulated, and the 45-minute interval advances the browser clock. WebKit here is not a physical iPhone or Safari field test.
 
-Results on September 10: website **16/16** unit checks; lead service **27/27** plus typecheck; blog formatter **5/5**. Browser **12/12** across Chromium and WebKit: article → homepage after a 45-minute clock advance, direct car, Spanish, blocked storage, simulated Android app referrer, and back/forward plus an independent new tab. Coverage checks all 238 HTML documents.
+Results on September 10: website **16/16** unit checks; lead service **27/27** plus typecheck; blog formatter **7/7**. Browser **12/12** across Chromium and WebKit: article → homepage after a 45-minute clock advance, direct car, Spanish, blocked storage, simulated Android app referrer, and back/forward plus an independent new tab. Coverage checks all 238 HTML documents.
 
 These verify behavior before publication. They do **not** prove production persistence, email delivery or GA4 collection. The production proof must separately read saved Lawmatics data, observe Jeff's and Stacy's receipt, verify one GA4 custom event per journey, and clean up only identified TEST prospects with DELETE followed by GET 404 under the approved proof packet.
 
