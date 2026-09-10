@@ -1,0 +1,11 @@
+{
+  "name": "lotter-law-website-checks",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/lead-tracking.test.mjs",
+    "test:browser": "node tests/browser-proof.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}
