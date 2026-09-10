@@ -41,6 +41,22 @@ document.addEventListener('alpine:init', () => {
         return { website: component.formData.website || '', ...tracking };
     }
 
+    function analyticsTracking(component) {
+        const tracking = trackingPayload(component);
+        let entryHost = '';
+        try { entryHost = new URL(tracking.entry_referrer).hostname; } catch (_) {}
+        // Only attribution is sent to analytics; never contact fields, message, honeypot or user agent.
+        return {
+            utm_source: tracking.utm_source || '',
+            utm_medium: tracking.utm_medium || '',
+            utm_campaign: tracking.utm_campaign || '',
+            landing_page: tracking.landing_page || '',
+            submission_page: tracking.submission_page || '',
+            entry_referrer_host: entryHost,
+            tracking_storage: tracking.tracking_storage || 'page-only'
+        };
+    }
+
     Alpine.data('contactForm', () => ({
         // Form state
         formData: {
@@ -219,16 +235,13 @@ document.addEventListener('alpine:init', () => {
                     this.showSuccess = true;
 
                     // Track in GTM with language tag and UTM attribution
-                    if (window.dataLayer) {
+                    if (window.dataLayer && typeof result.id === 'string' && result.id) {
                         window.dataLayer.push({
                             'event': 'form_submission',
                             'form_name': 'contact_form',
                             'case_type': this.formData.caseType,
                             'form_language': 'es',
-                            'utm_source': this.utmData.utm_source || 'direct',
-                            'utm_medium': this.utmData.utm_medium || '',
-                            'utm_campaign': this.utmData.utm_campaign || '',
-                            'landing_page': this.utmData.landing_page || ''
+                            ...analyticsTracking(this)
                         });
                     }
 

@@ -1,38 +1,56 @@
-# Organic lead attribution — prepared September 10, 2026
+# Organic lead attribution — LOJ-545, September 10, 2026
 
-## What is captured
-Every HTML document loads /assets/lead-tracking.js before form initialization, including articles without forms. The script makes no network requests and assigns no visitor identifier. It saves one entry record in sessionStorage under lotterlaw.lead-attribution.v2.
+## Captured evidence
 
-A visit starts when no usable entry record exists, more than 30 minutes have passed between page loads, or a new external referrer is observed. Internal navigation preserves the original entry and campaign tags as a bundle. Later internal campaign tags do not overwrite it. Blank referrers mean direct or unknown, not confirmed direct traffic. Same-tab/session limitations and browser restrictions still apply; this is observed evidence, not a complete browsing history.
+Every one of the 238 HTML documents loads `/assets/lead-tracking.js` before form initialization, including articles without forms. The tracker makes no network requests and assigns no visitor identifier. It keeps an entry record in `sessionStorage`, key `lotterlaw.lead-attribution.v2`.
 
-Email and Lawmatics case_blurb receive:
-- Source evidence (entry-referrer hostname, or an explicit uncertainty).
-- Landing page (first recorded), as an absolute address.
-- Submitted from page, separately from the entry page.
-- Entry referrer and previous page before submission, separately.
-- Tracking scope, including current-page-only fallback if storage is blocked.
-- Actual supplied campaign tags; absent new-form tags stay blank.
-Page/referrer addresses omit query strings and fragments. Campaign fields are retained separately. Google organic search phrases are not recovered. Facebook click IDs are never relabeled as Google click IDs.
+A record starts when no usable record exists or a new external arrival is detected. There is no idle timer: reading an article for 45 minutes preserves its entry evidence. Internal navigation keeps the entry page, referrer and supplied campaign tags together. Back/forward restoration reads the current tab record. Blank referrers mean direct or unknown; an undetectable external return cannot reliably start a new visit. This is the first recorded page in the same browser tab, not a complete browsing history. Independent new tabs start separately, but browsers may copy session storage into a tab opened with an opener; restored tabs and cross-origin www/apex navigation have browser-dependent limits.
 
-English, Spanish, and car QR forms use the same tracking record. If the tracker fails to load or storage is unavailable, forms still submit with explicitly limited page evidence. Existing consent, validation, honeypot and recipient configuration remain in place.
+English, Spanish and car native forms send the same evidence to the lead service:
+
+- Entry page and submission page separately, as absolute site URLs.
+- Entry referrer and previous page before submission separately.
+- Storage scope (`session` or explicitly limited `page-only`).
+- Actual supplied campaign tags; missing tags remain blank for version 2 forms.
+- Google click ID only when actually supplied as `gclid`; Facebook click IDs are dropped.
+
+Page and referrer URLs exclude query strings and fragments. Android app referrers retain only the app host. If storage or the tracker is unavailable, the form can still submit with limited current-page evidence. Legacy submissions remain accepted and labeled; their historical defaults are not proof of marketing source.
+
+The server labels known search hosts and the Google Android app as **inferred** organic search, `qr1.be` as a QR redirect, other external hosts as referral, and a blank referrer as direct or unknown. Supplied campaign tags or a Google click ID take priority over an organic inference. Search-host matching uses an explicit allow-list; unknown search providers remain referrals. A bare `/car/` visit is never proof of a QR scan. The browser evidence and campaign tags are client supplied, not independently authenticated. No per-person Google organic keyword is recovered.
+
+The email includes human-readable attribution. Lawmatics `case_blurb` includes those lines plus exactly one final line beginning `Attribution-JSON: ` followed by JSON containing version, landing, submitted, entry_ref_host, source_class, scope, form and utm fields. User-entered multiline content is indented so it cannot impersonate that final marker. Old records cannot be backfilled with evidence never captured.
+
+## Analytics
+
+All three native forms push one `form_submission` event only after the lead API returns success with a prospect ID. A successful honeypot no-op response does not count as a lead. Analytics receives an allow-list from the same tracking record: real or empty source/medium/campaign, landing page, submission page, entry-referrer host and storage scope, alongside form/case/language. It receives no contact details, message, honeypot value or user agent from this payload.
+
+This deliberately refines the QA request to copy `trackingPayload()` verbatim: that full API payload contains fields that should not enter analytics. Real browser checks verify that event and request attribution agree.
+
+Live GTM inspection on September 10 found the existing `form_submission` trigger connected only to Clarity. A GA4 event tag is still required under LOJ-529. GA4 `form_submit` and custom `form_submission` are different events; seeing the former does not prove CRM success or this connection.
 
 ## Verification
-Site: node --test tests/lead-tracking.test.mjs
-Lead service: npm run typecheck && npm test
-Blog pipeline: PYTHONPATH=. /Users/jefflotter/Code/blog-pipeline/.venv/bin/python -m pytest tests/test_lead_tracking.py tests/test_format_cards.py -q
 
-Tests cover a Google-referred article followed by a contact page, unknown/hidden sources, partial campaign tags, internal tags, Unicode body size, old forms, storage failures, all form types, and all 238 HTML documents. Form/network tests are simulated; no real prospects or notification emails are created. Live verification must follow approved deployment.
+Use Node 24 for the website and lead service. In the website checkout:
 
-## Future pages
-Website CI checks every HTML document for exactly one tracker before form scripts. New pages must include:
-<script src="/assets/lead-tracking.js"></script>
-The coordinated blog-pipeline formatter change inserts this automatically into future articles. It must ship with the website asset. Do not deploy the formatter before that asset exists.
+```sh
+npm ci
+npm test
+npx playwright install chromium webkit
+npm run test:browser
+```
 
-## Deployment and rollback
-The work is prepared in three codex/organic-lead-tracking branches, one per repository. Production approval is required. Deploy the backward-compatible lead service first, then publish the website, then update the blog formatter. Keep NOTIFY_TO as jeff@jlotterlaw.com, stacy@jlotterlaw.com.
+The browser runner saves evidence under `../verification/browser` by default, or `BROWSER_PROOF_DIR`. It serves the actual checkout files at intercepted site URLs. Only UI runtime CDNs are fetched; the lead API, analytics and third-party forms are intercepted or blocked. It creates no real prospect and sends no email. The Google origin is a synthetic referral page, Android referrer is explicitly simulated, and the 45-minute interval advances the browser clock. WebKit here is not a physical iPhone or Safari field test.
 
-The lead handler accepts up to 32 KiB for lead text plus attribution; field-level validation remains bounded. The separate agent-note endpoint remains capped at 4 KiB. The expanded request limit requires the new backend before the new forms.
+Results on September 10: website **16/16** unit checks; lead service **27/27** plus typecheck; blog formatter **5/5**. Browser **12/12** across Chromium and WebKit: article → homepage after a 45-minute clock advance, direct car, Spanish, blocked storage, simulated Android app referrer, and back/forward plus an independent new tab. Coverage checks all 238 HTML documents.
 
-For rollback, revert the website commit first so old payloads are restored, then restore the prior lead deployment. Revert the blog formatter change if withdrawing the tracking asset. Use revert commits rather than overwriting source history.
+These verify behavior before publication. They do **not** prove production persistence, email delivery or GA4 collection. The production proof must separately read saved Lawmatics data, observe Jeff's and Stacy's receipt, verify one GA4 custom event per journey, and clean up only identified TEST prospects with DELETE followed by GET 404 under the approved proof packet.
 
-Old lead records cannot be backfilled with missing entry or submission information.
+## Rollout and remaining scope
+
+Use three reviewed PRs and the Jeff-run rollout packet. First merge and deploy the backward-compatible lead service, then prove one legacy submission before merging the website, then verify the published tracker and merge/activate the blog formatter. Keep `NOTIFY_TO` as `jeff@jlotterlaw.com, stacy@jlotterlaw.com`. Do not run the superseded direct-push script. The lead body cap is 32 KiB; agent-note remains 4 KiB.
+
+New pages require exactly one `<script src="/assets/lead-tracking.js"></script>` before form scripts. Website CI enforces this; the coordinated blog formatter inserts it automatically. Publish the asset before activating the formatter.
+
+For a rollback, revert the website PR first, restore the recorded previous lead deployment, then revert the blog formatter PR; use reviewed revert commits, not rewritten history. Verify the old payload and endpoint checks after rollback.
+
+LOJ-517's 23 JotForm iframe pages, QR target retagging and pipeline outcome reporting remain separate work. Loading this tracker on an iframe page does not connect that iframe's submission to the native lead service. LOJ-516's delivery-failure monitoring remains open.
