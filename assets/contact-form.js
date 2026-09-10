@@ -28,18 +28,16 @@ document.addEventListener('alpine:init', () => {
     }
 
     function trackingPayload(component) {
-        return {
-            website: component.formData.website || '',
-            utm_source: component.utmData.utm_source || '',
-            utm_medium: component.utmData.utm_medium || '',
-            utm_campaign: component.utmData.utm_campaign || '',
-            utm_content: component.utmData.utm_content || '',
-            utm_term: component.utmData.utm_term || '',
-            gclid: component.utmData.gclid || '',
-            landing_page: component.utmData.landing_page || window.location.pathname,
-            referrer: document.referrer || '',
-            user_agent: navigator.userAgent || ''
+        const tracking = window.LotterLeadTracking?.payload() || {
+            tracking_version: '2',
+            tracking_storage: 'page-only',
+            landing_page: window.location.origin + window.location.pathname,
+            submission_page: window.location.origin + window.location.pathname,
+            entry_referrer: '',
+            referrer: '',
+            user_agent: navigator.userAgent.slice(0, 512)
         };
+        return { website: component.formData.website || '', ...tracking };
     }
 
     Alpine.data('contactForm', () => ({
@@ -59,34 +57,7 @@ document.addEventListener('alpine:init', () => {
         // Capture UTM params from URL and store in sessionStorage (first-touch attribution)
         init() {
             installHoneypot(this);
-            const params = new URLSearchParams(window.location.search);
-            const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid'];
-
-            // Store UTM params in sessionStorage (first-touch: don't overwrite existing)
-            utmKeys.forEach(key => {
-                const value = params.get(key);
-                if (value && !sessionStorage.getItem(key)) {
-                    sessionStorage.setItem(key, value);
-                }
-            });
-
-            // Also capture fbclid as gclid (both are click IDs)
-            const fbclid = params.get('fbclid');
-            if (fbclid && !sessionStorage.getItem('gclid')) {
-                sessionStorage.setItem('gclid', fbclid);
-            }
-
-            // Capture landing page (first page in session)
-            if (!sessionStorage.getItem('landing_page')) {
-                sessionStorage.setItem('landing_page', window.location.pathname);
-            }
-
-            // Load UTM data for form submission
-            this.utmData = {};
-            utmKeys.forEach(key => {
-                this.utmData[key] = sessionStorage.getItem(key) || '';
-            });
-            this.utmData.landing_page = sessionStorage.getItem('landing_page') || window.location.pathname;
+            this.utmData = trackingPayload(this);
         },
 
         // Validation state
@@ -329,41 +300,7 @@ document.addEventListener('alpine:init', () => {
 
         init() {
             installHoneypot(this);
-            const params = new URLSearchParams(window.location.search);
-            const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid'];
-
-            utmKeys.forEach(key => {
-                const value = params.get(key);
-                if (value && !sessionStorage.getItem(key)) {
-                    sessionStorage.setItem(key, value);
-                }
-            });
-
-            const fbclid = params.get('fbclid');
-            if (fbclid && !sessionStorage.getItem('gclid')) {
-                sessionStorage.setItem('gclid', fbclid);
-            }
-
-            const defaults = {
-                utm_source: 'vehicle',
-                utm_medium: 'qr',
-                utm_campaign: 'car_page'
-            };
-            Object.keys(defaults).forEach(key => {
-                if (!sessionStorage.getItem(key)) {
-                    sessionStorage.setItem(key, defaults[key]);
-                }
-            });
-
-            if (!sessionStorage.getItem('landing_page')) {
-                sessionStorage.setItem('landing_page', '/car/');
-            }
-
-            this.utmData = {};
-            utmKeys.forEach(key => {
-                this.utmData[key] = sessionStorage.getItem(key) || '';
-            });
-            this.utmData.landing_page = sessionStorage.getItem('landing_page') || '/car/';
+            this.utmData = trackingPayload(this);
         },
 
         validateName() {
