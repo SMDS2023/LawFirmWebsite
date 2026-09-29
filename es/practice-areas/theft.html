@@ -463,34 +463,34 @@
 
                     <!-- Article Grid -->
                     <div class="grid md:grid-cols-2 gap-6">
-                        <article class="bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
+                        <article class="relative bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
                             <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded mb-2">Resultado del Caso</span>
                             <h3 class="text-lg font-semibold text-blue-700 mb-2">
-                                <a href="/blog/thanksgiving-burglary-dismissal/" class="hover:text-amber-500">Desestimacion de Allanamiento en Dia de Accion de Gracias</a>
+                                <a href="/blog/thanksgiving-burglary-dismissal/" class="after:absolute after:inset-0 hover:text-amber-500">Desestimacion de Allanamiento en Dia de Accion de Gracias</a>
                             </h3>
                             <p class="text-gray-600 text-sm mb-3">Cuando los cargos relacionados con robo escalan a allanamiento, las consecuencias son mayores. Vea como logramos una desestimacion en un caso complejo de propiedad.</p>
                             <a href="/blog/thanksgiving-burglary-dismissal/" class="text-amber-600 text-sm font-semibold">Leer Mas →</a>
                         </article>
 
-                        <article class="bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
+                        <article class="relative bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
                             <h3 class="text-lg font-semibold text-blue-700 mb-2">
-                                <a href="/blog/Forensic-Video-Analysis/" class="hover:text-amber-500">Analisis Forense de Video en la Defensa</a>
+                                <a href="/blog/Forensic-Video-Analysis/" class="after:absolute after:inset-0 hover:text-amber-500">Analisis Forense de Video en la Defensa</a>
                             </h3>
                             <p class="text-gray-600 text-sm mb-3">Las grabaciones de vigilancia son frecuentemente clave en casos de robo. Aprenda como usamos el analisis forense de video para desafiar la narrativa de la fiscalia.</p>
                             <a href="/blog/Forensic-Video-Analysis/" class="text-amber-600 text-sm font-semibold">Leer Mas →</a>
                         </article>
 
-                        <article class="bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
+                        <article class="relative bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
                             <h3 class="text-lg font-semibold text-blue-700 mb-2">
-                                <a href="/blog/understanding-probable-cause/" class="hover:text-amber-500">Entendiendo la Causa Probable</a>
+                                <a href="/blog/understanding-probable-cause/" class="after:absolute after:inset-0 hover:text-amber-500">Entendiendo la Causa Probable</a>
                             </h3>
                             <p class="text-gray-600 text-sm mb-3">Hubo base suficiente para su detencion o arresto? Cuestionar la causa probable puede llevar a la supresion de evidencia.</p>
                             <a href="/blog/understanding-probable-cause/" class="text-amber-600 text-sm font-semibold">Leer Mas →</a>
                         </article>
 
-                        <article class="bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
+                        <article class="relative bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
                             <h3 class="text-lg font-semibold text-blue-700 mb-2">
-                                <a href="/blog/pre-trial-motions/" class="hover:text-amber-500">Procedimiento Penal: Mociones Previas al Juicio</a>
+                                <a href="/blog/pre-trial-motions/" class="after:absolute after:inset-0 hover:text-amber-500">Procedimiento Penal: Mociones Previas al Juicio</a>
                             </h3>
                             <p class="text-gray-600 text-sm mb-3">Las mociones previas al juicio pueden determinar el resultado de su caso antes de que comience el juicio. Aprenda como usamos las mociones estrategicamente.</p>
                             <a href="/blog/pre-trial-motions/" class="text-amber-600 text-sm font-semibold">Leer Mas →</a>
@@ -604,7 +604,7 @@
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-3xl font-bold text-blue-800 mb-12">Conozca a Nuestro Equipo Dedicado</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div x-data="{ expanded: false }" class="bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col">
+                    <div x-data="{ expanded: false }" @click="if (!$event.target.closest('a, button')) { expanded = !expanded }" class="cursor-pointer bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col">
                         <img src="../../assets/Attorney-Jeff-Lotter1.jpg" alt="Abogado Jeff Lotter" class="team-photo" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'; this.onerror=null;" width="150" height="150" loading="lazy">
                         <h3 class="text-xl font-bold text-blue-700 mb-2 mt-4">Jeff Lotter</h3>
                         <p class="text-sm text-indigo-600 font-semibold mb-4">Abogado | Fundador</p>
@@ -619,7 +619,7 @@
                         </button>
                     </div>
 
-                    <div x-data="{ expanded: false }" class="bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.1s;">
+                    <div x-data="{ expanded: false }" @click="if (!$event.target.closest('a, button')) { expanded = !expanded }" class="cursor-pointer bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.1s;">
                         <img src="../../assets/stacy400400.webp" alt="Stacy Sanchez" class="team-photo" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'; this.onerror=null;" width="400" height="400" loading="lazy">
                         <h3 class="text-xl font-bold text-blue-700 mb-2 mt-4">Stacy Sanchez</h3>
                         <p class="text-sm text-indigo-600 font-semibold mb-4">Asistente Legal Senior</p>
@@ -634,7 +634,7 @@
                         </button>
                     </div>
 
-                    <div x-data="{ expanded: false }" class="bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.2s;">
+                    <div x-data="{ expanded: false }" @click="if (!$event.target.closest('a, button')) { expanded = !expanded }" class="cursor-pointer bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.2s;">
                         <img src="../../assets/Marissa400400.webp" alt="Marissa Rodriguez" class="team-photo" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'; this.onerror=null;" width="400" height="400" loading="lazy">
                         <h3 class="text-xl font-bold text-blue-700 mb-2 mt-4">Marissa Rodriguez</h3>
                         <p class="text-sm text-indigo-600 font-semibold mb-4">Asistente Legal</p>
@@ -2069,67 +2069,67 @@
     <!-- Scrolling Banner - Copied from index.html -->
     <div class="scrolling-banner">
         <div class="scrolling-banner-content">
-            <span>Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</span>
+            <span><a href="tel:+14075367508">Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</a></span>
 	    <span> ♦ </span>
-	    <span>Calificado 10 de 10 en Avvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">Calificado 10 de 10 en Avvo</a></span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
 	    <span> ♦ </span>
 	    <span>Policia Estatal de 2003 - 2009</span>
 	    <span> ♦ </span>
-	    <span>Envíenos un mensaje de texto en Español 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Envíenos un mensaje de texto en Español 407-536-7508</a></span>
 	    <span> ♦ </span>
-	    <span>300+ Resenas de 5 Estrellas en Avvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">300+ Resenas de 5 Estrellas en Avvo</a></span>
 	    <span> ♦ </span>
-	    <span>Me mande uma mensagem em Português 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Me mande uma mensagem em Português 407-536-7508</a></span>
 	    <span> ♦ </span>
 	    <span>2009-2015 Alguacil Adjunto del Condado de Orange</span>
 	    <span> ♦ </span>
-	    <span>Tèks m 'an Kreyòl 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Tèks m 'an Kreyòl 407-536-7508</a></span>
 	    <span> ♦ </span>
             <span>Policia Militar del Ejercito de EE.UU. 'Paracaidista' 1996 - 2002</span>
     	    <span> ♦ </span>
-            <span>Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</span>
+            <span><a href="tel:+14075367508">Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</a></span>
 	    <span> ♦ </span>
             <span>Graduado de FAMU College of Law en Orlando</span>
 	    <span> ♦ </span>
-            <span>150+ Resenas de 5 Estrellas en Google</span>
+            <span><a href="https://www.google.com/search?q=Lotter+Law+Orlando+reviews" target="_blank" rel="noopener">150+ Resenas de 5 Estrellas en Google</a></span>
 	    <span> ♦ </span>
             <span>Instructor de la Academia de Policia del Instituto de Seguridad Publica de Valencia 2009 - 2025</span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
     	    <span> ♦ </span>
             <span>Lotter Law fue Establecido en 2019</span>
     	    <span> ♦ </span>
-            <span>Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</span>
+            <span><a href="tel:+14075367508">Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</a></span>
 	    <span> ♦ </span>
-	    <span>Calificado 10 de 10 en Avvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">Calificado 10 de 10 en Avvo</a></span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
 	    <span> ♦ </span>
 	    <span>Policia Estatal de 2003 - 2009</span>
 	    <span> ♦ </span>
-	    <span>Envíenos un mensaje de texto en Español 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Envíenos un mensaje de texto en Español 407-536-7508</a></span>
 	    <span> ♦ </span>
-	    <span>300+ Resenas de 5 Estrellas en Avvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">300+ Resenas de 5 Estrellas en Avvo</a></span>
 	    <span> ♦ </span>
-	    <span>Me mande uma mensagem em Português 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Me mande uma mensagem em Português 407-536-7508</a></span>
 	    <span> ♦ </span>
 	    <span>2009-2015 Alguacil Adjunto del Condado de Orange</span>
 	    <span> ♦ </span>
-	    <span>Tèks m 'an Kreyòl 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Tèks m 'an Kreyòl 407-536-7508</a></span>
 	    <span> ♦ </span>
             <span>Policia Militar del Ejercito de EE.UU. 'Paracaidista' 1996 - 2002</span>
     	    <span> ♦ </span>
-            <span>Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</span>
+            <span><a href="tel:+14075367508">Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</a></span>
 	    <span> ♦ </span>
             <span>Graduado de FAMU College of Law en Orlando</span>
 	    <span> ♦ </span>
-            <span>150+ Resenas de 5 Estrellas en Google</span>
+            <span><a href="https://www.google.com/search?q=Lotter+Law+Orlando+reviews" target="_blank" rel="noopener">150+ Resenas de 5 Estrellas en Google</a></span>
 	    <span> ♦ </span>
             <span>Instructor de la Academia de Policia del Instituto de Seguridad Publica de Valencia 2009 - 2025</span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
     	    <span> ♦ </span>
             <span>Lotter Law fue Establecido en 2019</span>
     	    <span> ♦ </span>

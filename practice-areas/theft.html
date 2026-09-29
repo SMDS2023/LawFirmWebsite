@@ -460,34 +460,34 @@
 
                     <!-- Article Grid -->
                     <div class="grid md:grid-cols-2 gap-6">
-                        <article class="bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
+                        <article class="relative bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
                             <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded mb-2">Case Result</span>
                             <h3 class="text-lg font-semibold text-blue-700 mb-2">
-                                <a href="/blog/thanksgiving-burglary-dismissal/" class="hover:text-amber-500">Thanksgiving Burglary Dismissal</a>
+                                <a href="/blog/thanksgiving-burglary-dismissal/" class="after:absolute after:inset-0 hover:text-amber-500">Thanksgiving Burglary Dismissal</a>
                             </h3>
                             <p class="text-gray-600 text-sm mb-3">When theft-related charges escalate to burglary, the stakes are higher. See how we achieved a dismissal in a complex property case.</p>
                             <a href="/blog/thanksgiving-burglary-dismissal/" class="text-amber-600 text-sm font-semibold">Read More →</a>
                         </article>
 
-                        <article class="bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
+                        <article class="relative bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
                             <h3 class="text-lg font-semibold text-blue-700 mb-2">
-                                <a href="/blog/Forensic-Video-Analysis/" class="hover:text-amber-500">Forensic Video Analysis in Defense</a>
+                                <a href="/blog/Forensic-Video-Analysis/" class="after:absolute after:inset-0 hover:text-amber-500">Forensic Video Analysis in Defense</a>
                             </h3>
                             <p class="text-gray-600 text-sm mb-3">Surveillance footage is often key in theft cases. Learn how we use forensic video analysis to challenge the prosecution's narrative.</p>
                             <a href="/blog/Forensic-Video-Analysis/" class="text-amber-600 text-sm font-semibold">Read More →</a>
                         </article>
 
-                        <article class="bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
+                        <article class="relative bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
                             <h3 class="text-lg font-semibold text-blue-700 mb-2">
-                                <a href="/blog/understanding-probable-cause/" class="hover:text-amber-500">Understanding Probable Cause</a>
+                                <a href="/blog/understanding-probable-cause/" class="after:absolute after:inset-0 hover:text-amber-500">Understanding Probable Cause</a>
                             </h3>
                             <p class="text-gray-600 text-sm mb-3">Was there sufficient basis for your detention or arrest? Challenging probable cause can lead to evidence suppression.</p>
                             <a href="/blog/understanding-probable-cause/" class="text-amber-600 text-sm font-semibold">Read More →</a>
                         </article>
 
-                        <article class="bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
+                        <article class="relative bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
                             <h3 class="text-lg font-semibold text-blue-700 mb-2">
-                                <a href="/blog/pre-trial-motions/" class="hover:text-amber-500">Criminal Procedure: Pre-Trial Motions</a>
+                                <a href="/blog/pre-trial-motions/" class="after:absolute after:inset-0 hover:text-amber-500">Criminal Procedure: Pre-Trial Motions</a>
                             </h3>
                             <p class="text-gray-600 text-sm mb-3">Pre-trial motions can shape the outcome of your case before trial even begins. Learn how we use motions strategically.</p>
                             <a href="/blog/pre-trial-motions/" class="text-amber-600 text-sm font-semibold">Read More →</a>
@@ -601,7 +601,7 @@
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-3xl font-bold text-blue-800 mb-12">Meet Our Dedicated Team</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div x-data="{ expanded: false }" class="bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col">
+                    <div x-data="{ expanded: false }" @click="if (!$event.target.closest('a, button')) { expanded = !expanded }" class="cursor-pointer bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col">
                         <img src="../assets/Attorney-Jeff-Lotter1.jpg" alt="Attorney Jeff Lotter" class="team-photo" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'; this.onerror=null;" width="150" height="150" loading="lazy">
                         <h3 class="text-xl font-bold text-blue-700 mb-2 mt-4">Jeff Lotter</h3>
                         <p class="text-sm text-indigo-600 font-semibold mb-4">Attorney | Founder</p>
@@ -616,7 +616,7 @@
                         </button>
                     </div>
 
-                    <div x-data="{ expanded: false }" class="bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.1s;">
+                    <div x-data="{ expanded: false }" @click="if (!$event.target.closest('a, button')) { expanded = !expanded }" class="cursor-pointer bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.1s;">
                         <img src="../assets/stacy400400.webp" alt="Stacy Sanchez" class="team-photo" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'; this.onerror=null;" width="400" height="400" loading="lazy">
                         <h3 class="text-xl font-bold text-blue-700 mb-2 mt-4">Stacy Sanchez</h3>
                         <p class="text-sm text-indigo-600 font-semibold mb-4">Senior Legal Assistant</p>
@@ -631,7 +631,7 @@
                         </button>
                     </div>
 
-                    <div x-data="{ expanded: false }" class="bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.2s;">
+                    <div x-data="{ expanded: false }" @click="if (!$event.target.closest('a, button')) { expanded = !expanded }" class="cursor-pointer bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.2s;">
                         <img src="../assets/Marissa400400.webp" alt="Marissa Rodriguez" class="team-photo" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'; this.onerror=null;" width="400" height="400" loading="lazy">
                         <h3 class="text-xl font-bold text-blue-700 mb-2 mt-4">Marissa Rodriguez</h3>
                         <p class="text-sm text-indigo-600 font-semibold mb-4">Legal Assistant</p>
@@ -2066,67 +2066,67 @@
     <!-- Scrolling Banner - Copied from index.html -->
     <div class="scrolling-banner">
         <div class="scrolling-banner-content">
-            <span>Call or Text our Main Line 407-500-7000</span>
+            <span><a href="tel:+14075007000">Call or Text our Main Line 407-500-7000</a></span>
 	    <span> ♦ </span>
-	    <span>Ranked 10 out of 10 on Avvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">Ranked 10 out of 10 on Avvo</a></span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
 	    <span> ♦ </span>
 	    <span>State Trooper From 2003 - 2009</span>
 	    <span> ♦ </span>
-	    <span>Envíenos un mensaje de texto en Español 407-500-7000</span>
+	    <span><a href="sms:+14075007000">Envíenos un mensaje de texto en Español 407-500-7000</a></span>
 	    <span> ♦ </span>
-	    <span>300+ 5 Star Reviews on Avvvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">300+ 5 Star Reviews on Avvo</a></span>
 	    <span> ♦ </span>
-	    <span>Me mande uma mensagem em Português 407-500-7000</span>
+	    <span><a href="sms:+14075007000">Me mande uma mensagem em Português 407-500-7000</a></span>
 	    <span> ♦ </span>
 	    <span>2009-2015 Orange County Deputy Sheriff </span>
 	    <span> ♦ </span>
-	    <span>Tèks m 'an Kreyòl 407-500-7000</span>
+	    <span><a href="sms:+14075007000">Tèks m 'an Kreyòl 407-500-7000</a></span>
 	    <span> ♦ </span>
             <span>US Army Military Police 'Paratrooper' 1996 - 2002</span>
     	    <span> ♦ </span>
-            <span>Call or Text our Main Line 407-500-7000</span>
+            <span><a href="tel:+14075007000">Call or Text our Main Line 407-500-7000</a></span>
 	    <span> ♦ </span>
             <span>Graduated from FAMU College of Law in Orlando</span>
 	    <span> ♦ </span>
-            <span>150+ 5 Star Google Reviews</span>
+            <span><a href="https://www.google.com/search?q=Lotter+Law+Orlando+reviews" target="_blank" rel="noopener">150+ 5 Star Google Reviews</a></span>
 	    <span> ♦ </span>
             <span>Valencia Public Safety Intitute Police Academy Instructor 2009 - 2025</span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
     	    <span> ♦ </span>
             <span>Lotter Law was Established in 2019</span>
     	    <span> ♦ </span>
-            <span>Call or Text our Main Line 407-500-7000</span>
+            <span><a href="tel:+14075007000">Call or Text our Main Line 407-500-7000</a></span>
 	    <span> ♦ </span>
-	    <span>Ranked 10 out of 10 on Avvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">Ranked 10 out of 10 on Avvo</a></span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
 	    <span> ♦ </span>
 	    <span>State Trooper From 2003 - 2009</span>
 	    <span> ♦ </span>
-	    <span>Envíenos un mensaje de texto en Español 407-500-7000</span>
+	    <span><a href="sms:+14075007000">Envíenos un mensaje de texto en Español 407-500-7000</a></span>
 	    <span> ♦ </span>
-	    <span>300+ 5 Star Reviews on Avvvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">300+ 5 Star Reviews on Avvo</a></span>
 	    <span> ♦ </span>
-	    <span>Me mande uma mensagem em Português 407-500-7000</span>
+	    <span><a href="sms:+14075007000">Me mande uma mensagem em Português 407-500-7000</a></span>
 	    <span> ♦ </span>
 	    <span>2009-2015 Orange County Deputy Sheriff </span>
 	    <span> ♦ </span>
-	    <span>Tèks m 'an Kreyòl 407-500-7000</span>
+	    <span><a href="sms:+14075007000">Tèks m 'an Kreyòl 407-500-7000</a></span>
 	    <span> ♦ </span>
             <span>US Army Military Police 'Paratrooper' 1996 - 2002</span>
     	    <span> ♦ </span>
-            <span>Call or Text our Main Line 407-500-7000</span>
+            <span><a href="tel:+14075007000">Call or Text our Main Line 407-500-7000</a></span>
 	    <span> ♦ </span>
             <span>Graduated from FAMU College of Law in Orlando</span>
 	    <span> ♦ </span>
-            <span>150+ 5 Star Google Reviews</span>
+            <span><a href="https://www.google.com/search?q=Lotter+Law+Orlando+reviews" target="_blank" rel="noopener">150+ 5 Star Google Reviews</a></span>
 	    <span> ♦ </span>
             <span>Valencia Public Safety Intitute Police Academy Instructor 2009 - 2025</span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
     	    <span> ♦ </span>
             <span>Lotter Law was Established in 2019</span>
     	    <span> ♦ </span>

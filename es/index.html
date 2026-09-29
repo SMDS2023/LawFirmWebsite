@@ -363,7 +363,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10" x-data="{ allExpanded: false }">
                     <!-- Team Member 1: Jeff Lotter -->
                     <!-- Remove individual x-data from this div -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col">
+                    <div @click="if (!$event.target.closest('a, button')) { allExpanded = !allExpanded }" class="cursor-pointer bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col">
                         <img src="../assets/Attorney-Jeff-Lotter1.jpg" alt="Abogado Jeff Lotter" class="team-photo" width="150" height="150" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'; this.onerror=null;" loading="lazy">
                         <h3 class="text-xl font-bold text-blue-700 mb-2 mt-4">Jeff Lotter</h3>
                         <p class="text-sm text-indigo-600 font-semibold mb-2">Abogado | Fundador</p>
@@ -386,7 +386,7 @@
 
                     <!-- Team Member 2: Stacy Sanchez -->
                     <!-- Remove individual x-data from this div -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.1s;">
+                    <div @click="if (!$event.target.closest('a, button')) { allExpanded = !allExpanded }" class="cursor-pointer bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.1s;">
                         <img src="../assets/stacy400400.webp" alt="Stacy Sanchez" class="team-photo" width="150" height="150" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'; this.onerror=null;" loading="lazy">
                         <h3 class="text-xl font-bold text-blue-700 mb-2 mt-4">Stacy Sanchez</h3>
                         <p class="text-sm text-indigo-600 font-semibold mb-4">Asistente Legal Principal</p>
@@ -405,7 +405,7 @@
 
                     <!-- Team Member 3: Marissa Rodriguez -->
                     <!-- Remove individual x-data from this div -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.2s;">
+                    <div @click="if (!$event.target.closest('a, button')) { allExpanded = !allExpanded }" class="cursor-pointer bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.2s;">
                         <img src="../assets/Marissa400400.webp" alt="Marissa Rodriguez" class="team-photo" width="150" height="150" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'; this.onerror=null;" loading="lazy">
                         <h3 class="text-xl font-bold text-blue-700 mb-2 mt-4">Marissa Rodriguez</h3>
                         <p class="text-sm text-indigo-600 font-semibold mb-4">Asistente Legal</p>
@@ -2069,67 +2069,67 @@ Additionally, the defense may challenge errors made by law enforcement during th
 
     <div class="scrolling-banner">
         <div class="scrolling-banner-content">
-            <span>Llame o Envie Texto a Nuestra Linea 407-536-7508</span>
+            <span><a href="tel:+14075367508">Llame o Envie Texto a Nuestra Linea 407-536-7508</a></span>
 	    <span> ♦ </span>
-	    <span>Clasificado 10 de 10 en Avvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">Clasificado 10 de 10 en Avvo</a></span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
 	    <span> ♦ </span>
 	    <span>Policia Estatal de 2003 - 2009</span>
 	    <span> ♦ </span>
-	    <span>Envíenos un mensaje de texto en Español 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Envíenos un mensaje de texto en Español 407-536-7508</a></span>
 	    <span> ♦ </span>
-	    <span>300+ Resenas de 5 Estrellas en Avvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">300+ Resenas de 5 Estrellas en Avvo</a></span>
 	    <span> ♦ </span>
-	    <span>Me mande uma mensagem em Português 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Me mande uma mensagem em Português 407-536-7508</a></span>
 	    <span> ♦ </span>
 	    <span>2009-2015 Alguacil Adjunto del Condado de Orange</span>
 	    <span> ♦ </span>
-	    <span>Tèks m 'an Kreyòl 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Tèks m 'an Kreyòl 407-536-7508</a></span>
 	    <span> ♦ </span>
             <span>Veterano Militar 1996 - 2002</span>
     	    <span> ♦ </span>
-            <span>Llame o Envie Texto a Nuestra Linea 407-536-7508</span>
+            <span><a href="tel:+14075367508">Llame o Envie Texto a Nuestra Linea 407-536-7508</a></span>
 	    <span> ♦ </span>
             <span>Graduado de FAMU College of Law en Orlando</span>
 	    <span> ♦ </span>
-            <span>150+ Resenas de 5 Estrellas en Google</span>
+            <span><a href="https://www.google.com/search?q=Lotter+Law+Orlando+reviews" target="_blank" rel="noopener">150+ Resenas de 5 Estrellas en Google</a></span>
 	    <span> ♦ </span>
             <span>Instructor de la Academia de Policia del Instituto de Seguridad Publica de Valencia 2009 - 2025</span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
     	    <span> ♦ </span>
             <span>Lotter Law fue Establecida en 2019</span>
     	    <span> ♦ </span>
-            <span>Llame o Envie Texto a Nuestra Linea 407-536-7508</span>
+            <span><a href="tel:+14075367508">Llame o Envie Texto a Nuestra Linea 407-536-7508</a></span>
 	    <span> ♦ </span>
-	    <span>Clasificado 10 de 10 en Avvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">Clasificado 10 de 10 en Avvo</a></span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
 	    <span> ♦ </span>
 	    <span>Policia Estatal de 2003 - 2009</span>
 	    <span> ♦ </span>
-	    <span>Envíenos un mensaje de texto en Español 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Envíenos un mensaje de texto en Español 407-536-7508</a></span>
 	    <span> ♦ </span>
-	    <span>300+ Resenas de 5 Estrellas en Avvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">300+ Resenas de 5 Estrellas en Avvo</a></span>
 	    <span> ♦ </span>
-	    <span>Me mande uma mensagem em Português 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Me mande uma mensagem em Português 407-536-7508</a></span>
 	    <span> ♦ </span>
 	    <span>2009-2015 Alguacil Adjunto del Condado de Orange</span>
 	    <span> ♦ </span>
-	    <span>Tèks m 'an Kreyòl 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Tèks m 'an Kreyòl 407-536-7508</a></span>
 	    <span> ♦ </span>
             <span>Policia Militar del Ejercito de EE.UU. 'Paracaidista' 1996 - 2002</span>
     	    <span> ♦ </span>
-            <span>Llame o Envie Texto a Nuestra Linea 407-536-7508</span>
+            <span><a href="tel:+14075367508">Llame o Envie Texto a Nuestra Linea 407-536-7508</a></span>
 	    <span> ♦ </span>
             <span>Graduado de FAMU College of Law en Orlando</span>
 	    <span> ♦ </span>
-            <span>150+ Resenas de 5 Estrellas en Google</span>
+            <span><a href="https://www.google.com/search?q=Lotter+Law+Orlando+reviews" target="_blank" rel="noopener">150+ Resenas de 5 Estrellas en Google</a></span>
 	    <span> ♦ </span>
             <span>Instructor de la Academia de Policia del Instituto de Seguridad Publica de Valencia 2009 - 2025</span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
     	    <span> ♦ </span>
             <span>Lotter Law fue Establecida en 2019</span>
     	    <span> ♦ </span>
