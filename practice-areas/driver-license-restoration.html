@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    <script>(function(w,d,s,l,i){if(!/(^|\.)lotterlaw\.com$/.test(location.hostname))return;w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -275,6 +275,93 @@
         body.navigating-to-section {
             visibility: hidden;
         }
+
+        /* Sticky mobile CTA bar (copied from styles.css; this page embeds its styles) */
+/* ============================================
+   STICKY MOBILE CTA BAR
+   Shows on mobile only, positioned above scrolling banner
+   ============================================ */
+.mobile-cta-bar {
+    display: none; /* Hidden on desktop */
+    position: fixed;
+    bottom: 40px; /* Above the scrolling banner */
+    left: 0;
+    right: 0;
+    z-index: 95; /* Below header (z-50), above scrolling banner (z-100) */
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); /* Amber gradient */
+    padding: 0.75rem 1rem;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+    border-top: 2px solid #FBBF24;
+}
+
+/* Show only on mobile/tablet */
+@media (max-width: 767px) {
+    .mobile-cta-bar {
+        display: block;
+    }
+    /* Adjust body padding for mobile CTA */
+    body {
+        padding-bottom: 130px; /* Space for both CTA bar and scrolling banner */
+    }
+}
+
+.mobile-cta-bar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: white;
+    font-weight: 700;
+    font-size: 1.125rem; /* text-lg */
+    text-decoration: none;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-cta-bar a:active {
+    transform: scale(0.98);
+}
+
+.mobile-cta-bar .cta-icon {
+    width: 24px;
+    height: 24px;
+    animation: pulse-phone 2s infinite;
+}
+
+.mobile-cta-bar .cta-text-main {
+    font-weight: 800;
+}
+
+.mobile-cta-bar .cta-text-sub {
+    font-size: 0.75rem;
+    font-weight: 500;
+    opacity: 0.9;
+    display: block;
+    margin-top: -2px;
+}
+
+/* Subtle pulse animation for phone icon */
+@keyframes pulse-phone {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Optional: Add urgency styling with pulsing border */
+.mobile-cta-bar.urgent {
+    animation: urgent-glow 2s infinite;
+}
+
+@keyframes urgent-glow {
+    0%, 100% {
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        box-shadow: 0 -4px 20px rgba(245, 158, 11, 0.4);
+    }
+}
     </style>
 </head>
 
@@ -287,11 +374,11 @@
     <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div>
-                <a href="../index.html"> <img src="../assets/Lotter-Law-logo-02.jpg" alt="Lotter Law Logo" class="header-logo" onerror="this.style.display='none'; this.parentElement.innerHTML = '<span class=\'text-2xl font-bold text-blue-800\'>Lotter Law</span>';">
+                <a href="/"> <img src="../assets/Lotter-Law-logo-02.jpg" alt="Lotter Law Logo" class="header-logo" onerror="this.style.display='none'; this.parentElement.innerHTML = '<span class=\'text-2xl font-bold text-blue-800\'>Lotter Law</span>';">
                 </a>
             </div>
             <div class="hidden md:flex space-x-4 items-center">
-                 <a href="../index.html#practice-areas-grid" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Practice Areas</a>
+                 <a href="/#practice-areas-grid" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Practice Areas</a>
                  <a href="driver-license-restoration.html" class="text-blue-700 font-semibold px-3 py-2 rounded-md text-sm font-medium">License Restoration</a>
                  <a href="#team" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Our Team</a>
                  <a href="#testimonials" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Testimonials</a>
@@ -320,7 +407,7 @@
                      <span class="text-gray-300">|</span>
                      <a href="../es/practice-areas/driver-license-restoration.html" class="text-gray-500 hover:text-blue-700 text-sm font-medium px-2 py-1">Espanol</a>
                  </div>
-                 <a href="../index.html#practice-areas-grid" class="text-gray-600 hover:bg-gray-100 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium">Practice Areas</a>
+                 <a href="/#practice-areas-grid" class="text-gray-600 hover:bg-gray-100 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium">Practice Areas</a>
                  <a href="#team" class="text-gray-600 hover:bg-gray-100 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium">Our Team</a>
                  <a href="#testimonials" class="text-gray-600 hover:bg-gray-100 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium">Testimonials</a>
                  <a href="#license-restoration" class="text-blue-700 font-semibold block px-3 py-2 rounded-md text-base font-medium">License Restoration</a>
@@ -336,10 +423,10 @@
     <nav aria-label="Breadcrumb" class="bg-gray-100 border-b border-gray-200">
         <div class="container mx-auto px-6 py-3">
             <ol class="flex items-center text-sm">
-                <a href="../index.html" class="text-blue-600 hover:text-blue-800 hover:underline">Home</a>
+                <a href="/" class="text-blue-600 hover:text-blue-800 hover:underline">Home</a>
             <svg class="w-4 h-4 text-gray-400 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg><a href="../index.html#practice-areas-grid" class="text-blue-600 hover:text-blue-800 hover:underline">Practice Areas</a>
+            </svg><a href="/#practice-areas-grid" class="text-blue-600 hover:text-blue-800 hover:underline">Practice Areas</a>
             <svg class="w-4 h-4 text-gray-400 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg><span class="text-gray-600 font-medium" aria-current="page">Driver's License Restoration</span>
@@ -1770,7 +1857,7 @@
         <div class="container mx-auto px-6">
             <div class="mb-2">
                 <a href="../privacy.html" class="text-sm hover:text-white hover:underline">Privacy Policy</a> |
-                <a href="../index.html" class="text-sm hover:text-white hover:underline">Main Home</a>
+                <a href="/" class="text-sm hover:text-white hover:underline">Main Home</a>
             </div>
             <p class="text-sm">© <span id="current-year"></span> Lotter Law. All Rights Reserved.</p>
             <p class="text-xs mt-2">Disclaimer: The information on this website is for general information purposes only. Nothing on this site should be taken as legal advice for any individual case or situation. This information is not intended to create, and receipt or viewing does not constitute, an attorney-client relationship. Florida Statutes Chapter 322 is complex; consult with an attorney for advice on your specific situation.</p>
@@ -1994,7 +2081,8 @@
 
     <!-- Mobile Sticky CTA Bar -->
     <div class="mobile-cta-bar urgent" id="mobile-cta-bar">
-        <a href="tel:407-500-7000"
+        <div style="display:flex;align-items:center;gap:0.9rem;">
+        <a style="flex:1 1 auto;" href="tel:407-500-7000"
            onclick="if(typeof gtag === 'function') gtag('event', 'click_to_call', {event_category: 'CTA', event_label: 'Mobile Sticky Bar', phone_number: '407-500-7000'});"
            aria-label="Call Lotter Law for a free consultation">
             <svg class="cta-icon" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -2005,6 +2093,15 @@
                 <span class="cta-text-sub">Call Now: 407-500-7000</span>
             </span>
         </a>
+        <a href="sms:407-500-7000" style="flex:0 0 auto;padding-left:0.9rem;border-left:1px solid rgba(255,255,255,0.55);"
+           onclick="if(typeof gtag === 'function') gtag('event', 'click_to_text', {event_category: 'CTA', event_label: 'Mobile Sticky Bar', phone_number: '407-500-7000'});"
+           aria-label="Text Lotter Law">
+            <svg class="cta-icon" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" style="animation:none;">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            <span class="cta-text"><span class="cta-text-main">Text</span><span class="cta-text-sub">Text us</span></span>
+        </a>
+        </div>
     </div>
 
 </body>
