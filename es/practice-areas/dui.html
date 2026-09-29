@@ -266,34 +266,34 @@
 
                     <!-- Article Grid -->
                     <div class="grid md:grid-cols-2 gap-6">
-                        <article class="bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
+                        <article class="relative bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
                             <h3 class="text-lg font-semibold text-blue-700 mb-2">
-                                <a href="/blog/refuse-sfst/" class="hover:text-amber-500">Es Completamente Legal Rechazar las Pruebas de Sobriedad en la Carretera</a>
+                                <a href="/blog/refuse-sfst/" class="after:absolute after:inset-0 hover:text-amber-500">Es Completamente Legal Rechazar las Pruebas de Sobriedad en la Carretera</a>
                             </h3>
                             <p class="text-gray-600 text-sm mb-3">Muchas personas no conocen sus derechos durante una parada de trafico. Aprenda por que rechazar los ejercicios de sobriedad en carretera es a menudo la decision legal mas inteligente.</p>
                             <a href="/blog/refuse-sfst/" class="text-amber-600 text-sm font-semibold">Leer Mas →</a>
                         </article>
 
-                        <article class="bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
+                        <article class="relative bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
                             <h3 class="text-lg font-semibold text-blue-700 mb-2">
-                                <a href="/blog/challenging-hgn-eye-test-dui/" class="hover:text-amber-500">Impugnando la Prueba Ocular HGN en Casos de DUI</a>
+                                <a href="/blog/challenging-hgn-eye-test-dui/" class="after:absolute after:inset-0 hover:text-amber-500">Impugnando la Prueba Ocular HGN en Casos de DUI</a>
                             </h3>
                             <p class="text-gray-600 text-sm mb-3">La prueba de Nistagmo de Mirada Horizontal a menudo se presenta como prueba cientifica de deterioro. Pero la ciencia tiene limitaciones serias que los oficiales no mencionan.</p>
                             <a href="/blog/challenging-hgn-eye-test-dui/" class="text-amber-600 text-sm font-semibold">Leer Mas →</a>
                         </article>
 
-                        <article class="bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
+                        <article class="relative bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
                             <h3 class="text-lg font-semibold text-blue-700 mb-2">
-                                <a href="/blog/interlock-violation-kicked-from-diversion/" class="hover:text-amber-500">Expulsado del Programa de Diversion por Comer un Honeybun</a>
+                                <a href="/blog/interlock-violation-kicked-from-diversion/" class="after:absolute after:inset-0 hover:text-amber-500">Expulsado del Programa de Diversion por Comer un Honeybun</a>
                             </h3>
                             <p class="text-gray-600 text-sm mb-3">Un infractor de DUI por primera vez enfrento la expulsion del programa de diversion despues de un falso positivo causado por comer un honeybun. Aprenda por que el asesoramiento legal importa incluso despues de ingresar a un programa.</p>
                             <a href="/blog/interlock-violation-kicked-from-diversion/" class="text-amber-600 text-sm font-semibold">Leer Mas →</a>
                         </article>
 
-                        <article class="bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
+                        <article class="relative bg-white rounded-lg shadow p-5 hover:shadow-lg transition">
                             <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded mb-2">Resultado del Caso</span>
                             <h3 class="text-lg font-semibold text-blue-700 mb-2">
-                                <a href="/blog/no-jurisdiction-for-crash-investigation/" class="hover:text-amber-500">DUI Desestimado: Sin Jurisdiccion para Investigacion de Accidente</a>
+                                <a href="/blog/no-jurisdiction-for-crash-investigation/" class="after:absolute after:inset-0 hover:text-amber-500">DUI Desestimado: Sin Jurisdiccion para Investigacion de Accidente</a>
                             </h3>
                             <p class="text-gray-600 text-sm mb-3">Cuando la policia no tiene la jurisdiccion adecuada para investigar, esto lleva a la desestimacion de casos. Vea como los desafios jurisdiccionales pueden ganar su caso.</p>
                             <a href="/blog/no-jurisdiction-for-crash-investigation/" class="text-amber-600 text-sm font-semibold">Leer Mas →</a>
@@ -573,7 +573,7 @@ Los oficiales probablemente le pidieron que <a href="/blog/refuse-sfst/" class="
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-3xl font-bold text-blue-800 mb-12">Conozca a Nuestro Equipo Dedicado</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div x-data="{ expanded: false }" class="bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col">
+                    <div x-data="{ expanded: false }" @click="if (!$event.target.closest('a, button')) { expanded = !expanded }" class="cursor-pointer bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col">
                         <img src="../../assets/Attorney-Jeff-Lotter1.jpg" alt="Abogado Jeff Lotter" class="team-photo" width="150" height="150" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'; this.onerror=null;" loading="lazy">
                         <h3 class="text-xl font-bold text-blue-700 mb-2 mt-4">Jeff Lotter</h3>
                         <p class="text-sm text-indigo-600 font-semibold mb-4">Abogado | Fundador</p>
@@ -588,7 +588,7 @@ Los oficiales probablemente le pidieron que <a href="/blog/refuse-sfst/" class="
                         </button>
                     </div>
 
-                    <div x-data="{ expanded: false }" class="bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.1s;">
+                    <div x-data="{ expanded: false }" @click="if (!$event.target.closest('a, button')) { expanded = !expanded }" class="cursor-pointer bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.1s;">
                         <img src="../../assets/stacy400400.webp" alt="Stacy Sanchez" class="team-photo" width="150" height="150" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'; this.onerror=null;" loading="lazy">
                         <h3 class="text-xl font-bold text-blue-700 mb-2 mt-4">Stacy Sanchez</h3>
                         <p class="text-sm text-indigo-600 font-semibold mb-4">Asistente Legal Senior</p>
@@ -603,7 +603,7 @@ Los oficiales probablemente le pidieron que <a href="/blog/refuse-sfst/" class="
                         </button>
                     </div>
 
-                    <div x-data="{ expanded: false }" class="bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.2s;">
+                    <div x-data="{ expanded: false }" @click="if (!$event.target.closest('a, button')) { expanded = !expanded }" class="cursor-pointer bg-white p-8 rounded-lg shadow-lg section-fade-in text-center transform hover:scale-105 transition duration-300 flex flex-col" style="transition-delay: 0.2s;">
                         <img src="../../assets/Marissa400400.webp" alt="Marissa Rodriguez" class="team-photo" width="150" height="150" onerror="this.src='https://placehold.co/150x150/cccccc/666666?text=Photo'; this.onerror=null;" loading="lazy">
                         <h3 class="text-xl font-bold text-blue-700 mb-2 mt-4">Marissa Rodriguez</h3>
                         <p class="text-sm text-indigo-600 font-semibold mb-4">Asistente Legal</p>
@@ -1961,33 +1961,33 @@ Los oficiales probablemente le pidieron que <a href="/blog/refuse-sfst/" class="
 
     <div class="scrolling-banner">
         <div class="scrolling-banner-content">
-            <span>Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</span>
+            <span><a href="tel:+14075367508">Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</a></span>
 	    <span> ♦ </span>
 	    <span>10 Dias Para Impugnar la Suspension de Su Licencia de Conducir</span>
 	    <span> ♦ </span>
-	    <span>Ranked 10 out of 10 on Avvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">Ranked 10 out of 10 on Avvo</a></span>
 	    <span> ♦ </span>
 	    <span>La Mayoria de DUIs Tienen Dos Opciones - Revision Formal o Licencia de Dificultad</span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
 	    <span> ♦ </span>
 	    <span>Patrullero del Estado 2003 - 2009</span>
 	    <span> ♦ </span>
-	    <span>Envíenos un mensaje de texto en Español 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Envíenos un mensaje de texto en Español 407-536-7508</a></span>
 	    <span> ♦ </span>
-	    <span>300+ 5 Star Reviews on Avvvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">300+ 5 Star Reviews on Avvo</a></span>
 	    <span> ♦ </span>
 	    <span>Una Condena por DUI No Puede Ser Sellada ni Expurgada</span>
 	    <span> ♦ </span>
-	    <span>Me mande uma mensagem em Português 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Me mande uma mensagem em Português 407-536-7508</a></span>
 	    <span> ♦ </span>
 	    <span>2009-2015 Alguacil Adjunto del Condado Orange</span>
 	    <span> ♦ </span>
-	    <span>Tèks m 'an Kreyòl 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Tèks m 'an Kreyòl 407-536-7508</a></span>
 	    <span> ♦ </span>
             <span>Policia Militar del Ejercito de EE.UU. 'Paracaidista' 1996 - 2002</span>
     	    <span> ♦ </span>
-            <span>Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</span>
+            <span><a href="tel:+14075367508">Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</a></span>
 	    <span> ♦ </span>
             <span>Instructor de DUI de NHTSA</span>
 	    <span> ♦ </span>
@@ -2001,43 +2001,43 @@ Los oficiales probablemente le pidieron que <a href="/blog/refuse-sfst/" class="
 	    <span> ♦ </span>
             <span>No Todos los Rechazos Son Iguales</span>
 	    <span> ♦ </span>
-            <span>150+ 5 Star Google Reviews</span>
+            <span><a href="https://www.google.com/search?q=Lotter+Law+Orlando+reviews" target="_blank" rel="noopener">150+ 5 Star Google Reviews</a></span>
 	    <span> ♦ </span>
             <span>Instructor de la Academia de Policia del Instituto de Seguridad Publica de Valencia 2009 - 2025</span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
     	    <span> ♦ </span>
             <span>Lotter Law fue Establecido en 2019</span>
     	    <span> ♦ </span>
-            <span>Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</span>
+            <span><a href="tel:+14075367508">Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</a></span>
 	    <span> ♦ </span>
-	    <span>Ranked 10 out of 10 on Avvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">Ranked 10 out of 10 on Avvo</a></span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
 	    <span> ♦ </span>
 	    <span>Patrullero del Estado 2003 - 2009</span>
 	    <span> ♦ </span>
-	    <span>Envíenos un mensaje de texto en Español 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Envíenos un mensaje de texto en Español 407-536-7508</a></span>
 	    <span> ♦ </span>
-	    <span>300+ 5 Star Reviews on Avvvo</span>
+	    <span><a href="https://www.avvo.com/attorneys/32801-fl-jeffery-lotter-4692812.html#client_reviews" target="_blank" rel="noopener">300+ 5 Star Reviews on Avvo</a></span>
 	    <span> ♦ </span>
-	    <span>Me mande uma mensagem em Português 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Me mande uma mensagem em Português 407-536-7508</a></span>
 	    <span> ♦ </span>
 	    <span>2009-2015 Alguacil Adjunto del Condado Orange</span>
 	    <span> ♦ </span>
-	    <span>Tèks m 'an Kreyòl 407-536-7508</span>
+	    <span><a href="sms:+14075367508">Tèks m 'an Kreyòl 407-536-7508</a></span>
 	    <span> ♦ </span>
             <span>Policia Militar del Ejercito de EE.UU. 'Paracaidista' 1996 - 2002</span>
     	    <span> ♦ </span>
-            <span>Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</span>
+            <span><a href="tel:+14075367508">Llame o Envie Texto a Nuestra Linea Principal 407-536-7508</a></span>
 	    <span> ♦ </span>
             <span>Graduado de FAMU College of Law en Orlando</span>
 	    <span> ♦ </span>
-            <span>150+ 5 Star Google Reviews</span>
+            <span><a href="https://www.google.com/search?q=Lotter+Law+Orlando+reviews" target="_blank" rel="noopener">150+ 5 Star Google Reviews</a></span>
 	    <span> ♦ </span>
             <span>Instructor de la Academia de Policia del Instituto de Seguridad Publica de Valencia 2009 - 2025</span>
 	    <span> ♦ </span>
-	    <span>Llame a nuestra línea en español 407-536-7508</span>
+	    <span><a href="tel:+14075367508">Llame a nuestra línea en español 407-536-7508</a></span>
     	    <span> ♦ </span>
             <span>Lotter Law fue Establecido en 2019</span>
     	    <span> ♦ </span>
