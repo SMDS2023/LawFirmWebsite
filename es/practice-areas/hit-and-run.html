@@ -103,9 +103,9 @@
         .font-hero-heading {
             font-family: 'Tinos', serif;
         }
-        .section-fade-in { /* Initial state for fade-in elements */
-            opacity: 0;
-            transform: translateY(20px);
+        .section-fade-in { /* Visible even if the observer is unavailable. */
+            opacity: 1;
+            transform: none;
             transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
         .section-visible { /* State when element becomes visible */

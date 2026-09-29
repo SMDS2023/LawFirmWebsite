@@ -16,10 +16,10 @@ html {
     font-family: 'Tinos', serif;
 }
 
-/* Simple fade-in animation for sections */
+/* Content stays readable before JavaScript and if observers fail. */
 .section-fade-in {
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 1;
+    transform: none;
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
@@ -337,8 +337,8 @@ html {
     pointer-events: auto !important;
 }
 
-/* Hide sidebar on smaller screens */
-@media (max-width: 1280px) {
+/* Reserve 312px per side around the 1536px content container. */
+@media (max-width: 2159px) {
     .floating-blog-sidebar {
         display: none;
     }
