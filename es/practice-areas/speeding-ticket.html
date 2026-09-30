@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    <script>(function(w,d,s,l,i){if(!/(^|\.)lotterlaw\.com$/.test(location.hostname))return;w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -133,13 +133,13 @@
     <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div>
-                <a href="../../index.html">
+                <a href="/">
                     <img src="../../assets/Lotter-Law-logo-02.jpg" alt="Logo de Lotter Law" class="header-logo" onerror="this.style.display='none'; this.parentElement.innerHTML = '<span class=\'text-2xl font-bold text-blue-800\'>Lotter Law</span>';">
                 </a>
             </div>
             <!-- Desktop Navigation -->
             <div class="hidden md:flex space-x-4 items-center">
-                 <a href="../../index.html#practice-areas-grid" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Areas de Practica</a>
+                 <a href="/#practice-areas-grid" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Areas de Practica</a>
                  <a href="#team" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Nuestro Equipo</a>
                  <a href="#testimonials" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Testimonios</a>
                  <a href="#faq" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Preguntas</a>
@@ -169,7 +169,7 @@
                      <span class="text-gray-300">|</span>
                      <span class="text-blue-700 font-bold text-sm px-2 py-1">Espanol</span>
                  </div>
-                 <a href="../../index.html#practice-areas-grid" class="text-gray-600 hover:bg-gray-100 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium">Areas de Practica</a>
+                 <a href="/#practice-areas-grid" class="text-gray-600 hover:bg-gray-100 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium">Areas de Practica</a>
                  <a href="#team" class="text-gray-600 hover:bg-gray-100 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium">Nuestro Equipo</a>
                  <a href="#testimonials" class="text-gray-600 hover:bg-gray-100 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium">Testimonios</a>
                  <a href="#faq" class="text-gray-600 hover:bg-gray-100 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium">Preguntas</a>
@@ -185,10 +185,10 @@
     <nav aria-label="Breadcrumb" class="bg-gray-100 border-b border-gray-200">
         <div class="container mx-auto px-6 py-3">
             <ol class="flex items-center text-sm">
-                <a href="../../index.html" class="text-blue-600 hover:text-blue-800 hover:underline">Inicio</a>
+                <a href="/" class="text-blue-600 hover:text-blue-800 hover:underline">Inicio</a>
             <svg class="w-4 h-4 text-gray-400 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg><a href="../../index.html#practice-areas-grid" class="text-blue-600 hover:text-blue-800 hover:underline">Areas de Practica</a>
+            </svg><a href="/#practice-areas-grid" class="text-blue-600 hover:text-blue-800 hover:underline">Areas de Practica</a>
             <svg class="w-4 h-4 text-gray-400 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg><span class="text-gray-600 font-medium" aria-current="page">Abogado de Multas por Exceso de Velocidad en Orlando</span>
@@ -1915,7 +1915,8 @@
 
     <!-- Mobile Sticky CTA Bar -->
     <div class="mobile-cta-bar urgent" id="mobile-cta-bar">
-        <a href="tel:407-536-7508"
+        <div style="display:flex;align-items:center;gap:0.9rem;">
+        <a style="flex:1 1 auto;" href="tel:407-536-7508"
            onclick="if(typeof gtag === 'function') gtag('event', 'click_to_call', {event_category: 'CTA', event_label: 'Mobile Sticky Bar ES', phone_number: '407-536-7508'});"
            aria-label="Llame a Lotter Law para una consulta gratuita">
             <svg class="cta-icon" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -1926,6 +1927,15 @@
                 <span class="cta-text-sub">Llame Ahora: 407-536-7508</span>
             </span>
         </a>
+        <a href="sms:407-536-7508" style="flex:0 0 auto;padding-left:0.9rem;border-left:1px solid rgba(255,255,255,0.55);"
+           onclick="if(typeof gtag === 'function') gtag('event', 'click_to_text', {event_category: 'CTA', event_label: 'Mobile Sticky Bar', phone_number: '407-536-7508'});"
+           aria-label="Texto Lotter Law">
+            <svg class="cta-icon" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" style="animation:none;">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            <span class="cta-text"><span class="cta-text-main">Texto</span><span class="cta-text-sub">Envíe un mensaje</span></span>
+        </a>
+        </div>
     </div>
 
 </body>

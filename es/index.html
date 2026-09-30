@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    <script>(function(w,d,s,l,i){if(!/(^|\.)lotterlaw\.com$/.test(location.hostname))return;w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -251,7 +251,7 @@
                  <a href="#contact" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Contacto</a>
                  <a href="#location" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Ubicacion</a>
                  <a href="../blog.html" class="text-gray-600 font-semibold px-3 py-2 rounded-md text-sm font-medium">Blog</a> <!-- Current Page Highlighted -->
-                 <div class="flex items-center border-l border-gray-300 ml-2 pl-2"><a href="../index.html" class="text-gray-400 hover:text-blue-700 px-1 py-2 text-sm font-medium">EN</a><span class="text-gray-300">|</span><span class="text-blue-700 font-bold px-1 py-2 text-sm">ES</span></div>
+                 <div class="flex items-center border-l border-gray-300 ml-2 pl-2"><a href="/" class="text-gray-400 hover:text-blue-700 px-1 py-2 text-sm font-medium">EN</a><span class="text-gray-300">|</span><span class="text-blue-700 font-bold px-1 py-2 text-sm">ES</span></div>
                  <a href="tel:4075367508" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 text-sm ml-2">Llame Ahora: 407-536-7508</a>
             </div>
             <div class="md:hidden">
@@ -263,7 +263,7 @@
              </div>
         </nav>
         <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
-             <div class="flex items-center justify-center space-x-2 px-3 py-2 border-b border-gray-200 mb-2"><a href="../index.html" class="text-gray-500 hover:text-blue-700 text-sm font-medium px-2 py-1">English</a><span class="text-gray-300">|</span><span class="text-blue-700 font-bold text-sm px-2 py-1">Espanol</span></div>
+             <div class="flex items-center justify-center space-x-2 px-3 py-2 border-b border-gray-200 mb-2"><a href="/" class="text-gray-500 hover:text-blue-700 text-sm font-medium px-2 py-1">English</a><span class="text-gray-300">|</span><span class="text-blue-700 font-bold text-sm px-2 py-1">Espanol</span></div>
              <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                  <a href="#practice-areas-grid" class="text-gray-600 hover:bg-gray-100 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium">Areas de Practica</a>
                  <a href="../service-areas.html" class="text-gray-600 hover:bg-gray-100 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium">Areas de Servicio</a>
@@ -1753,7 +1753,7 @@ Additionally, the defense may challenge errors made by law enforcement during th
 
             <!-- Start Section: seal-and-expunge-summary -->
             <section id="seal-and-expunge-summary" class="p-8 bg-white rounded-lg shadow-lg section-fade-in">
-                 <h3 class="text-2xl font-boldd text-blue-800 mb-4">
+                 <h3 class="text-2xl font-bold text-blue-800 mb-4">
                     <svg class="summary-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
                     Seal & Expunge
                 </h3>
@@ -1770,7 +1770,7 @@ Additionally, the defense may challenge errors made by law enforcement during th
 
             <!-- Start Section: dl-restoration-summary -->
             <section id="dl-restoration-summary" class="p-8 bg-white rounded-lg shadow-lg section-fade-in">
-                 <h3 class="text-2xl font-boldd text-blue-800 mb-4">
+                 <h3 class="text-2xl font-bold text-blue-800 mb-4">
                     <svg class="summary-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="6" y1="9" x2="10" y2="9"/><line x1="6" y1="13" x2="18" y2="13"/><circle cx="16" cy="9" r="2"/><path d="M20 19l2-2-2-2"/><path d="M22 17h-6"/></svg>
                     License Restoration
                 </h3>
@@ -2432,7 +2432,8 @@ Additionally, the defense may challenge errors made by law enforcement during th
 
     <!-- Mobile Sticky CTA Bar -->
     <div class="mobile-cta-bar urgent" id="mobile-cta-bar">
-        <a href="tel:4075367508"
+        <div style="display:flex;align-items:center;gap:0.9rem;">
+        <a style="flex:1 1 auto;" href="tel:4075367508"
            onclick="if(typeof gtag === 'function') gtag('event', 'click_to_call', {event_category: 'CTA', event_label: 'Mobile Sticky Bar', phone_number: '407-536-7508'});"
            aria-label="Llame a Lotter Law para una consulta gratis">
             <svg class="cta-icon" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -2443,6 +2444,15 @@ Additionally, the defense may challenge errors made by law enforcement during th
                 <span class="cta-text-sub">Llame Ahora: 407-536-7508</span>
             </span>
         </a>
+        <a href="sms:4075367508" style="flex:0 0 auto;padding-left:0.9rem;border-left:1px solid rgba(255,255,255,0.55);"
+           onclick="if(typeof gtag === 'function') gtag('event', 'click_to_text', {event_category: 'CTA', event_label: 'Mobile Sticky Bar', phone_number: '4075367508'});"
+           aria-label="Texto Lotter Law">
+            <svg class="cta-icon" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" style="animation:none;">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            <span class="cta-text"><span class="cta-text-main">Texto</span><span class="cta-text-sub">Envíe un mensaje</span></span>
+        </a>
+        </div>
     </div>
 
 </body>
