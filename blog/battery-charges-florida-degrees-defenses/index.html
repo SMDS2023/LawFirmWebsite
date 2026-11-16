@@ -116,7 +116,7 @@
                 Battery Charges in Florida: Degrees, Defenses, and What to Expect
             </h1>
             <div class="flex items-center text-gray-600 text-sm mb-6">
-                <span>By Jeff Lotter, Criminal Defense Attorney</span>
+                <span>By <a href="/#team" class="hover:text-blue-700 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Jeff Lotter, Criminal Defense Attorney</a></span>
                 <span class="mx-3">|</span>
                 <time datetime="2026-01-26">January 26, 2026</time>
             </div>
@@ -164,6 +164,16 @@
                 <p class="text-gray-700">
                     The State does not need to prove that you intended to cause harm—only that you intended the contact itself. Accidental contact is not battery. But if you intentionally touched someone without their consent, that's enough for a charge—even if you didn't mean to hurt them.
                 </p>
+            </div>
+
+            <!-- Early consult card (LOJ-717)
+                 Same component as the super speeder post. Placed after the first section
+                 because most mobile readers stop scrolling before the closing contact box.
+                 not-prose keeps the article typography styles from restyling the card. -->
+            <div class="not-prose my-10 rounded-xl bg-blue-900 text-white p-6 md:p-8">
+                <p class="text-xs font-semibold uppercase tracking-wider text-blue-200 mb-2">Charged with battery?</p>
+                <p class="text-lg md:text-xl font-semibold leading-snug mb-4">Charged with battery in Central Florida? You need a defense attorney working on your case.</p>
+                <p class="text-blue-100">Contact Lotter Law at <a href="tel:+14075007000" data-cta="in-post" class="text-white font-bold underline">407-500-7000</a>, or read more about <a href="/practice-areas/assault-battery.html" class="text-white underline">assault and battery defense</a>.</p>
             </div>
 
             <h2 class="text-2xl font-bold text-blue-800 mt-10 mb-4">The Different Degrees of Battery in Florida</h2>
@@ -530,9 +540,9 @@
         <!-- Author Bio -->
         <div class="border-t pt-8 mt-12">
             <div class="flex items-start gap-6">
-                <img src="../../assets/jeff-lotter-headshot.jpg" alt="Jeff Lotter" class="w-24 h-24 rounded-full object-cover">
+                <a href="/#team" aria-label="About attorney Jeff Lotter" class="flex-shrink-0 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"><img src="../../assets/jeff-lotter-headshot.jpg" alt="Jeff Lotter" class="w-24 h-24 rounded-full object-cover"></a>
                 <div>
-                    <h3 class="font-bold text-lg text-gray-900">Jeff Lotter</h3>
+                    <h3 class="font-bold text-lg text-gray-900"><a href="/#team" class="hover:text-blue-700 hover:underline">Jeff Lotter</a></h3>
                     <p class="text-gray-600 mb-2">Criminal Defense Attorney | Former State Trooper</p>
                     <p class="text-gray-700 text-sm">
                         Jeff Lotter is an Orlando criminal defense attorney and former Florida Highway Patrol trooper. He uses his law enforcement background to build stronger defenses for clients facing criminal charges.
@@ -577,5 +587,23 @@
         </div>
     </footer>
 
+    <!-- Mobile sticky Call/Text bar (LOJ-717)
+         Phones only (md:hidden), hidden when printing. Keeps the main line one tap
+         away on long posts, where most readers stop before the in-article contact box.
+         The inline padding keeps the buttons clear of the iPhone home indicator.
+         data-cta labels this placement for analytics; clicks are tracked in GTM,
+         so there is no inline tracking code here. -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-gray-200 p-3 md:hidden print:hidden z-50" style="padding-bottom: max(0.75rem, env(safe-area-inset-bottom));">
+        <div class="max-w-lg mx-auto flex gap-2">
+            <a href="tel:+14075007000" data-cta="sticky-mobile" aria-label="Call Lotter Law at 407-500-7000" class="flex-1 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-base transition focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                Call 407-500-7000
+            </a>
+            <a href="sms:+14075007000" data-cta="sticky-mobile" aria-label="Text Lotter Law at 407-500-7000" class="flex items-center justify-center bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-5 rounded-lg text-base transition focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                Text
+            </a>
+        </div>
+    </div>
 </body>
 </html>
