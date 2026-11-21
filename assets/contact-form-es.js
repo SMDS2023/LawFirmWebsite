@@ -51,6 +51,7 @@ document.addEventListener('alpine:init', () => {
             phone: '',
             caseType: '',
             message: '',
+            dob: '',
             website: ''
         },
 
@@ -96,7 +97,8 @@ document.addEventListener('alpine:init', () => {
             email: '',
             phone: '',
             caseType: '',
-            message: ''
+            message: '',
+            dob: ''
         },
 
         touched: {
@@ -104,7 +106,8 @@ document.addEventListener('alpine:init', () => {
             email: false,
             phone: false,
             caseType: false,
-            message: false
+            message: false,
+            dob: false
         },
 
         // UI state
@@ -176,6 +179,28 @@ document.addEventListener('alpine:init', () => {
             return true;
         },
 
+        // Optional. Blank is fine; if given it must be a real past date.
+        validateDob() {
+            const value = (this.formData.dob || '').trim();
+            if (!value) {
+                this.errors.dob = '';
+                return true;
+            }
+            const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+            const date = match ? new Date(Date.UTC(+match[1], +match[2] - 1, +match[3])) : null;
+            if (!date || date.getUTCMonth() !== +match[2] - 1 || date.getUTCDate() !== +match[3]) {
+                this.errors.dob = 'Ingrese una fecha de nacimiento válida';
+                return false;
+            }
+            const age = (Date.now() - date.getTime()) / (365.25 * 24 * 3600 * 1000);
+            if (age < 14 || age > 110) {
+                this.errors.dob = 'Verifique el año de nacimiento';
+                return false;
+            }
+            this.errors.dob = '';
+            return true;
+        },
+
         // Validate all fields
         validateAll() {
             const nameValid = this.validateName();
@@ -183,8 +208,9 @@ document.addEventListener('alpine:init', () => {
             const phoneValid = this.validatePhone();
             const caseTypeValid = this.validateCaseType();
             const messageValid = this.validateMessage();
+            const dobValid = this.validateDob();
 
-            return nameValid && emailValid && phoneValid && caseTypeValid && messageValid;
+            return nameValid && emailValid && phoneValid && caseTypeValid && messageValid && dobValid;
         },
 
         // Check if form is valid (for button state)
@@ -237,6 +263,7 @@ document.addEventListener('alpine:init', () => {
                         email: this.formData.email,
                         message: this.formData.message,
                         caseType: this.formData.caseType,
+                        dob: this.formData.dob || '',
                         smsConsent: true,
                         ...trackingPayload(this)
                     })
@@ -284,6 +311,7 @@ document.addEventListener('alpine:init', () => {
                 phone: '',
                 caseType: '',
                 message: '',
+                dob: '',
                 website: ''
             };
             this.errors = {
@@ -291,14 +319,16 @@ document.addEventListener('alpine:init', () => {
                 email: '',
                 phone: '',
                 caseType: '',
-                message: ''
+                message: '',
+                dob: ''
             };
             this.touched = {
                 name: false,
                 email: false,
                 phone: false,
                 caseType: false,
-                message: false
+                message: false,
+                dob: false
             };
             this.showSuccess = false;
             this.showError = false;
